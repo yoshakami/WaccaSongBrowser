@@ -317,18 +317,104 @@ namespace WaccaSongList
         uint currentSongId;
         private void songidButton_Click(object sender, EventArgs e)
         {
-            if ()
+            if (allSongs.Count == 0)
+                return;
+            if (autoSaveCheckBox.Checked)
+            {
+                saveButton_Click(null, null);
+            }
             uint.TryParse(songid.Text, out currentSongId);
             uint.TryParse(songidTextBox.Text, out currentSongId);
-
             int currentIndex = allSongs.FindIndex(s => s.UniqueID == currentSongId);
             Load(allSongs[currentIndex]);
         }
         private void Load(SongData song)
         {
+            musicTextBox.Text = song.MusicMessage;
+            artistTextBox.Text = song.ArtistMessage;
+            genre.SelectedIndex = song.ScoreGenre;
+            rubiTextBox.Text = song.Rubi;
+            pointCostTextBox.Text = song.WaccaPointCost.ToString();
+            merTextBox.Text = song.AssetDirectory;
+            jacketTextBox.Text = song.JacketAssetName;
+            bpmTextBox.Text = song.Bpm.ToString();
+            previewTimeTextBox.Text = song.PreviewBeginTime.ToString();
+            previewSecTextBox.Text = song.PreviewSeconds.ToString();
+            version.SelectedIndex = song.Version;
+            diffNormalTextBox.Text = song.DifficultyNormalLv.ToString();
+            diffHardTextBox.Text = song.DifficultyHardLv.ToString();
+            diffExtremeTextBox.Text = song.DifficultyExpertLv.ToString();
+            diffInfernoTextBox.Text = song.DifficultyInfernoLv.ToString();
+            crNormalTextBox.Text = song.ClearRateNormal.ToString();
+            crHardTextBox.Text = song.ClearRateHard.ToString();
+            crExtremeTextBox.Text = song.ClearRateExpert.ToString();
+            crInfernoTextBox.Text = song.ClearRateInferno.ToString();
+            movieNormalTextBox.Text = song.MovieAssetName;
+            movieHardTextBox.Text = song.MovieAssetNameHard;
+            movieExtremeTextBox.Text = song.MovieAssetNameExpert;
+            movieInfernoTextBox.Text = song.MovieAssetNameInferno;
+            creatorNormalTextBox.Text = song.NotesDesignerNormal;
+            creatorHardTextBox.Text = song.NotesDesignerHard;
+            creatorExtremeLabel.Text = song.NotesDesignerExpert;
+            creatorInfernoTextBox.Text = song.NotesDesignerInferno;
+            bingo0TextBox.Text = song.bingo0.ToString();
+            bingo1TextBox.Text = song.bingo1.ToString();
+            bingo2TextBox.Text = song.bingo2.ToString();
+            bingo3TextBox.Text = song.bingo3.ToString();
+            bingo4TextBox.Text = song.bingo4.ToString();
+            bingo5TextBox.Text = song.bingo5.ToString();
+            bingo6TextBox.Text = song.bingo6.ToString();
+            bingo7TextBox.Text = song.bingo7.ToString();
+            bingo8TextBox.Text = song.bingo8.ToString();
+            bingo9TextBox.Text = song.bingo9.ToString();
+            offlineCheckBox.Checked = song.ValidCulture_Offline;
+            jaCheckBox.Checked = song.ValidCulture_ja_JP;
+            usaCheckBox.Checked = song.ValidCulture_en_US;
+            zhtwCheckBox.Checked = song.ValidCulture_zh_Hant_TW;
+            enhkCheckBox.Checked = song.ValidCulture_en_HK;
+            ensgCheckBox.Checked = song.ValidCulture_en_SG;
+            kokrCheckBox.Checked = song.ValidCulture_ko_KR;
+            cnguCheckBox.Checked = song.ValidCulture_zh_Hans_CN_Guest;
+            cngeCheckBox.Checked = song.ValidCulture_zh_Hans_CN_GeneralMember;
+            cnvipCheckBox.Checked = song.ValidCulture_zh_Hans_CN_VipMember;
+            notAvailableCheckBox.Checked = song.ValidCulture_NoneActive;
+            beginnerCheckBox.Checked = song.Recommend;
 
+            //filters
+            filterofflineCheckBox.Checked = song.ValidCulture_Offline;
+            filterjaCheckBox.Checked = song.ValidCulture_ja_JP;
+            filterusaCheckBox.Checked = song.ValidCulture_en_US;
+            filterzhtwCheckBox.Checked = song.ValidCulture_zh_Hant_TW;
+            filterenhkCheckBox.Checked = song.ValidCulture_en_HK;
+            filterensgCheckBox.Checked = song.ValidCulture_en_SG;
+            filterkokrCheckBox.Checked = song.ValidCulture_ko_KR;
+            filtercnguCheckBox.Checked = song.ValidCulture_zh_Hans_CN_Guest;
+            filtercngeCheckBox.Checked = song.ValidCulture_zh_Hans_CN_GeneralMember;
+            filtercnvipCheckBox.Checked = song.ValidCulture_zh_Hans_CN_VipMember;
+            filternotAvailableCheckBox.Checked = song.ValidCulture_NoneActive;
+            filterBeginnerCheckBox.Checked = song.Recommend;
+
+            songid.Text = song.UniqueID.ToString();
+            songidTextBox.Text = song.UniqueID.ToString();
+            filterMusicTextBox.Text = song.MusicMessage;
+            filterArtistTextBox.Text = song.ArtistMessage;
+            filterGenre.SelectedIndex = song.ScoreGenre;
+            filterVersion.SelectedIndex = song.Version;
+
+            string path = execPath + song.JacketAssetName + "png";
+            if (File.Exists(path))
+            {
+                using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);                  // Copy file into memory
+                    ms.Position = 0;                // Reset position to beginning
+                    jacketPictureBox.Image = Image.FromStream(ms); // Load image from memory
+                }
+            }
         }
 
+        static readonly string execPath = AppDomain.CurrentDomain.BaseDirectory.Replace("\\", "/");
         private void autoSaveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (autoSaveCheckBox.Checked)
@@ -352,7 +438,7 @@ namespace WaccaSongList
                 _ => default
             };
         }
-        List<SongData> allSongs;
+        static List<SongData> allSongs = new List<SongData>();
 
         public static void Read(string file)
         {
@@ -372,13 +458,13 @@ namespace WaccaSongList
                     {
                         if (row is StructPropertyData rowStruct)
                         {
-                            var data = new SongData
+                            SongData data = new SongData
                             {
                                 UniqueID = GetFieldValue<uint>(rowStruct, "UniqueID"),
                                 MusicMessage = GetFieldValue<string>(rowStruct, "MusicMessage"),
                                 ArtistMessage = GetFieldValue<string>(rowStruct, "ArtistMessage"),
                                 //CopyrightMessage = GetFieldValue<string>(rowStruct, "CopyrightMessage"),
-                                Version = GetFieldValue<string>(rowStruct, "Version"),
+                                Version = GetFieldValue<int>(rowStruct, "Version"),
                                 AssetDirectory = GetFieldValue<string>(rowStruct, "AssetDirectory"),
                                 MovieAssetName = GetFieldValue<string>(rowStruct, "MovieAssetName"),
                                 MovieAssetNameHard = GetFieldValue<string>(rowStruct, "MovieAssetNameHard"),
@@ -387,19 +473,19 @@ namespace WaccaSongList
                                 JacketAssetName = GetFieldValue<string>(rowStruct, "JacketAssetName"),
                                 Rubi = GetFieldValue<string>(rowStruct, "Rubi"),
 
-                                ValidCulture_ja_JP = GetFieldValue<bool>(rowStruct, "bValidCulture_ja_JP"),
-                                ValidCulture_en_US = GetFieldValue<bool>(rowStruct, "bValidCulture_en_US"),
-                                ValidCulture_zh_Hant_TW = GetFieldValue<bool>(rowStruct, "bValidCulture_zh_Hant_TW"),
-                                ValidCulture_en_HK = GetFieldValue<bool>(rowStruct, "bValidCulture_en_HK"),
-                                ValidCulture_en_SG = GetFieldValue<bool>(rowStruct, "bValidCulture_en_SG"),
-                                ValidCulture_ko_KR = GetFieldValue<bool>(rowStruct, "bValidCulture_ko_KR"),
-                                ValidCulture_zh_Hans_CN_Guest = GetFieldValue<bool>(rowStruct, "bValidCulture_zh_Hans_CN_Guest"),
-                                ValidCulture_zh_Hans_CN_GeneralMember = GetFieldValue<bool>(rowStruct, "bValidCulture_zh_Hans_CN_GeneralMember"),
-                                ValidCulture_zh_Hans_CN_VipMember = GetFieldValue<bool>(rowStruct, "bValidCulture_zh_Hans_CN_VipMember"),
-                                ValidCulture_Offline = GetFieldValue<bool>(rowStruct, "bValidCulture_Offline"),
-                                ValidCulture_NoneActive = GetFieldValue<bool>(rowStruct, "bValidCulture_NoneActive"),
+                                ValidCulture_ja_JP = GetFieldValue<bool>(rowStruct, "ValidCulture_ja_JP"),
+                                ValidCulture_en_US = GetFieldValue<bool>(rowStruct, "ValidCulture_en_US"),
+                                ValidCulture_zh_Hant_TW = GetFieldValue<bool>(rowStruct, "ValidCulture_zh_Hant_TW"),
+                                ValidCulture_en_HK = GetFieldValue<bool>(rowStruct, "ValidCulture_en_HK"),
+                                ValidCulture_en_SG = GetFieldValue<bool>(rowStruct, "ValidCulture_en_SG"),
+                                ValidCulture_ko_KR = GetFieldValue<bool>(rowStruct, "ValidCulture_ko_KR"),
+                                ValidCulture_zh_Hans_CN_Guest = GetFieldValue<bool>(rowStruct, "ValidCulture_zh_Hans_CN_Guest"),
+                                ValidCulture_zh_Hans_CN_GeneralMember = GetFieldValue<bool>(rowStruct, "ValidCulture_zh_Hans_CN_GeneralMember"),
+                                ValidCulture_zh_Hans_CN_VipMember = GetFieldValue<bool>(rowStruct, "ValidCulture_zh_Hans_CN_VipMember"),
+                                ValidCulture_Offline = GetFieldValue<bool>(rowStruct, "ValidCulture_Offline"),
+                                ValidCulture_NoneActive = GetFieldValue<bool>(rowStruct, "ValidCulture_NoneActive"),
 
-                                Recommend = GetFieldValue<bool>(rowStruct, "bRecommend"),
+                                Recommend = GetFieldValue<bool>(rowStruct, "Recommend"),
                                 WaccaPointCost = GetFieldValue<int>(rowStruct, "WaccaPointCost"),
                                 //Collaboration = GetFieldValue<byte>(rowStruct, "Collaboration"),
                                 //WaccaOriginal = GetFieldValue<byte>(rowStruct, "WaccaOriginal"),
@@ -419,10 +505,10 @@ namespace WaccaSongList
                                 DifficultyExpertLv = GetFieldValue<float>(rowStruct, "DifficultyExpertLv"),
                                 DifficultyInfernoLv = GetFieldValue<float>(rowStruct, "DifficultyInfernoLv"),
 
-                                ClearRateNormal = GetFieldValue<float>(rowStruct, "ClearNormaRateNormal"),
-                                ClearRateHard = GetFieldValue<float>(rowStruct, "ClearNormaRateHard"),
-                                ClearRateExpert = GetFieldValue<float>(rowStruct, "ClearNormaRateExpert"),
-                                ClearRateInferno = GetFieldValue<float>(rowStruct, "ClearNormaRateInferno"),
+                                ClearRateNormal = GetFieldValue<float>(rowStruct, "ClearRateNormal"),
+                                ClearRateHard = GetFieldValue<float>(rowStruct, "ClearRateHard"),
+                                ClearRateExpert = GetFieldValue<float>(rowStruct, "ClearRateExpert"),
+                                ClearRateInferno = GetFieldValue<float>(rowStruct, "ClearRateInferno"),
 
                                 PreviewBeginTime = GetFieldValue<float>(rowStruct, "PreviewBeginTime"),
                                 PreviewSeconds = GetFieldValue<float>(rowStruct, "PreviewSeconds"),
@@ -441,11 +527,11 @@ namespace WaccaSongList
                                 //public ulong WorkBuffer { get; set; }
                                 AssetFullPath = GetFieldValue<string>(rowStruct, "AssetFullPath"),
                             };
+                            allSongs.Add(data);
                         }
                     }
                 }
             }
-            Console.ReadLine();
         }
     }
 }

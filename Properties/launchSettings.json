@@ -2,7 +2,9 @@
   "profiles": {
     "WaccaSongList": {
       "commandName": "Project",
-      "commandLineArgs": "F:\\WaccaReverseNoSoundNoMovie\\Table\\MusicParameterTable.uasset"
+      "commandLineArgs": "F:\\WaccaReverseNoSoundNoMovie\\Table\\MusicParameterTable.uasset",
+      "workingDirectory": "C:\\Git\\WaccaSongBrowser\\bin",
+      "nativeDebugging": true
     }
   }
 }

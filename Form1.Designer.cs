@@ -481,28 +481,28 @@
             // previewTimeLabel
             // 
             previewTimeLabel.AutoSize = true;
-            previewTimeLabel.Location = new Point(386, 338);
+            previewTimeLabel.Location = new Point(368, 338);
             previewTimeLabel.Name = "previewTimeLabel";
-            previewTimeLabel.Size = new Size(104, 15);
+            previewTimeLabel.Size = new Size(139, 15);
             previewTimeLabel.TabIndex = 36;
-            previewTimeLabel.Text = "PreviewBeginTime";
+            previewTimeLabel.Text = "PreviewBeginTime (float)";
             // 
             // previewTimeTextBox
             // 
-            previewTimeTextBox.Location = new Point(382, 358);
+            previewTimeTextBox.Location = new Point(368, 358);
             previewTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             previewTimeTextBox.Name = "previewTimeTextBox";
-            previewTimeTextBox.Size = new Size(119, 23);
+            previewTimeTextBox.Size = new Size(136, 23);
             previewTimeTextBox.TabIndex = 17;
             // 
             // previewSecLabel
             // 
             previewSecLabel.AutoSize = true;
-            previewSecLabel.Location = new Point(525, 338);
+            previewSecLabel.Location = new Point(513, 338);
             previewSecLabel.Name = "previewSecLabel";
-            previewSecLabel.Size = new Size(92, 15);
+            previewSecLabel.Size = new Size(127, 15);
             previewSecLabel.TabIndex = 38;
-            previewSecLabel.Text = "PreviewSeconds";
+            previewSecLabel.Text = "PreviewSeconds (float)";
             // 
             // previewSecTextBox
             // 
