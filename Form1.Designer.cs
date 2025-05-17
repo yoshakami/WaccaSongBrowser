@@ -118,7 +118,6 @@
             filterGenre = new ComboBox();
             songidTextBox = new TextBox();
             songidButton = new Button();
-            songidCheckBox = new CheckBox();
             filterofflineButton = new Button();
             filternotAvailableCheckBox = new CheckBox();
             filtercnguCheckBox = new CheckBox();
@@ -180,7 +179,7 @@
             jacketPictureBox.Location = new Point(10, 9);
             jacketPictureBox.Margin = new Padding(3, 2, 3, 2);
             jacketPictureBox.Name = "jacketPictureBox";
-            jacketPictureBox.Size = new Size(224, 192);
+            jacketPictureBox.Size = new Size(256, 256);
             jacketPictureBox.TabIndex = 0;
             jacketPictureBox.TabStop = false;
             // 
@@ -192,22 +191,21 @@
             musicLabel.Size = new Size(39, 15);
             musicLabel.TabIndex = 1;
             musicLabel.Text = "Music";
-            musicLabel.Click += label1_Click;
             // 
             // musicTextBox
             // 
-            musicTextBox.Location = new Point(248, 41);
+            musicTextBox.Location = new Point(277, 41);
             musicTextBox.Margin = new Padding(3, 2, 3, 2);
             musicTextBox.Name = "musicTextBox";
-            musicTextBox.Size = new Size(518, 23);
+            musicTextBox.Size = new Size(489, 23);
             musicTextBox.TabIndex = 1;
             // 
             // artistTextBox
             // 
-            artistTextBox.Location = new Point(248, 103);
+            artistTextBox.Location = new Point(277, 103);
             artistTextBox.Margin = new Padding(3, 2, 3, 2);
             artistTextBox.Name = "artistTextBox";
-            artistTextBox.Size = new Size(518, 23);
+            artistTextBox.Size = new Size(489, 23);
             artistTextBox.TabIndex = 2;
             // 
             // artistLabel
@@ -231,7 +229,7 @@
             // beginnerCheckBox
             // 
             beginnerCheckBox.AutoSize = true;
-            beginnerCheckBox.Location = new Point(46, 212);
+            beginnerCheckBox.Location = new Point(610, 163);
             beginnerCheckBox.Margin = new Padding(3, 2, 3, 2);
             beginnerCheckBox.Name = "beginnerCheckBox";
             beginnerCheckBox.Size = new Size(157, 19);
@@ -242,10 +240,10 @@
             // genre
             // 
             genre.FormattingEnabled = true;
-            genre.Location = new Point(248, 160);
+            genre.Location = new Point(277, 160);
             genre.Margin = new Padding(3, 2, 3, 2);
             genre.Name = "genre";
-            genre.Size = new Size(518, 23);
+            genre.Size = new Size(320, 23);
             genre.TabIndex = 3;
             // 
             // songid
@@ -329,7 +327,7 @@
             // diffNormalLabel
             // 
             diffNormalLabel.AutoSize = true;
-            diffNormalLabel.Location = new Point(10, 260);
+            diffNormalLabel.Location = new Point(12, 296);
             diffNormalLabel.Name = "diffNormalLabel";
             diffNormalLabel.Size = new Size(47, 15);
             diffNormalLabel.TabIndex = 18;
@@ -338,7 +336,7 @@
             // difficultiesLabel
             // 
             difficultiesLabel.AutoSize = true;
-            difficultiesLabel.Location = new Point(81, 245);
+            difficultiesLabel.Location = new Point(83, 281);
             difficultiesLabel.Name = "difficultiesLabel";
             difficultiesLabel.Size = new Size(98, 15);
             difficultiesLabel.TabIndex = 19;
@@ -347,7 +345,7 @@
             // diffHardLabel
             // 
             diffHardLabel.AutoSize = true;
-            diffHardLabel.Location = new Point(81, 260);
+            diffHardLabel.Location = new Point(83, 296);
             diffHardLabel.Name = "diffHardLabel";
             diffHardLabel.Size = new Size(33, 15);
             diffHardLabel.TabIndex = 20;
@@ -355,7 +353,7 @@
             // 
             // diffNormalTextBox
             // 
-            diffNormalTextBox.Location = new Point(10, 280);
+            diffNormalTextBox.Location = new Point(12, 316);
             diffNormalTextBox.Margin = new Padding(3, 2, 3, 2);
             diffNormalTextBox.Name = "diffNormalTextBox";
             diffNormalTextBox.Size = new Size(52, 23);
@@ -363,7 +361,7 @@
             // 
             // diffHardTextBox
             // 
-            diffHardTextBox.Location = new Point(74, 280);
+            diffHardTextBox.Location = new Point(76, 316);
             diffHardTextBox.Margin = new Padding(3, 2, 3, 2);
             diffHardTextBox.Name = "diffHardTextBox";
             diffHardTextBox.Size = new Size(52, 23);
@@ -371,7 +369,7 @@
             // 
             // diffExtremeTextBox
             // 
-            diffExtremeTextBox.Location = new Point(139, 280);
+            diffExtremeTextBox.Location = new Point(141, 316);
             diffExtremeTextBox.Margin = new Padding(3, 2, 3, 2);
             diffExtremeTextBox.Name = "diffExtremeTextBox";
             diffExtremeTextBox.Size = new Size(56, 23);
@@ -380,7 +378,7 @@
             // diffExtremeLabel
             // 
             diffExtremeLabel.AutoSize = true;
-            diffExtremeLabel.Location = new Point(139, 260);
+            diffExtremeLabel.Location = new Point(141, 296);
             diffExtremeLabel.Name = "diffExtremeLabel";
             diffExtremeLabel.Size = new Size(50, 15);
             diffExtremeLabel.TabIndex = 23;
@@ -388,7 +386,7 @@
             // 
             // diffInfernoTextBox
             // 
-            diffInfernoTextBox.Location = new Point(207, 280);
+            diffInfernoTextBox.Location = new Point(209, 316);
             diffInfernoTextBox.Margin = new Padding(3, 2, 3, 2);
             diffInfernoTextBox.Name = "diffInfernoTextBox";
             diffInfernoTextBox.Size = new Size(50, 23);
@@ -397,7 +395,7 @@
             // diffInfernoLabel
             // 
             diffInfernoLabel.AutoSize = true;
-            diffInfernoLabel.Location = new Point(207, 260);
+            diffInfernoLabel.Location = new Point(209, 296);
             diffInfernoLabel.Name = "diffInfernoLabel";
             diffInfernoLabel.Size = new Size(45, 15);
             diffInfernoLabel.TabIndex = 25;
@@ -405,7 +403,7 @@
             // 
             // crInfernoTextBox
             // 
-            crInfernoTextBox.Location = new Point(207, 358);
+            crInfernoTextBox.Location = new Point(209, 391);
             crInfernoTextBox.Margin = new Padding(3, 2, 3, 2);
             crInfernoTextBox.Name = "crInfernoTextBox";
             crInfernoTextBox.Size = new Size(50, 23);
@@ -414,7 +412,7 @@
             // crInfernoLabel
             // 
             crInfernoLabel.AutoSize = true;
-            crInfernoLabel.Location = new Point(207, 338);
+            crInfernoLabel.Location = new Point(209, 371);
             crInfernoLabel.Name = "crInfernoLabel";
             crInfernoLabel.Size = new Size(45, 15);
             crInfernoLabel.TabIndex = 34;
@@ -422,7 +420,7 @@
             // 
             // crExtremeTextBox
             // 
-            crExtremeTextBox.Location = new Point(139, 358);
+            crExtremeTextBox.Location = new Point(141, 391);
             crExtremeTextBox.Margin = new Padding(3, 2, 3, 2);
             crExtremeTextBox.Name = "crExtremeTextBox";
             crExtremeTextBox.Size = new Size(56, 23);
@@ -431,7 +429,7 @@
             // crExtremeLabel
             // 
             crExtremeLabel.AutoSize = true;
-            crExtremeLabel.Location = new Point(139, 338);
+            crExtremeLabel.Location = new Point(141, 371);
             crExtremeLabel.Name = "crExtremeLabel";
             crExtremeLabel.Size = new Size(50, 15);
             crExtremeLabel.TabIndex = 32;
@@ -439,7 +437,7 @@
             // 
             // crHardTextBox
             // 
-            crHardTextBox.Location = new Point(74, 358);
+            crHardTextBox.Location = new Point(76, 391);
             crHardTextBox.Margin = new Padding(3, 2, 3, 2);
             crHardTextBox.Name = "crHardTextBox";
             crHardTextBox.Size = new Size(52, 23);
@@ -447,7 +445,7 @@
             // 
             // crNormalTextBox
             // 
-            crNormalTextBox.Location = new Point(10, 358);
+            crNormalTextBox.Location = new Point(12, 391);
             crNormalTextBox.Margin = new Padding(3, 2, 3, 2);
             crNormalTextBox.Name = "crNormalTextBox";
             crNormalTextBox.Size = new Size(52, 23);
@@ -456,7 +454,7 @@
             // crHardLabel
             // 
             crHardLabel.AutoSize = true;
-            crHardLabel.Location = new Point(81, 338);
+            crHardLabel.Location = new Point(83, 371);
             crHardLabel.Name = "crHardLabel";
             crHardLabel.Size = new Size(33, 15);
             crHardLabel.TabIndex = 29;
@@ -465,7 +463,7 @@
             // ClearRateLabel
             // 
             ClearRateLabel.AutoSize = true;
-            ClearRateLabel.Location = new Point(84, 322);
+            ClearRateLabel.Location = new Point(86, 355);
             ClearRateLabel.Name = "ClearRateLabel";
             ClearRateLabel.Size = new Size(95, 15);
             ClearRateLabel.TabIndex = 28;
@@ -474,7 +472,7 @@
             // crNormalLabel
             // 
             crNormalLabel.AutoSize = true;
-            crNormalLabel.Location = new Point(10, 338);
+            crNormalLabel.Location = new Point(12, 371);
             crNormalLabel.Name = "crNormalLabel";
             crNormalLabel.Size = new Size(47, 15);
             crNormalLabel.TabIndex = 27;
@@ -593,7 +591,7 @@
             // 
             // movieInfernoTextBox
             // 
-            movieInfernoTextBox.Location = new Point(207, 434);
+            movieInfernoTextBox.Location = new Point(209, 462);
             movieInfernoTextBox.Margin = new Padding(3, 2, 3, 2);
             movieInfernoTextBox.Name = "movieInfernoTextBox";
             movieInfernoTextBox.Size = new Size(50, 23);
@@ -602,7 +600,7 @@
             // movieInfernoLabel
             // 
             movieInfernoLabel.AutoSize = true;
-            movieInfernoLabel.Location = new Point(207, 414);
+            movieInfernoLabel.Location = new Point(209, 442);
             movieInfernoLabel.Name = "movieInfernoLabel";
             movieInfernoLabel.Size = new Size(45, 15);
             movieInfernoLabel.TabIndex = 58;
@@ -610,7 +608,7 @@
             // 
             // movieExtremeTextBox
             // 
-            movieExtremeTextBox.Location = new Point(139, 434);
+            movieExtremeTextBox.Location = new Point(141, 462);
             movieExtremeTextBox.Margin = new Padding(3, 2, 3, 2);
             movieExtremeTextBox.Name = "movieExtremeTextBox";
             movieExtremeTextBox.Size = new Size(56, 23);
@@ -619,7 +617,7 @@
             // mmovieExtremeLabel
             // 
             mmovieExtremeLabel.AutoSize = true;
-            mmovieExtremeLabel.Location = new Point(139, 414);
+            mmovieExtremeLabel.Location = new Point(141, 442);
             mmovieExtremeLabel.Name = "mmovieExtremeLabel";
             mmovieExtremeLabel.Size = new Size(50, 15);
             mmovieExtremeLabel.TabIndex = 56;
@@ -627,7 +625,7 @@
             // 
             // movieHardTextBox
             // 
-            movieHardTextBox.Location = new Point(74, 434);
+            movieHardTextBox.Location = new Point(76, 462);
             movieHardTextBox.Margin = new Padding(3, 2, 3, 2);
             movieHardTextBox.Name = "movieHardTextBox";
             movieHardTextBox.Size = new Size(52, 23);
@@ -635,7 +633,7 @@
             // 
             // movieNormalTextBox
             // 
-            movieNormalTextBox.Location = new Point(10, 434);
+            movieNormalTextBox.Location = new Point(12, 462);
             movieNormalTextBox.Margin = new Padding(3, 2, 3, 2);
             movieNormalTextBox.Name = "movieNormalTextBox";
             movieNormalTextBox.Size = new Size(52, 23);
@@ -644,7 +642,7 @@
             // movieHardLabel
             // 
             movieHardLabel.AutoSize = true;
-            movieHardLabel.Location = new Point(81, 414);
+            movieHardLabel.Location = new Point(83, 442);
             movieHardLabel.Name = "movieHardLabel";
             movieHardLabel.Size = new Size(33, 15);
             movieHardLabel.TabIndex = 53;
@@ -653,7 +651,7 @@
             // movieLabel
             // 
             movieLabel.AutoSize = true;
-            movieLabel.Location = new Point(84, 399);
+            movieLabel.Location = new Point(86, 427);
             movieLabel.Name = "movieLabel";
             movieLabel.Size = new Size(100, 15);
             movieLabel.TabIndex = 52;
@@ -662,7 +660,7 @@
             // movieNormalLabel
             // 
             movieNormalLabel.AutoSize = true;
-            movieNormalLabel.Location = new Point(10, 414);
+            movieNormalLabel.Location = new Point(12, 442);
             movieNormalLabel.Name = "movieNormalLabel";
             movieNormalLabel.Size = new Size(45, 15);
             movieNormalLabel.TabIndex = 51;
@@ -705,10 +703,10 @@
             // 
             // rubiTextBox
             // 
-            rubiTextBox.Location = new Point(248, 213);
+            rubiTextBox.Location = new Point(277, 213);
             rubiTextBox.Margin = new Padding(3, 2, 3, 2);
             rubiTextBox.Name = "rubiTextBox";
-            rubiTextBox.Size = new Size(518, 23);
+            rubiTextBox.Size = new Size(489, 23);
             rubiTextBox.TabIndex = 4;
             // 
             // rubiLabel
@@ -723,7 +721,7 @@
             // offlineCheckBox
             // 
             offlineCheckBox.AutoSize = true;
-            offlineCheckBox.Location = new Point(16, 469);
+            offlineCheckBox.Location = new Point(18, 497);
             offlineCheckBox.Margin = new Padding(3, 2, 3, 2);
             offlineCheckBox.Name = "offlineCheckBox";
             offlineCheckBox.Size = new Size(113, 19);
@@ -734,7 +732,7 @@
             // jaCheckBox
             // 
             jaCheckBox.AutoSize = true;
-            jaCheckBox.Location = new Point(16, 492);
+            jaCheckBox.Location = new Point(18, 520);
             jaCheckBox.Margin = new Padding(3, 2, 3, 2);
             jaCheckBox.Name = "jaCheckBox";
             jaCheckBox.Size = new Size(120, 19);
@@ -745,7 +743,7 @@
             // usaCheckBox
             // 
             usaCheckBox.AutoSize = true;
-            usaCheckBox.Location = new Point(16, 515);
+            usaCheckBox.Location = new Point(18, 543);
             usaCheckBox.Margin = new Padding(3, 2, 3, 2);
             usaCheckBox.Name = "usaCheckBox";
             usaCheckBox.Size = new Size(132, 19);
@@ -756,7 +754,7 @@
             // zhtwCheckBox
             // 
             zhtwCheckBox.AutoSize = true;
-            zhtwCheckBox.Location = new Point(16, 538);
+            zhtwCheckBox.Location = new Point(18, 566);
             zhtwCheckBox.Margin = new Padding(3, 2, 3, 2);
             zhtwCheckBox.Name = "zhtwCheckBox";
             zhtwCheckBox.Size = new Size(111, 19);
@@ -767,7 +765,7 @@
             // enhkCheckBox
             // 
             enhkCheckBox.AutoSize = true;
-            enhkCheckBox.Location = new Point(15, 561);
+            enhkCheckBox.Location = new Point(17, 589);
             enhkCheckBox.Margin = new Padding(3, 2, 3, 2);
             enhkCheckBox.Name = "enhkCheckBox";
             enhkCheckBox.Size = new Size(111, 19);
@@ -778,7 +776,7 @@
             // ensgCheckBox
             // 
             ensgCheckBox.AutoSize = true;
-            ensgCheckBox.Location = new Point(15, 584);
+            ensgCheckBox.Location = new Point(17, 612);
             ensgCheckBox.Margin = new Padding(3, 2, 3, 2);
             ensgCheckBox.Name = "ensgCheckBox";
             ensgCheckBox.Size = new Size(109, 19);
@@ -789,7 +787,7 @@
             // kokrCheckBox
             // 
             kokrCheckBox.AutoSize = true;
-            kokrCheckBox.Location = new Point(15, 607);
+            kokrCheckBox.Location = new Point(145, 520);
             kokrCheckBox.Margin = new Padding(3, 2, 3, 2);
             kokrCheckBox.Name = "kokrCheckBox";
             kokrCheckBox.Size = new Size(109, 19);
@@ -800,7 +798,7 @@
             // cngeCheckBox
             // 
             cngeCheckBox.AutoSize = true;
-            cngeCheckBox.Location = new Point(148, 561);
+            cngeCheckBox.Location = new Point(145, 566);
             cngeCheckBox.Margin = new Padding(3, 2, 3, 2);
             cngeCheckBox.Name = "cngeCheckBox";
             cngeCheckBox.Size = new Size(139, 19);
@@ -811,7 +809,7 @@
             // cnvipCheckBox
             // 
             cnvipCheckBox.AutoSize = true;
-            cnvipCheckBox.Location = new Point(148, 584);
+            cnvipCheckBox.Location = new Point(145, 589);
             cnvipCheckBox.Margin = new Padding(3, 2, 3, 2);
             cnvipCheckBox.Name = "cnvipCheckBox";
             cnvipCheckBox.Size = new Size(116, 19);
@@ -822,7 +820,7 @@
             // cnguCheckBox
             // 
             cnguCheckBox.AutoSize = true;
-            cnguCheckBox.Location = new Point(148, 538);
+            cnguCheckBox.Location = new Point(145, 543);
             cnguCheckBox.Margin = new Padding(3, 2, 3, 2);
             cnguCheckBox.Name = "cnguCheckBox";
             cnguCheckBox.Size = new Size(129, 19);
@@ -833,7 +831,7 @@
             // notAvailableCheckBox
             // 
             notAvailableCheckBox.AutoSize = true;
-            notAvailableCheckBox.Location = new Point(148, 607);
+            notAvailableCheckBox.Location = new Point(145, 612);
             notAvailableCheckBox.Margin = new Padding(3, 2, 3, 2);
             notAvailableCheckBox.Name = "notAvailableCheckBox";
             notAvailableCheckBox.Size = new Size(179, 19);
@@ -849,6 +847,7 @@
             checkAllCorrectBoxesButton.TabIndex = 75;
             checkAllCorrectBoxesButton.Text = "Check all the correct boxes for me!!!!!!";
             checkAllCorrectBoxesButton.UseVisualStyleBackColor = true;
+            checkAllCorrectBoxesButton.Click += checkAllCorrectBoxesButton_Click;
             // 
             // filterMusicButton
             // 
@@ -858,6 +857,7 @@
             filterMusicButton.TabIndex = 77;
             filterMusicButton.Text = "Search";
             filterMusicButton.UseVisualStyleBackColor = true;
+            filterMusicButton.Click += filterMusicButton_Click;
             // 
             // autoSaveCheckBox
             // 
@@ -869,6 +869,7 @@
             autoSaveCheckBox.TabIndex = 128;
             autoSaveCheckBox.Text = "Auto Save Edits";
             autoSaveCheckBox.UseVisualStyleBackColor = true;
+            autoSaveCheckBox.CheckedChanged += autoSaveCheckBox_CheckedChanged;
             // 
             // progressBar
             // 
@@ -940,6 +941,7 @@
             filterArtistButton.TabIndex = 79;
             filterArtistButton.Text = "Search";
             filterArtistButton.UseVisualStyleBackColor = true;
+            filterArtistButton.Click += filterArtistButton_Click;
             // 
             // filterGenreLabel
             // 
@@ -958,6 +960,7 @@
             filterGenreButton.TabIndex = 81;
             filterGenreButton.Text = "Search";
             filterGenreButton.UseVisualStyleBackColor = true;
+            filterGenreButton.Click += filterGenreButton_Click;
             // 
             // filterGenre
             // 
@@ -984,17 +987,7 @@
             songidButton.TabIndex = 84;
             songidButton.Text = "Validate";
             songidButton.UseVisualStyleBackColor = true;
-            // 
-            // songidCheckBox
-            // 
-            songidCheckBox.AutoSize = true;
-            songidCheckBox.Location = new Point(837, 245);
-            songidCheckBox.Margin = new Padding(3, 2, 3, 2);
-            songidCheckBox.Name = "songidCheckBox";
-            songidCheckBox.Size = new Size(316, 19);
-            songidCheckBox.TabIndex = 85;
-            songidCheckBox.Text = "also save edits of the left part when clicking on validate";
-            songidCheckBox.UseVisualStyleBackColor = true;
+            songidButton.Click += songidButton_Click;
             // 
             // filterofflineButton
             // 
@@ -1004,6 +997,7 @@
             filterofflineButton.TabIndex = 109;
             filterofflineButton.Text = "Search";
             filterofflineButton.UseVisualStyleBackColor = true;
+            filterofflineButton.Click += filterofflineButton_Click;
             // 
             // filternotAvailableCheckBox
             // 
@@ -1134,6 +1128,7 @@
             filterjaButton.TabIndex = 110;
             filterjaButton.Text = "Search";
             filterjaButton.UseVisualStyleBackColor = true;
+            filterjaButton.Click += filterjaButton_Click;
             // 
             // filterusaButton
             // 
@@ -1143,6 +1138,7 @@
             filterusaButton.TabIndex = 111;
             filterusaButton.Text = "Search";
             filterusaButton.UseVisualStyleBackColor = true;
+            filterusaButton.Click += filterusaButton_Click;
             // 
             // filternotAvailableButton
             // 
@@ -1152,6 +1148,7 @@
             filternotAvailableButton.TabIndex = 127;
             filternotAvailableButton.Text = "Search";
             filternotAvailableButton.UseVisualStyleBackColor = true;
+            filternotAvailableButton.Click += filternotAvailableButton_Click;
             // 
             // filterkokrButton
             // 
@@ -1161,6 +1158,7 @@
             filterkokrButton.TabIndex = 115;
             filterkokrButton.Text = "Search";
             filterkokrButton.UseVisualStyleBackColor = true;
+            filterkokrButton.Click += filterkokrButton_Click;
             // 
             // filterensgButton
             // 
@@ -1170,6 +1168,7 @@
             filterensgButton.TabIndex = 114;
             filterensgButton.Text = "Search";
             filterensgButton.UseVisualStyleBackColor = true;
+            filterensgButton.Click += filterensgButton_Click;
             // 
             // filterenhkButton
             // 
@@ -1179,6 +1178,7 @@
             filterenhkButton.TabIndex = 113;
             filterenhkButton.Text = "Search";
             filterenhkButton.UseVisualStyleBackColor = true;
+            filterenhkButton.Click += filterenhkButton_Click;
             // 
             // filterzhtwButton
             // 
@@ -1188,6 +1188,7 @@
             filterzhtwButton.TabIndex = 112;
             filterzhtwButton.Text = "Search";
             filterzhtwButton.UseVisualStyleBackColor = true;
+            filterzhtwButton.Click += filterzhtwButton_Click;
             // 
             // filterfiltercnvipButton
             // 
@@ -1197,6 +1198,7 @@
             filterfiltercnvipButton.TabIndex = 126;
             filterfiltercnvipButton.Text = "Search";
             filterfiltercnvipButton.UseVisualStyleBackColor = true;
+            filterfiltercnvipButton.Click += filterfiltercnvipButton_Click;
             // 
             // filtercngeButton
             // 
@@ -1206,6 +1208,7 @@
             filtercngeButton.TabIndex = 125;
             filtercngeButton.Text = "Search";
             filtercngeButton.UseVisualStyleBackColor = true;
+            filtercngeButton.Click += filtercngeButton_Click;
             // 
             // filtercnguButton
             // 
@@ -1215,6 +1218,7 @@
             filtercnguButton.TabIndex = 124;
             filtercnguButton.Text = "Search";
             filtercnguButton.UseVisualStyleBackColor = true;
+            filtercnguButton.Click += filtercnguButton_Click;
             // 
             // filterBeginnerCheckBox
             // 
@@ -1235,6 +1239,7 @@
             filterBeginnerButton.TabIndex = 87;
             filterBeginnerButton.Text = "Search";
             filterBeginnerButton.UseVisualStyleBackColor = true;
+            filterBeginnerButton.Click += filterBeginnerButton_Click;
             // 
             // filterVersion
             // 
@@ -1262,6 +1267,7 @@
             filterVersionButton.TabIndex = 89;
             filterVersionButton.Text = "Search";
             filterVersionButton.UseVisualStyleBackColor = true;
+            filterVersionButton.Click += filterVersionButton_Click;
             // 
             // saveButton
             // 
@@ -1271,6 +1277,7 @@
             saveButton.TabIndex = 129;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // saveLabel
             // 
@@ -1548,7 +1555,6 @@
             Controls.Add(filterjaCheckBox);
             Controls.Add(filterofflineCheckBox);
             Controls.Add(filterofflineButton);
-            Controls.Add(songidCheckBox);
             Controls.Add(songidButton);
             Controls.Add(filterGenre);
             Controls.Add(filterGenreLabel);
@@ -1644,7 +1650,6 @@
             Text = "Wacca Song Browser";
             DragDrop += WaccaSongBrowser_DragDrop;
             DragEnter += WaccaSongBrowser_DragEnter;
-            DragLeave += WaccaSongBrowser_DragLeave;
             ((System.ComponentModel.ISupportInitialize)jacketPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -1742,7 +1747,6 @@
         private ComboBox filterGenre;
         private TextBox songidTextBox;
         private Button songidButton;
-        private CheckBox songidCheckBox;
         private Button filterofflineButton;
         private CheckBox filternotAvailableCheckBox;
         private CheckBox filtercnguCheckBox;
