@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WaccaSongList": {
+      "commandName": "Project",
+      "commandLineArgs": "F:\\WaccaReverseNoSoundNoMovie\\Table\\MusicParameterTable.uasset"
+    }
+  }
+}
