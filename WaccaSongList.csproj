@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <Reference Include="UAssetAPI">
-      <HintPath>..\..\dll\UAssetAPI.dll</HintPath>
+      <HintPath>..\dll\UAssetAPI.dll</HintPath>
     </Reference>
   </ItemGroup>
 
