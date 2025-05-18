@@ -29,7 +29,7 @@ namespace WaccaSongList
         public string MusicMessage { get; set; }
         public string ArtistMessage { get; set; }
         //public string CopyrightMessage { get; set; }
-        public int Version { get; set; }
+        public uint Version { get; set; }
         public string AssetDirectory { get; set; }
         public string MovieAssetName { get; set; }
         public string MovieAssetNameHard { get; set; }

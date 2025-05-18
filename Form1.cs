@@ -10,6 +10,30 @@ namespace WaccaSongList
         public WaccaSongBrowser()
         {
             InitializeComponent();
+            genre.Items.Add("0: Anime/Pop");
+            genre.Items.Add("1: Vocaloid");
+            genre.Items.Add("2: Touhou");
+            genre.Items.Add("3: 2.5D");
+            genre.Items.Add("4: Variety");
+            genre.Items.Add("5: Original");
+            genre.Items.Add("6: Tano*C");
+            filterGenre.Items.Add("0: Anime/Pop");
+            filterGenre.Items.Add("1: Vocaloid");
+            filterGenre.Items.Add("2: Touhou");
+            filterGenre.Items.Add("3: 2.5D");
+            filterGenre.Items.Add("4: Variety");
+            filterGenre.Items.Add("5: Original");
+            filterGenre.Items.Add("6: Tano*C");
+            version.Items.Add("1: Wacca");
+            version.Items.Add("2: Wacca S");
+            version.Items.Add("3: Wacca Lily");
+            version.Items.Add("4: Wacca Lily R");
+            version.Items.Add("5: Wacca Reverse");
+            filterVersion.Items.Add("1: Wacca");
+            filterVersion.Items.Add("2: Wacca S");
+            filterVersion.Items.Add("3: Wacca Lily");
+            filterVersion.Items.Add("4: Wacca Lily R");
+            filterVersion.Items.Add("5: Wacca Reverse");
         }
         private void WaccaSongBrowser_DragEnter(object sender, DragEventArgs e)
         {
@@ -133,48 +157,11 @@ namespace WaccaSongList
 
         private void filterGenreButton_Click(object sender, EventArgs e)
         {
-            int filter = filterGenre.SelectedIndex;
-
-            if (allSongs.Count == 0)
-                return;
-
-            // Filter songs by name
-            var matchingSongs = allSongs
-                .Where(song => song.ScoreGenre == filter)
-                .ToList();
-
-            if (matchingSongs.Count == 0)
-                return; // No match found
-
-            // Find the index of the currently loaded song in the global list
-            int currentIndex = allSongs.FindIndex(s => s.UniqueID == currentSongId);
-
-            // Try to find the next matching song after the current one
-            SongData nextMatch = null;
-
-            for (int i = 1; i <= allSongs.Count; i++)
-            {
-                // Loop through indices starting from currentIndex + 1, wrapping around
-                int index = (currentIndex + i) % allSongs.Count;
-
-                var song = allSongs[index];
-                if (song.ScoreGenre == filter)
-                {
-                    nextMatch = song;
-                    break;
-                }
-            }
-
-            if (nextMatch != null)
-            {
-                currentSongId = nextMatch.UniqueID;
-                Load(nextMatch);
-            }
             FilterByIntProperty("ScoreGenre", filterGenre.SelectedIndex);
         }
         private void filterVersionButton_Click(object sender, EventArgs e)
         {
-            FilterByIntProperty("Version", filterVersion.SelectedIndex);
+            FilterByIntProperty("Version", filterVersion.SelectedIndex + 1);
         }
         private void FilterByIntProperty(string propertyName, int expectedValue)
         {
@@ -311,7 +298,7 @@ namespace WaccaSongList
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-
+            // TODO
         }
 
         uint currentSongId;
@@ -324,8 +311,16 @@ namespace WaccaSongList
                 saveButton_Click(null, null);
             }
             uint.TryParse(songid.Text, out currentSongId);
-            uint.TryParse(songidTextBox.Text, out currentSongId);
+            if (currentSongId == 0)
+            {
+                uint.TryParse(songidTextBox.Text, out currentSongId);
+            }
             int currentIndex = allSongs.FindIndex(s => s.UniqueID == currentSongId);
+            if (currentIndex == -1)
+            {
+                saveLabel.Text = "Search Failed Successfully!";
+                return;
+            }
             Load(allSongs[currentIndex]);
         }
         private void Load(SongData song)
@@ -340,7 +335,7 @@ namespace WaccaSongList
             bpmTextBox.Text = song.Bpm.ToString();
             previewTimeTextBox.Text = song.PreviewBeginTime.ToString();
             previewSecTextBox.Text = song.PreviewSeconds.ToString();
-            version.SelectedIndex = song.Version;
+            version.SelectedIndex = (int)(song.Version - 1);
             diffNormalTextBox.Text = song.DifficultyNormalLv.ToString();
             diffHardTextBox.Text = song.DifficultyHardLv.ToString();
             diffExtremeTextBox.Text = song.DifficultyExpertLv.ToString();
@@ -355,7 +350,7 @@ namespace WaccaSongList
             movieInfernoTextBox.Text = song.MovieAssetNameInferno;
             creatorNormalTextBox.Text = song.NotesDesignerNormal;
             creatorHardTextBox.Text = song.NotesDesignerHard;
-            creatorExtremeLabel.Text = song.NotesDesignerExpert;
+            creatorExtremeTextBox.Text = song.NotesDesignerExpert;
             creatorInfernoTextBox.Text = song.NotesDesignerInferno;
             bingo0TextBox.Text = song.bingo0.ToString();
             bingo1TextBox.Text = song.bingo1.ToString();
@@ -399,9 +394,10 @@ namespace WaccaSongList
             filterMusicTextBox.Text = song.MusicMessage;
             filterArtistTextBox.Text = song.ArtistMessage;
             filterGenre.SelectedIndex = song.ScoreGenre;
-            filterVersion.SelectedIndex = song.Version;
+            filterVersion.SelectedIndex = (int)(song.Version - 1);
+            consoleLabel.Text = "file loaded successfully!";
 
-            string path = execPath + song.JacketAssetName + "png";
+            string path = execPath + song.JacketAssetName + ".png";
             if (File.Exists(path))
             {
                 using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -440,7 +436,7 @@ namespace WaccaSongList
         }
         static List<SongData> allSongs = new List<SongData>();
 
-        public static void Read(string file)
+        void Read(string file)
         {
             string uassetPath = file;
 
@@ -464,7 +460,7 @@ namespace WaccaSongList
                                 MusicMessage = GetFieldValue<string>(rowStruct, "MusicMessage"),
                                 ArtistMessage = GetFieldValue<string>(rowStruct, "ArtistMessage"),
                                 //CopyrightMessage = GetFieldValue<string>(rowStruct, "CopyrightMessage"),
-                                Version = GetFieldValue<int>(rowStruct, "Version"),
+                                Version = GetFieldValue<uint>(rowStruct, "VersionNo"),
                                 AssetDirectory = GetFieldValue<string>(rowStruct, "AssetDirectory"),
                                 MovieAssetName = GetFieldValue<string>(rowStruct, "MovieAssetName"),
                                 MovieAssetNameHard = GetFieldValue<string>(rowStruct, "MovieAssetNameHard"),
@@ -473,22 +469,22 @@ namespace WaccaSongList
                                 JacketAssetName = GetFieldValue<string>(rowStruct, "JacketAssetName"),
                                 Rubi = GetFieldValue<string>(rowStruct, "Rubi"),
 
-                                ValidCulture_ja_JP = GetFieldValue<bool>(rowStruct, "ValidCulture_ja_JP"),
-                                ValidCulture_en_US = GetFieldValue<bool>(rowStruct, "ValidCulture_en_US"),
-                                ValidCulture_zh_Hant_TW = GetFieldValue<bool>(rowStruct, "ValidCulture_zh_Hant_TW"),
-                                ValidCulture_en_HK = GetFieldValue<bool>(rowStruct, "ValidCulture_en_HK"),
-                                ValidCulture_en_SG = GetFieldValue<bool>(rowStruct, "ValidCulture_en_SG"),
-                                ValidCulture_ko_KR = GetFieldValue<bool>(rowStruct, "ValidCulture_ko_KR"),
-                                ValidCulture_zh_Hans_CN_Guest = GetFieldValue<bool>(rowStruct, "ValidCulture_zh_Hans_CN_Guest"),
-                                ValidCulture_zh_Hans_CN_GeneralMember = GetFieldValue<bool>(rowStruct, "ValidCulture_zh_Hans_CN_GeneralMember"),
-                                ValidCulture_zh_Hans_CN_VipMember = GetFieldValue<bool>(rowStruct, "ValidCulture_zh_Hans_CN_VipMember"),
-                                ValidCulture_Offline = GetFieldValue<bool>(rowStruct, "ValidCulture_Offline"),
-                                ValidCulture_NoneActive = GetFieldValue<bool>(rowStruct, "ValidCulture_NoneActive"),
+                                ValidCulture_ja_JP = GetFieldValue<bool>(rowStruct, "bValidCulture_ja_JP"),
+                                ValidCulture_en_US = GetFieldValue<bool>(rowStruct, "bValidCulture_en_US"),
+                                ValidCulture_zh_Hant_TW = GetFieldValue<bool>(rowStruct, "bValidCulture_zh_Hant_TW"),
+                                ValidCulture_en_HK = GetFieldValue<bool>(rowStruct, "bValidCulture_en_HK"),
+                                ValidCulture_en_SG = GetFieldValue<bool>(rowStruct, "bValidCulture_en_SG"),
+                                ValidCulture_ko_KR = GetFieldValue<bool>(rowStruct, "bValidCulture_ko_KR"),
+                                ValidCulture_zh_Hans_CN_Guest = GetFieldValue<bool>(rowStruct, "bValidCulture_zh_Hans_CN_Guest"),
+                                ValidCulture_zh_Hans_CN_GeneralMember = GetFieldValue<bool>(rowStruct, "bValidCulture_zh_Hans_CN_GeneralMember"),
+                                ValidCulture_zh_Hans_CN_VipMember = GetFieldValue<bool>(rowStruct, "bValidCulture_zh_Hans_CN_VipMember"),
+                                ValidCulture_Offline = GetFieldValue<bool>(rowStruct, "bValidCulture_Offline"),
+                                ValidCulture_NoneActive = GetFieldValue<bool>(rowStruct, "bValidCulture_NoneActive"),
 
-                                Recommend = GetFieldValue<bool>(rowStruct, "Recommend"),
+                                Recommend = GetFieldValue<bool>(rowStruct, "bRecommend"),
                                 WaccaPointCost = GetFieldValue<int>(rowStruct, "WaccaPointCost"),
-                                //Collaboration = GetFieldValue<byte>(rowStruct, "Collaboration"),
-                                //WaccaOriginal = GetFieldValue<byte>(rowStruct, "WaccaOriginal"),
+                                //Collaboration = GetFieldValue<byte>(rowStruct, "bCollaboration"),
+                                //WaccaOriginal = GetFieldValue<byte>(rowStruct, "bWaccaOriginal"),
                                 //TrainingLevel = GetFieldValue<byte>(rowStruct, "TrainingLevel"),
                                 //Reserved = GetFieldValue<byte>(rowStruct, "Reserved"),
 
@@ -505,28 +501,29 @@ namespace WaccaSongList
                                 DifficultyExpertLv = GetFieldValue<float>(rowStruct, "DifficultyExpertLv"),
                                 DifficultyInfernoLv = GetFieldValue<float>(rowStruct, "DifficultyInfernoLv"),
 
-                                ClearRateNormal = GetFieldValue<float>(rowStruct, "ClearRateNormal"),
-                                ClearRateHard = GetFieldValue<float>(rowStruct, "ClearRateHard"),
-                                ClearRateExpert = GetFieldValue<float>(rowStruct, "ClearRateExpert"),
-                                ClearRateInferno = GetFieldValue<float>(rowStruct, "ClearRateInferno"),
+                                ClearRateNormal = GetFieldValue<float>(rowStruct, "ClearNormaRateNormal"),
+                                ClearRateHard = GetFieldValue<float>(rowStruct, "ClearNormaRateHard"),
+                                ClearRateExpert = GetFieldValue<float>(rowStruct, "ClearNormaRateExpert"),
+                                ClearRateInferno = GetFieldValue<float>(rowStruct, "ClearNormaRateInferno"),
 
                                 PreviewBeginTime = GetFieldValue<float>(rowStruct, "PreviewBeginTime"),
                                 PreviewSeconds = GetFieldValue<float>(rowStruct, "PreviewSeconds"),
 
                                 ScoreGenre = GetFieldValue<int>(rowStruct, "ScoreGenre"),
-                                bingo0 = GetFieldValue<int>(rowStruct, "bingo0"),
-                                bingo1 = GetFieldValue<int>(rowStruct, "bingo1"),
-                                bingo2 = GetFieldValue<int>(rowStruct, "bingo2"),
-                                bingo3 = GetFieldValue<int>(rowStruct, "bingo3"),
-                                bingo4 = GetFieldValue<int>(rowStruct, "bingo4"),
-                                bingo5 = GetFieldValue<int>(rowStruct, "bingo5"),
-                                bingo6 = GetFieldValue<int>(rowStruct, "bingo6"),
-                                bingo7 = GetFieldValue<int>(rowStruct, "bingo7"),
-                                bingo8 = GetFieldValue<int>(rowStruct, "bingo8"),
-                                bingo9 = GetFieldValue<int>(rowStruct, "bingo9"),
+                                bingo0 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock0"),
+                                bingo1 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock1"),
+                                bingo2 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock2"),
+                                bingo3 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock3"),
+                                bingo4 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock4"),
+                                bingo5 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock5"),
+                                bingo6 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock6"),
+                                bingo7 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock7"),
+                                bingo8 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock8"),
+                                bingo9 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock9"),
                                 //public ulong WorkBuffer { get; set; }
                                 AssetFullPath = GetFieldValue<string>(rowStruct, "AssetFullPath"),
                             };
+                            songid.Items.Add(data.UniqueID.ToString());
                             allSongs.Add(data);
                         }
                     }

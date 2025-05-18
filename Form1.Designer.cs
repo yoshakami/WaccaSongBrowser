@@ -69,7 +69,7 @@
             previewSecTextBox = new TextBox();
             creatorInfernoTextBox = new TextBox();
             creatorInfernoLabel = new Label();
-            creatrorExtremeTextBox = new TextBox();
+            creatorExtremeTextBox = new TextBox();
             creatorExtremeLabel = new Label();
             creatorHardTextBox = new TextBox();
             creatorNormalTextBox = new TextBox();
@@ -529,13 +529,13 @@
             creatorInfernoLabel.TabIndex = 49;
             creatorInfernoLabel.Text = "Inferno";
             // 
-            // creatrorExtremeTextBox
+            // creatorExtremeTextBox
             // 
-            creatrorExtremeTextBox.Location = new Point(550, 434);
-            creatrorExtremeTextBox.Margin = new Padding(3, 2, 3, 2);
-            creatrorExtremeTextBox.Name = "creatrorExtremeTextBox";
-            creatrorExtremeTextBox.Size = new Size(103, 23);
-            creatrorExtremeTextBox.TabIndex = 26;
+            creatorExtremeTextBox.Location = new Point(550, 434);
+            creatorExtremeTextBox.Margin = new Padding(3, 2, 3, 2);
+            creatorExtremeTextBox.Name = "creatorExtremeTextBox";
+            creatorExtremeTextBox.Size = new Size(103, 23);
+            creatorExtremeTextBox.TabIndex = 26;
             // 
             // creatorExtremeLabel
             // 
@@ -1596,7 +1596,7 @@
             Controls.Add(movieNormalLabel);
             Controls.Add(creatorInfernoTextBox);
             Controls.Add(creatorInfernoLabel);
-            Controls.Add(creatrorExtremeTextBox);
+            Controls.Add(creatorExtremeTextBox);
             Controls.Add(creatorExtremeLabel);
             Controls.Add(creatorHardTextBox);
             Controls.Add(creatorNormalTextBox);
@@ -1698,7 +1698,7 @@
         private TextBox previewSecTextBox;
         private TextBox creatorInfernoTextBox;
         private Label creatorInfernoLabel;
-        private TextBox creatrorExtremeTextBox;
+        private TextBox creatorExtremeTextBox;
         private Label creatorExtremeLabel;
         private TextBox creatorHardTextBox;
         private TextBox creatorNormalTextBox;
