@@ -1,12 +1,4 @@
-using System.Collections.Generic;
-using System;
-using System.Linq;
-using UAssetAPI;
-using UAssetAPI.ExportTypes;
-using UAssetAPI.PropertyTypes.Objects;
-using UAssetAPI.PropertyTypes.Structs;
-
-namespace WaccaSongList
+namespace WaccaSongBrowser
 {
     internal static class Program
     {

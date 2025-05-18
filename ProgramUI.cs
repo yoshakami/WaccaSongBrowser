@@ -3,7 +3,7 @@ using UAssetAPI.PropertyTypes.Objects;
 using UAssetAPI.PropertyTypes.Structs;
 using UAssetAPI;
 
-namespace WaccaSongList
+namespace WaccaSongBrowser
 {
     public partial class WaccaSongBrowser : Form
     {

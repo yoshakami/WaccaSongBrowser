@@ -1,4 +1,4 @@
-﻿namespace WaccaSongList
+﻿namespace WaccaSongBrowser
 {
     partial class WaccaSongBrowser
     {
