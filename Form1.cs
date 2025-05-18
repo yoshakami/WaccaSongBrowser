@@ -161,7 +161,46 @@ namespace WaccaSongList
         }
         private void filterVersionButton_Click(object sender, EventArgs e)
         {
-            FilterByIntProperty("Version", filterVersion.SelectedIndex + 1);
+            FilterByuIntProperty("Version", (uint)filterVersion.SelectedIndex + 1);
+        }
+        private void FilterByuIntProperty(string propertyName, uint expectedValue)
+        {
+            if (allSongs.Count == 0)
+                return;
+
+            // Find the current index in the list
+            int currentIndex = allSongs.FindIndex(s => s.UniqueID == currentSongId);
+
+            for (int i = 1; i <= allSongs.Count; i++)
+            {
+                int index = (currentIndex + i) % allSongs.Count;
+                var song = allSongs[index];
+
+                uint? propValue = GetuIntProperty(song, propertyName);
+
+                if (propValue == expectedValue)
+                {
+                    currentSongId = song.UniqueID;
+                    Load(song);
+                    break;
+                }
+            }
+        }
+        private uint? GetuIntProperty(SongData song, string propertyName)
+        {
+            var propInfo = typeof(SongData).GetProperty(propertyName);
+            if (propInfo != null && propInfo.PropertyType == typeof(uint))
+            {
+                return (uint)propInfo.GetValue(song);
+            }
+
+            var fieldInfo = typeof(SongData).GetField(propertyName);
+            if (fieldInfo != null && fieldInfo.FieldType == typeof(uint))
+            {
+                return (uint)fieldInfo.GetValue(song);
+            }
+
+            return null; // Not found or not an int
         }
         private void FilterByIntProperty(string propertyName, int expectedValue)
         {
