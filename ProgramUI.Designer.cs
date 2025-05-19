@@ -116,7 +116,6 @@
             filterGenreLabel = new Label();
             filterGenreButton = new Button();
             filterGenre = new ComboBox();
-            songidTextBox = new TextBox();
             songidButton = new Button();
             filterofflineButton = new Button();
             filternotAvailableCheckBox = new CheckBox();
@@ -252,7 +251,7 @@
             songid.Location = new Point(837, 213);
             songid.Margin = new Padding(3, 2, 3, 2);
             songid.Name = "songid";
-            songid.Size = new Size(107, 23);
+            songid.Size = new Size(225, 23);
             songid.TabIndex = 82;
             // 
             // genreLabel
@@ -971,14 +970,6 @@
             filterGenre.Size = new Size(225, 23);
             filterGenre.TabIndex = 80;
             // 
-            // songidTextBox
-            // 
-            songidTextBox.Location = new Point(960, 212);
-            songidTextBox.Margin = new Padding(3, 2, 3, 2);
-            songidTextBox.Name = "songidTextBox";
-            songidTextBox.Size = new Size(102, 23);
-            songidTextBox.TabIndex = 83;
-            // 
             // songidButton
             // 
             songidButton.Location = new Point(1078, 213);
@@ -1635,7 +1626,6 @@
             Controls.Add(bpmTextBox);
             Controls.Add(bpmLabel);
             Controls.Add(genreLabel);
-            Controls.Add(songidTextBox);
             Controls.Add(songid);
             Controls.Add(genre);
             Controls.Add(beginnerCheckBox);
@@ -1745,7 +1735,6 @@
         private Label filterGenreLabel;
         private Button filterGenreButton;
         private ComboBox filterGenre;
-        private TextBox songidTextBox;
         private Button songidButton;
         private Button filterofflineButton;
         private CheckBox filternotAvailableCheckBox;
