@@ -111,7 +111,7 @@ namespace WaccaSongBrowser
             if (nextMatch != null)
             {
                 currentSongId = nextMatch.UniqueID;
-                Load(nextMatch);
+                LoadUI(nextMatch);
             }
         }
 
@@ -153,7 +153,7 @@ namespace WaccaSongBrowser
             if (nextMatch != null)
             {
                 currentSongId = nextMatch.UniqueID;
-                Load(nextMatch);
+                LoadUI(nextMatch);
             }
         }
 
@@ -183,7 +183,7 @@ namespace WaccaSongBrowser
                 if (propValue == expectedValue)
                 {
                     currentSongId = song.UniqueID;
-                    Load(song);
+                    LoadUI(song);
                     break;
                 }
             }
@@ -222,7 +222,7 @@ namespace WaccaSongBrowser
                 if (propValue == expectedValue)
                 {
                     currentSongId = song.UniqueID;
-                    Load(song);
+                    LoadUI(song);
                     break;
                 }
             }
@@ -263,7 +263,7 @@ namespace WaccaSongBrowser
                 if (propValue == expectedValue)
                 {
                     currentSongId = song.UniqueID;
-                    Load(song);
+                    LoadUI(song);
                     break;
                 }
             }
@@ -422,7 +422,7 @@ namespace WaccaSongBrowser
                             SetFieldValue(rowStruct, "MusicTagForUnlock8", songData.bingo8);
                             SetFieldValue(rowStruct, "MusicTagForUnlock9", songData.bingo9);
                             //public ulong WorkBuffer { get; set; }
-                            SetFieldValue(rowStruct, "AssetFullPath", songData.AssetFullPath);
+                            //SetFieldValue(rowStruct, "AssetFullPath", songData.AssetFullPath);
                         }
                     }
                     //void AddRowToAsset(DataTableExport dataTable, SongData songDataToAdd)
@@ -469,16 +469,26 @@ namespace WaccaSongBrowser
 
                         newRow.Value.Add(new BoolPropertyData(new FName((INameMap)(FString)"bRecommend")) { Value = songData.Recommend });
                         newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"WaccaPointCost")) { Value = songData.WaccaPointCost });
-                        newRow.Value.Add(new BytePropertyData(new FName((INameMap)(FString)"bCollaboration")) { Value = (FString)songData.Collaboration });
-                        newRow.Value.Add(new BytePropertyData(new FName((INameMap)(FString)"bWaccaOriginal")) { Value = 0 });
-                        newRow.Value.Add(new BytePropertyData(new FName((INameMap)(FString)"TrainingLevel")) { Value = 0 });
+                        newRow.Value.Add(new BytePropertyData(new FName((INameMap)(FString)"bCollaboration"))
+                        {
+                            EnumType = new FName((INameMap)(FString)"None"), // Optional if "None" is needed
+                            Value = 0
+                        }); ;
+                        newRow.Value.Add(new BytePropertyData(new FName((INameMap)(FString)"bWaccaOriginal"))
+                        {
+                            EnumType = new FName((INameMap)(FString)"None"), // Optional if "None" is needed
+                            Value = 3
+                        });
                         newRow.Value.Add(new BytePropertyData(new FName((INameMap)(FString)"TrainingLevel"))
                         {
                             EnumType = new FName((INameMap)(FString)"None"), // Optional if "None" is needed
                             Value = 3 // Sets Value 2 to 3
                         });
-
-                        newRow.Value.Add(new BytePropertyData(new FName((INameMap)(FString)"Reserved")) { Value = 0 });
+                        newRow.Value.Add(new BytePropertyData(new FName((INameMap)(FString)"Reserved"))
+                        {
+                            EnumType = new FName((INameMap)(FString)"None"), // Optional if "None" is needed
+                            Value = 0
+                        });
 
                         newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"Bpm")) { Value = songData.Bpm });
                         newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"HashTag")) { Value = (FString)"Yosh" });
@@ -488,35 +498,35 @@ namespace WaccaSongBrowser
                         newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"NotesDesignerExpert")) { Value = (FString)songData.NotesDesignerExpert });
                         newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"NotesDesignerInferno")) { Value = (FString)songData.NotesDesignerInferno });
 
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"DifficultyNormalLv")) { Value = (FString)songData.DifficultyNormalLv });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"DifficultyHardLv")) { Value = (FString)songData.DifficultyHardLv });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"DifficultyExpertLv")) { Value = (FString)songData.DifficultyExpertLv });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"DifficultyInfernoLv")) { Value = (FString)songData.DifficultyInfernoLv });
+                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"DifficultyNormalLv")) { Value = songData.DifficultyNormalLv });
+                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"DifficultyHardLv")) { Value = songData.DifficultyHardLv });
+                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"DifficultyExpertLv")) { Value = songData.DifficultyExpertLv });
+                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"DifficultyInfernoLv")) { Value = songData.DifficultyInfernoLv });
 
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"ClearNormaRateNormal")) { Value = (FString)songData.ClearRateNormal });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"ClearNormaRateHard")) { Value = (FString)songData.ClearRateHard });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"ClearNormaRateExpert")) { Value = (FString)songData.ClearRateExpert });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"ClearNormaRateInferno")) { Value = (FString)songData.ClearRateInferno });
+                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"ClearNormaRateNormal")) { Value = songData.ClearRateNormal });
+                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"ClearNormaRateHard")) { Value = songData.ClearRateHard });
+                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"ClearNormaRateExpert")) { Value = songData.ClearRateExpert });
+                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"ClearNormaRateInferno")) { Value = songData.ClearRateInferno });
 
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"PreviewBeginTime")) { Value = (FString)songData.PreviewBeginTime });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"PreviewSeconds")) { Value = (FString)songData.PreviewSeconds });
+                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"PreviewBeginTime")) { Value = songData.PreviewBeginTime });
+                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"PreviewSeconds")) { Value = songData.PreviewSeconds });
 
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"ScoreGenre")) { Value = (FString)songData.ScoreGenre });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock0")) { Value = (FString)songData.bingo0 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock1")) { Value = (FString)songData.bingo1 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock2")) { Value = (FString)songData.bingo2 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock3")) { Value = (FString)songData.bingo3 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock4")) { Value = (FString)songData.bingo4 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock5")) { Value = (FString)songData.bingo5 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock6")) { Value = (FString)songData.bingo6 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock7")) { Value = (FString)songData.bingo7 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock8")) { Value = (FString)songData.bingo8 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock9")) { Value = (FString)songData.bingo9 });
+                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"ScoreGenre")) { Value = songData.ScoreGenre });
+                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock0")) { Value = songData.bingo0 });
+                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock1")) { Value = songData.bingo1 });
+                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock2")) { Value = songData.bingo2 });
+                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock3")) { Value = songData.bingo3 });
+                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock4")) { Value = songData.bingo4 });
+                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock5")) { Value = songData.bingo5 });
+                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock6")) { Value = songData.bingo6 });
+                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock7")) { Value = songData.bingo7 });
+                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock8")) { Value = songData.bingo8 });
+                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock9")) { Value = songData.bingo9 });
                         newRow.Value.Add(new UInt64PropertyData(new FName((INameMap)(FString)"WorkBuffer")) { Value = 0 });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"AssetFullPath")) { Value = (FString)songData.AssetFullPath });
-                        // Add more fields as needed
+                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"AssetFullPath")) { Value = (FString)$"D:/project/Mercury/Mercury/Content/MusicData/{songData.AssetDirectory}" });
+                        // all fields are there.
 
-                        // Finally, add it to the DataTable
+                            // Finally, add it to the DataTable
                         dataTable.Table.Data.Add(newRow);
                     }
 
@@ -573,9 +583,9 @@ namespace WaccaSongBrowser
                 saveLabel.Text = "";
                 return;
             }
-            Load(allSongs[currentIndex]);
+            LoadUI(allSongs[currentIndex]);
         }
-        private void Load(SongData song)
+        private void LoadUI(SongData song)
         {
             musicTextBox.Text = song.MusicMessage;
             artistTextBox.Text = song.ArtistMessage;
@@ -771,7 +781,7 @@ namespace WaccaSongBrowser
                                 bingo8 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock8"),
                                 bingo9 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock9"),
                                 //public ulong WorkBuffer { get; set; }
-                                AssetFullPath = GetFieldValue<string>(rowStruct, "AssetFullPath"),
+                                //AssetFullPath = GetFieldValue<string>(rowStruct, "AssetFullPath"),
                             };
                             songid.Items.Add(data.UniqueID.ToString());
                             allSongs.Add(data);

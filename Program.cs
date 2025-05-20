@@ -79,7 +79,7 @@ namespace WaccaSongBrowser
         public int bingo8 { get; set; }
         public int bingo9 { get; set; }
         //public ulong WorkBuffer { get; set; }
-        public string AssetFullPath { get; set; }
+        //public string AssetFullPath { get; set; }
     }
 
 }
