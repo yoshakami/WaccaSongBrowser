@@ -3,6 +3,7 @@ using UAssetAPI.PropertyTypes.Objects;
 using UAssetAPI.PropertyTypes.Structs;
 using UAssetAPI;
 using UAssetAPI.UnrealTypes;
+using System.Text;
 
 namespace WaccaSongBrowser
 {
@@ -450,10 +451,12 @@ namespace WaccaSongBrowser
             if (saveChangesInRam())
             {
                 saveLabel.Text = $"Saved {++savecount} times";
+                consoleLabel.Text = "";
                 MusicParameterTable.Write(openedFileName);
             }
             else
             {
+                consoleLabel.Text = "";
                 saveLabel.Text = "file not saved.";
             }
         }
@@ -489,92 +492,94 @@ namespace WaccaSongBrowser
                         };
 
                         // regex is my friend
-                        newRow.Value.Add(new UInt32PropertyData(new FName((INameMap)(FString)"UniqueID")) { Value = songData.UniqueID });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"MusicMessage")) { Value = (FString)songData.MusicMessage });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"ArtistMessage")) { Value = (FString)songData.ArtistMessage });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"CopyrightMessage")) { Value = (FString)"-" });
-                        newRow.Value.Add(new UInt32PropertyData(new FName((INameMap)(FString)"VersionNo")) { Value = songData.Version });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"AssetDirectory")) { Value = (FString)songData.AssetDirectory });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"MovieAssetName")) { Value = (FString)songData.MovieAssetName });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"MovieAssetNameHard")) { Value = (FString)songData.MovieAssetNameHard });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"MovieAssetNameExpert")) { Value = (FString)songData.MovieAssetNameExpert });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"MovieAssetNameInferno")) { Value = (FString)songData.MovieAssetNameInferno });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"JacketAssetName")) { Value = (FString)songData.JacketAssetName });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"Rubi")) { Value = (FString)songData.Rubi });
+                        newRow.Value.Add(new UInt32PropertyData(new FName(MusicParameterTable, "UniqueID")) { Value = songData.UniqueID });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "MusicMessage")) { Value = (FString)songData.MusicMessage });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "ArtistMessage")) { Value = (FString)songData.ArtistMessage });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "CopyrightMessage")) { Value = (FString)"-" });
+                        newRow.Value.Add(new UInt32PropertyData(new FName(MusicParameterTable, "VersionNo")) { Value = songData.Version });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "AssetDirectory")) { Value = (FString)songData.AssetDirectory });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "MovieAssetName")) { Value = (FString)songData.MovieAssetName });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "MovieAssetNameHard")) { Value = (FString)songData.MovieAssetNameHard });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "MovieAssetNameExpert")) { Value = (FString)songData.MovieAssetNameExpert });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "MovieAssetNameInferno")) { Value = (FString)songData.MovieAssetNameInferno });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "JacketAssetName")) { Value = (FString)songData.JacketAssetName });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "Rubi")) { Value = (FString)songData.Rubi });
 
-                        newRow.Value.Add(new BoolPropertyData(new FName((INameMap)(FString)"bValidCulture_ja_JP")) { Value = songData.ValidCulture_ja_JP });
-                        newRow.Value.Add(new BoolPropertyData(new FName((INameMap)(FString)"bValidCulture_en_US")) { Value = songData.ValidCulture_en_US });
-                        newRow.Value.Add(new BoolPropertyData(new FName((INameMap)(FString)"bValidCulture_zh_Hant_TW")) { Value = songData.ValidCulture_zh_Hant_TW });
-                        newRow.Value.Add(new BoolPropertyData(new FName((INameMap)(FString)"bValidCulture_en_HK")) { Value = songData.ValidCulture_en_HK });
-                        newRow.Value.Add(new BoolPropertyData(new FName((INameMap)(FString)"bValidCulture_en_SG")) { Value = songData.ValidCulture_en_SG });
-                        newRow.Value.Add(new BoolPropertyData(new FName((INameMap)(FString)"bValidCulture_ko_KR")) { Value = songData.ValidCulture_ko_KR });
-                        newRow.Value.Add(new BoolPropertyData(new FName((INameMap)(FString)"bValidCulture_h_Hans_CN_Guest")) { Value = songData.ValidCulture_h_Hans_CN_Guest });
-                        newRow.Value.Add(new BoolPropertyData(new FName((INameMap)(FString)"bValidCulture_h_Hans_CN_GeneralMember")) { Value = songData.ValidCulture_h_Hans_CN_GeneralMember });
-                        newRow.Value.Add(new BoolPropertyData(new FName((INameMap)(FString)"bValidCulture_h_Hans_CN_VipMember")) { Value = songData.ValidCulture_h_Hans_CN_VipMember });
-                        newRow.Value.Add(new BoolPropertyData(new FName((INameMap)(FString)"bValidCulture_Offline")) { Value = songData.ValidCulture_Offline });
-                        newRow.Value.Add(new BoolPropertyData(new FName((INameMap)(FString)"bValidCulture_NoneActive")) { Value = songData.ValidCulture_NoneActive });
+                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_ja_JP")) { Value = songData.ValidCulture_ja_JP });
+                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_en_US")) { Value = songData.ValidCulture_en_US });
+                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_zh_Hant_TW")) { Value = songData.ValidCulture_zh_Hant_TW });
+                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_en_HK")) { Value = songData.ValidCulture_en_HK });
+                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_en_SG")) { Value = songData.ValidCulture_en_SG });
+                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_ko_KR")) { Value = songData.ValidCulture_ko_KR });
+                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_h_Hans_CN_Guest")) { Value = songData.ValidCulture_h_Hans_CN_Guest });
+                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_h_Hans_CN_GeneralMember")) { Value = songData.ValidCulture_h_Hans_CN_GeneralMember });
+                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_h_Hans_CN_VipMember")) { Value = songData.ValidCulture_h_Hans_CN_VipMember });
+                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_Offline")) { Value = songData.ValidCulture_Offline });
+                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_NoneActive")) { Value = songData.ValidCulture_NoneActive });
 
-                        newRow.Value.Add(new BoolPropertyData(new FName((INameMap)(FString)"bRecommend")) { Value = songData.Recommend });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"WaccaPointCost")) { Value = songData.WaccaPointCost });
-                        newRow.Value.Add(new BytePropertyData(new FName((INameMap)(FString)"bCollaboration"))
+                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bRecommend")) { Value = songData.Recommend });
+                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "WaccaPointCost")) { Value = songData.WaccaPointCost });
+                        newRow.Value.Add(new BytePropertyData(new FName(MusicParameterTable, "bCollaboration"))
                         {
-                            EnumType = new FName((INameMap)(FString)"None"), // Optional if "None" is needed
+                            EnumType = new FName(MusicParameterTable, "None"), // Optional if "None" is needed
                             Value = 0
                         }); ;
-                        newRow.Value.Add(new BytePropertyData(new FName((INameMap)(FString)"bWaccaOriginal"))
+                        newRow.Value.Add(new BytePropertyData(new FName(MusicParameterTable, "bWaccaOriginal"))
                         {
-                            EnumType = new FName((INameMap)(FString)"None"), // Optional if "None" is needed
+                            EnumType = new FName(MusicParameterTable, "None"), // Optional if "None" is needed
                             Value = 0
                         });
-                        newRow.Value.Add(new BytePropertyData(new FName((INameMap)(FString)"TrainingLevel"))
+                        newRow.Value.Add(new BytePropertyData(new FName(MusicParameterTable, "TrainingLevel"))
                         {
-                            EnumType = new FName((INameMap)(FString)"None"), // Optional if "None" is needed
+                            EnumType = new FName(MusicParameterTable, "None"), // Optional if "None" is needed
                             Value = 3 // Sets Value 2 to 3
                         });
-                        newRow.Value.Add(new BytePropertyData(new FName((INameMap)(FString)"Reserved"))
+                        newRow.Value.Add(new BytePropertyData(new FName(MusicParameterTable, "Reserved"))
                         {
-                            EnumType = new FName((INameMap)(FString)"None"), // Optional if "None" is needed
+                            EnumType = new FName(MusicParameterTable, "None"), // Optional if "None" is needed
                             Value = 0
                         });
 
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"Bpm")) { Value = (FString)songData.Bpm });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"HashTag")) { Value = (FString)"Yosh" });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "Bpm")) { Value = (FString)songData.Bpm });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "HashTag")) { Value = (FString)"Yosh" });
 
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"NotesDesignerNormal")) { Value = (FString)songData.NotesDesignerNormal });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"NotesDesignerHard")) { Value = (FString)songData.NotesDesignerHard });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"NotesDesignerExpert")) { Value = (FString)songData.NotesDesignerExpert });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"NotesDesignerInferno")) { Value = (FString)songData.NotesDesignerInferno });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "NotesDesignerNormal")) { Value = (FString)songData.NotesDesignerNormal });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "NotesDesignerHard")) { Value = (FString)songData.NotesDesignerHard });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "NotesDesignerExpert")) { Value = (FString)songData.NotesDesignerExpert });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "NotesDesignerInferno")) { Value = (FString)songData.NotesDesignerInferno });
 
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"DifficultyNormalLv")) { Value = songData.DifficultyNormalLv });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"DifficultyHardLv")) { Value = songData.DifficultyHardLv });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"DifficultyExtremeLv")) { Value = songData.DifficultyExpertLv });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"DifficultyInfernoLv")) { Value = songData.DifficultyInfernoLv });
+                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "DifficultyNormalLv")) { Value = songData.DifficultyNormalLv });
+                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "DifficultyHardLv")) { Value = songData.DifficultyHardLv });
+                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "DifficultyExtremeLv")) { Value = songData.DifficultyExpertLv });
+                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "DifficultyInfernoLv")) { Value = songData.DifficultyInfernoLv });
 
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"ClearNormaRateNormal")) { Value = songData.ClearRateNormal });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"ClearNormaRateHard")) { Value = songData.ClearRateHard });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"ClearNormaRateExtreme")) { Value = songData.ClearRateExpert });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"ClearNormaRateInferno")) { Value = songData.ClearRateInferno });
+                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "ClearNormaRateNormal")) { Value = songData.ClearRateNormal });
+                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "ClearNormaRateHard")) { Value = songData.ClearRateHard });
+                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "ClearNormaRateExtreme")) { Value = songData.ClearRateExpert });
+                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "ClearNormaRateInferno")) { Value = songData.ClearRateInferno });
 
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"PreviewBeginTime")) { Value = songData.PreviewBeginTime });
-                        newRow.Value.Add(new FloatPropertyData(new FName((INameMap)(FString)"PreviewSeconds")) { Value = songData.PreviewSeconds });
+                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "PreviewBeginTime")) { Value = songData.PreviewBeginTime });
+                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "PreviewSeconds")) { Value = songData.PreviewSeconds });
 
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"ScoreGenre")) { Value = songData.ScoreGenre });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock0")) { Value = songData.bingo0 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock1")) { Value = songData.bingo1 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock2")) { Value = songData.bingo2 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock3")) { Value = songData.bingo3 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock4")) { Value = songData.bingo4 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock5")) { Value = songData.bingo5 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock6")) { Value = songData.bingo6 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock7")) { Value = songData.bingo7 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock8")) { Value = songData.bingo8 });
-                        newRow.Value.Add(new IntPropertyData(new FName((INameMap)(FString)"MusicTagForUnlock9")) { Value = songData.bingo9 });
-                        newRow.Value.Add(new UInt64PropertyData(new FName((INameMap)(FString)"WorkBuffer")) { Value = 0 });
-                        newRow.Value.Add(new StrPropertyData(new FName((INameMap)(FString)"AssetFullPath")) { Value = (FString)$"D:/project/Mercury/Mercury/Content/MusicData/{songData.AssetDirectory}" });
+                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "ScoreGenre")) { Value = songData.ScoreGenre });
+                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock0")) { Value = songData.bingo0 });
+                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock1")) { Value = songData.bingo1 });
+                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock2")) { Value = songData.bingo2 });
+                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock3")) { Value = songData.bingo3 });
+                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock4")) { Value = songData.bingo4 });
+                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock5")) { Value = songData.bingo5 });
+                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock6")) { Value = songData.bingo6 });
+                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock7")) { Value = songData.bingo7 });
+                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock8")) { Value = songData.bingo8 });
+                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock9")) { Value = songData.bingo9 });
+                        newRow.Value.Add(new UInt64PropertyData(new FName(MusicParameterTable, "WorkBuffer")) { Value = 0 });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "AssetFullPath")) { Value = (FString)$"D:/project/Mercury/Mercury/Content/MusicData/{songData.AssetDirectory}" });
                         // all fields are there.
 
                         // Finally, add it to the DataTable
                         dataTable.Table.Data.Add(newRow);
+                        songid.Items.Add(songData.UniqueID.ToString());
+                        allSongs.Add(songData);
                         return true;
                     }
 
@@ -912,6 +917,36 @@ namespace WaccaSongBrowser
                     }
                 }
             }
+        }
+        static bool finished = true;
+        private void rubiTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!finished)
+                return;
+
+            finished = false;
+
+            // Save the caret position
+            int caretIndex = rubiTextBox.SelectionStart;
+
+            // Convert each character to full-width
+            string input = rubiTextBox.Text;
+            var sb = new StringBuilder(input.Length);
+            foreach (char c in input)
+            {
+                if (c >= '!' && c <= '~')
+                    sb.Append((char)(c + 0xFEE0));
+                else
+                    sb.Append(c);
+            }
+
+            rubiTextBox.Text = sb.ToString();
+
+            // Restore caret position
+            rubiTextBox.SelectionStart = caretIndex;
+            rubiTextBox.SelectionLength = 0;
+
+            finished = true;
         }
     }
 }

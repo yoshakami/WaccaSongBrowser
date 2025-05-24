@@ -284,11 +284,11 @@
             // bpmLabel
             // 
             bpmLabel.AutoSize = true;
-            bpmLabel.Location = new Point(329, 451);
+            bpmLabel.Location = new Point(350, 451);
             bpmLabel.Name = "bpmLabel";
-            bpmLabel.Size = new Size(84, 20);
+            bpmLabel.Size = new Size(39, 20);
             bpmLabel.TabIndex = 11;
-            bpmLabel.Text = "BPM (float)";
+            bpmLabel.Text = "BPM";
             // 
             // jacketTextBox
             // 
@@ -678,6 +678,7 @@
             rubiTextBox.Name = "rubiTextBox";
             rubiTextBox.Size = new Size(558, 27);
             rubiTextBox.TabIndex = 4;
+            rubiTextBox.TextChanged += rubiTextBox_TextChanged;
             // 
             // rubiLabel
             // 
