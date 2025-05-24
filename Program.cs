@@ -36,9 +36,9 @@ namespace WaccaSongBrowser
         public bool ValidCulture_en_HK { get; set; }
         public bool ValidCulture_en_SG { get; set; }
         public bool ValidCulture_ko_KR { get; set; }
-        public bool ValidCulture_zh_Hans_CN_Guest { get; set; }
-        public bool ValidCulture_zh_Hans_CN_GeneralMember { get; set; }
-        public bool ValidCulture_zh_Hans_CN_VipMember { get; set; }
+        public bool ValidCulture_h_Hans_CN_Guest { get; set; }
+        public bool ValidCulture_h_Hans_CN_GeneralMember { get; set; }
+        public bool ValidCulture_h_Hans_CN_VipMember { get; set; }
         public bool ValidCulture_Offline { get; set; }
         public bool ValidCulture_NoneActive { get; set; }
 
@@ -48,7 +48,7 @@ namespace WaccaSongBrowser
         //public byte WaccaOriginal { get; set; }
         //public byte TrainingLevel { get; set; }
         //public byte Reserved { get; set; }
-        public float Bpm { get; set; }
+        public string Bpm { get; set; }
         //public string HashTag { get; set; }
 
         public string NotesDesignerNormal { get; set; }
