@@ -373,8 +373,8 @@ namespace WaccaSongBrowser
                 songData.Version = (uint)version.SelectedIndex;
             songData.AssetDirectory = merTextBox.Text;
             songData.MovieAssetName = movieNormalTextBox.Text;
-            songData.MovieAssetName = movieHardTextBox.Text;
-            songData.MovieAssetName = movieExtremeTextBox.Text;
+            songData.MovieAssetNameHard = movieHardTextBox.Text;
+            songData.MovieAssetNameExpert = movieExtremeTextBox.Text;
             songData.MovieAssetNameInferno = movieInfernoTextBox.Text;
             songData.JacketAssetName = jacketTextBox.Text;
             songData.Rubi = rubiTextBox.Text;
@@ -490,7 +490,9 @@ namespace WaccaSongBrowser
                             StructType = new FName(MusicParameterTable, new FString("MusicParameterTableData")),
                             Value = new List<PropertyData>()
                         };
-
+                        uint u;
+                        uint.TryParse(songid.Text, out u);
+                        songData.UniqueID = u;
                         // regex is my friend
                         newRow.Value.Add(new UInt32PropertyData(new FName(MusicParameterTable, "UniqueID")) { Value = songData.UniqueID });
                         newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "MusicMessage")) { Value = (FString)songData.MusicMessage });
@@ -573,13 +575,14 @@ namespace WaccaSongBrowser
                         newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock8")) { Value = songData.bingo8 });
                         newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock9")) { Value = songData.bingo9 });
                         newRow.Value.Add(new UInt64PropertyData(new FName(MusicParameterTable, "WorkBuffer")) { Value = 0 });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "AssetFullPath")) { Value = (FString)$"D:/project/Mercury/Mercury/Content/MusicData/{songData.AssetDirectory}" });
+                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "AssetFullPath")) { Value = (FString)$"D:/project/Mercury/Mercury/Content//MusicData/{songData.AssetDirectory}" });
                         // all fields are there.
 
                         // Finally, add it to the DataTable
-                        dataTable.Table.Data.Add(newRow);
-                        songid.Items.Add(songData.UniqueID.ToString());
-                        allSongs.Add(songData);
+                        // dataTable.Table.Data.Prepend(newRow);  // this is wrong!!!!!!!!!!!!!!!!!!!!!
+                        dataTable.Table.Data.Insert(0, newRow);  // inserts at beginning
+                        songid.Items.Insert(0, songData.UniqueID.ToString());
+                        allSongs.Insert(0, songData);
                         return true;
                     }
 
@@ -717,7 +720,8 @@ namespace WaccaSongBrowser
         {
             musicTextBox.Text = song.MusicMessage;
             artistTextBox.Text = song.ArtistMessage;
-            genre.SelectedIndex = song.ScoreGenre;
+            if (song.ScoreGenre < genre.Items.Count)
+                genre.SelectedIndex = song.ScoreGenre;
             rubiTextBox.Text = song.Rubi;
             pointCostTextBox.Text = song.WaccaPointCost.ToString();
             merTextBox.Text = song.AssetDirectory;
@@ -785,7 +789,8 @@ namespace WaccaSongBrowser
             songid.Text = song.UniqueID.ToString();
             filterMusicTextBox.Text = song.MusicMessage;
             filterArtistTextBox.Text = song.ArtistMessage;
-            filterGenre.SelectedIndex = song.ScoreGenre;
+            if (song.ScoreGenre < genre.Items.Count)
+                filterGenre.SelectedIndex = song.ScoreGenre;
             filterVersion.SelectedIndex = (int)(song.Version - 1);
 
             string path = execPath + song.JacketAssetName + ".png";
@@ -813,7 +818,7 @@ namespace WaccaSongBrowser
 
             return prop switch
             {
-                StrPropertyData strProp when typeof(T) == typeof(string) => (T)(object)(strProp.Value?.ToString() ?? "(null)"),
+                StrPropertyData strProp when typeof(T) == typeof(string) => (T)(object)(strProp.Value?.ToString() ?? "null"),
                 IntPropertyData intProp when typeof(T) == typeof(int) => (T)(object)intProp.Value,
                 UInt32PropertyData uintProp when typeof(T) == typeof(uint) => (T)(object)uintProp.Value,
                 BoolPropertyData boolProp when typeof(T) == typeof(bool) => (T)(object)boolProp.Value,

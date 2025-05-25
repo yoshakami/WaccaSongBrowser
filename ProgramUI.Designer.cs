@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WaccaSongBrowser));
             jacketPictureBox = new PictureBox();
             musicLabel = new Label();
             musicTextBox = new TextBox();
@@ -1602,6 +1603,7 @@
             Controls.Add(musicTextBox);
             Controls.Add(musicLabel);
             Controls.Add(jacketPictureBox);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "WaccaSongBrowser";
             Text = "Wacca Song Browser";
             DragDrop += WaccaSongBrowser_DragDrop;
