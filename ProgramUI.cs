@@ -61,12 +61,12 @@ namespace WaccaSongBrowser
                         {
                             // It's a folder
                             string folderName = new DirectoryInfo(path).Name;
-                            MessageBox.Show("Dropped a folder: " + folderName);
+                            //MessageBox.Show("Dropped a folder: " + folderName);
                             if (folderName.ToLower() == "message")
                             {
-                                panelMainContainer.Visible = false;
-                                panelMainContainer.Enabled = false;
-                                LoadPage(new Message());
+                                panelMainContainer.Visible = true;
+                                panelMainContainer.Enabled = true;
+                                LoadPage(new Message(path));
                             }
                             else if (folderName.ToLower() == "table")
                             {
@@ -103,6 +103,8 @@ namespace WaccaSongBrowser
                     }
                     catch (Exception ex)
                     {
+                        panelMainContainer.Visible = true;
+                        panelMainContainer.Enabled = true;
                         MessageBox.Show("Error: " + ex.Message);
                     }
                 }
