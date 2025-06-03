@@ -1,5 +1,6 @@
 # WaccaSongBrowser
-MusicParameterTable editor
+MusicParameterTable and Message editor
+## it does not edit Unlock music tables yet!!!!!!! use WsongInject instead
 
 ## how to edit songs
 Drag and drop MusicParameterTable.uasset onto the window (found in WindowsNoEditor/Mercury/Content/Table)
