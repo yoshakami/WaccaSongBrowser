@@ -11,7 +11,9 @@ namespace WaccaSongBrowser
     {
         public WaccaSongBrowser()
         {
+            // I use UserControls for other pages. they are inside panelMainContainer
             InitializeComponent();
+            panelMainContainer.Dock = DockStyle.Fill;
             genre.Items.Add("0: Anime/Pop");
             genre.Items.Add("1: Vocaloid");
             genre.Items.Add("2: Touhou");
@@ -36,7 +38,77 @@ namespace WaccaSongBrowser
             filterVersion.Items.Add("3: Wacca Lily");
             filterVersion.Items.Add("4: Wacca Lily R");
             filterVersion.Items.Add("5: Wacca Reverse");
+            // Example: load the "main page"
+            LoadPage(new Menu());
         }
+        private void LoadPage(UserControl page)
+        {
+            panelMainContainer.Controls.Clear();
+            page.Dock = DockStyle.Fill;
+            panelMainContainer.Controls.Add(page);
+        }
+        static string openedFileName;
+        private void WaccaSongBrowser_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] paths = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (var path in paths)
+                {
+                    try
+                    {
+                        if (Directory.Exists(path))
+                        {
+                            // It's a folder
+                            string folderName = new DirectoryInfo(path).Name;
+                            MessageBox.Show("Dropped a folder: " + folderName);
+                            if (folderName.ToLower() == "message")
+                            {
+                                panelMainContainer.Visible = false;
+                                panelMainContainer.Enabled = false;
+                                LoadPage(new Message());
+                            }
+                            else if (folderName.ToLower() == "table")
+                            {
+                                var files = Directory.GetFiles(path, "MusicParameterTable.uasset"); // scan inside for the .uasset file:
+                                if (files.Length > 0)
+                                {
+                                    string file = files[0]; // or let user choose
+                                    Read(file);
+                                    openedFileName = file;
+                                    consoleLabel.Text = $"Folder dropped: {folderName}, loaded: {Path.GetFileName(file)}";
+                                    panelMainContainer.Visible = false;
+                                    panelMainContainer.Enabled = false;
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                consoleLabel.Text = $"No .uasset file found in folder: {folderName}";
+                                return;
+                            }
+                        }
+                        else if (File.Exists(path))
+                        {
+                            // It's a file
+                            allSongs.Clear();
+                            songid.Items.Clear();
+                            Read(path);
+                            openedFileName = path;
+                            consoleLabel.Text = "File loaded successfully! -> will overwrite on next save";
+                            panelMainContainer.Visible = false;
+                            panelMainContainer.Enabled = false;
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+            }
+        }
+
         private void WaccaSongBrowser_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -48,28 +120,6 @@ namespace WaccaSongBrowser
                 e.Effect = DragDropEffects.None;
             }
         }
-        static string openedFileName;
-        private void WaccaSongBrowser_DragDrop(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                foreach (var file in files)
-                {
-                    try
-                    {
-                        allSongs.Clear();
-                        songid.Items.Clear();
-                        Read(file);
-                        openedFileName = file;
-                        consoleLabel.Text = "file loaded successfully! -> will overwrite on next save";
-                        return;
-                    }
-                    catch { }
-                }
-            }
-        }
-
         private void checkAllCorrectBoxesButton_Click(object sender, EventArgs e)
         {
             offlineCheckBox.Checked = true;
