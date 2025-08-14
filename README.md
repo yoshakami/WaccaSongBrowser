@@ -1,6 +1,11 @@
 # WaccaSongBrowser
 MusicParameterTable and Message editor
-## it does not edit Unlock music tables yet!!!!!!! use WsongInject instead
+This is a nice tool used to search for existing songs metadata and edit them.
+you can sort all categories to your liking quickly with it.
+
+Message editor is used to convert the Message folder into a txt, that can be converted back to a new message folder.
+
+## it does not edit Unlock music tables yet!!!!!!! use WsongInject to add a new song instead
 
 ## how to edit songs
 Drag and drop MusicParameterTable.uasset onto the window (found in WindowsNoEditor/Mercury/Content/Table)
