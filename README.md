@@ -4,6 +4,7 @@ This is a nice tool used to search for existing songs metadata and edit them.
 you can sort all categories to your liking quickly with it.
 
 Message editor is used to convert the Message folder into a txt, that can be converted back to a new message folder.
+<img width="1184" height="697" alt="image" src="https://github.com/user-attachments/assets/ff07d6a4-1999-4989-ba09-504572842146" />
 
 ## it does not edit Unlock music tables yet!!!!!!! use WsongInject to add a new song instead
 
