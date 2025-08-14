@@ -720,7 +720,14 @@ namespace WaccaSongBrowser
 
             if (prop is StrPropertyData strProp && newValue is string strVal)
             {
-                strProp.Value = (UAssetAPI.UnrealTypes.FString)strVal;
+                if (strVal == "null")
+                {
+                    strProp.Value = null;
+                }
+                else
+                {
+                    strProp.Value = (UAssetAPI.UnrealTypes.FString)strVal;
+                }
             }
             else if (prop is IntPropertyData intProp && newValue is int intVal)
             {
