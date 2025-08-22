@@ -4,6 +4,7 @@ using UAssetAPI.PropertyTypes.Structs;
 using UAssetAPI;
 using UAssetAPI.UnrealTypes;
 using System.Text;
+using System.Xml;
 
 namespace WaccaSongBrowser
 {
@@ -12,6 +13,7 @@ namespace WaccaSongBrowser
         public WaccaSongBrowser()
         {
             // I use UserControls for other pages. they are inside panelMainContainer
+            // search up that word in this code and you'll see what to edit
             InitializeComponent();
             panelMainContainer.Dock = DockStyle.Fill;
             genre.Items.Add("0: Anime/Pop");
@@ -28,17 +30,17 @@ namespace WaccaSongBrowser
             filterGenre.Items.Add("4: Variety");
             filterGenre.Items.Add("5: Original");
             filterGenre.Items.Add("6: Tano*C");
-            version.Items.Add("1: Wacca");
-            version.Items.Add("2: Wacca S");
-            version.Items.Add("3: Wacca Lily");
-            version.Items.Add("4: Wacca Lily R");
-            version.Items.Add("5: Wacca Reverse");
-            filterVersion.Items.Add("1: Wacca");
-            filterVersion.Items.Add("2: Wacca S");
-            filterVersion.Items.Add("3: Wacca Lily");
-            filterVersion.Items.Add("4: Wacca Lily R");
-            filterVersion.Items.Add("5: Wacca Reverse");
-            // Example: load the "main page"
+            version.Items.Add("0: Wacca");
+            version.Items.Add("1: Wacca S");
+            version.Items.Add("2: Wacca Lily");
+            version.Items.Add("3: Wacca Lily R");
+            version.Items.Add("4: Wacca Reverse");
+            filterVersion.Items.Add("0: Wacca");
+            filterVersion.Items.Add("1: Wacca S");
+            filterVersion.Items.Add("2: Wacca Lily");
+            filterVersion.Items.Add("3: Wacca Lily R");
+            filterVersion.Items.Add("4: Wacca Reverse");
+            // load the "main page"
             LoadPage(new Menu());
         }
         private void LoadPage(UserControl page)
@@ -74,7 +76,10 @@ namespace WaccaSongBrowser
                                 if (files.Length > 0)
                                 {
                                     string file = files[0]; // or let user choose
-                                    Read(file);
+                                    if (Read(file) == -1)
+                                    {
+                                        return;
+                                    }
                                     openedFileName = file;
                                     consoleLabel.Text = $"Folder dropped: {folderName}, loaded: {Path.GetFileName(file)}";
                                     panelMainContainer.Visible = false;
@@ -93,7 +98,14 @@ namespace WaccaSongBrowser
                             // It's a file
                             allSongs.Clear();
                             songid.Items.Clear();
-                            Read(path);
+                            if (Read(path) == -1)
+                            {
+                                //TODO
+                                panelMainContainer.Visible = true;
+                                panelMainContainer.Enabled = true;
+                                LoadPage(new Message(path));
+                                return;
+                            }
                             openedFileName = path;
                             consoleLabel.Text = "File loaded successfully! -> will overwrite on next save";
                             panelMainContainer.Visible = false;
@@ -421,8 +433,7 @@ namespace WaccaSongBrowser
 
             songData.MusicMessage = musicTextBox.Text;
             songData.ArtistMessage = artistTextBox.Text;
-            if (!doNotChangeVersionBecauseItIsNegative)
-                songData.Version = (uint)version.SelectedIndex;
+            songData.Version = (uint)version.SelectedIndex;
             songData.AssetDirectory = merTextBox.Text;
             songData.MovieAssetName = movieNormalTextBox.Text;
             songData.MovieAssetNameHard = movieHardTextBox.Text;
@@ -530,8 +541,11 @@ namespace WaccaSongBrowser
                 {
                     Console.WriteLine("Reading rows from DataTable...\n");
                     var songData = allSongs.FirstOrDefault(s => s.UniqueID == currentSongId);
-
-                    if (songData == null)  // user added a new song id
+                    if (songData == null)
+                    {
+                        return false;
+                    }
+                    if (songData == null && 0 == 1)  // user added a new song id // Use WSongInject Instead.
                     {
                         songData = new SongData();
                         saveSongData(songData);
@@ -757,6 +771,7 @@ namespace WaccaSongBrowser
         {
             if (allSongs.Count == 0)
                 return;
+            consoleLabel.Text = "";
             saveChanges();
             uint.TryParse(songid.Text, out currentSongId);
             if (currentSongId == 0)
@@ -768,7 +783,8 @@ namespace WaccaSongBrowser
             int currentIndex = allSongs.FindIndex(s => s.UniqueID == currentSongId);
             if (currentIndex == -1)
             {
-                consoleLabel.Text = "Creating new song ID. Will be saved upon next click on save, or on next Song ID change if autosave is on";
+                // consoleLabel.Text = "Creating new song ID. Will be saved upon next click on save, or on next Song ID change if autosave is on"; // use WSongInject instead
+                consoleLabel.Text = $"ID {currentSongId} not found";
                 saveLabel.Text = "";
                 return;
             }
@@ -788,10 +804,16 @@ namespace WaccaSongBrowser
             bpmTextBox.Text = song.Bpm.ToString();
             previewTimeTextBox.Text = song.PreviewBeginTime.ToString();
             previewSecTextBox.Text = song.PreviewSeconds.ToString();
-            if ((int)(song.Version - 1) < 0)
-                doNotChangeVersionBecauseItIsNegative = true;
+            if (song.Version > 4 || song.Version < 0)
+            {
+                version.SelectedIndex = 4;
+                filterVersion.SelectedIndex = 4;
+            }
             else
-                version.SelectedIndex = (int)(song.Version - 1);
+            {
+                version.SelectedIndex = (int)(song.Version);
+                filterVersion.SelectedIndex = (int)(song.Version);
+            }
             diffNormalTextBox.Text = song.DifficultyNormalLv.ToString();
             diffHardTextBox.Text = song.DifficultyHardLv.ToString();
             diffExtremeTextBox.Text = song.DifficultyExpertLv.ToString();
@@ -850,7 +872,6 @@ namespace WaccaSongBrowser
             filterArtistTextBox.Text = song.ArtistMessage;
             if (song.ScoreGenre < genre.Items.Count)
                 filterGenre.SelectedIndex = song.ScoreGenre;
-            filterVersion.SelectedIndex = (int)(song.Version - 1);
 
             string path = execPath + song.JacketAssetName + ".png";
             if (File.Exists(path))
@@ -880,6 +901,7 @@ namespace WaccaSongBrowser
                 StrPropertyData strProp when typeof(T) == typeof(string) => (T)(object)(strProp.Value?.ToString() ?? "null"),
                 IntPropertyData intProp when typeof(T) == typeof(int) => (T)(object)intProp.Value,
                 UInt32PropertyData uintProp when typeof(T) == typeof(uint) => (T)(object)uintProp.Value,
+                Int64PropertyData longProp when typeof(T) == typeof(long) => (T)(object)longProp.Value,
                 BoolPropertyData boolProp when typeof(T) == typeof(bool) => (T)(object)boolProp.Value,
                 FloatPropertyData floatProp when typeof(T) == typeof(float) => (T)(object)floatProp.Value,
                 BytePropertyData byteProp when typeof(T) == typeof(byte) => (T)(object)byteProp.Value,
@@ -888,7 +910,7 @@ namespace WaccaSongBrowser
         }
         static List<SongData> allSongs = new List<SongData>();
         static UAsset MusicParameterTable;
-        void Read(string file)
+        int Read(string file)
         {
             string uassetPath = file;
 
@@ -975,12 +997,90 @@ namespace WaccaSongBrowser
                                 //public ulong WorkBuffer { get; set; }
                                 //AssetFullPath = GetFieldValue<string>(rowStruct, "AssetFullPath"),
                             };
+
+                            if (data.UniqueID.ToString() == "0")
+                            {
+                                return -1;
+                            }
                             songid.Items.Add(data.UniqueID.ToString());
                             allSongs.Add(data);
                         }
                     }
                 }
             }
+
+            // Get the directory part
+            string directory = Path.GetDirectoryName(uassetPath);
+
+            // Combine with the new filename
+            string newPath = Path.Combine(directory, "UnlockMusicTable.uasset");
+            if (File.Exists(newPath))
+            {
+                ReadUnlockMusic(newPath);
+            }
+            return 0;
+        }
+
+        static UAsset UnlockMusicTable;
+        static Dictionary<int, bool> musicUnlockStatus;
+        public static int ReadUnlockMusic(string file)
+        {
+            string uassetPath = file;
+            musicUnlockStatus = new Dictionary<int, bool>();
+
+            UnlockMusicTable = new UAsset(uassetPath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
+
+            foreach (var export in UnlockMusicTable.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            UnlockData data = new UnlockData
+                            {
+                                MusicId = GetFieldValue<int>(rowStruct, "MusicId"),
+                                ItemActivateStartTime = GetFieldValue<long>(rowStruct, "ItemActivateStartTime"),
+                            };
+
+                            if (data.MusicId == 0)
+                                continue;
+
+                            bool isWithin28Days = CheckWithin28Days(data.ItemActivateStartTime);
+                            musicUnlockStatus[data.MusicId] = isWithin28Days;
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+
+        public static bool CheckWithin28Days(long itemActivateStartTime)
+        {
+            if (itemActivateStartTime == 0) return false;
+
+            DateTime currentDate = DateTime.Now;
+            DateTime startTime;
+
+            // Convert YYYYMMDDHH (e.g., 2020012307) to DateTime
+            string timeString = itemActivateStartTime.ToString();
+            if (timeString.Length < 10) return false;
+
+            try
+            {
+                int year = int.Parse(timeString.Substring(0, 4));
+                int month = int.Parse(timeString.Substring(4, 2));
+                int day = int.Parse(timeString.Substring(6, 2));
+                int hour = int.Parse(timeString.Substring(8, 2));
+                startTime = new DateTime(year, month, day, hour, 0, 0);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return (currentDate - startTime).TotalDays <= 28;
         }
         static bool finished = true;
         private void rubiTextBox_TextChanged(object sender, EventArgs e)
@@ -1011,6 +1111,26 @@ namespace WaccaSongBrowser
             rubiTextBox.SelectionLength = 0;
 
             finished = true;
+        }
+
+        private void songid_TextChanged(object sender, EventArgs e)  // activated only when you use the dropdown, so it lets you write conveniently.
+        {
+            /* int currentIndex = allSongs.FindIndex(s => s.UniqueID == currentSongId);
+            if (currentIndex == -1)
+            {
+                return;
+            }
+            songidButton_Click(sender, e); */
+        }
+
+        private void songid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Prevent the "ding" sound
+                e.SuppressKeyPress = true;
+                songidButton_Click(sender, e);
+            }
         }
     }
 }

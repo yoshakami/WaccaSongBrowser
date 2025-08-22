@@ -15,7 +15,12 @@ namespace WaccaSongBrowser
 
         }
     }
-    public class SongData
+    public class UnlockData
+    {
+        public int MusicId { get; set; }
+        public long ItemActivateStartTime { get; set; }
+    }
+        public class SongData
     {
         public uint UniqueID { get; set; }
         public string MusicMessage { get; set; }

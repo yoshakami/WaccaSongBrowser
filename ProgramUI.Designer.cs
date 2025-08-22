@@ -163,16 +163,13 @@
             bingo4TextBox = new TextBox();
             bingo5Label = new Label();
             bingo4Label = new Label();
-            textBox12 = new TextBox();
-            label16 = new Label();
-            textBox13 = new TextBox();
-            label27 = new Label();
             bingo9TextBox = new TextBox();
             bingo8TextBox = new TextBox();
             bingo9Label = new Label();
             bingo8Label = new Label();
             ramSaveCheckBox = new CheckBox();
             panelMainContainer = new Panel();
+            checkBoxNew = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)jacketPictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -182,6 +179,7 @@
             jacketPictureBox.Margin = new Padding(3, 2, 3, 2);
             jacketPictureBox.Name = "jacketPictureBox";
             jacketPictureBox.Size = new Size(256, 256);
+            jacketPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             jacketPictureBox.TabIndex = 0;
             jacketPictureBox.TabStop = false;
             // 
@@ -245,7 +243,7 @@
             genre.Location = new Point(277, 160);
             genre.Margin = new Padding(3, 2, 3, 2);
             genre.Name = "genre";
-            genre.Size = new Size(320, 23);
+            genre.Size = new Size(230, 23);
             genre.TabIndex = 3;
             // 
             // songid
@@ -256,6 +254,8 @@
             songid.Name = "songid";
             songid.Size = new Size(225, 23);
             songid.TabIndex = 82;
+            songid.TextChanged += songid_TextChanged;
+            songid.KeyDown += songid_KeyDown;
             // 
             // genreLabel
             // 
@@ -516,16 +516,16 @@
             // 
             // creatorInfernoTextBox
             // 
-            creatorInfernoTextBox.Location = new Point(669, 434);
+            creatorInfernoTextBox.Location = new Point(536, 497);
             creatorInfernoTextBox.Margin = new Padding(3, 2, 3, 2);
             creatorInfernoTextBox.Name = "creatorInfernoTextBox";
-            creatorInfernoTextBox.Size = new Size(98, 23);
+            creatorInfernoTextBox.Size = new Size(230, 23);
             creatorInfernoTextBox.TabIndex = 27;
             // 
             // creatorInfernoLabel
             // 
             creatorInfernoLabel.AutoSize = true;
-            creatorInfernoLabel.Location = new Point(692, 414);
+            creatorInfernoLabel.Location = new Point(620, 476);
             creatorInfernoLabel.Name = "creatorInfernoLabel";
             creatorInfernoLabel.Size = new Size(45, 15);
             creatorInfernoLabel.TabIndex = 49;
@@ -533,16 +533,16 @@
             // 
             // creatorExtremeTextBox
             // 
-            creatorExtremeTextBox.Location = new Point(550, 434);
+            creatorExtremeTextBox.Location = new Point(277, 497);
             creatorExtremeTextBox.Margin = new Padding(3, 2, 3, 2);
             creatorExtremeTextBox.Name = "creatorExtremeTextBox";
-            creatorExtremeTextBox.Size = new Size(103, 23);
+            creatorExtremeTextBox.Size = new Size(230, 23);
             creatorExtremeTextBox.TabIndex = 26;
             // 
             // creatorExtremeLabel
             // 
             creatorExtremeLabel.AutoSize = true;
-            creatorExtremeLabel.Location = new Point(573, 414);
+            creatorExtremeLabel.Location = new Point(358, 476);
             creatorExtremeLabel.Name = "creatorExtremeLabel";
             creatorExtremeLabel.Size = new Size(50, 15);
             creatorExtremeLabel.TabIndex = 47;
@@ -550,24 +550,24 @@
             // 
             // creatorHardTextBox
             // 
-            creatorHardTextBox.Location = new Point(431, 434);
+            creatorHardTextBox.Location = new Point(537, 434);
             creatorHardTextBox.Margin = new Padding(3, 2, 3, 2);
             creatorHardTextBox.Name = "creatorHardTextBox";
-            creatorHardTextBox.Size = new Size(101, 23);
+            creatorHardTextBox.Size = new Size(230, 23);
             creatorHardTextBox.TabIndex = 25;
             // 
             // creatorNormalTextBox
             // 
-            creatorNormalTextBox.Location = new Point(320, 434);
+            creatorNormalTextBox.Location = new Point(277, 434);
             creatorNormalTextBox.Margin = new Padding(3, 2, 3, 2);
             creatorNormalTextBox.Name = "creatorNormalTextBox";
-            creatorNormalTextBox.Size = new Size(93, 23);
+            creatorNormalTextBox.Size = new Size(230, 23);
             creatorNormalTextBox.TabIndex = 24;
             // 
             // creatorHardLabel
             // 
             creatorHardLabel.AutoSize = true;
-            creatorHardLabel.Location = new Point(464, 414);
+            creatorHardLabel.Location = new Point(632, 414);
             creatorHardLabel.Name = "creatorHardLabel";
             creatorHardLabel.Size = new Size(33, 15);
             creatorHardLabel.TabIndex = 44;
@@ -585,7 +585,7 @@
             // creatorNormalLabel
             // 
             creatorNormalLabel.AutoSize = true;
-            creatorNormalLabel.Location = new Point(337, 414);
+            creatorNormalLabel.Location = new Point(361, 414);
             creatorNormalLabel.Name = "creatorNormalLabel";
             creatorNormalLabel.Size = new Size(47, 15);
             creatorNormalLabel.TabIndex = 42;
@@ -1285,16 +1285,16 @@
             // 
             // bingo3TextBox
             // 
-            bingo3TextBox.Location = new Point(669, 488);
+            bingo3TextBox.Location = new Point(591, 555);
             bingo3TextBox.Margin = new Padding(3, 2, 3, 2);
             bingo3TextBox.Name = "bingo3TextBox";
-            bingo3TextBox.Size = new Size(98, 23);
+            bingo3TextBox.Size = new Size(60, 23);
             bingo3TextBox.TabIndex = 31;
             // 
             // bingo3Label
             // 
             bingo3Label.AutoSize = true;
-            bingo3Label.Location = new Point(692, 468);
+            bingo3Label.Location = new Point(597, 535);
             bingo3Label.Name = "bingo3Label";
             bingo3Label.Size = new Size(47, 15);
             bingo3Label.TabIndex = 140;
@@ -1302,16 +1302,16 @@
             // 
             // bingo2TextBox
             // 
-            bingo2TextBox.Location = new Point(550, 488);
+            bingo2TextBox.Location = new Point(513, 555);
             bingo2TextBox.Margin = new Padding(3, 2, 3, 2);
             bingo2TextBox.Name = "bingo2TextBox";
-            bingo2TextBox.Size = new Size(103, 23);
+            bingo2TextBox.Size = new Size(60, 23);
             bingo2TextBox.TabIndex = 30;
             // 
             // bingo2Label
             // 
             bingo2Label.AutoSize = true;
-            bingo2Label.Location = new Point(579, 468);
+            bingo2Label.Location = new Point(520, 535);
             bingo2Label.Name = "bingo2Label";
             bingo2Label.Size = new Size(47, 15);
             bingo2Label.TabIndex = 138;
@@ -1319,24 +1319,24 @@
             // 
             // bingo1TextBox
             // 
-            bingo1TextBox.Location = new Point(431, 488);
+            bingo1TextBox.Location = new Point(436, 555);
             bingo1TextBox.Margin = new Padding(3, 2, 3, 2);
             bingo1TextBox.Name = "bingo1TextBox";
-            bingo1TextBox.Size = new Size(101, 23);
+            bingo1TextBox.Size = new Size(60, 23);
             bingo1TextBox.TabIndex = 29;
             // 
             // bingo0TextBox
             // 
-            bingo0TextBox.Location = new Point(320, 488);
+            bingo0TextBox.Location = new Point(361, 555);
             bingo0TextBox.Margin = new Padding(3, 2, 3, 2);
             bingo0TextBox.Name = "bingo0TextBox";
-            bingo0TextBox.Size = new Size(93, 23);
+            bingo0TextBox.Size = new Size(60, 23);
             bingo0TextBox.TabIndex = 28;
             // 
             // bingo1Label
             // 
             bingo1Label.AutoSize = true;
-            bingo1Label.Location = new Point(457, 468);
+            bingo1Label.Location = new Point(443, 535);
             bingo1Label.Name = "bingo1Label";
             bingo1Label.Size = new Size(47, 15);
             bingo1Label.TabIndex = 135;
@@ -1345,7 +1345,7 @@
             // bingo0Label
             // 
             bingo0Label.AutoSize = true;
-            bingo0Label.Location = new Point(342, 468);
+            bingo0Label.Location = new Point(368, 534);
             bingo0Label.Name = "bingo0Label";
             bingo0Label.Size = new Size(47, 15);
             bingo0Label.TabIndex = 134;
@@ -1353,16 +1353,16 @@
             // 
             // bingo7TextBox
             // 
-            bingo7TextBox.Location = new Point(669, 541);
+            bingo7TextBox.Location = new Point(513, 607);
             bingo7TextBox.Margin = new Padding(3, 2, 3, 2);
             bingo7TextBox.Name = "bingo7TextBox";
-            bingo7TextBox.Size = new Size(98, 23);
+            bingo7TextBox.Size = new Size(60, 23);
             bingo7TextBox.TabIndex = 35;
             // 
             // bingo7Label
             // 
             bingo7Label.AutoSize = true;
-            bingo7Label.Location = new Point(692, 521);
+            bingo7Label.Location = new Point(520, 588);
             bingo7Label.Name = "bingo7Label";
             bingo7Label.Size = new Size(47, 15);
             bingo7Label.TabIndex = 148;
@@ -1370,16 +1370,16 @@
             // 
             // bingo6TextBox
             // 
-            bingo6TextBox.Location = new Point(550, 541);
+            bingo6TextBox.Location = new Point(436, 608);
             bingo6TextBox.Margin = new Padding(3, 2, 3, 2);
             bingo6TextBox.Name = "bingo6TextBox";
-            bingo6TextBox.Size = new Size(103, 23);
+            bingo6TextBox.Size = new Size(60, 23);
             bingo6TextBox.TabIndex = 34;
             // 
             // bingo6Label
             // 
             bingo6Label.AutoSize = true;
-            bingo6Label.Location = new Point(579, 521);
+            bingo6Label.Location = new Point(445, 588);
             bingo6Label.Name = "bingo6Label";
             bingo6Label.Size = new Size(47, 15);
             bingo6Label.TabIndex = 146;
@@ -1387,24 +1387,24 @@
             // 
             // bingo5TextBox
             // 
-            bingo5TextBox.Location = new Point(431, 541);
+            bingo5TextBox.Location = new Point(361, 608);
             bingo5TextBox.Margin = new Padding(3, 2, 3, 2);
             bingo5TextBox.Name = "bingo5TextBox";
-            bingo5TextBox.Size = new Size(101, 23);
+            bingo5TextBox.Size = new Size(60, 23);
             bingo5TextBox.TabIndex = 33;
             // 
             // bingo4TextBox
             // 
-            bingo4TextBox.Location = new Point(320, 541);
+            bingo4TextBox.Location = new Point(662, 555);
             bingo4TextBox.Margin = new Padding(3, 2, 3, 2);
             bingo4TextBox.Name = "bingo4TextBox";
-            bingo4TextBox.Size = new Size(93, 23);
+            bingo4TextBox.Size = new Size(60, 23);
             bingo4TextBox.TabIndex = 32;
             // 
             // bingo5Label
             // 
             bingo5Label.AutoSize = true;
-            bingo5Label.Location = new Point(457, 521);
+            bingo5Label.Location = new Point(368, 588);
             bingo5Label.Name = "bingo5Label";
             bingo5Label.Size = new Size(47, 15);
             bingo5Label.TabIndex = 143;
@@ -1413,70 +1413,32 @@
             // bingo4Label
             // 
             bingo4Label.AutoSize = true;
-            bingo4Label.Location = new Point(342, 521);
+            bingo4Label.Location = new Point(669, 534);
             bingo4Label.Name = "bingo4Label";
             bingo4Label.Size = new Size(47, 15);
             bingo4Label.TabIndex = 142;
             bingo4Label.Text = "Bingo 4";
             // 
-            // textBox12
-            // 
-            textBox12.Location = new Point(669, 591);
-            textBox12.Margin = new Padding(3, 2, 3, 2);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(98, 23);
-            textBox12.TabIndex = 39;
-            textBox12.Visible = false;
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Location = new Point(692, 571);
-            label16.Name = "label16";
-            label16.Size = new Size(47, 15);
-            label16.TabIndex = 156;
-            label16.Text = "Bingo 7";
-            label16.Visible = false;
-            // 
-            // textBox13
-            // 
-            textBox13.Location = new Point(550, 591);
-            textBox13.Margin = new Padding(3, 2, 3, 2);
-            textBox13.Name = "textBox13";
-            textBox13.Size = new Size(103, 23);
-            textBox13.TabIndex = 38;
-            textBox13.Visible = false;
-            // 
-            // label27
-            // 
-            label27.AutoSize = true;
-            label27.Location = new Point(579, 571);
-            label27.Name = "label27";
-            label27.Size = new Size(47, 15);
-            label27.TabIndex = 154;
-            label27.Text = "Bingo 6";
-            label27.Visible = false;
-            // 
             // bingo9TextBox
             // 
-            bingo9TextBox.Location = new Point(431, 591);
+            bingo9TextBox.Location = new Point(662, 607);
             bingo9TextBox.Margin = new Padding(3, 2, 3, 2);
             bingo9TextBox.Name = "bingo9TextBox";
-            bingo9TextBox.Size = new Size(101, 23);
+            bingo9TextBox.Size = new Size(60, 23);
             bingo9TextBox.TabIndex = 37;
             // 
             // bingo8TextBox
             // 
-            bingo8TextBox.Location = new Point(320, 591);
+            bingo8TextBox.Location = new Point(591, 608);
             bingo8TextBox.Margin = new Padding(3, 2, 3, 2);
             bingo8TextBox.Name = "bingo8TextBox";
-            bingo8TextBox.Size = new Size(93, 23);
+            bingo8TextBox.Size = new Size(60, 23);
             bingo8TextBox.TabIndex = 36;
             // 
             // bingo9Label
             // 
             bingo9Label.AutoSize = true;
-            bingo9Label.Location = new Point(457, 571);
+            bingo9Label.Location = new Point(669, 588);
             bingo9Label.Name = "bingo9Label";
             bingo9Label.Size = new Size(47, 15);
             bingo9Label.TabIndex = 151;
@@ -1485,7 +1447,7 @@
             // bingo8Label
             // 
             bingo8Label.AutoSize = true;
-            bingo8Label.Location = new Point(342, 571);
+            bingo8Label.Location = new Point(597, 588);
             bingo8Label.Name = "bingo8Label";
             bingo8Label.Size = new Size(47, 15);
             bingo8Label.TabIndex = 150;
@@ -1515,6 +1477,17 @@
             panelMainContainer.Size = new Size(100, 100);
             panelMainContainer.TabIndex = 158;
             // 
+            // checkBoxNew
+            // 
+            checkBoxNew.AutoSize = true;
+            checkBoxNew.Location = new Point(536, 163);
+            checkBoxNew.Margin = new Padding(3, 2, 3, 2);
+            checkBoxNew.Name = "checkBoxNew";
+            checkBoxNew.Size = new Size(50, 19);
+            checkBoxNew.TabIndex = 159;
+            checkBoxNew.Text = "New";
+            checkBoxNew.UseVisualStyleBackColor = true;
+            // 
             // WaccaSongBrowser
             // 
             AllowDrop = true;
@@ -1522,11 +1495,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1182, 665);
             Controls.Add(panelMainContainer);
+            Controls.Add(checkBoxNew);
             Controls.Add(ramSaveCheckBox);
-            Controls.Add(textBox12);
-            Controls.Add(label16);
-            Controls.Add(textBox13);
-            Controls.Add(label27);
             Controls.Add(bingo9TextBox);
             Controls.Add(bingo8TextBox);
             Controls.Add(bingo9Label);
@@ -1665,7 +1635,7 @@
             Controls.Add(musicTextBox);
             Controls.Add(musicLabel);
             Controls.Add(jacketPictureBox);
-            Icon = (Icon)resources.GetObject("$this.Icon");
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "WaccaSongBrowser";
             Text = "Wacca Song Browser";
@@ -1812,15 +1782,12 @@
         private TextBox bingo4TextBox;
         private Label bingo5Label;
         private Label bingo4Label;
-        private TextBox textBox12;
-        private Label label16;
-        private TextBox textBox13;
-        private Label label27;
         private TextBox bingo9TextBox;
         private TextBox bingo8TextBox;
         private Label bingo9Label;
         private Label bingo8Label;
         private CheckBox ramSaveCheckBox;
         private Panel panelMainContainer;
+        private CheckBox checkBoxNew;
     }
 }
