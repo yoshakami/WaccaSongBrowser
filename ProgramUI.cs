@@ -30,16 +30,16 @@ namespace WaccaSongBrowser
             filterGenre.Items.Add("4: Variety");
             filterGenre.Items.Add("5: Original");
             filterGenre.Items.Add("6: Tano*C");
-            version.Items.Add("0: Wacca");
-            version.Items.Add("1: Wacca S");
-            version.Items.Add("2: Wacca Lily");
-            version.Items.Add("3: Wacca Lily R");
-            version.Items.Add("4: Wacca Reverse");
-            filterVersion.Items.Add("0: Wacca");
-            filterVersion.Items.Add("1: Wacca S");
-            filterVersion.Items.Add("2: Wacca Lily");
-            filterVersion.Items.Add("3: Wacca Lily R");
-            filterVersion.Items.Add("4: Wacca Reverse");
+            version.Items.Add("1: Wacca");
+            version.Items.Add("2: Wacca S");
+            version.Items.Add("3: Wacca Lily");
+            version.Items.Add("4: Wacca Lily R");
+            version.Items.Add("5: Wacca Reverse");
+            filterVersion.Items.Add("1: Wacca");
+            filterVersion.Items.Add("2: Wacca S");
+            filterVersion.Items.Add("3: Wacca Lily");
+            filterVersion.Items.Add("4: Wacca Lily R");
+            filterVersion.Items.Add("5: Wacca Reverse");
             // load the "main page"
             LoadPage(new Menu());
         }
@@ -433,7 +433,7 @@ namespace WaccaSongBrowser
 
             songData.MusicMessage = musicTextBox.Text;
             songData.ArtistMessage = artistTextBox.Text;
-            songData.Version = (uint)version.SelectedIndex;
+            songData.Version = (uint)(version.SelectedIndex + 1);
             songData.AssetDirectory = merTextBox.Text;
             songData.MovieAssetName = movieNormalTextBox.Text;
             songData.MovieAssetNameHard = movieHardTextBox.Text;
@@ -666,7 +666,7 @@ namespace WaccaSongBrowser
                             SetFieldValue(rowStruct, "MusicMessage", songData.MusicMessage);
                             SetFieldValue(rowStruct, "ArtistMessage", songData.ArtistMessage);
                             //SetFieldValue(rowStruct, "CopyrightMessage", songData.CopyrightMessage);
-                            SetFieldValue(rowStruct, "VersionNo", songData.Version);
+                            SetFieldValue(rowStruct, "VersionNo", (songData.Version + 1));
                             SetFieldValue(rowStruct, "AssetDirectory", songData.AssetDirectory);
                             SetFieldValue(rowStruct, "MovieAssetName", songData.MovieAssetName);
                             SetFieldValue(rowStruct, "MovieAssetNameHard", songData.MovieAssetNameHard);
@@ -790,7 +790,6 @@ namespace WaccaSongBrowser
             }
             LoadUI(allSongs[currentIndex]);
         }
-        static bool doNotChangeVersionBecauseItIsNegative = false;
         private void LoadUI(SongData song)
         {
             musicTextBox.Text = song.MusicMessage;
@@ -804,15 +803,20 @@ namespace WaccaSongBrowser
             bpmTextBox.Text = song.Bpm.ToString();
             previewTimeTextBox.Text = song.PreviewBeginTime.ToString();
             previewSecTextBox.Text = song.PreviewSeconds.ToString();
-            if (song.Version > 4 || song.Version < 0)
+            if (song.Version < 1)
             {
-                version.SelectedIndex = 4;
-                filterVersion.SelectedIndex = 4;
+                version.SelectedIndex = 0;
+                filterVersion.SelectedIndex = 0;
+            }
+            if (song.Version >= version.Items.Count)  // allows adding more versions just by editing the items at the top of the code
+            {
+                version.SelectedIndex = version.Items.Count - 1;
+                filterVersion.SelectedIndex = version.Items.Count - 1;
             }
             else
             {
-                version.SelectedIndex = (int)(song.Version);
-                filterVersion.SelectedIndex = (int)(song.Version);
+                version.SelectedIndex = (int)(song.Version - 1);
+                filterVersion.SelectedIndex = (int)(song.Version - 1);
             }
             diffNormalTextBox.Text = song.DifficultyNormalLv.ToString();
             diffHardTextBox.Text = song.DifficultyHardLv.ToString();

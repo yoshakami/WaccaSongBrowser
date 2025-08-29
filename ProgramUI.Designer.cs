@@ -170,6 +170,14 @@
             ramSaveCheckBox = new CheckBox();
             panelMainContainer = new Panel();
             checkBoxNew = new CheckBox();
+            filterNewButton = new Button();
+            filterNewCheckBox = new CheckBox();
+            freezeVersionCheckBox = new CheckBox();
+            freezeGenreCheckBox = new CheckBox();
+            freezePointCostCheckBox = new CheckBox();
+            freezeNewCheckBox = new CheckBox();
+            freezeBeginnerCheckBox = new CheckBox();
+            freezeAvailableCheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)jacketPictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -867,8 +875,9 @@
             autoSaveCheckBox.AutoSize = true;
             autoSaveCheckBox.Location = new Point(827, 588);
             autoSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
+            autoSaveCheckBox.MinimumSize = new Size(110, 19);
             autoSaveCheckBox.Name = "autoSaveCheckBox";
-            autoSaveCheckBox.Size = new Size(107, 19);
+            autoSaveCheckBox.Size = new Size(110, 19);
             autoSaveCheckBox.TabIndex = 128;
             autoSaveCheckBox.Text = "Auto Save Edits";
             autoSaveCheckBox.UseVisualStyleBackColor = true;
@@ -1218,7 +1227,7 @@
             // filterBeginnerCheckBox
             // 
             filterBeginnerCheckBox.AutoSize = true;
-            filterBeginnerCheckBox.Location = new Point(837, 280);
+            filterBeginnerCheckBox.Location = new Point(837, 293);
             filterBeginnerCheckBox.Margin = new Padding(3, 2, 3, 2);
             filterBeginnerCheckBox.Name = "filterBeginnerCheckBox";
             filterBeginnerCheckBox.Size = new Size(157, 19);
@@ -1228,7 +1237,7 @@
             // 
             // filterBeginnerButton
             // 
-            filterBeginnerButton.Location = new Point(1014, 276);
+            filterBeginnerButton.Location = new Point(1014, 291);
             filterBeginnerButton.Name = "filterBeginnerButton";
             filterBeginnerButton.Size = new Size(92, 23);
             filterBeginnerButton.TabIndex = 87;
@@ -1239,7 +1248,7 @@
             // filterVersion
             // 
             filterVersion.FormattingEnabled = true;
-            filterVersion.Location = new Point(837, 328);
+            filterVersion.Location = new Point(837, 335);
             filterVersion.Margin = new Padding(3, 2, 3, 2);
             filterVersion.Name = "filterVersion";
             filterVersion.Size = new Size(157, 23);
@@ -1248,7 +1257,7 @@
             // filterVersionLabel
             // 
             filterVersionLabel.AutoSize = true;
-            filterVersionLabel.Location = new Point(889, 311);
+            filterVersionLabel.Location = new Point(889, 318);
             filterVersionLabel.Name = "filterVersionLabel";
             filterVersionLabel.Size = new Size(45, 15);
             filterVersionLabel.TabIndex = 129;
@@ -1256,7 +1265,7 @@
             // 
             // filterVersionButton
             // 
-            filterVersionButton.Location = new Point(1014, 327);
+            filterVersionButton.Location = new Point(1014, 334);
             filterVersionButton.Name = "filterVersionButton";
             filterVersionButton.Size = new Size(92, 23);
             filterVersionButton.TabIndex = 89;
@@ -1488,12 +1497,118 @@
             checkBoxNew.Text = "New";
             checkBoxNew.UseVisualStyleBackColor = true;
             // 
+            // filterNewButton
+            // 
+            filterNewButton.Location = new Point(1014, 251);
+            filterNewButton.Name = "filterNewButton";
+            filterNewButton.Size = new Size(92, 23);
+            filterNewButton.TabIndex = 161;
+            filterNewButton.Text = "Search";
+            filterNewButton.UseVisualStyleBackColor = true;
+            // 
+            // filterNewCheckBox
+            // 
+            filterNewCheckBox.AutoSize = true;
+            filterNewCheckBox.Location = new Point(889, 256);
+            filterNewCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterNewCheckBox.Name = "filterNewCheckBox";
+            filterNewCheckBox.Size = new Size(50, 19);
+            filterNewCheckBox.TabIndex = 160;
+            filterNewCheckBox.Text = "New";
+            filterNewCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // freezeVersionCheckBox
+            // 
+            freezeVersionCheckBox.AutoSize = true;
+            freezeVersionCheckBox.Location = new Point(827, 394);
+            freezeVersionCheckBox.Margin = new Padding(3, 2, 3, 2);
+            freezeVersionCheckBox.MinimumSize = new Size(110, 36);
+            freezeVersionCheckBox.Name = "freezeVersionCheckBox";
+            freezeVersionCheckBox.Size = new Size(110, 36);
+            freezeVersionCheckBox.TabIndex = 162;
+            freezeVersionCheckBox.Text = "Freeze Version";
+            freezeVersionCheckBox.TextAlign = ContentAlignment.MiddleCenter;
+            freezeVersionCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // freezeGenreCheckBox
+            // 
+            freezeGenreCheckBox.AutoSize = true;
+            freezeGenreCheckBox.Location = new Point(827, 364);
+            freezeGenreCheckBox.Margin = new Padding(3, 2, 3, 2);
+            freezeGenreCheckBox.MinimumSize = new Size(110, 36);
+            freezeGenreCheckBox.Name = "freezeGenreCheckBox";
+            freezeGenreCheckBox.Size = new Size(110, 36);
+            freezeGenreCheckBox.TabIndex = 163;
+            freezeGenreCheckBox.Text = "Freeze Genre";
+            freezeGenreCheckBox.TextAlign = ContentAlignment.MiddleCenter;
+            freezeGenreCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // freezePointCostCheckBox
+            // 
+            freezePointCostCheckBox.AutoSize = true;
+            freezePointCostCheckBox.Location = new Point(827, 424);
+            freezePointCostCheckBox.Margin = new Padding(3, 2, 3, 2);
+            freezePointCostCheckBox.MinimumSize = new Size(110, 36);
+            freezePointCostCheckBox.Name = "freezePointCostCheckBox";
+            freezePointCostCheckBox.Size = new Size(114, 36);
+            freezePointCostCheckBox.TabIndex = 164;
+            freezePointCostCheckBox.Text = "Freeze PointCost";
+            freezePointCostCheckBox.TextAlign = ContentAlignment.MiddleCenter;
+            freezePointCostCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // freezeNewCheckBox
+            // 
+            freezeNewCheckBox.AutoSize = true;
+            freezeNewCheckBox.Location = new Point(827, 454);
+            freezeNewCheckBox.Margin = new Padding(3, 2, 3, 2);
+            freezeNewCheckBox.MinimumSize = new Size(110, 36);
+            freezeNewCheckBox.Name = "freezeNewCheckBox";
+            freezeNewCheckBox.Size = new Size(110, 36);
+            freezeNewCheckBox.TabIndex = 165;
+            freezeNewCheckBox.Text = "Freeze New";
+            freezeNewCheckBox.TextAlign = ContentAlignment.MiddleCenter;
+            freezeNewCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // freezeBeginnerCheckBox
+            // 
+            freezeBeginnerCheckBox.AutoSize = true;
+            freezeBeginnerCheckBox.Location = new Point(827, 483);
+            freezeBeginnerCheckBox.Margin = new Padding(3, 2, 3, 2);
+            freezeBeginnerCheckBox.MinimumSize = new Size(110, 36);
+            freezeBeginnerCheckBox.Name = "freezeBeginnerCheckBox";
+            freezeBeginnerCheckBox.Size = new Size(110, 36);
+            freezeBeginnerCheckBox.TabIndex = 166;
+            freezeBeginnerCheckBox.Text = "Freeze Beginner";
+            freezeBeginnerCheckBox.TextAlign = ContentAlignment.MiddleCenter;
+            freezeBeginnerCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // freezeAvailableCheckBox
+            // 
+            freezeAvailableCheckBox.AutoSize = true;
+            freezeAvailableCheckBox.Location = new Point(827, 521);
+            freezeAvailableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            freezeAvailableCheckBox.MinimumSize = new Size(110, 19);
+            freezeAvailableCheckBox.Name = "freezeAvailableCheckBox";
+            freezeAvailableCheckBox.Size = new Size(110, 19);
+            freezeAvailableCheckBox.TabIndex = 167;
+            freezeAvailableCheckBox.Text = "Freeze Available";
+            freezeAvailableCheckBox.TextAlign = ContentAlignment.MiddleCenter;
+            freezeAvailableCheckBox.UseVisualStyleBackColor = true;
+            // 
             // WaccaSongBrowser
             // 
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1182, 665);
+            Controls.Add(freezeAvailableCheckBox);
+            Controls.Add(freezeBeginnerCheckBox);
+            Controls.Add(freezeNewCheckBox);
+            Controls.Add(freezePointCostCheckBox);
+            Controls.Add(freezeGenreCheckBox);
+            Controls.Add(freezeVersionCheckBox);
+            Controls.Add(filterNewButton);
+            Controls.Add(filterNewCheckBox);
             Controls.Add(panelMainContainer);
             Controls.Add(checkBoxNew);
             Controls.Add(ramSaveCheckBox);
@@ -1789,5 +1904,13 @@
         private CheckBox ramSaveCheckBox;
         private Panel panelMainContainer;
         private CheckBox checkBoxNew;
+        private Button filterNewButton;
+        private CheckBox filterNewCheckBox;
+        private CheckBox freezeVersionCheckBox;
+        private CheckBox freezeGenreCheckBox;
+        private CheckBox freezePointCostCheckBox;
+        private CheckBox freezeNewCheckBox;
+        private CheckBox freezeBeginnerCheckBox;
+        private CheckBox freezeAvailableCheckBox;
     }
 }
