@@ -1486,17 +1486,6 @@
             panelMainContainer.Size = new Size(100, 100);
             panelMainContainer.TabIndex = 158;
             // 
-            // checkBoxNew
-            // 
-            checkBoxNew.AutoSize = true;
-            checkBoxNew.Location = new Point(536, 163);
-            checkBoxNew.Margin = new Padding(3, 2, 3, 2);
-            checkBoxNew.Name = "checkBoxNew";
-            checkBoxNew.Size = new Size(50, 19);
-            checkBoxNew.TabIndex = 159;
-            checkBoxNew.Text = "New";
-            checkBoxNew.UseVisualStyleBackColor = true;
-            // 
             // WaccaSongBrowser
             // 
             AllowDrop = true;
@@ -1805,6 +1794,5 @@
         private Label bingo8Label;
         private CheckBox ramSaveCheckBox;
         private Panel panelMainContainer;
-        private CheckBox checkBoxNew;
     }
 }
