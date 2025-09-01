@@ -5,6 +5,7 @@ using UAssetAPI;
 using UAssetAPI.UnrealTypes;
 using System.Text;
 using System.Xml;
+using System.Xml;
 
 namespace WaccaSongBrowser
 {
@@ -13,6 +14,7 @@ namespace WaccaSongBrowser
         public WaccaSongBrowser()
         {
             // I use UserControls for other pages. they are inside panelMainContainer
+            // search up that word in this code and you'll see what to edit
             // search up that word in this code and you'll see what to edit
             InitializeComponent();
             panelMainContainer.Dock = DockStyle.Fill;
@@ -80,6 +82,10 @@ namespace WaccaSongBrowser
                                     {
                                         return;
                                     }
+                                    if (Read(file) == -1)
+                                    {
+                                        return;
+                                    }
                                     openedFileName = file;
                                     consoleLabel.Text = $"Folder dropped: {folderName}, loaded: {Path.GetFileName(file)}";
                                     panelMainContainer.Visible = false;
@@ -98,6 +104,14 @@ namespace WaccaSongBrowser
                             // It's a file
                             allSongs.Clear();
                             songid.Items.Clear();
+                            if (Read(path) == -1)
+                            {
+                                //TODO
+                                panelMainContainer.Visible = true;
+                                panelMainContainer.Enabled = true;
+                                LoadPage(new Message(path));
+                                return;
+                            }
                             if (Read(path) == -1)
                             {
                                 //TODO
@@ -906,6 +920,7 @@ namespace WaccaSongBrowser
                 IntPropertyData intProp when typeof(T) == typeof(int) => (T)(object)intProp.Value,
                 UInt32PropertyData uintProp when typeof(T) == typeof(uint) => (T)(object)uintProp.Value,
                 Int64PropertyData longProp when typeof(T) == typeof(long) => (T)(object)longProp.Value,
+                Int64PropertyData longProp when typeof(T) == typeof(long) => (T)(object)longProp.Value,
                 BoolPropertyData boolProp when typeof(T) == typeof(bool) => (T)(object)boolProp.Value,
                 FloatPropertyData floatProp when typeof(T) == typeof(float) => (T)(object)floatProp.Value,
                 BytePropertyData byteProp when typeof(T) == typeof(byte) => (T)(object)byteProp.Value,
@@ -914,6 +929,7 @@ namespace WaccaSongBrowser
         }
         static List<SongData> allSongs = new List<SongData>();
         static UAsset MusicParameterTable;
+        int Read(string file)
         int Read(string file)
         {
             string uassetPath = file;
@@ -1012,6 +1028,79 @@ namespace WaccaSongBrowser
                     }
                 }
             }
+
+            // Get the directory part
+            string directory = Path.GetDirectoryName(uassetPath);
+
+            // Combine with the new filename
+            string newPath = Path.Combine(directory, "UnlockMusicTable.uasset");
+            if (File.Exists(newPath))
+            {
+                ReadUnlockMusic(newPath);
+            }
+            return 0;
+        }
+
+        static UAsset UnlockMusicTable;
+        static Dictionary<int, bool> musicUnlockStatus;
+        public static int ReadUnlockMusic(string file)
+        {
+            string uassetPath = file;
+            musicUnlockStatus = new Dictionary<int, bool>();
+
+            UnlockMusicTable = new UAsset(uassetPath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
+
+            foreach (var export in UnlockMusicTable.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            UnlockData data = new UnlockData
+                            {
+                                MusicId = GetFieldValue<int>(rowStruct, "MusicId"),
+                                ItemActivateStartTime = GetFieldValue<long>(rowStruct, "ItemActivateStartTime"),
+                            };
+
+                            if (data.MusicId == 0)
+                                continue;
+
+                            bool isWithin28Days = CheckWithin28Days(data.ItemActivateStartTime);
+                            musicUnlockStatus[data.MusicId] = isWithin28Days;
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+
+        public static bool CheckWithin28Days(long itemActivateStartTime)
+        {
+            if (itemActivateStartTime == 0) return false;
+
+            DateTime currentDate = DateTime.Now;
+            DateTime startTime;
+
+            // Convert YYYYMMDDHH (e.g., 2020012307) to DateTime
+            string timeString = itemActivateStartTime.ToString();
+            if (timeString.Length < 10) return false;
+
+            try
+            {
+                int year = int.Parse(timeString.Substring(0, 4));
+                int month = int.Parse(timeString.Substring(4, 2));
+                int day = int.Parse(timeString.Substring(6, 2));
+                int hour = int.Parse(timeString.Substring(8, 2));
+                startTime = new DateTime(year, month, day, hour, 0, 0);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return (currentDate - startTime).TotalDays <= 28;
 
             // Get the directory part
             string directory = Path.GetDirectoryName(uassetPath);
