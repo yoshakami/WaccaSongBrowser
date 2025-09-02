@@ -190,7 +190,6 @@ namespace WaccaSongBrowser
             }
         }
 
-
         private void filterArtistButton_Click(object sender, EventArgs e)
         {
             string filter = filterArtistTextBox.Text.Trim().ToLower();
@@ -427,11 +426,38 @@ namespace WaccaSongBrowser
         {
             FilterByBoolProperty("Recommend", filterBeginnerCheckBox.Checked);
         }
+        private void FilterByUnlockStatus(bool expectedValue)
+        {
+            if (allSongs.Count == 0)
+                return;
+
+            // Find current index
+            int currentIndex = allSongs.FindIndex(s => s.UniqueID == currentSongId);
+
+            for (int i = 1; i <= allSongs.Count; i++)
+            {
+                int index = (currentIndex + i) % allSongs.Count;
+                var song = allSongs[index];
+
+                // Lookup unlock status
+                bool isUnlocked = musicUnlockStatus.TryGetValue((int)song.UniqueID, out bool value) && value;
+
+                if (isUnlocked == expectedValue)
+                {
+                    saveChanges();
+                    currentSongId = song.UniqueID;
+                    LoadUI(song);
+                    break;
+                }
+            }
+        }
 
         private void filterNewButton_Click(object sender, EventArgs e)
         {
-            // TODO
+            // only show "new" songs (unlocked within 28 days)
+            FilterByUnlockStatus(filterNewCheckBox.Checked);
         }
+
 
         private void saveSongData(SongData songData)
         {
@@ -770,8 +796,7 @@ namespace WaccaSongBrowser
             }
         }
 
-
-        uint currentSongId;
+        static uint currentSongId;
         private void songidButton_Click(object sender, EventArgs e)
         {
             if (allSongs.Count == 0)
@@ -799,6 +824,10 @@ namespace WaccaSongBrowser
         {
             musicTextBox.Text = song.MusicMessage;
             artistTextBox.Text = song.ArtistMessage;
+            if (checkBoxNew.Enabled && freezeNewCheckBox.Checked == false)
+            {
+                checkBoxNew.Checked = musicUnlockStatus[(int)song.UniqueID];
+            }
             if (song.ScoreGenre < genre.Items.Count && freezeGenreCheckBox.Checked == false)
             {
                 genre.SelectedIndex = song.ScoreGenre;
@@ -1035,6 +1064,10 @@ namespace WaccaSongBrowser
             if (File.Exists(newPath))
             {
                 ReadUnlockMusic(newPath);
+            } else
+            {
+                checkBoxNew.BackColor = Color.FromArgb(0xff, 0xAA, 0xAA, 0xAA);
+                checkBoxNew.Enabled = false;
             }
             return 0;
         }
@@ -1194,24 +1227,6 @@ namespace WaccaSongBrowser
             }
         }
 
-        private void freezeGenreCheckBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true; // Prevent the "ding" sound
-                filterGenreButton_Click(sender, e);
-            }
-        }
-
-        private void freezeVersionCheckBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true; // Prevent the "ding" sound
-                filterVersionButton_Click(sender, e);
-            }
-        }
-
         private void filterofflineCheckBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -1320,8 +1335,8 @@ namespace WaccaSongBrowser
             }
             else
             {
-                genre.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                freezeGenreCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                genre.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                freezeGenreCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
             }
         }
 
@@ -1334,8 +1349,8 @@ namespace WaccaSongBrowser
             }
             else
             {
-                version.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                freezeVersionCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                version.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                freezeVersionCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
             }
         }
 
@@ -1348,22 +1363,25 @@ namespace WaccaSongBrowser
             }
             else
             {
-                pointCostTextBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                freezePointCostCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                pointCostTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                freezePointCostCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
             }
         }
 
         private void freezeNewCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (freezeNewCheckBox.CheckState == CheckState.Checked)
+            if (checkBoxNew.Enabled)
             {
-                checkBoxNew.BackColor = Color.LightBlue;
-                freezeNewCheckBox.BackColor = Color.LightBlue;
-            }
-            else
-            {
-                checkBoxNew.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                freezeNewCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                if (freezeNewCheckBox.CheckState == CheckState.Checked)
+                {
+                    checkBoxNew.BackColor = Color.LightBlue;
+                    freezeNewCheckBox.BackColor = Color.LightBlue;
+                }
+                else
+                {
+                    checkBoxNew.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                    freezeNewCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                }
             }
         }
 
@@ -1376,8 +1394,8 @@ namespace WaccaSongBrowser
             }
             else
             {
-                beginnerCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                freezeBeginnerCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                beginnerCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                freezeBeginnerCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
             }
         }
 
@@ -1400,18 +1418,18 @@ namespace WaccaSongBrowser
             }
             else
             {
-                freezeAvailableCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                offlineCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                jaCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                usaCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                zhtwCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                enhkCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                ensgCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                kokrCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                cnguCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                cngeCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                cnvipCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
-                notAvailableCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                freezeAvailableCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                offlineCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                jaCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                usaCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                zhtwCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                enhkCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                ensgCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                kokrCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                cnguCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                cngeCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                cnvipCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                notAvailableCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
             }
         }
     }
