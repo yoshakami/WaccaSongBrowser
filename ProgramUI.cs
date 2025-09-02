@@ -40,6 +40,24 @@ namespace WaccaSongBrowser
             filterVersion.Items.Add("3: Wacca Lily");
             filterVersion.Items.Add("4: Wacca Lily R");
             filterVersion.Items.Add("5: Wacca Reverse");
+
+            filterMusicEnableCheckBox_CheckedChanged(null, null);
+            filterArtistEnableCheckBox_CheckedChanged(null, null);
+            filterGenreEnableCheckBox_CheckedChanged(null, null);
+            filterVersionEnableCheckBox_CheckedChanged(null, null);
+            filterNewEnableCheckBox_CheckedChanged(null, null);
+            filterBeginnerEnableCheckBox_CheckedChanged(null, null);
+            filterOfflineEnableCheckBox_CheckedChanged(null, null);
+            filterjaEnableCheckBox_CheckedChanged(null, null);
+            filterusaEnableCheckBox_CheckedChanged(null, null);
+            filterzhtwEnableCheckBox_CheckedChanged(null, null);
+            filterenhkEnableCheckBox_CheckedChanged(null, null);
+            filterensgEnableCheckBox_CheckedChanged(null, null);
+            filterkokrEnableCheckBox_CheckedChanged(null, null);
+            filtercnguEnableCheckBox_CheckedChanged(null, null);
+            filtercngeEnableCheckBox_CheckedChanged(null, null);
+            filtercnvipEnableCheckBox_CheckedChanged(null, null);
+            filternotAvailableEnableCheckBox_CheckedChanged(null, null);
             // load the "main page"
             LoadPage(new Menu());
         }
@@ -412,6 +430,79 @@ namespace WaccaSongBrowser
         {
             FilterByBoolProperty("ValidCulture_h_Hans_CN_VipMember", filtercnvipCheckBox.Checked);
         }
+        private void filterSearchButton_Click(object sender, EventArgs e)
+        {
+            nextSongButton_Click(null, null);
+            if (filterMusicEnableCheckBox.Checked)
+            {
+                filterMusicButton_Click(null, null);
+            }
+            if (filterArtistEnableCheckBox.Checked)
+            {
+                filterArtistButton_Click(null, null);
+            }
+            if (filterGenreEnableCheckBox.Checked){
+                filterGenreButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filterVersionEnableCheckBox.Checked){
+                filterVersionButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filterNewEnableCheckBox.Checked){
+                filterNewButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filterBeginnerEnableCheckBox.Checked){
+                filterBeginnerButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filterOfflineEnableCheckBox.Checked){
+                filterofflineButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filterjaEnableCheckBox.Checked){
+                filterjaButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filterusaEnableCheckBox.Checked){
+                filterusaButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filterzhtwEnableCheckBox.Checked){
+                filterzhtwButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filterenhkEnableCheckBox.Checked){
+                filterenhkButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filterensgEnableCheckBox.Checked){
+                filterensgButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filterkokrEnableCheckBox.Checked){
+                filterkokrButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filtercnguEnableCheckBox.Checked){
+                filtercnguButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filtercngeEnableCheckBox.Checked){
+                filtercngeButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filtercnvipEnableCheckBox.Checked){
+                filterfiltercnvipButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+            if (filternotAvailableEnableCheckBox.Checked){
+                filternotAvailableButton_Click(null, null);
+                previousSongButton_Click(null, null);
+            }
+
+        }
         private void filternotAvailableButton_Click(object sender, EventArgs e)
         {
             FilterByBoolProperty("ValidCulture_NoneActive", filternotAvailableCheckBox.Checked);
@@ -434,6 +525,7 @@ namespace WaccaSongBrowser
             // Find current index
             int currentIndex = allSongs.FindIndex(s => s.UniqueID == currentSongId);
 
+            // Walk through the list starting AFTER the current song, wrapping around
             for (int i = 1; i <= allSongs.Count; i++)
             {
                 int index = (currentIndex + i) % allSongs.Count;
@@ -447,10 +539,11 @@ namespace WaccaSongBrowser
                     saveChanges();
                     currentSongId = song.UniqueID;
                     LoadUI(song);
-                    break;
+                    break; // stop at the first match
                 }
             }
         }
+
 
         private void filterNewButton_Click(object sender, EventArgs e)
         {
@@ -461,7 +554,6 @@ namespace WaccaSongBrowser
 
         private void saveSongData(SongData songData)
         {
-
             songData.MusicMessage = musicTextBox.Text;
             songData.ArtistMessage = artistTextBox.Text;
             songData.Version = (uint)(version.SelectedIndex + 1);
@@ -681,9 +773,10 @@ namespace WaccaSongBrowser
                         songid.Items.Insert(0, songData.UniqueID.ToString());
                         allSongs.Insert(0, songData);
                         return true;
-                    }
+                    }  // use Wsong Inject instead of this if
 
                     saveSongData(songData);
+
                     foreach (var row in dataTable.Table.Data)
                     {
                         if (row is StructPropertyData rowStruct)
@@ -796,6 +889,22 @@ namespace WaccaSongBrowser
             }
         }
 
+        private void nextSongButton_Click(object sender, EventArgs e)
+        {
+            songid.SelectedIndex += 1;
+            songidButton_Click(null, null);
+        }
+
+        private void previousSongButton_Click(object sender, EventArgs e)
+        {
+            songid.SelectedIndex -= 1;
+            if (songid.SelectedIndex < 0)
+            {
+                songid.SelectedIndex = songid.Items.Count - 1;
+            }
+            songidButton_Click(null, null);
+        }
+
         static uint currentSongId;
         private void songidButton_Click(object sender, EventArgs e)
         {
@@ -831,7 +940,6 @@ namespace WaccaSongBrowser
             if (song.ScoreGenre < genre.Items.Count && freezeGenreCheckBox.Checked == false)
             {
                 genre.SelectedIndex = song.ScoreGenre;
-                filterGenre.SelectedIndex = song.ScoreGenre;
             }
             rubiTextBox.Text = song.Rubi;
             if (freezePointCostCheckBox.Checked == false)
@@ -846,17 +954,14 @@ namespace WaccaSongBrowser
             if (song.Version < 1)
             {
                 version.SelectedIndex = 0;
-                filterVersion.SelectedIndex = 0;
             }
             else if (song.Version >= version.Items.Count)  // allows adding more versions just by editing the items at the top of the code
             {
                 version.SelectedIndex = version.Items.Count - 1;
-                filterVersion.SelectedIndex = version.Items.Count - 1;
             }
             else if (freezeVersionCheckBox.Checked == false)
             {
                 version.SelectedIndex = (int)(song.Version - 1);
-                filterVersion.SelectedIndex = (int)(song.Version - 1);
             }
             diffNormalTextBox.Text = song.DifficultyNormalLv.ToString();
             diffHardTextBox.Text = song.DifficultyHardLv.ToString();
@@ -897,28 +1002,13 @@ namespace WaccaSongBrowser
                 cngeCheckBox.Checked = song.ValidCulture_h_Hans_CN_GeneralMember;
                 cnvipCheckBox.Checked = song.ValidCulture_h_Hans_CN_VipMember;
                 notAvailableCheckBox.Checked = song.ValidCulture_NoneActive;
-
-                filterofflineCheckBox.Checked = song.ValidCulture_Offline;
-                filterjaCheckBox.Checked = song.ValidCulture_ja_JP;
-                filterusaCheckBox.Checked = song.ValidCulture_en_US;
-                filterzhtwCheckBox.Checked = song.ValidCulture_zh_Hant_TW;
-                filterenhkCheckBox.Checked = song.ValidCulture_en_HK;
-                filterensgCheckBox.Checked = song.ValidCulture_en_SG;
-                filterkokrCheckBox.Checked = song.ValidCulture_ko_KR;
-                filtercnguCheckBox.Checked = song.ValidCulture_h_Hans_CN_Guest;
-                filtercngeCheckBox.Checked = song.ValidCulture_h_Hans_CN_GeneralMember;
-                filtercnvipCheckBox.Checked = song.ValidCulture_h_Hans_CN_VipMember;
-                filternotAvailableCheckBox.Checked = song.ValidCulture_NoneActive;
             }
             if (freezeBeginnerCheckBox.Checked == false)
             {
                 beginnerCheckBox.Checked = song.Recommend;
-                filterBeginnerCheckBox.Checked = song.Recommend;
             }
 
             songid.Text = song.UniqueID.ToString();
-            filterMusicTextBox.Text = song.MusicMessage;
-            filterArtistTextBox.Text = song.ArtistMessage;
 
             string path = execPath + song.JacketAssetName + ".png";
             if (File.Exists(path))
@@ -1064,11 +1154,13 @@ namespace WaccaSongBrowser
             if (File.Exists(newPath))
             {
                 ReadUnlockMusic(newPath);
-            } else
+            }
+            else
             {
                 checkBoxNew.BackColor = Color.FromArgb(0xff, 0xAA, 0xAA, 0xAA);
                 checkBoxNew.Enabled = false;
             }
+            nextSongButton_Click(null, null);
             return 0;
         }
 
@@ -1431,6 +1523,90 @@ namespace WaccaSongBrowser
                 cnvipCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
                 notAvailableCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
             }
+        }
+        private void filterMusicEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterMusicTextBox.Enabled = filterMusicEnableCheckBox.Checked;
+        }
+
+        private void filterArtistEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterArtistTextBox.Enabled = filterArtistEnableCheckBox.Checked;
+        }
+
+        private void filterGenreEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterGenre.Enabled = filterGenreEnableCheckBox.Checked;
+        }
+
+        private void filterVersionEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterVersion.Enabled = filterVersionEnableCheckBox.Checked;
+        }
+
+        private void filterNewEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterNewCheckBox.Enabled = filterNewEnableCheckBox.Checked;
+        }
+
+        private void filterBeginnerEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterBeginnerCheckBox.Enabled = filterBeginnerEnableCheckBox.Checked;
+        }
+
+        private void filterOfflineEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterofflineCheckBox.Enabled = filterOfflineEnableCheckBox.Checked;
+        }
+
+        private void filterjaEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterjaCheckBox.Enabled = filterjaEnableCheckBox.Checked;
+        }
+
+        private void filterusaEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterusaCheckBox.Enabled = filterusaEnableCheckBox.Checked;
+        }
+
+        private void filterzhtwEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterzhtwCheckBox.Enabled = filterzhtwEnableCheckBox.Checked;
+        }
+
+        private void filterenhkEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterenhkCheckBox.Enabled = filterenhkEnableCheckBox.Checked;
+        }
+
+        private void filterensgEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterensgCheckBox.Enabled = filterensgEnableCheckBox.Checked;
+        }
+
+        private void filterkokrEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterkokrCheckBox.Enabled = filterkokrEnableCheckBox.Checked;
+        }
+
+        private void filtercnguEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filtercnguCheckBox.Enabled = filtercnguEnableCheckBox.Checked;
+        }
+
+        private void filtercngeEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filtercngeCheckBox.Enabled = filtercngeEnableCheckBox.Checked;
+        }
+
+        private void filtercnvipEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filtercnvipCheckBox.Enabled = filtercnvipEnableCheckBox.Checked;
+        }
+
+        private void filternotAvailableEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filternotAvailableCheckBox.Enabled = filternotAvailableEnableCheckBox.Checked;
         }
     }
 }

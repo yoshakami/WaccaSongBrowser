@@ -6,7 +6,11 @@ you can sort all categories to your liking quickly with it.
 Message editor is used to convert the Message folder into a txt, that can be converted back to a new message folder.
 <img width="1184" height="697" alt="image" src="https://github.com/user-attachments/assets/ff07d6a4-1999-4989-ba09-504572842146" />
 
-## it does not edit Unlock music tables yet!!!!!!! use WsongInject to add a new song instead
+## it does not add new entries!! use WsongInject to add a new song instead
+
+## update notes
+you can now apply as much filters as you want as long as you enable them! <br>
+you can still take the hot shortcut of pressing enter (with the keyboard) on any filter to any search with this one only
 
 ## how to edit songs
 Drag and drop MusicParameterTable.uasset onto the window (found in WindowsNoEditor/Mercury/Content/Table)

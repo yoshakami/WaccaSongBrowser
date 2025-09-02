@@ -104,7 +104,6 @@
             cnguCheckBox = new CheckBox();
             notAvailableCheckBox = new CheckBox();
             checkAllCorrectBoxesButton = new Button();
-            filterMusicButton = new Button();
             autoSaveCheckBox = new CheckBox();
             progressBar = new ProgressBar();
             consoleLabel = new Label();
@@ -113,12 +112,9 @@
             filterMusicLabel = new Label();
             filterArtistLabel = new Label();
             filterArtistTextBox = new TextBox();
-            filterArtistButton = new Button();
             filterGenreLabel = new Label();
-            filterGenreButton = new Button();
             filterGenre = new ComboBox();
             songidButton = new Button();
-            filterofflineButton = new Button();
             filternotAvailableCheckBox = new CheckBox();
             filtercnguCheckBox = new CheckBox();
             filtercnvipCheckBox = new CheckBox();
@@ -130,21 +126,9 @@
             filterusaCheckBox = new CheckBox();
             filterjaCheckBox = new CheckBox();
             filterofflineCheckBox = new CheckBox();
-            filterjaButton = new Button();
-            filterusaButton = new Button();
-            filternotAvailableButton = new Button();
-            filterkokrButton = new Button();
-            filterensgButton = new Button();
-            filterenhkButton = new Button();
-            filterzhtwButton = new Button();
-            filterfiltercnvipButton = new Button();
-            filtercngeButton = new Button();
-            filtercnguButton = new Button();
             filterBeginnerCheckBox = new CheckBox();
-            filterBeginnerButton = new Button();
             filterVersion = new ComboBox();
             filterVersionLabel = new Label();
-            filterVersionButton = new Button();
             saveButton = new Button();
             saveLabel = new Label();
             bingo3TextBox = new TextBox();
@@ -170,7 +154,6 @@
             ramSaveCheckBox = new CheckBox();
             panelMainContainer = new Panel();
             checkBoxNew = new CheckBox();
-            filterNewButton = new Button();
             filterNewCheckBox = new CheckBox();
             freezeVersionCheckBox = new CheckBox();
             freezeGenreCheckBox = new CheckBox();
@@ -178,6 +161,27 @@
             freezeNewCheckBox = new CheckBox();
             freezeBeginnerCheckBox = new CheckBox();
             freezeAvailableCheckBox = new CheckBox();
+            filterSearchButton = new Button();
+            progressBar1 = new ProgressBar();
+            filterMusicEnableCheckBox = new CheckBox();
+            filterArtistEnableCheckBox = new CheckBox();
+            filterGenreEnableCheckBox = new CheckBox();
+            filterVersionEnableCheckBox = new CheckBox();
+            filterNewEnableCheckBox = new CheckBox();
+            filterBeginnerEnableCheckBox = new CheckBox();
+            filterOfflineEnableCheckBox = new CheckBox();
+            filterjaEnableCheckBox = new CheckBox();
+            filterusaEnableCheckBox = new CheckBox();
+            filterzhtwEnableCheckBox = new CheckBox();
+            filtercnvipEnableCheckBox = new CheckBox();
+            filtercngeEnableCheckBox = new CheckBox();
+            filtercnguEnableCheckBox = new CheckBox();
+            filterkokrEnableCheckBox = new CheckBox();
+            filterensgEnableCheckBox = new CheckBox();
+            filterenhkEnableCheckBox = new CheckBox();
+            filternotAvailableEnableCheckBox = new CheckBox();
+            nextSongButton = new Button();
+            peviousSongButton = new Button();
             ((System.ComponentModel.ISupportInitialize)jacketPictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -228,7 +232,7 @@
             // songidLabel
             // 
             songidLabel.AutoSize = true;
-            songidLabel.Location = new Point(863, 193);
+            songidLabel.Location = new Point(914, 23);
             songidLabel.Name = "songidLabel";
             songidLabel.Size = new Size(48, 15);
             songidLabel.TabIndex = 5;
@@ -258,7 +262,7 @@
             // songid
             // 
             songid.FormattingEnabled = true;
-            songid.Location = new Point(837, 213);
+            songid.Location = new Point(837, 41);
             songid.Margin = new Padding(3, 2, 3, 2);
             songid.Name = "songid";
             songid.Size = new Size(225, 23);
@@ -860,16 +864,6 @@
             checkAllCorrectBoxesButton.UseVisualStyleBackColor = true;
             checkAllCorrectBoxesButton.Click += checkAllCorrectBoxesButton_Click;
             // 
-            // filterMusicButton
-            // 
-            filterMusicButton.Location = new Point(1078, 40);
-            filterMusicButton.Name = "filterMusicButton";
-            filterMusicButton.Size = new Size(92, 23);
-            filterMusicButton.TabIndex = 77;
-            filterMusicButton.Text = "Search";
-            filterMusicButton.UseVisualStyleBackColor = true;
-            filterMusicButton.Click += filterMusicButton_Click;
-            // 
             // autoSaveCheckBox
             // 
             autoSaveCheckBox.AutoSize = true;
@@ -905,7 +899,7 @@
             // filtersLabel
             // 
             filtersLabel.AutoSize = true;
-            filtersLabel.Location = new Point(971, -2);
+            filtersLabel.Location = new Point(1058, 73);
             filtersLabel.Name = "filtersLabel";
             filtersLabel.Size = new Size(38, 15);
             filtersLabel.TabIndex = 81;
@@ -913,17 +907,17 @@
             // 
             // filterMusicTextBox
             // 
-            filterMusicTextBox.Location = new Point(837, 41);
+            filterMusicTextBox.Location = new Point(991, 111);
             filterMusicTextBox.Margin = new Padding(3, 2, 3, 2);
             filterMusicTextBox.Name = "filterMusicTextBox";
-            filterMusicTextBox.Size = new Size(225, 23);
+            filterMusicTextBox.Size = new Size(176, 23);
             filterMusicTextBox.TabIndex = 76;
             filterMusicTextBox.KeyDown += filterMusicTextBox_KeyDown;
             // 
             // filterMusicLabel
             // 
             filterMusicLabel.AutoSize = true;
-            filterMusicLabel.Location = new Point(863, 16);
+            filterMusicLabel.Location = new Point(1056, 91);
             filterMusicLabel.Name = "filterMusicLabel";
             filterMusicLabel.Size = new Size(39, 15);
             filterMusicLabel.TabIndex = 83;
@@ -932,7 +926,7 @@
             // filterArtistLabel
             // 
             filterArtistLabel.AutoSize = true;
-            filterArtistLabel.Location = new Point(863, 79);
+            filterArtistLabel.Location = new Point(1058, 148);
             filterArtistLabel.Name = "filterArtistLabel";
             filterArtistLabel.Size = new Size(35, 15);
             filterArtistLabel.TabIndex = 86;
@@ -940,55 +934,35 @@
             // 
             // filterArtistTextBox
             // 
-            filterArtistTextBox.Location = new Point(837, 104);
+            filterArtistTextBox.Location = new Point(991, 167);
             filterArtistTextBox.Margin = new Padding(3, 2, 3, 2);
             filterArtistTextBox.Name = "filterArtistTextBox";
-            filterArtistTextBox.Size = new Size(225, 23);
+            filterArtistTextBox.Size = new Size(176, 23);
             filterArtistTextBox.TabIndex = 78;
             filterArtistTextBox.KeyDown += filterArtistTextBox_KeyDown;
-            // 
-            // filterArtistButton
-            // 
-            filterArtistButton.Location = new Point(1078, 103);
-            filterArtistButton.Name = "filterArtistButton";
-            filterArtistButton.Size = new Size(92, 23);
-            filterArtistButton.TabIndex = 79;
-            filterArtistButton.Text = "Search";
-            filterArtistButton.UseVisualStyleBackColor = true;
-            filterArtistButton.Click += filterArtistButton_Click;
             // 
             // filterGenreLabel
             // 
             filterGenreLabel.AutoSize = true;
-            filterGenreLabel.Location = new Point(863, 135);
+            filterGenreLabel.Location = new Point(1057, 202);
             filterGenreLabel.Name = "filterGenreLabel";
             filterGenreLabel.Size = new Size(38, 15);
             filterGenreLabel.TabIndex = 89;
             filterGenreLabel.Text = "Genre";
             // 
-            // filterGenreButton
-            // 
-            filterGenreButton.Location = new Point(1078, 159);
-            filterGenreButton.Name = "filterGenreButton";
-            filterGenreButton.Size = new Size(92, 23);
-            filterGenreButton.TabIndex = 81;
-            filterGenreButton.Text = "Search";
-            filterGenreButton.UseVisualStyleBackColor = true;
-            filterGenreButton.Click += filterGenreButton_Click;
-            // 
             // filterGenre
             // 
             filterGenre.FormattingEnabled = true;
-            filterGenre.Location = new Point(837, 160);
+            filterGenre.Location = new Point(991, 223);
             filterGenre.Margin = new Padding(3, 2, 3, 2);
             filterGenre.Name = "filterGenre";
-            filterGenre.Size = new Size(225, 23);
+            filterGenre.Size = new Size(176, 23);
             filterGenre.TabIndex = 80;
             filterGenre.KeyDown += filterGenre_KeyDown;
             // 
             // songidButton
             // 
-            songidButton.Location = new Point(1078, 213);
+            songidButton.Location = new Point(1078, 41);
             songidButton.Name = "songidButton";
             songidButton.Size = new Size(92, 23);
             songidButton.TabIndex = 84;
@@ -996,20 +970,10 @@
             songidButton.UseVisualStyleBackColor = true;
             songidButton.Click += songidButton_Click;
             // 
-            // filterofflineButton
-            // 
-            filterofflineButton.Location = new Point(949, 372);
-            filterofflineButton.Name = "filterofflineButton";
-            filterofflineButton.Size = new Size(92, 23);
-            filterofflineButton.TabIndex = 109;
-            filterofflineButton.Text = "Search";
-            filterofflineButton.UseVisualStyleBackColor = true;
-            filterofflineButton.Click += filterofflineButton_Click;
-            // 
             // filternotAvailableCheckBox
             // 
             filternotAvailableCheckBox.AutoSize = true;
-            filternotAvailableCheckBox.Location = new Point(1046, 615);
+            filternotAvailableCheckBox.Location = new Point(990, 613);
             filternotAvailableCheckBox.Margin = new Padding(3, 2, 3, 2);
             filternotAvailableCheckBox.Name = "filternotAvailableCheckBox";
             filternotAvailableCheckBox.Size = new Size(97, 19);
@@ -1021,7 +985,7 @@
             // filtercnguCheckBox
             // 
             filtercnguCheckBox.AutoSize = true;
-            filtercnguCheckBox.Location = new Point(1046, 543);
+            filtercnguCheckBox.Location = new Point(990, 538);
             filtercnguCheckBox.Margin = new Padding(3, 2, 3, 2);
             filtercnguCheckBox.Name = "filtercnguCheckBox";
             filtercnguCheckBox.Size = new Size(129, 19);
@@ -1033,7 +997,7 @@
             // filtercnvipCheckBox
             // 
             filtercnvipCheckBox.AutoSize = true;
-            filtercnvipCheckBox.Location = new Point(1046, 591);
+            filtercnvipCheckBox.Location = new Point(990, 588);
             filtercnvipCheckBox.Margin = new Padding(3, 2, 3, 2);
             filtercnvipCheckBox.Name = "filtercnvipCheckBox";
             filtercnvipCheckBox.Size = new Size(116, 19);
@@ -1045,7 +1009,7 @@
             // filtercngeCheckBox
             // 
             filtercngeCheckBox.AutoSize = true;
-            filtercngeCheckBox.Location = new Point(1046, 567);
+            filtercngeCheckBox.Location = new Point(990, 563);
             filtercngeCheckBox.Margin = new Padding(3, 2, 3, 2);
             filtercngeCheckBox.Name = "filtercngeCheckBox";
             filtercngeCheckBox.Size = new Size(139, 19);
@@ -1057,7 +1021,7 @@
             // filterkokrCheckBox
             // 
             filterkokrCheckBox.AutoSize = true;
-            filterkokrCheckBox.Location = new Point(1046, 520);
+            filterkokrCheckBox.Location = new Point(990, 513);
             filterkokrCheckBox.Margin = new Padding(3, 2, 3, 2);
             filterkokrCheckBox.Name = "filterkokrCheckBox";
             filterkokrCheckBox.Size = new Size(109, 19);
@@ -1069,7 +1033,7 @@
             // filterensgCheckBox
             // 
             filterensgCheckBox.AutoSize = true;
-            filterensgCheckBox.Location = new Point(1046, 496);
+            filterensgCheckBox.Location = new Point(990, 488);
             filterensgCheckBox.Margin = new Padding(3, 2, 3, 2);
             filterensgCheckBox.Name = "filterensgCheckBox";
             filterensgCheckBox.Size = new Size(109, 19);
@@ -1081,7 +1045,7 @@
             // filterenhkCheckBox
             // 
             filterenhkCheckBox.AutoSize = true;
-            filterenhkCheckBox.Location = new Point(1046, 472);
+            filterenhkCheckBox.Location = new Point(990, 463);
             filterenhkCheckBox.Margin = new Padding(3, 2, 3, 2);
             filterenhkCheckBox.Name = "filterenhkCheckBox";
             filterenhkCheckBox.Size = new Size(111, 19);
@@ -1093,7 +1057,7 @@
             // filterzhtwCheckBox
             // 
             filterzhtwCheckBox.AutoSize = true;
-            filterzhtwCheckBox.Location = new Point(1047, 448);
+            filterzhtwCheckBox.Location = new Point(991, 438);
             filterzhtwCheckBox.Margin = new Padding(3, 2, 3, 2);
             filterzhtwCheckBox.Name = "filterzhtwCheckBox";
             filterzhtwCheckBox.Size = new Size(111, 19);
@@ -1105,7 +1069,7 @@
             // filterusaCheckBox
             // 
             filterusaCheckBox.AutoSize = true;
-            filterusaCheckBox.Location = new Point(1047, 424);
+            filterusaCheckBox.Location = new Point(991, 413);
             filterusaCheckBox.Margin = new Padding(3, 2, 3, 2);
             filterusaCheckBox.Name = "filterusaCheckBox";
             filterusaCheckBox.Size = new Size(132, 19);
@@ -1117,7 +1081,7 @@
             // filterjaCheckBox
             // 
             filterjaCheckBox.AutoSize = true;
-            filterjaCheckBox.Location = new Point(1047, 400);
+            filterjaCheckBox.Location = new Point(991, 388);
             filterjaCheckBox.Margin = new Padding(3, 2, 3, 2);
             filterjaCheckBox.Name = "filterjaCheckBox";
             filterjaCheckBox.Size = new Size(120, 19);
@@ -1129,7 +1093,7 @@
             // filterofflineCheckBox
             // 
             filterofflineCheckBox.AutoSize = true;
-            filterofflineCheckBox.Location = new Point(1047, 377);
+            filterofflineCheckBox.Location = new Point(991, 363);
             filterofflineCheckBox.Margin = new Padding(3, 2, 3, 2);
             filterofflineCheckBox.Name = "filterofflineCheckBox";
             filterofflineCheckBox.Size = new Size(113, 19);
@@ -1138,110 +1102,10 @@
             filterofflineCheckBox.UseVisualStyleBackColor = true;
             filterofflineCheckBox.KeyDown += filterofflineCheckBox_KeyDown;
             // 
-            // filterjaButton
-            // 
-            filterjaButton.Location = new Point(949, 396);
-            filterjaButton.Name = "filterjaButton";
-            filterjaButton.Size = new Size(92, 23);
-            filterjaButton.TabIndex = 110;
-            filterjaButton.Text = "Search";
-            filterjaButton.UseVisualStyleBackColor = true;
-            filterjaButton.Click += filterjaButton_Click;
-            // 
-            // filterusaButton
-            // 
-            filterusaButton.Location = new Point(949, 420);
-            filterusaButton.Name = "filterusaButton";
-            filterusaButton.Size = new Size(92, 23);
-            filterusaButton.TabIndex = 111;
-            filterusaButton.Text = "Search";
-            filterusaButton.UseVisualStyleBackColor = true;
-            filterusaButton.Click += filterusaButton_Click;
-            // 
-            // filternotAvailableButton
-            // 
-            filternotAvailableButton.Location = new Point(949, 612);
-            filternotAvailableButton.Name = "filternotAvailableButton";
-            filternotAvailableButton.Size = new Size(92, 23);
-            filternotAvailableButton.TabIndex = 127;
-            filternotAvailableButton.Text = "Search";
-            filternotAvailableButton.UseVisualStyleBackColor = true;
-            filternotAvailableButton.Click += filternotAvailableButton_Click;
-            // 
-            // filterkokrButton
-            // 
-            filterkokrButton.Location = new Point(949, 516);
-            filterkokrButton.Name = "filterkokrButton";
-            filterkokrButton.Size = new Size(92, 23);
-            filterkokrButton.TabIndex = 115;
-            filterkokrButton.Text = "Search";
-            filterkokrButton.UseVisualStyleBackColor = true;
-            filterkokrButton.Click += filterkokrButton_Click;
-            // 
-            // filterensgButton
-            // 
-            filterensgButton.Location = new Point(949, 492);
-            filterensgButton.Name = "filterensgButton";
-            filterensgButton.Size = new Size(92, 23);
-            filterensgButton.TabIndex = 114;
-            filterensgButton.Text = "Search";
-            filterensgButton.UseVisualStyleBackColor = true;
-            filterensgButton.Click += filterensgButton_Click;
-            // 
-            // filterenhkButton
-            // 
-            filterenhkButton.Location = new Point(949, 468);
-            filterenhkButton.Name = "filterenhkButton";
-            filterenhkButton.Size = new Size(92, 23);
-            filterenhkButton.TabIndex = 113;
-            filterenhkButton.Text = "Search";
-            filterenhkButton.UseVisualStyleBackColor = true;
-            filterenhkButton.Click += filterenhkButton_Click;
-            // 
-            // filterzhtwButton
-            // 
-            filterzhtwButton.Location = new Point(949, 444);
-            filterzhtwButton.Name = "filterzhtwButton";
-            filterzhtwButton.Size = new Size(92, 23);
-            filterzhtwButton.TabIndex = 112;
-            filterzhtwButton.Text = "Search";
-            filterzhtwButton.UseVisualStyleBackColor = true;
-            filterzhtwButton.Click += filterzhtwButton_Click;
-            // 
-            // filterfiltercnvipButton
-            // 
-            filterfiltercnvipButton.Location = new Point(949, 588);
-            filterfiltercnvipButton.Name = "filterfiltercnvipButton";
-            filterfiltercnvipButton.Size = new Size(92, 23);
-            filterfiltercnvipButton.TabIndex = 126;
-            filterfiltercnvipButton.Text = "Search";
-            filterfiltercnvipButton.UseVisualStyleBackColor = true;
-            filterfiltercnvipButton.Click += filterfiltercnvipButton_Click;
-            // 
-            // filtercngeButton
-            // 
-            filtercngeButton.Location = new Point(949, 564);
-            filtercngeButton.Name = "filtercngeButton";
-            filtercngeButton.Size = new Size(92, 23);
-            filtercngeButton.TabIndex = 125;
-            filtercngeButton.Text = "Search";
-            filtercngeButton.UseVisualStyleBackColor = true;
-            filtercngeButton.Click += filtercngeButton_Click;
-            // 
-            // filtercnguButton
-            // 
-            filtercnguButton.Location = new Point(949, 540);
-            filtercnguButton.Name = "filtercnguButton";
-            filtercnguButton.Size = new Size(92, 23);
-            filtercnguButton.TabIndex = 124;
-            filtercnguButton.Text = "Search";
-            filtercnguButton.UseVisualStyleBackColor = true;
-            filtercnguButton.Click += filtercnguButton_Click;
-            // 
             // filterBeginnerCheckBox
             // 
             filterBeginnerCheckBox.AutoSize = true;
-            filterBeginnerCheckBox.Location = new Point(837, 293);
+            filterBeginnerCheckBox.Location = new Point(991, 338);
             filterBeginnerCheckBox.Margin = new Padding(3, 2, 3, 2);
             filterBeginnerCheckBox.Name = "filterBeginnerCheckBox";
             filterBeginnerCheckBox.Size = new Size(157, 19);
@@ -1250,44 +1114,24 @@
             filterBeginnerCheckBox.UseVisualStyleBackColor = true;
             filterBeginnerCheckBox.KeyDown += filterBeginnerCheckBox_KeyDown;
             // 
-            // filterBeginnerButton
-            // 
-            filterBeginnerButton.Location = new Point(1014, 291);
-            filterBeginnerButton.Name = "filterBeginnerButton";
-            filterBeginnerButton.Size = new Size(92, 23);
-            filterBeginnerButton.TabIndex = 87;
-            filterBeginnerButton.Text = "Search";
-            filterBeginnerButton.UseVisualStyleBackColor = true;
-            filterBeginnerButton.Click += filterBeginnerButton_Click;
-            // 
             // filterVersion
             // 
             filterVersion.FormattingEnabled = true;
-            filterVersion.Location = new Point(837, 335);
+            filterVersion.Location = new Point(991, 276);
             filterVersion.Margin = new Padding(3, 2, 3, 2);
             filterVersion.Name = "filterVersion";
-            filterVersion.Size = new Size(157, 23);
+            filterVersion.Size = new Size(176, 23);
             filterVersion.TabIndex = 88;
             filterVersion.KeyDown += filterVersion_KeyDown;
             // 
             // filterVersionLabel
             // 
             filterVersionLabel.AutoSize = true;
-            filterVersionLabel.Location = new Point(889, 318);
+            filterVersionLabel.Location = new Point(1054, 257);
             filterVersionLabel.Name = "filterVersionLabel";
             filterVersionLabel.Size = new Size(45, 15);
             filterVersionLabel.TabIndex = 129;
             filterVersionLabel.Text = "Version";
-            // 
-            // filterVersionButton
-            // 
-            filterVersionButton.Location = new Point(1014, 334);
-            filterVersionButton.Name = "filterVersionButton";
-            filterVersionButton.Size = new Size(92, 23);
-            filterVersionButton.TabIndex = 89;
-            filterVersionButton.Text = "Search";
-            filterVersionButton.UseVisualStyleBackColor = true;
-            filterVersionButton.Click += filterVersionButton_Click;
             // 
             // saveButton
             // 
@@ -1513,20 +1357,10 @@
             checkBoxNew.Text = "New";
             checkBoxNew.UseVisualStyleBackColor = true;
             // 
-            // filterNewButton
-            // 
-            filterNewButton.Location = new Point(1014, 251);
-            filterNewButton.Name = "filterNewButton";
-            filterNewButton.Size = new Size(92, 23);
-            filterNewButton.TabIndex = 161;
-            filterNewButton.Text = "Search";
-            filterNewButton.UseVisualStyleBackColor = true;
-            filterNewButton.Click += filterNewButton_Click;
-            // 
             // filterNewCheckBox
             // 
             filterNewCheckBox.AutoSize = true;
-            filterNewCheckBox.Location = new Point(889, 256);
+            filterNewCheckBox.Location = new Point(991, 313);
             filterNewCheckBox.Margin = new Padding(3, 2, 3, 2);
             filterNewCheckBox.Name = "filterNewCheckBox";
             filterNewCheckBox.Size = new Size(50, 19);
@@ -1620,6 +1454,233 @@
             freezeAvailableCheckBox.UseVisualStyleBackColor = true;
             freezeAvailableCheckBox.CheckedChanged += freezeAvailableCheckBox_CheckedChanged;
             // 
+            // filterSearchButton
+            // 
+            filterSearchButton.Location = new Point(991, 637);
+            filterSearchButton.Name = "filterSearchButton";
+            filterSearchButton.Size = new Size(92, 23);
+            filterSearchButton.TabIndex = 127;
+            filterSearchButton.Text = "Search";
+            filterSearchButton.UseVisualStyleBackColor = true;
+            filterSearchButton.Click += filterSearchButton_Click;
+            // 
+            // progressBar1
+            // 
+            progressBar1.BackColor = SystemColors.ActiveCaptionText;
+            progressBar1.ForeColor = SystemColors.Desktop;
+            progressBar1.Location = new Point(944, 79);
+            progressBar1.Margin = new Padding(0);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(19, 573);
+            progressBar1.TabIndex = 168;
+            // 
+            // filterMusicEnableCheckBox
+            // 
+            filterMusicEnableCheckBox.AutoSize = true;
+            filterMusicEnableCheckBox.Location = new Point(972, 117);
+            filterMusicEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterMusicEnableCheckBox.Name = "filterMusicEnableCheckBox";
+            filterMusicEnableCheckBox.Size = new Size(15, 14);
+            filterMusicEnableCheckBox.TabIndex = 169;
+            filterMusicEnableCheckBox.UseVisualStyleBackColor = true;
+            filterMusicEnableCheckBox.CheckedChanged += filterMusicEnableCheckBox_CheckedChanged;
+            // 
+            // filterArtistEnableCheckBox
+            // 
+            filterArtistEnableCheckBox.AutoSize = true;
+            filterArtistEnableCheckBox.Location = new Point(972, 173);
+            filterArtistEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterArtistEnableCheckBox.Name = "filterArtistEnableCheckBox";
+            filterArtistEnableCheckBox.Size = new Size(15, 14);
+            filterArtistEnableCheckBox.TabIndex = 170;
+            filterArtistEnableCheckBox.UseVisualStyleBackColor = true;
+            filterArtistEnableCheckBox.CheckedChanged += filterArtistEnableCheckBox_CheckedChanged;
+            // 
+            // filterGenreEnableCheckBox
+            // 
+            filterGenreEnableCheckBox.AutoSize = true;
+            filterGenreEnableCheckBox.Location = new Point(972, 229);
+            filterGenreEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterGenreEnableCheckBox.Name = "filterGenreEnableCheckBox";
+            filterGenreEnableCheckBox.Size = new Size(15, 14);
+            filterGenreEnableCheckBox.TabIndex = 171;
+            filterGenreEnableCheckBox.UseVisualStyleBackColor = true;
+            filterGenreEnableCheckBox.CheckedChanged += filterGenreEnableCheckBox_CheckedChanged;
+            // 
+            // filterVersionEnableCheckBox
+            // 
+            filterVersionEnableCheckBox.AutoSize = true;
+            filterVersionEnableCheckBox.Location = new Point(972, 282);
+            filterVersionEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterVersionEnableCheckBox.Name = "filterVersionEnableCheckBox";
+            filterVersionEnableCheckBox.Size = new Size(15, 14);
+            filterVersionEnableCheckBox.TabIndex = 172;
+            filterVersionEnableCheckBox.UseVisualStyleBackColor = true;
+            filterVersionEnableCheckBox.CheckedChanged += filterVersionEnableCheckBox_CheckedChanged;
+            // 
+            // filterNewEnableCheckBox
+            // 
+            filterNewEnableCheckBox.AutoSize = true;
+            filterNewEnableCheckBox.Location = new Point(972, 315);
+            filterNewEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterNewEnableCheckBox.Name = "filterNewEnableCheckBox";
+            filterNewEnableCheckBox.Size = new Size(15, 14);
+            filterNewEnableCheckBox.TabIndex = 173;
+            filterNewEnableCheckBox.UseVisualStyleBackColor = true;
+            filterNewEnableCheckBox.CheckedChanged += filterNewEnableCheckBox_CheckedChanged;
+            // 
+            // filterBeginnerEnableCheckBox
+            // 
+            filterBeginnerEnableCheckBox.AutoSize = true;
+            filterBeginnerEnableCheckBox.Location = new Point(972, 340);
+            filterBeginnerEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterBeginnerEnableCheckBox.Name = "filterBeginnerEnableCheckBox";
+            filterBeginnerEnableCheckBox.Size = new Size(15, 14);
+            filterBeginnerEnableCheckBox.TabIndex = 174;
+            filterBeginnerEnableCheckBox.UseVisualStyleBackColor = true;
+            filterBeginnerEnableCheckBox.CheckedChanged += filterBeginnerEnableCheckBox_CheckedChanged;
+            // 
+            // filterOfflineEnableCheckBox
+            // 
+            filterOfflineEnableCheckBox.AutoSize = true;
+            filterOfflineEnableCheckBox.Location = new Point(972, 365);
+            filterOfflineEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterOfflineEnableCheckBox.Name = "filterOfflineEnableCheckBox";
+            filterOfflineEnableCheckBox.Size = new Size(15, 14);
+            filterOfflineEnableCheckBox.TabIndex = 175;
+            filterOfflineEnableCheckBox.UseVisualStyleBackColor = true;
+            filterOfflineEnableCheckBox.CheckedChanged += filterOfflineEnableCheckBox_CheckedChanged;
+            // 
+            // filterjaEnableCheckBox
+            // 
+            filterjaEnableCheckBox.AutoSize = true;
+            filterjaEnableCheckBox.Location = new Point(972, 390);
+            filterjaEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterjaEnableCheckBox.Name = "filterjaEnableCheckBox";
+            filterjaEnableCheckBox.Size = new Size(15, 14);
+            filterjaEnableCheckBox.TabIndex = 176;
+            filterjaEnableCheckBox.UseVisualStyleBackColor = true;
+            filterjaEnableCheckBox.CheckedChanged += filterjaEnableCheckBox_CheckedChanged;
+            // 
+            // filterusaEnableCheckBox
+            // 
+            filterusaEnableCheckBox.AutoSize = true;
+            filterusaEnableCheckBox.Location = new Point(972, 415);
+            filterusaEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterusaEnableCheckBox.Name = "filterusaEnableCheckBox";
+            filterusaEnableCheckBox.Size = new Size(15, 14);
+            filterusaEnableCheckBox.TabIndex = 177;
+            filterusaEnableCheckBox.UseVisualStyleBackColor = true;
+            filterusaEnableCheckBox.CheckedChanged += filterusaEnableCheckBox_CheckedChanged;
+            // 
+            // filterzhtwEnableCheckBox
+            // 
+            filterzhtwEnableCheckBox.AutoSize = true;
+            filterzhtwEnableCheckBox.Location = new Point(972, 440);
+            filterzhtwEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterzhtwEnableCheckBox.Name = "filterzhtwEnableCheckBox";
+            filterzhtwEnableCheckBox.Size = new Size(15, 14);
+            filterzhtwEnableCheckBox.TabIndex = 178;
+            filterzhtwEnableCheckBox.UseVisualStyleBackColor = true;
+            filterzhtwEnableCheckBox.CheckedChanged += filterzhtwEnableCheckBox_CheckedChanged;
+            // 
+            // filtercnvipEnableCheckBox
+            // 
+            filtercnvipEnableCheckBox.AutoSize = true;
+            filtercnvipEnableCheckBox.Location = new Point(972, 590);
+            filtercnvipEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filtercnvipEnableCheckBox.Name = "filtercnvipEnableCheckBox";
+            filtercnvipEnableCheckBox.Size = new Size(15, 14);
+            filtercnvipEnableCheckBox.TabIndex = 184;
+            filtercnvipEnableCheckBox.UseVisualStyleBackColor = true;
+            filtercnvipEnableCheckBox.CheckedChanged += filtercnvipEnableCheckBox_CheckedChanged;
+            // 
+            // filtercngeEnableCheckBox
+            // 
+            filtercngeEnableCheckBox.AutoSize = true;
+            filtercngeEnableCheckBox.Location = new Point(972, 565);
+            filtercngeEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filtercngeEnableCheckBox.Name = "filtercngeEnableCheckBox";
+            filtercngeEnableCheckBox.Size = new Size(15, 14);
+            filtercngeEnableCheckBox.TabIndex = 183;
+            filtercngeEnableCheckBox.UseVisualStyleBackColor = true;
+            filtercngeEnableCheckBox.CheckedChanged += filtercngeEnableCheckBox_CheckedChanged;
+            // 
+            // filtercnguEnableCheckBox
+            // 
+            filtercnguEnableCheckBox.AutoSize = true;
+            filtercnguEnableCheckBox.Location = new Point(972, 540);
+            filtercnguEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filtercnguEnableCheckBox.Name = "filtercnguEnableCheckBox";
+            filtercnguEnableCheckBox.Size = new Size(15, 14);
+            filtercnguEnableCheckBox.TabIndex = 182;
+            filtercnguEnableCheckBox.UseVisualStyleBackColor = true;
+            filtercnguEnableCheckBox.CheckedChanged += filtercnguEnableCheckBox_CheckedChanged;
+            // 
+            // filterkokrEnableCheckBox
+            // 
+            filterkokrEnableCheckBox.AutoSize = true;
+            filterkokrEnableCheckBox.Location = new Point(972, 515);
+            filterkokrEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterkokrEnableCheckBox.Name = "filterkokrEnableCheckBox";
+            filterkokrEnableCheckBox.Size = new Size(15, 14);
+            filterkokrEnableCheckBox.TabIndex = 181;
+            filterkokrEnableCheckBox.UseVisualStyleBackColor = true;
+            filterkokrEnableCheckBox.CheckedChanged += filterkokrEnableCheckBox_CheckedChanged;
+            // 
+            // filterensgEnableCheckBox
+            // 
+            filterensgEnableCheckBox.AutoSize = true;
+            filterensgEnableCheckBox.Location = new Point(972, 490);
+            filterensgEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterensgEnableCheckBox.Name = "filterensgEnableCheckBox";
+            filterensgEnableCheckBox.Size = new Size(15, 14);
+            filterensgEnableCheckBox.TabIndex = 180;
+            filterensgEnableCheckBox.UseVisualStyleBackColor = true;
+            filterensgEnableCheckBox.CheckedChanged += filterensgEnableCheckBox_CheckedChanged;
+            // 
+            // filterenhkEnableCheckBox
+            // 
+            filterenhkEnableCheckBox.AutoSize = true;
+            filterenhkEnableCheckBox.Location = new Point(972, 465);
+            filterenhkEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterenhkEnableCheckBox.Name = "filterenhkEnableCheckBox";
+            filterenhkEnableCheckBox.Size = new Size(15, 14);
+            filterenhkEnableCheckBox.TabIndex = 179;
+            filterenhkEnableCheckBox.UseVisualStyleBackColor = true;
+            filterenhkEnableCheckBox.CheckedChanged += filterenhkEnableCheckBox_CheckedChanged;
+            // 
+            // filternotAvailableEnableCheckBox
+            // 
+            filternotAvailableEnableCheckBox.AutoSize = true;
+            filternotAvailableEnableCheckBox.Location = new Point(972, 615);
+            filternotAvailableEnableCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filternotAvailableEnableCheckBox.Name = "filternotAvailableEnableCheckBox";
+            filternotAvailableEnableCheckBox.Size = new Size(15, 14);
+            filternotAvailableEnableCheckBox.TabIndex = 185;
+            filternotAvailableEnableCheckBox.UseVisualStyleBackColor = true;
+            filternotAvailableEnableCheckBox.CheckedChanged += filternotAvailableEnableCheckBox_CheckedChanged;
+            // 
+            // nextSongButton
+            // 
+            nextSongButton.Location = new Point(837, 102);
+            nextSongButton.Name = "nextSongButton";
+            nextSongButton.Size = new Size(92, 23);
+            nextSongButton.TabIndex = 186;
+            nextSongButton.Text = "Next";
+            nextSongButton.UseVisualStyleBackColor = true;
+            nextSongButton.Click += nextSongButton_Click;
+            // 
+            // peviousSongButton
+            // 
+            peviousSongButton.Location = new Point(837, 159);
+            peviousSongButton.Name = "peviousSongButton";
+            peviousSongButton.Size = new Size(92, 23);
+            peviousSongButton.TabIndex = 187;
+            peviousSongButton.Text = "Previous";
+            peviousSongButton.UseVisualStyleBackColor = true;
+            peviousSongButton.Click += previousSongButton_Click;
+            // 
             // WaccaSongBrowser
             // 
             AllowDrop = true;
@@ -1627,13 +1688,32 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1182, 665);
             Controls.Add(panelMainContainer);
+            Controls.Add(peviousSongButton);
+            Controls.Add(nextSongButton);
+            Controls.Add(filternotAvailableEnableCheckBox);
+            Controls.Add(filtercnvipEnableCheckBox);
+            Controls.Add(filtercngeEnableCheckBox);
+            Controls.Add(filtercnguEnableCheckBox);
+            Controls.Add(filterkokrEnableCheckBox);
+            Controls.Add(filterensgEnableCheckBox);
+            Controls.Add(filterenhkEnableCheckBox);
+            Controls.Add(filterzhtwEnableCheckBox);
+            Controls.Add(filterusaEnableCheckBox);
+            Controls.Add(filterjaEnableCheckBox);
+            Controls.Add(filterOfflineEnableCheckBox);
+            Controls.Add(filterBeginnerEnableCheckBox);
+            Controls.Add(filterNewEnableCheckBox);
+            Controls.Add(filterVersionEnableCheckBox);
+            Controls.Add(filterGenreEnableCheckBox);
+            Controls.Add(filterArtistEnableCheckBox);
+            Controls.Add(filterMusicEnableCheckBox);
+            Controls.Add(progressBar1);
             Controls.Add(freezeAvailableCheckBox);
             Controls.Add(freezeBeginnerCheckBox);
             Controls.Add(freezeNewCheckBox);
             Controls.Add(freezePointCostCheckBox);
             Controls.Add(freezeGenreCheckBox);
             Controls.Add(freezeVersionCheckBox);
-            Controls.Add(filterNewButton);
             Controls.Add(filterNewCheckBox);
             Controls.Add(checkBoxNew);
             Controls.Add(ramSaveCheckBox);
@@ -1659,21 +1739,10 @@
             Controls.Add(bingo0Label);
             Controls.Add(saveLabel);
             Controls.Add(saveButton);
-            Controls.Add(filterVersionButton);
             Controls.Add(filterVersion);
             Controls.Add(filterVersionLabel);
-            Controls.Add(filterBeginnerButton);
             Controls.Add(filterBeginnerCheckBox);
-            Controls.Add(filterfiltercnvipButton);
-            Controls.Add(filtercngeButton);
-            Controls.Add(filtercnguButton);
-            Controls.Add(filterkokrButton);
-            Controls.Add(filterensgButton);
-            Controls.Add(filterenhkButton);
-            Controls.Add(filterzhtwButton);
-            Controls.Add(filternotAvailableButton);
-            Controls.Add(filterusaButton);
-            Controls.Add(filterjaButton);
+            Controls.Add(filterSearchButton);
             Controls.Add(filternotAvailableCheckBox);
             Controls.Add(filtercnguCheckBox);
             Controls.Add(filtercnvipCheckBox);
@@ -1685,21 +1754,17 @@
             Controls.Add(filterusaCheckBox);
             Controls.Add(filterjaCheckBox);
             Controls.Add(filterofflineCheckBox);
-            Controls.Add(filterofflineButton);
             Controls.Add(songidButton);
             Controls.Add(filterGenre);
             Controls.Add(filterGenreLabel);
-            Controls.Add(filterGenreButton);
             Controls.Add(filterArtistLabel);
             Controls.Add(filterArtistTextBox);
-            Controls.Add(filterArtistButton);
             Controls.Add(filterMusicLabel);
             Controls.Add(filterMusicTextBox);
             Controls.Add(filtersLabel);
             Controls.Add(consoleLabel);
             Controls.Add(progressBar);
             Controls.Add(autoSaveCheckBox);
-            Controls.Add(filterMusicButton);
             Controls.Add(checkAllCorrectBoxesButton);
             Controls.Add(notAvailableCheckBox);
             Controls.Add(cnguCheckBox);
@@ -1863,7 +1928,6 @@
         private CheckBox cnguCheckBox;
         private CheckBox notAvailableCheckBox;
         private Button checkAllCorrectBoxesButton;
-        private Button filterMusicButton;
         private CheckBox autoSaveCheckBox;
         private ProgressBar progressBar;
         private Label consoleLabel;
@@ -1872,12 +1936,9 @@
         private Label filterMusicLabel;
         private Label filterArtistLabel;
         private TextBox filterArtistTextBox;
-        private Button filterArtistButton;
         private Label filterGenreLabel;
-        private Button filterGenreButton;
         private ComboBox filterGenre;
         private Button songidButton;
-        private Button filterofflineButton;
         private CheckBox filternotAvailableCheckBox;
         private CheckBox filtercnguCheckBox;
         private CheckBox filtercnvipCheckBox;
@@ -1889,21 +1950,9 @@
         private CheckBox filterusaCheckBox;
         private CheckBox filterjaCheckBox;
         private CheckBox filterofflineCheckBox;
-        private Button filterjaButton;
-        private Button filterusaButton;
-        private Button filternotAvailableButton;
-        private Button filterkokrButton;
-        private Button filterensgButton;
-        private Button filterenhkButton;
-        private Button filterzhtwButton;
-        private Button filterfiltercnvipButton;
-        private Button filtercngeButton;
-        private Button filtercnguButton;
         private CheckBox filterBeginnerCheckBox;
-        private Button filterBeginnerButton;
         private ComboBox filterVersion;
         private Label filterVersionLabel;
-        private Button filterVersionButton;
         private Button saveButton;
         private Label saveLabel;
         private TextBox bingo3TextBox;
@@ -1929,7 +1978,6 @@
         private CheckBox ramSaveCheckBox;
         private Panel panelMainContainer;
         private CheckBox checkBoxNew;
-        private Button filterNewButton;
         private CheckBox filterNewCheckBox;
         private CheckBox freezeVersionCheckBox;
         private CheckBox freezeGenreCheckBox;
@@ -1937,5 +1985,26 @@
         private CheckBox freezeNewCheckBox;
         private CheckBox freezeBeginnerCheckBox;
         private CheckBox freezeAvailableCheckBox;
+        private Button filterSearchButton;
+        private ProgressBar progressBar1;
+        private CheckBox filterMusicEnableCheckBox;
+        private CheckBox filterArtistEnableCheckBox;
+        private CheckBox filterGenreEnableCheckBox;
+        private CheckBox filterVersionEnableCheckBox;
+        private CheckBox filterNewEnableCheckBox;
+        private CheckBox filterBeginnerEnableCheckBox;
+        private CheckBox filterOfflineEnableCheckBox;
+        private CheckBox filterjaEnableCheckBox;
+        private CheckBox filterusaEnableCheckBox;
+        private CheckBox filterzhtwEnableCheckBox;
+        private CheckBox filtercnvipEnableCheckBox;
+        private CheckBox filtercngeEnableCheckBox;
+        private CheckBox filtercnguEnableCheckBox;
+        private CheckBox filterkokrEnableCheckBox;
+        private CheckBox filterensgEnableCheckBox;
+        private CheckBox filterenhkEnableCheckBox;
+        private CheckBox filternotAvailableEnableCheckBox;
+        private Button nextSongButton;
+        private Button peviousSongButton;
     }
 }
