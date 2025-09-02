@@ -428,6 +428,11 @@ namespace WaccaSongBrowser
             FilterByBoolProperty("Recommend", filterBeginnerCheckBox.Checked);
         }
 
+        private void filterNewButton_Click(object sender, EventArgs e)
+        {
+            // TODO
+        }
+
         private void saveSongData(SongData songData)
         {
 
@@ -794,10 +799,16 @@ namespace WaccaSongBrowser
         {
             musicTextBox.Text = song.MusicMessage;
             artistTextBox.Text = song.ArtistMessage;
-            if (song.ScoreGenre < genre.Items.Count)
+            if (song.ScoreGenre < genre.Items.Count && freezeGenreCheckBox.Checked == false)
+            {
                 genre.SelectedIndex = song.ScoreGenre;
+                filterGenre.SelectedIndex = song.ScoreGenre;
+            }
             rubiTextBox.Text = song.Rubi;
-            pointCostTextBox.Text = song.WaccaPointCost.ToString();
+            if (freezePointCostCheckBox.Checked == false)
+            {
+                pointCostTextBox.Text = song.WaccaPointCost.ToString();
+            }
             merTextBox.Text = song.AssetDirectory;
             jacketTextBox.Text = song.JacketAssetName;
             bpmTextBox.Text = song.Bpm.ToString();
@@ -808,12 +819,12 @@ namespace WaccaSongBrowser
                 version.SelectedIndex = 0;
                 filterVersion.SelectedIndex = 0;
             }
-            if (song.Version >= version.Items.Count)  // allows adding more versions just by editing the items at the top of the code
+            else if (song.Version >= version.Items.Count)  // allows adding more versions just by editing the items at the top of the code
             {
                 version.SelectedIndex = version.Items.Count - 1;
                 filterVersion.SelectedIndex = version.Items.Count - 1;
             }
-            else
+            else if (freezeVersionCheckBox.Checked == false)
             {
                 version.SelectedIndex = (int)(song.Version - 1);
                 filterVersion.SelectedIndex = (int)(song.Version - 1);
@@ -844,38 +855,41 @@ namespace WaccaSongBrowser
             bingo7TextBox.Text = song.bingo7.ToString();
             bingo8TextBox.Text = song.bingo8.ToString();
             bingo9TextBox.Text = song.bingo9.ToString();
-            offlineCheckBox.Checked = song.ValidCulture_Offline;
-            jaCheckBox.Checked = song.ValidCulture_ja_JP;
-            usaCheckBox.Checked = song.ValidCulture_en_US;
-            zhtwCheckBox.Checked = song.ValidCulture_zh_Hant_TW;
-            enhkCheckBox.Checked = song.ValidCulture_en_HK;
-            ensgCheckBox.Checked = song.ValidCulture_en_SG;
-            kokrCheckBox.Checked = song.ValidCulture_ko_KR;
-            cnguCheckBox.Checked = song.ValidCulture_h_Hans_CN_Guest;
-            cngeCheckBox.Checked = song.ValidCulture_h_Hans_CN_GeneralMember;
-            cnvipCheckBox.Checked = song.ValidCulture_h_Hans_CN_VipMember;
-            notAvailableCheckBox.Checked = song.ValidCulture_NoneActive;
-            beginnerCheckBox.Checked = song.Recommend;
+            if (freezeAvailableCheckBox.Checked == false)
+            {
+                offlineCheckBox.Checked = song.ValidCulture_Offline;
+                jaCheckBox.Checked = song.ValidCulture_ja_JP;
+                usaCheckBox.Checked = song.ValidCulture_en_US;
+                zhtwCheckBox.Checked = song.ValidCulture_zh_Hant_TW;
+                enhkCheckBox.Checked = song.ValidCulture_en_HK;
+                ensgCheckBox.Checked = song.ValidCulture_en_SG;
+                kokrCheckBox.Checked = song.ValidCulture_ko_KR;
+                cnguCheckBox.Checked = song.ValidCulture_h_Hans_CN_Guest;
+                cngeCheckBox.Checked = song.ValidCulture_h_Hans_CN_GeneralMember;
+                cnvipCheckBox.Checked = song.ValidCulture_h_Hans_CN_VipMember;
+                notAvailableCheckBox.Checked = song.ValidCulture_NoneActive;
 
-            //filters
-            filterofflineCheckBox.Checked = song.ValidCulture_Offline;
-            filterjaCheckBox.Checked = song.ValidCulture_ja_JP;
-            filterusaCheckBox.Checked = song.ValidCulture_en_US;
-            filterzhtwCheckBox.Checked = song.ValidCulture_zh_Hant_TW;
-            filterenhkCheckBox.Checked = song.ValidCulture_en_HK;
-            filterensgCheckBox.Checked = song.ValidCulture_en_SG;
-            filterkokrCheckBox.Checked = song.ValidCulture_ko_KR;
-            filtercnguCheckBox.Checked = song.ValidCulture_h_Hans_CN_Guest;
-            filtercngeCheckBox.Checked = song.ValidCulture_h_Hans_CN_GeneralMember;
-            filtercnvipCheckBox.Checked = song.ValidCulture_h_Hans_CN_VipMember;
-            filternotAvailableCheckBox.Checked = song.ValidCulture_NoneActive;
-            filterBeginnerCheckBox.Checked = song.Recommend;
+                filterofflineCheckBox.Checked = song.ValidCulture_Offline;
+                filterjaCheckBox.Checked = song.ValidCulture_ja_JP;
+                filterusaCheckBox.Checked = song.ValidCulture_en_US;
+                filterzhtwCheckBox.Checked = song.ValidCulture_zh_Hant_TW;
+                filterenhkCheckBox.Checked = song.ValidCulture_en_HK;
+                filterensgCheckBox.Checked = song.ValidCulture_en_SG;
+                filterkokrCheckBox.Checked = song.ValidCulture_ko_KR;
+                filtercnguCheckBox.Checked = song.ValidCulture_h_Hans_CN_Guest;
+                filtercngeCheckBox.Checked = song.ValidCulture_h_Hans_CN_GeneralMember;
+                filtercnvipCheckBox.Checked = song.ValidCulture_h_Hans_CN_VipMember;
+                filternotAvailableCheckBox.Checked = song.ValidCulture_NoneActive;
+            }
+            if (freezeBeginnerCheckBox.Checked == false)
+            {
+                beginnerCheckBox.Checked = song.Recommend;
+                filterBeginnerCheckBox.Checked = song.Recommend;
+            }
 
             songid.Text = song.UniqueID.ToString();
             filterMusicTextBox.Text = song.MusicMessage;
             filterArtistTextBox.Text = song.ArtistMessage;
-            if (song.ScoreGenre < genre.Items.Count)
-                filterGenre.SelectedIndex = song.ScoreGenre;
 
             string path = execPath + song.JacketAssetName + ".png";
             if (File.Exists(path))
@@ -1117,23 +1131,287 @@ namespace WaccaSongBrowser
             finished = true;
         }
 
-        private void songid_TextChanged(object sender, EventArgs e)  // activated only when you use the dropdown, so it lets you write conveniently.
-        {
-            /* int currentIndex = allSongs.FindIndex(s => s.UniqueID == currentSongId);
-            if (currentIndex == -1)
-            {
-                return;
-            }
-            songidButton_Click(sender, e); */
-        }
-
         private void songid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                // Prevent the "ding" sound
-                e.SuppressKeyPress = true;
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
                 songidButton_Click(sender, e);
+            }
+        }
+
+        private void filterMusicTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterMusicButton_Click(sender, e);
+            }
+        }
+
+        private void filterArtistTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterArtistButton_Click(sender, e);
+            }
+        }
+
+        private void filterGenre_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterGenreButton_Click(sender, e);
+            }
+        }
+
+        private void filterNewCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterNewButton_Click(sender, e);
+            }
+        }
+
+        private void filterBeginnerCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterBeginnerButton_Click(sender, e);
+            }
+        }
+
+        private void filterVersion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterVersionButton_Click(sender, e);
+            }
+        }
+
+        private void freezeGenreCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterGenreButton_Click(sender, e);
+            }
+        }
+
+        private void freezeVersionCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterVersionButton_Click(sender, e);
+            }
+        }
+
+        private void filterofflineCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterofflineButton_Click(sender, e);
+            }
+        }
+
+        private void filterjaCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterjaButton_Click(sender, e);
+            }
+        }
+
+        private void filterusaCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterusaButton_Click(sender, e);
+            }
+        }
+
+        private void filterzhtwCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterzhtwButton_Click(sender, e);
+            }
+        }
+
+        private void filterenhkCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterenhkButton_Click(sender, e);
+            }
+        }
+
+        private void filterensgCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterensgButton_Click(sender, e);
+            }
+        }
+
+        private void filterkokrCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterkokrButton_Click(sender, e);
+            }
+        }
+
+        private void filtercnguCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filtercnguButton_Click(sender, e);
+            }
+        }
+
+        private void filtercngeCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filtercngeButton_Click(sender, e);
+            }
+        }
+
+        private void filtercnvipCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filterfiltercnvipButton_Click(sender, e);
+            }
+        }
+
+        private void filternotAvailableCheckBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the "ding" sound
+                filternotAvailableButton_Click(sender, e);
+            }
+        }
+
+        private void freezeGenreCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeGenreCheckBox.CheckState == CheckState.Checked)
+            {
+                genre.BackColor = Color.LightBlue;
+                freezeGenreCheckBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                genre.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                freezeGenreCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezeVersionCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeVersionCheckBox.CheckState == CheckState.Checked)
+            {
+                version.BackColor = Color.LightBlue;
+                freezeVersionCheckBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                version.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                freezeVersionCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezePointCostCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezePointCostCheckBox.CheckState == CheckState.Checked)
+            {
+                pointCostTextBox.BackColor = Color.LightBlue;
+                freezePointCostCheckBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                pointCostTextBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                freezePointCostCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezeNewCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeNewCheckBox.CheckState == CheckState.Checked)
+            {
+                checkBoxNew.BackColor = Color.LightBlue;
+                freezeNewCheckBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                checkBoxNew.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                freezeNewCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezeBeginnerCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeBeginnerCheckBox.CheckState == CheckState.Checked)
+            {
+                beginnerCheckBox.BackColor = Color.LightBlue;
+                freezeBeginnerCheckBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                beginnerCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                freezeBeginnerCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezeAvailableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeAvailableCheckBox.CheckState == CheckState.Checked)
+            {
+                freezeAvailableCheckBox.BackColor = Color.LightBlue;
+                offlineCheckBox.BackColor = Color.LightBlue;
+                jaCheckBox.BackColor = Color.LightBlue;
+                usaCheckBox.BackColor = Color.LightBlue;
+                zhtwCheckBox.BackColor = Color.LightBlue;
+                enhkCheckBox.BackColor = Color.LightBlue;
+                ensgCheckBox.BackColor = Color.LightBlue;
+                kokrCheckBox.BackColor = Color.LightBlue;
+                cnguCheckBox.BackColor = Color.LightBlue;
+                cngeCheckBox.BackColor = Color.LightBlue;
+                cnvipCheckBox.BackColor = Color.LightBlue;
+                notAvailableCheckBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                freezeAvailableCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                offlineCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                jaCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                usaCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                zhtwCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                enhkCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                ensgCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                kokrCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                cnguCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                cngeCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                cnvipCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
+                notAvailableCheckBox.BackColor = Color.FromArgb(0xf0, 0xf0, 0xf0, 0xf0);
             }
         }
     }

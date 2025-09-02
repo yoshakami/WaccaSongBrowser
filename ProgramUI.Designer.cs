@@ -247,6 +247,7 @@
             // 
             // genre
             // 
+            genre.BackColor = SystemColors.Window;
             genre.FormattingEnabled = true;
             genre.Location = new Point(277, 160);
             genre.Margin = new Padding(3, 2, 3, 2);
@@ -262,7 +263,6 @@
             songid.Name = "songid";
             songid.Size = new Size(225, 23);
             songid.TabIndex = 82;
-            songid.TextChanged += songid_TextChanged;
             songid.KeyDown += songid_KeyDown;
             // 
             // genreLabel
@@ -918,6 +918,7 @@
             filterMusicTextBox.Name = "filterMusicTextBox";
             filterMusicTextBox.Size = new Size(225, 23);
             filterMusicTextBox.TabIndex = 76;
+            filterMusicTextBox.KeyDown += filterMusicTextBox_KeyDown;
             // 
             // filterMusicLabel
             // 
@@ -944,6 +945,7 @@
             filterArtistTextBox.Name = "filterArtistTextBox";
             filterArtistTextBox.Size = new Size(225, 23);
             filterArtistTextBox.TabIndex = 78;
+            filterArtistTextBox.KeyDown += filterArtistTextBox_KeyDown;
             // 
             // filterArtistButton
             // 
@@ -982,6 +984,7 @@
             filterGenre.Name = "filterGenre";
             filterGenre.Size = new Size(225, 23);
             filterGenre.TabIndex = 80;
+            filterGenre.KeyDown += filterGenre_KeyDown;
             // 
             // songidButton
             // 
@@ -1013,6 +1016,7 @@
             filternotAvailableCheckBox.TabIndex = 108;
             filternotAvailableCheckBox.Text = "Not Available";
             filternotAvailableCheckBox.UseVisualStyleBackColor = true;
+            filternotAvailableCheckBox.KeyDown += filternotAvailableCheckBox_KeyDown;
             // 
             // filtercnguCheckBox
             // 
@@ -1024,6 +1028,7 @@
             filtercnguCheckBox.TabIndex = 105;
             filtercnguCheckBox.Text = "Available CN_Guest";
             filtercnguCheckBox.UseVisualStyleBackColor = true;
+            filtercnguCheckBox.KeyDown += filtercnguCheckBox_KeyDown;
             // 
             // filtercnvipCheckBox
             // 
@@ -1035,6 +1040,7 @@
             filtercnvipCheckBox.TabIndex = 107;
             filtercnvipCheckBox.Text = "Available CN_Vip";
             filtercnvipCheckBox.UseVisualStyleBackColor = true;
+            filtercnvipCheckBox.KeyDown += filtercnvipCheckBox_KeyDown;
             // 
             // filtercngeCheckBox
             // 
@@ -1046,6 +1052,7 @@
             filtercngeCheckBox.TabIndex = 106;
             filtercngeCheckBox.Text = "Available CN_General";
             filtercngeCheckBox.UseVisualStyleBackColor = true;
+            filtercngeCheckBox.KeyDown += filtercngeCheckBox_KeyDown;
             // 
             // filterkokrCheckBox
             // 
@@ -1057,6 +1064,7 @@
             filterkokrCheckBox.TabIndex = 104;
             filterkokrCheckBox.Text = "Available ko_KR";
             filterkokrCheckBox.UseVisualStyleBackColor = true;
+            filterkokrCheckBox.KeyDown += filterkokrCheckBox_KeyDown;
             // 
             // filterensgCheckBox
             // 
@@ -1068,6 +1076,7 @@
             filterensgCheckBox.TabIndex = 103;
             filterensgCheckBox.Text = "Available en_SG";
             filterensgCheckBox.UseVisualStyleBackColor = true;
+            filterensgCheckBox.KeyDown += filterensgCheckBox_KeyDown;
             // 
             // filterenhkCheckBox
             // 
@@ -1079,6 +1088,7 @@
             filterenhkCheckBox.TabIndex = 102;
             filterenhkCheckBox.Text = "Available en_HK";
             filterenhkCheckBox.UseVisualStyleBackColor = true;
+            filterenhkCheckBox.KeyDown += filterenhkCheckBox_KeyDown;
             // 
             // filterzhtwCheckBox
             // 
@@ -1090,6 +1100,7 @@
             filterzhtwCheckBox.TabIndex = 101;
             filterzhtwCheckBox.Text = "Available zh_TW";
             filterzhtwCheckBox.UseVisualStyleBackColor = true;
+            filterzhtwCheckBox.KeyDown += filterzhtwCheckBox_KeyDown;
             // 
             // filterusaCheckBox
             // 
@@ -1101,6 +1112,7 @@
             filterusaCheckBox.TabIndex = 100;
             filterusaCheckBox.Text = "Available in the USA";
             filterusaCheckBox.UseVisualStyleBackColor = true;
+            filterusaCheckBox.KeyDown += filterusaCheckBox_KeyDown;
             // 
             // filterjaCheckBox
             // 
@@ -1112,6 +1124,7 @@
             filterjaCheckBox.TabIndex = 99;
             filterjaCheckBox.Text = "Available in Japan";
             filterjaCheckBox.UseVisualStyleBackColor = true;
+            filterjaCheckBox.KeyDown += filterjaCheckBox_KeyDown;
             // 
             // filterofflineCheckBox
             // 
@@ -1123,6 +1136,7 @@
             filterofflineCheckBox.TabIndex = 91;
             filterofflineCheckBox.Text = "Available Offline";
             filterofflineCheckBox.UseVisualStyleBackColor = true;
+            filterofflineCheckBox.KeyDown += filterofflineCheckBox_KeyDown;
             // 
             // filterjaButton
             // 
@@ -1234,6 +1248,7 @@
             filterBeginnerCheckBox.TabIndex = 86;
             filterBeginnerCheckBox.Text = "Beginner Recommended";
             filterBeginnerCheckBox.UseVisualStyleBackColor = true;
+            filterBeginnerCheckBox.KeyDown += filterBeginnerCheckBox_KeyDown;
             // 
             // filterBeginnerButton
             // 
@@ -1253,6 +1268,7 @@
             filterVersion.Name = "filterVersion";
             filterVersion.Size = new Size(157, 23);
             filterVersion.TabIndex = 88;
+            filterVersion.KeyDown += filterVersion_KeyDown;
             // 
             // filterVersionLabel
             // 
@@ -1505,6 +1521,7 @@
             filterNewButton.TabIndex = 161;
             filterNewButton.Text = "Search";
             filterNewButton.UseVisualStyleBackColor = true;
+            filterNewButton.Click += filterNewButton_Click;
             // 
             // filterNewCheckBox
             // 
@@ -1516,6 +1533,7 @@
             filterNewCheckBox.TabIndex = 160;
             filterNewCheckBox.Text = "New";
             filterNewCheckBox.UseVisualStyleBackColor = true;
+            filterNewCheckBox.KeyDown += filterNewCheckBox_KeyDown;
             // 
             // freezeVersionCheckBox
             // 
@@ -1529,10 +1547,12 @@
             freezeVersionCheckBox.Text = "Freeze Version";
             freezeVersionCheckBox.TextAlign = ContentAlignment.MiddleCenter;
             freezeVersionCheckBox.UseVisualStyleBackColor = true;
+            freezeVersionCheckBox.CheckedChanged += freezeVersionCheckBox_CheckedChanged;
             // 
             // freezeGenreCheckBox
             // 
             freezeGenreCheckBox.AutoSize = true;
+            freezeGenreCheckBox.BackColor = SystemColors.Control;
             freezeGenreCheckBox.Location = new Point(827, 364);
             freezeGenreCheckBox.Margin = new Padding(3, 2, 3, 2);
             freezeGenreCheckBox.MinimumSize = new Size(110, 36);
@@ -1541,7 +1561,8 @@
             freezeGenreCheckBox.TabIndex = 163;
             freezeGenreCheckBox.Text = "Freeze Genre";
             freezeGenreCheckBox.TextAlign = ContentAlignment.MiddleCenter;
-            freezeGenreCheckBox.UseVisualStyleBackColor = true;
+            freezeGenreCheckBox.UseVisualStyleBackColor = false;
+            freezeGenreCheckBox.CheckedChanged += freezeGenreCheckBox_CheckedChanged;
             // 
             // freezePointCostCheckBox
             // 
@@ -1555,6 +1576,7 @@
             freezePointCostCheckBox.Text = "Freeze PointCost";
             freezePointCostCheckBox.TextAlign = ContentAlignment.MiddleCenter;
             freezePointCostCheckBox.UseVisualStyleBackColor = true;
+            freezePointCostCheckBox.CheckedChanged += freezePointCostCheckBox_CheckedChanged;
             // 
             // freezeNewCheckBox
             // 
@@ -1568,6 +1590,7 @@
             freezeNewCheckBox.Text = "Freeze New";
             freezeNewCheckBox.TextAlign = ContentAlignment.MiddleCenter;
             freezeNewCheckBox.UseVisualStyleBackColor = true;
+            freezeNewCheckBox.CheckedChanged += freezeNewCheckBox_CheckedChanged;
             // 
             // freezeBeginnerCheckBox
             // 
@@ -1581,6 +1604,7 @@
             freezeBeginnerCheckBox.Text = "Freeze Beginner";
             freezeBeginnerCheckBox.TextAlign = ContentAlignment.MiddleCenter;
             freezeBeginnerCheckBox.UseVisualStyleBackColor = true;
+            freezeBeginnerCheckBox.CheckedChanged += freezeBeginnerCheckBox_CheckedChanged;
             // 
             // freezeAvailableCheckBox
             // 
@@ -1594,6 +1618,7 @@
             freezeAvailableCheckBox.Text = "Freeze Available";
             freezeAvailableCheckBox.TextAlign = ContentAlignment.MiddleCenter;
             freezeAvailableCheckBox.UseVisualStyleBackColor = true;
+            freezeAvailableCheckBox.CheckedChanged += freezeAvailableCheckBox_CheckedChanged;
             // 
             // WaccaSongBrowser
             // 
@@ -1601,6 +1626,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1182, 665);
+            Controls.Add(panelMainContainer);
             Controls.Add(freezeAvailableCheckBox);
             Controls.Add(freezeBeginnerCheckBox);
             Controls.Add(freezeNewCheckBox);
@@ -1609,7 +1635,6 @@
             Controls.Add(freezeVersionCheckBox);
             Controls.Add(filterNewButton);
             Controls.Add(filterNewCheckBox);
-            Controls.Add(panelMainContainer);
             Controls.Add(checkBoxNew);
             Controls.Add(ramSaveCheckBox);
             Controls.Add(bingo9TextBox);
