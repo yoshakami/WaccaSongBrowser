@@ -4,7 +4,6 @@ using UAssetAPI.PropertyTypes.Structs;
 using UAssetAPI;
 using UAssetAPI.UnrealTypes;
 using System.Text;
-using System.Xml;
 
 namespace WaccaSongBrowser
 {
@@ -506,7 +505,7 @@ namespace WaccaSongBrowser
             var resultList = filtered.ToList();
             if (resultList.Count == 0)
             {
-                MessageBox.Show("No songs match the selected filters.");
+                searchResultLabel.Text = "No match.";
                 return;
             }
 
@@ -515,7 +514,7 @@ namespace WaccaSongBrowser
             if (resultList.Count > 1)
                 searchResultLabel.Text = $"{resultList.Count} matches!";
             else
-                searchResultLabel.Text = $"{resultList.Count} match";
+                searchResultLabel.Text = $"{resultList.Count} match!";
             saveChanges();
             currentSongId = firstSong.UniqueID;
             LoadUI(firstSong);
@@ -690,6 +689,10 @@ namespace WaccaSongBrowser
                 saveLabel.Text = $"Saved {++savecount} times";
                 consoleLabel.Text = "";
                 MusicParameterTable.Write(openedFileName);
+                if (UnlockMusicTableFilePath != null)
+                {
+                    UnlockMusicTable.Write(UnlockMusicTableFilePath);
+                }
             }
             else
             {
@@ -704,6 +707,49 @@ namespace WaccaSongBrowser
                 saveChangesInRam();
             }
         }
+        public static void SaveUnlockMusic()
+        {
+            if (UnlockMusicTable == null || musicUnlockStatus == null)
+                return;
+
+            foreach (var export in UnlockMusicTable.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            int musicId = GetFieldValue<int>(rowStruct, "MusicId");
+                            if (musicId == 0)
+                                continue;
+
+                            if (musicUnlockStatus.TryGetValue(musicId, out bool isNew))
+                            {
+                                long newStartTime;
+
+                                if (isNew)
+                                {
+                                    // Use yesterday (24h ago) for safety with timezones
+                                    DateTime yesterday = DateTime.Now.AddDays(-1);
+                                    string formatted = yesterday.ToString("yyyyMMddHH");
+                                    newStartTime = long.Parse(formatted);
+                                }
+                                else
+                                {
+                                    newStartTime = 0; // not new
+                                }
+
+                                SetFieldValue(rowStruct, "ItemActivateStartTime", newStartTime);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
         private bool saveChangesInRam()
         {
             if (currentSongId == 0)
@@ -732,6 +778,7 @@ namespace WaccaSongBrowser
                         };
                         uint u;
                         uint.TryParse(songid.Text, out u);
+                        musicUnlockStatus[(int)u] = checkBoxNew.Checked;
                         songData.UniqueID = u;
                         // regex is my friend
                         newRow.Value.Add(new UInt32PropertyData(new FName(MusicParameterTable, "UniqueID")) { Value = songData.UniqueID });
@@ -837,6 +884,8 @@ namespace WaccaSongBrowser
                             {
                                 continue;
                             }
+                            musicUnlockStatus[(int)id] = checkBoxNew.Checked;
+                            SaveUnlockMusic();
                             // Lookup the song data you want to save (replace this with your data source)
                             SetFieldValue(rowStruct, "MusicMessage", songData.MusicMessage);
                             SetFieldValue(rowStruct, "ArtistMessage", songData.ArtistMessage);
@@ -903,7 +952,7 @@ namespace WaccaSongBrowser
             }
             return false;
         }
-        void SetFieldValue(StructPropertyData structData, string fieldName, object newValue)
+        static void SetFieldValue(StructPropertyData structData, string fieldName, object newValue)
         {
             var prop = structData.Value.FirstOrDefault(p => p.Name.Value.ToString() == fieldName);
 
@@ -921,6 +970,10 @@ namespace WaccaSongBrowser
             else if (prop is IntPropertyData intProp && newValue is int intVal)
             {
                 intProp.Value = intVal;
+            }
+            else if (prop is Int64PropertyData int64Prop && newValue is long int64Val)
+            {
+                int64Prop.Value = int64Val;
             }
             else if (prop is UInt32PropertyData uintProp && newValue is uint uintVal)
             {
@@ -1208,25 +1261,28 @@ namespace WaccaSongBrowser
             string newPath = Path.Combine(directory, "UnlockMusicTable.uasset");
             if (File.Exists(newPath))
             {
-                ReadUnlockMusic(newPath);
+                UnlockMusicTableFilePath = newPath;
+                ReadUnlockMusic();
             }
             else
             {
+                UnlockMusicTableFilePath = null;
+                UnlockMusicTable = null;
+                musicUnlockStatus = null;
                 checkBoxNew.BackColor = Color.FromArgb(0xff, 0xAA, 0xAA, 0xAA);
                 checkBoxNew.Enabled = false;
             }
             nextSongButton_Click(null, null);
             return 0;
         }
-
+        static string UnlockMusicTableFilePath;
         static UAsset UnlockMusicTable;
         static Dictionary<int, bool> musicUnlockStatus;
-        public static int ReadUnlockMusic(string file)
+        public static int ReadUnlockMusic()
         {
-            string uassetPath = file;
             musicUnlockStatus = new Dictionary<int, bool>();
 
-            UnlockMusicTable = new UAsset(uassetPath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
+            UnlockMusicTable = new UAsset(UnlockMusicTableFilePath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
 
             foreach (var export in UnlockMusicTable.Exports)
             {
