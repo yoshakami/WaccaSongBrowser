@@ -88,7 +88,7 @@ namespace WaccaSongBrowser
                                 panelMainContainer.Enabled = true;
                                 LoadPage(new Message(path));
                             }
-                            else if (folderName.ToLower() == "table")
+                            else // if (folderName.ToLower() == "table")
                             {
                                 var files = Directory.GetFiles(path, "MusicParameterTable.uasset"); // scan inside for the .uasset file:
                                 if (files.Length > 0)
@@ -104,11 +104,6 @@ namespace WaccaSongBrowser
                                     panelMainContainer.Enabled = false;
                                     return;
                                 }
-                            }
-                            else
-                            {
-                                consoleLabel.Text = $"No .uasset file found in folder: {folderName}";
-                                return;
                             }
                         }
                         else if (File.Exists(path))
@@ -432,76 +427,132 @@ namespace WaccaSongBrowser
         }
         private void filterSearchButton_Click(object sender, EventArgs e)
         {
-            nextSongButton_Click(null, null);
+            IEnumerable<SongData> filtered = allSongs;
+
+            // --- Text filters ---
             if (filterMusicEnableCheckBox.Checked)
             {
-                filterMusicButton_Click(null, null);
-            }
-            if (filterArtistEnableCheckBox.Checked)
-            {
-                filterArtistButton_Click(null, null);
-            }
-            if (filterGenreEnableCheckBox.Checked){
-                filterGenreButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filterVersionEnableCheckBox.Checked){
-                filterVersionButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filterNewEnableCheckBox.Checked){
-                filterNewButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filterBeginnerEnableCheckBox.Checked){
-                filterBeginnerButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filterOfflineEnableCheckBox.Checked){
-                filterofflineButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filterjaEnableCheckBox.Checked){
-                filterjaButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filterusaEnableCheckBox.Checked){
-                filterusaButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filterzhtwEnableCheckBox.Checked){
-                filterzhtwButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filterenhkEnableCheckBox.Checked){
-                filterenhkButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filterensgEnableCheckBox.Checked){
-                filterensgButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filterkokrEnableCheckBox.Checked){
-                filterkokrButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filtercnguEnableCheckBox.Checked){
-                filtercnguButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filtercngeEnableCheckBox.Checked){
-                filtercngeButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filtercnvipEnableCheckBox.Checked){
-                filterfiltercnvipButton_Click(null, null);
-                previousSongButton_Click(null, null);
-            }
-            if (filternotAvailableEnableCheckBox.Checked){
-                filternotAvailableButton_Click(null, null);
-                previousSongButton_Click(null, null);
+                string filter = filterMusicTextBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.MusicMessage != null &&
+                                                      song.MusicMessage.ToLower().Contains(filter));
             }
 
+            if (filterArtistEnableCheckBox.Checked)
+            {
+                string filter = filterArtistTextBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.ArtistMessage != null &&
+                                                      song.ArtistMessage.ToLower().Contains(filter));
+            }
+
+            // --- Int/Uint filters ---
+            if (filterGenreEnableCheckBox.Checked)
+                filtered = filtered.Where(song => song.ScoreGenre == filterGenre.SelectedIndex);
+
+            if (filterVersionEnableCheckBox.Checked)
+                filtered = filtered.Where(song => song.Version == (uint)(filterVersion.SelectedIndex + 1));
+
+            // --- Unlock/New filter ---
+            if (filterNewEnableCheckBox.Checked)
+            {
+                filtered = filtered.Where(song =>
+                    musicUnlockStatus.TryGetValue((int)song.UniqueID, out bool isNew) &&
+                    isNew == filterNewCheckBox.Checked
+                );
+            }
+
+
+            // --- Beginner filter ---
+            if (filterBeginnerEnableCheckBox.Checked)
+                filtered = filtered.Where(song => song.Recommend == filterBeginnerCheckBox.Checked);
+
+            // --- Offline / NotAvailable ---
+            if (filterOfflineEnableCheckBox.Checked)
+                filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_Offline") == filterofflineCheckBox.Checked);
+
+            if (filternotAvailableEnableCheckBox.Checked)
+                filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_NoneActive") == filternotAvailableCheckBox.Checked);
+
+            // --- Culture filters ---
+            if (filterjaEnableCheckBox.Checked)
+                filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_ja_JP") == filterjaCheckBox.Checked);
+
+            if (filterusaEnableCheckBox.Checked)
+                filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_en_US") == filterusaCheckBox.Checked);
+
+            if (filterzhtwEnableCheckBox.Checked)
+                filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_zh_Hant_TW") == filterzhtwCheckBox.Checked);
+
+            if (filterenhkEnableCheckBox.Checked)
+                filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_en_HK") == filterenhkCheckBox.Checked);
+
+            if (filterensgEnableCheckBox.Checked)
+                filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_en_SG") == filterensgCheckBox.Checked);
+
+            if (filterkokrEnableCheckBox.Checked)
+                filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_ko_KR") == filterkokrCheckBox.Checked);
+
+            if (filtercnguEnableCheckBox.Checked)
+                filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_h_Hans_CN_Guest") == filtercnguCheckBox.Checked);
+
+            if (filtercngeEnableCheckBox.Checked)
+                filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_h_Hans_CN_GeneralMember") == filtercngeCheckBox.Checked);
+
+            if (filtercnvipEnableCheckBox.Checked)
+                filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_h_Hans_CN_VipMember") == filtercnvipCheckBox.Checked);
+
+            // --- Final result ---
+            var resultList = filtered.ToList();
+            if (resultList.Count == 0)
+            {
+                MessageBox.Show("No songs match the selected filters.");
+                return;
+            }
+
+            // Option A: Show first match immediately
+            var firstSong = resultList.First();
+            if (resultList.Count > 1)
+                searchResultLabel.Text = $"{resultList.Count} matches!";
+            else
+                searchResultLabel.Text = $"{resultList.Count} match";
+            saveChanges();
+            currentSongId = firstSong.UniqueID;
+            LoadUI(firstSong);
+
+
+            // Option B: keep resultList for navigation (next/previous)
+            // store in a field:
+            filteredSongs = resultList;
+            filteredSongsSelectedIndex = 0;
+        }
+        static List<SongData> filteredSongs;
+        static int filteredSongsSelectedIndex;
+
+        private void searchPreviousButton_Click(object sender, EventArgs e)
+        {
+            if (filteredSongs == null) return;
+            filteredSongsSelectedIndex--;
+            if (filteredSongsSelectedIndex < 0)
+            {
+                filteredSongsSelectedIndex = filteredSongs.Count - 1;
+            }
+            saveChanges();
+            currentSongId = filteredSongs[filteredSongsSelectedIndex].UniqueID;
+            LoadUI(filteredSongs[filteredSongsSelectedIndex]);
+        }
+
+        private void searchNextButton_Click(object sender, EventArgs e)
+        {
+            if (filteredSongs == null) return;
+            filteredSongsSelectedIndex++;
+            if (filteredSongsSelectedIndex >= filteredSongs.Count)
+            {
+                filteredSongsSelectedIndex = 0;
+            }
+            saveChanges();
+            currentSongId = filteredSongs[filteredSongsSelectedIndex].UniqueID;
+            LoadUI(filteredSongs[filteredSongsSelectedIndex]);
         }
         private void filternotAvailableButton_Click(object sender, EventArgs e)
         {
@@ -892,6 +943,10 @@ namespace WaccaSongBrowser
         private void nextSongButton_Click(object sender, EventArgs e)
         {
             songid.SelectedIndex += 1;
+            if (songid.SelectedIndex >= songid.Items.Count)
+            {
+                songid.SelectedIndex = 0;
+            }
             songidButton_Click(null, null);
         }
 

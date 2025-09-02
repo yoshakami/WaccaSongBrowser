@@ -182,6 +182,10 @@
             filternotAvailableEnableCheckBox = new CheckBox();
             nextSongButton = new Button();
             peviousSongButton = new Button();
+            searchResultLabel = new Label();
+            searchSectionLabel = new Label();
+            searchPreviousButton = new Button();
+            searchNextButton = new Button();
             ((System.ComponentModel.ISupportInitialize)jacketPictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -1456,7 +1460,7 @@
             // 
             // filterSearchButton
             // 
-            filterSearchButton.Location = new Point(991, 637);
+            filterSearchButton.Location = new Point(972, 637);
             filterSearchButton.Name = "filterSearchButton";
             filterSearchButton.Size = new Size(92, 23);
             filterSearchButton.TabIndex = 127;
@@ -1663,7 +1667,7 @@
             // 
             // nextSongButton
             // 
-            nextSongButton.Location = new Point(837, 102);
+            nextSongButton.Location = new Point(837, 79);
             nextSongButton.Name = "nextSongButton";
             nextSongButton.Size = new Size(92, 23);
             nextSongButton.TabIndex = 186;
@@ -1673,13 +1677,51 @@
             // 
             // peviousSongButton
             // 
-            peviousSongButton.Location = new Point(837, 159);
+            peviousSongButton.Location = new Point(837, 110);
             peviousSongButton.Name = "peviousSongButton";
             peviousSongButton.Size = new Size(92, 23);
             peviousSongButton.TabIndex = 187;
             peviousSongButton.Text = "Previous";
             peviousSongButton.UseVisualStyleBackColor = true;
             peviousSongButton.Click += previousSongButton_Click;
+            // 
+            // searchResultLabel
+            // 
+            searchResultLabel.AutoSize = true;
+            searchResultLabel.Location = new Point(1068, 641);
+            searchResultLabel.Name = "searchResultLabel";
+            searchResultLabel.Size = new Size(50, 15);
+            searchResultLabel.TabIndex = 188;
+            searchResultLabel.Text = "0 match";
+            // 
+            // searchSectionLabel
+            // 
+            searchSectionLabel.AutoSize = true;
+            searchSectionLabel.Location = new Point(842, 196);
+            searchSectionLabel.Name = "searchSectionLabel";
+            searchSectionLabel.Size = new Size(82, 30);
+            searchSectionLabel.TabIndex = 189;
+            searchSectionLabel.Text = "Search Results\n   Navigation";
+            // 
+            // searchPreviousButton
+            // 
+            searchPreviousButton.Location = new Point(837, 273);
+            searchPreviousButton.Name = "searchPreviousButton";
+            searchPreviousButton.Size = new Size(92, 23);
+            searchPreviousButton.TabIndex = 191;
+            searchPreviousButton.Text = "Previous";
+            searchPreviousButton.UseVisualStyleBackColor = true;
+            searchPreviousButton.Click += searchPreviousButton_Click;
+            // 
+            // searchNextButton
+            // 
+            searchNextButton.Location = new Point(837, 242);
+            searchNextButton.Name = "searchNextButton";
+            searchNextButton.Size = new Size(92, 23);
+            searchNextButton.TabIndex = 190;
+            searchNextButton.Text = "Next";
+            searchNextButton.UseVisualStyleBackColor = true;
+            searchNextButton.Click += searchNextButton_Click;
             // 
             // WaccaSongBrowser
             // 
@@ -1688,6 +1730,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1182, 665);
             Controls.Add(panelMainContainer);
+            Controls.Add(searchPreviousButton);
+            Controls.Add(searchNextButton);
+            Controls.Add(searchSectionLabel);
+            Controls.Add(searchResultLabel);
             Controls.Add(peviousSongButton);
             Controls.Add(nextSongButton);
             Controls.Add(filternotAvailableEnableCheckBox);
@@ -2006,5 +2052,9 @@
         private CheckBox filternotAvailableEnableCheckBox;
         private Button nextSongButton;
         private Button peviousSongButton;
+        private Label searchResultLabel;
+        private Label searchSectionLabel;
+        private Button searchPreviousButton;
+        private Button searchNextButton;
     }
 }
