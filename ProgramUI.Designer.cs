@@ -186,6 +186,7 @@
             searchSectionLabel = new Label();
             searchPreviousButton = new Button();
             searchNextButton = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)jacketPictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -1697,7 +1698,7 @@
             // searchSectionLabel
             // 
             searchSectionLabel.AutoSize = true;
-            searchSectionLabel.Location = new Point(842, 196);
+            searchSectionLabel.Location = new Point(842, 165);
             searchSectionLabel.Name = "searchSectionLabel";
             searchSectionLabel.Size = new Size(82, 30);
             searchSectionLabel.TabIndex = 189;
@@ -1705,7 +1706,7 @@
             // 
             // searchPreviousButton
             // 
-            searchPreviousButton.Location = new Point(837, 273);
+            searchPreviousButton.Location = new Point(837, 242);
             searchPreviousButton.Name = "searchPreviousButton";
             searchPreviousButton.Size = new Size(92, 23);
             searchPreviousButton.TabIndex = 191;
@@ -1715,13 +1716,22 @@
             // 
             // searchNextButton
             // 
-            searchNextButton.Location = new Point(837, 242);
+            searchNextButton.Location = new Point(837, 211);
             searchNextButton.Name = "searchNextButton";
             searchNextButton.Size = new Size(92, 23);
             searchNextButton.TabIndex = 190;
             searchNextButton.Text = "Next";
             searchNextButton.UseVisualStyleBackColor = true;
             searchNextButton.Click += searchNextButton_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(837, 292);
+            button1.Name = "button1";
+            button1.Size = new Size(92, 46);
+            button1.TabIndex = 192;
+            button1.Text = "Inject NEW";
+            button1.UseVisualStyleBackColor = true;
             // 
             // WaccaSongBrowser
             // 
@@ -1730,6 +1740,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1182, 665);
             Controls.Add(panelMainContainer);
+            Controls.Add(button1);
             Controls.Add(searchPreviousButton);
             Controls.Add(searchNextButton);
             Controls.Add(searchSectionLabel);
@@ -2056,5 +2067,6 @@
         private Label searchSectionLabel;
         private Button searchPreviousButton;
         private Button searchNextButton;
+        private Button button1;
     }
 }

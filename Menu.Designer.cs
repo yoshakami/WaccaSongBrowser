@@ -32,12 +32,17 @@
             labal2 = new Label();
             label2 = new Label();
             label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(543, 116);
+            label1.Location = new Point(500, 132);
             label1.Name = "label1";
             label1.Size = new Size(231, 15);
             label1.TabIndex = 0;
@@ -46,7 +51,7 @@
             // labal2
             // 
             labal2.AutoSize = true;
-            labal2.Location = new Point(595, 193);
+            labal2.Location = new Point(541, 201);
             labal2.Name = "labal2";
             labal2.Size = new Size(119, 15);
             labal2.TabIndex = 1;
@@ -55,7 +60,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(574, 303);
+            label2.Location = new Point(689, 269);
             label2.Name = "label2";
             label2.Size = new Size(156, 15);
             label2.TabIndex = 2;
@@ -64,20 +69,70 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(595, 253);
+            label3.Location = new Point(552, 269);
             label3.Name = "label3";
             label3.Size = new Size(100, 15);
             label3.TabIndex = 3;
             label3.Text = "The \"Table\" folder";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(561, 413);
+            label4.Name = "label4";
+            label4.Size = new Size(93, 15);
+            label4.TabIndex = 4;
+            label4.Text = "IconTable.uasset";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(538, 350);
+            label5.Name = "label5";
+            label5.Size = new Size(123, 15);
+            label5.TabIndex = 5;
+            label5.Text = "ConditionTable.uasset";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(891, 269);
+            label6.Name = "label6";
+            label6.Size = new Size(139, 15);
+            label6.TabIndex = 6;
+            label6.Text = "UnlockMusicTable.uasset";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(691, 350);
+            label7.Name = "label7";
+            label7.Size = new Size(210, 15);
+            label7.TabIndex = 7;
+            label7.Text = "TotalResultItemJudgementTable.uasset";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(517, 471);
+            label8.Name = "label8";
+            label8.Size = new Size(183, 15);
+            label8.TabIndex = 8;
+            label8.Text = "UserPlateBackgroundTable.uasset";
+            // 
             // Menu
             // 
+            Controls.Add(label8);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(labal2);
             Controls.Add(label1);
             Name = "Menu";
-            Size = new Size(1600, 900);
+            Size = new Size(1198, 704);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -88,5 +143,10 @@
         private Label labal2;
         private Label label2;
         private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label7;
+        private Label label8;
     }
 }

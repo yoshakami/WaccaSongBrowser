@@ -110,9 +110,10 @@ namespace WaccaSongBrowser
                             // It's a file
                             allSongs.Clear();
                             songid.Items.Clear();
-                            if (Read(path) == -1)
+                            if (Read(path) == -1)  // if MusicParameterTable Fails to read
                             {
-                                //TODO
+                                // TODO:
+                                // read ConditionTable then IconTable
                                 panelMainContainer.Visible = true;
                                 panelMainContainer.Enabled = true;
                                 LoadPage(new Message(path));
@@ -1158,7 +1159,24 @@ namespace WaccaSongBrowser
         int Read(string file)
         {
             string uassetPath = file;
+            string directory;
+            string newPath;
 
+            // Get just the file name
+            string fileName = Path.GetFileName(uassetPath);
+
+            if (fileName.Equals("UnlockMusicTable.uasset", StringComparison.OrdinalIgnoreCase))
+            {
+                // swap file if it's UnlockMusicTable.uasset
+                // Get the directory part
+                directory = Path.GetDirectoryName(uassetPath);
+
+                // Combine with the new filename
+                uassetPath = Path.Combine(directory, "MusicParameterTable.uasset");
+            }
+
+            if (!File.Exists(uassetPath)) return -1;
+            
             // Load the asset (assumes .uexp is in the same folder)
             MusicParameterTable = new UAsset(uassetPath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
 
@@ -1255,10 +1273,10 @@ namespace WaccaSongBrowser
             }
 
             // Get the directory part
-            string directory = Path.GetDirectoryName(uassetPath);
+            directory = Path.GetDirectoryName(uassetPath);
 
             // Combine with the new filename
-            string newPath = Path.Combine(directory, "UnlockMusicTable.uasset");
+            newPath = Path.Combine(directory, "UnlockMusicTable.uasset");
             if (File.Exists(newPath))
             {
                 UnlockMusicTableFilePath = newPath;
