@@ -287,7 +287,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(861, 75);
+            button1.Location = new Point(840, 248);
             button1.Name = "button1";
             button1.Size = new Size(284, 116);
             button1.TabIndex = 101;
@@ -326,7 +326,7 @@
             Controls.Add(musicLabel);
             Controls.Add(createNewIcon);
             Name = "Icon";
-            Size = new Size(1198, 704);
+            Size = new Size(1200, 700);
             ResumeLayout(false);
             PerformLayout();
         }

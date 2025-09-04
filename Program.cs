@@ -20,7 +20,7 @@ namespace WaccaSongBrowser
         public int MusicId { get; set; }
         public long ItemActivateStartTime { get; set; }
     }
-        public class SongData
+    public class SongData
     {
         public uint UniqueID { get; set; }
         public string MusicMessage { get; set; }
@@ -85,6 +85,97 @@ namespace WaccaSongBrowser
         public int bingo9 { get; set; }
         //public ulong WorkBuffer { get; set; }
         //public string AssetFullPath { get; set; }
+    };
+    public class ConditionData
+    {
+        public int ConditionId { get; set; }
+        public bool bConditionLimitNowSeason { get; set; }
+        public int ConditionType { get; set; }
+        public string Value1 { get; set; }
+        public string Value2 { get; set; }
+        public string Value3 { get; set; }
+        public string Value4 { get; set; }
+        public string Value5 { get; set; }
+    }
+    public class TotalResultItemJudgementData
+    {
+        public int ItemId { get; set; }
+        public long ConditionGetableStartTime { get; set; }
+        public long ConditionGetableEndTime { get; set; }
+    }
+    // Define your mapping once (dictionary)
+    public class Conditions
+    {
+        public static Dictionary<int, string> Types = new Dictionary<int, string>
+        {
+        { -2, "INVALID" },
+        { -1, "SYSTEM" },
+        { 0, "INIT" },
+        { 1, "LEVEL_UP_COUNT" },
+        { 2, "TOTAL_WACCA_POINT" },
+        { 3, "TOTAL_SCORE" },
+        { 4, "GRADE_COUNT" },
+        { 5, "ICON_COUNT" },
+        { 6, "SYMBOL_COLOR_COUNT" },
+        { 7, "INPUT_SE_COUNT" },
+        { 8, "UNLOCK_MUSIC_COUNT" },
+        { 9, "PLAY_COUNT" },
+        { 10, "PLAY_COUNT_RATE" },
+        { 11, "PLAY_MUSIC_COUNT" },
+        { 12, "PLAY_MUSIC_COUNT_RATE" },
+        { 13, "PLAY_MUSIC_SCORE_COUNT" },
+        { 14, "PLAY_MUSIC_SCORE_COUNT_RATE" },
+        { 15, "STAGE_UP" },
+        { 16, "GAME_PLAY_COUNT" },
+        { 17, "MULTI_PLAY_COUNT" },
+        { 18, "GAME_PLAY_COUNT_MODE" },
+        { 19, "PLAY_MUSIC_TAG_ALL_DIFFICULTY" },
+        { 20, "PLAY_MUSIC_TAG_ALL_DIFFICULTY_RATE" },
+        { 21, "1PLAY_MUSIC" },
+        { 22, "1PLAY_MUSIC_RATE" },
+        { 23, "PLAY_MUSIC_TAG" },
+        { 24, "RATE_COUNT_LOW" },
+        { 25, "TROPHY_COMPLETE" },
+        { 26, "OPEN_MUSIC_TAG" },
+        { 27, "PLAY_MUSIC_ID" },
+        { 28, "USE_ICON_NUM" },
+        { 29, "MUSIC_CONTINUE_PLAY" },
+        { 30, "MUSIC_SELECT_CANCEL" },
+        { 31, "DATE" },
+        { 32, "PREFECTURES" },
+        { 33, "PLAY_AREA" },
+        { 34, "PLAY_AREA_COMPLETE" },
+        { 35, "GRADE_CUSTOMIZE_PLAY" },
+        { 36, "MUSIC_ID_DIFFICULTY_FILL" },
+        { 37, "PLAY_MUSIC_ID_RATE" },
+        { 38, "LOGIN" },
+        { 39, "PLAY_MUSIC_TAG_DIFFICULTY_RATE" },
+        { 40, "CONTINUOUS_LOGIN" },
+        { 41, "TOTAL_LOGIN" },
+        { 42, "COMBO" },
+        { 43, "1MISS_ALL_MARVELOUS" },
+        { 44, "GRADE_GET" },
+        { 45, "HIGH_SPEED" },
+        { 46, "RATING" },
+        { 47, "USER_PLATE_COUNT" },
+        { 48, "GACHA_COUNT" },
+        { 49, "GET_ITEM" },
+        { 50, "SCORE_MULTIPLE" },
+        { 51, "SCORE_LAST_DIGITS" },
+        { 52, "1PLAY_MUSIC_TAG_STATUS" },
+        { 53, "TOTAL_GATE_POINT" },
+        { 54, "TOTAL_USER_LEVEL" },
+        { 55, "FRIEND_COUNT" },
+        { 56, "BINGO_LINE_NUM" },
+        { 57, "BINGO_SHEET_NUM" },
+        { 58, "GALLERY_MODE_PLAY" },
+        { 59, "MUSIC_ID_DIFFICULTY_RATE" },
+        { 60, "MUSIC_ID_DIFFICULTY_STATUS" },
+        { 61, "MUSIC_TAG_1PLAY" },
+        { 62, "LEVEL_TOTAL_1PLAY" },
+        { 63, "MUSIC_ID_RATE_1PLAY" },
+        { 64, "MUSIC_ID_STATUS_1PLAY" },
+    };
     }
 
 }

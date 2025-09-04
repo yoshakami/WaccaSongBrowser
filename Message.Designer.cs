@@ -39,7 +39,7 @@
             // outputMessage
             // 
             outputMessage.AutoSize = true;
-            outputMessage.Location = new Point(547, 407);
+            outputMessage.Location = new Point(439, 467);
             outputMessage.Name = "outputMessage";
             outputMessage.Size = new Size(48, 15);
             outputMessage.TabIndex = 0;
@@ -47,7 +47,7 @@
             // 
             // createPo
             // 
-            createPo.Location = new Point(422, 144);
+            createPo.Location = new Point(314, 204);
             createPo.Name = "createPo";
             createPo.Size = new Size(227, 47);
             createPo.TabIndex = 1;
@@ -57,7 +57,7 @@
             // 
             // createWacca
             // 
-            createWacca.Location = new Point(422, 245);
+            createWacca.Location = new Point(314, 305);
             createWacca.Name = "createWacca";
             createWacca.Size = new Size(227, 47);
             createWacca.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             // injectWacca
             // 
-            injectWacca.Location = new Point(753, 245);
+            injectWacca.Location = new Point(645, 305);
             injectWacca.Name = "injectWacca";
             injectWacca.Size = new Size(227, 47);
             injectWacca.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             // injectPo
             // 
-            injectPo.Location = new Point(753, 144);
+            injectPo.Location = new Point(645, 204);
             injectPo.Name = "injectPo";
             injectPo.Size = new Size(227, 47);
             injectPo.TabIndex = 4;
@@ -88,7 +88,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(634, 60);
+            label1.Location = new Point(526, 120);
             label1.Name = "label1";
             label1.Size = new Size(127, 15);
             label1.TabIndex = 5;
@@ -103,7 +103,7 @@
             Controls.Add(createPo);
             Controls.Add(outputMessage);
             Name = "Message";
-            Size = new Size(1600, 900);
+            Size = new Size(1200, 700);
             ResumeLayout(false);
             PerformLayout();
         }

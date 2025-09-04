@@ -1738,7 +1738,7 @@
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1182, 665);
+            ClientSize = new Size(1184, 661);
             Controls.Add(panelMainContainer);
             Controls.Add(button1);
             Controls.Add(searchPreviousButton);

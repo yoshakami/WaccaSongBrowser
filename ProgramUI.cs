@@ -112,8 +112,19 @@ namespace WaccaSongBrowser
                             songid.Items.Clear();
                             if (Read(path) == -1)  // if MusicParameterTable Fails to read
                             {
-                                // TODO:
-                                // read ConditionTable then IconTable
+                                // read ConditionTable
+                                if (Condition.Read(path) == -1)
+                                {
+                                    // TODO:
+                                    // read IconTable
+                                }
+                                else
+                                {
+                                    panelMainContainer.Visible = true;
+                                    panelMainContainer.Enabled = true;
+                                    LoadPage(new Condition(path));  // Load Condition UI
+                                    return;
+                                }
                                 panelMainContainer.Visible = true;
                                 panelMainContainer.Enabled = true;
                                 LoadPage(new Message(path));
@@ -1176,7 +1187,7 @@ namespace WaccaSongBrowser
             }
 
             if (!File.Exists(uassetPath)) return -1;
-            
+
             // Load the asset (assumes .uexp is in the same folder)
             MusicParameterTable = new UAsset(uassetPath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
 

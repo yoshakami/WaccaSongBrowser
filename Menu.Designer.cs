@@ -83,6 +83,7 @@
             label4.Size = new Size(93, 15);
             label4.TabIndex = 4;
             label4.Text = "IconTable.uasset";
+            label4.Visible = false;
             // 
             // label5
             // 
@@ -92,6 +93,7 @@
             label5.Size = new Size(123, 15);
             label5.TabIndex = 5;
             label5.Text = "ConditionTable.uasset";
+            label5.Visible = false;
             // 
             // label6
             // 
@@ -110,6 +112,7 @@
             label7.Size = new Size(210, 15);
             label7.TabIndex = 7;
             label7.Text = "TotalResultItemJudgementTable.uasset";
+            label7.Visible = false;
             // 
             // label8
             // 
@@ -119,6 +122,7 @@
             label8.Size = new Size(183, 15);
             label8.TabIndex = 8;
             label8.Text = "UserPlateBackgroundTable.uasset";
+            label8.Visible = false;
             // 
             // Menu
             // 
@@ -132,7 +136,7 @@
             Controls.Add(labal2);
             Controls.Add(label1);
             Name = "Menu";
-            Size = new Size(1198, 704);
+            Size = new Size(1200, 700);
             ResumeLayout(false);
             PerformLayout();
         }
