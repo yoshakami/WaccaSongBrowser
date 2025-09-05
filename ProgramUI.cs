@@ -1049,6 +1049,10 @@ namespace WaccaSongBrowser
             }
             LoadUI(allSongs[currentIndex]);
         }
+        /**
+         * you need to set curentSongId first before calling this function!!!!!
+         * this function fills all UI elements with the data from song
+         */
         private void LoadUI(SongData song)
         {
             musicTextBox.Text = song.MusicMessage;
@@ -1146,7 +1150,10 @@ namespace WaccaSongBrowser
         static readonly string execPath = AppDomain.CurrentDomain.BaseDirectory.Replace("\\", "/");
         private void autoSaveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            saveChanges();
+            if (autoSaveCheckBox.Checked == true)
+            {
+                saveChanges();
+            }
         }
 
         public static T GetFieldValue<T>(StructPropertyData structData, string fieldName)

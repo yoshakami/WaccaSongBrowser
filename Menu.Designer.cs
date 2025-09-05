@@ -93,7 +93,6 @@
             label5.Size = new Size(123, 15);
             label5.TabIndex = 5;
             label5.Text = "ConditionTable.uasset";
-            label5.Visible = false;
             // 
             // label6
             // 
@@ -112,7 +111,6 @@
             label7.Size = new Size(210, 15);
             label7.TabIndex = 7;
             label7.Text = "TotalResultItemJudgementTable.uasset";
-            label7.Visible = false;
             // 
             // label8
             // 

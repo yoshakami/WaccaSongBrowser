@@ -101,6 +101,8 @@
             saveButton = new Button();
             autoSaveCheckBox = new CheckBox();
             label1 = new Label();
+            filterConditionType = new ComboBox();
+            filterConditionTypeTextBox = new TextBox();
             conditionType = new ComboBox();
             SuspendLayout();
             // 
@@ -214,8 +216,9 @@
             conditionTypeTextBox.Location = new Point(448, 130);
             conditionTypeTextBox.Margin = new Padding(3, 2, 3, 2);
             conditionTypeTextBox.Name = "conditionTypeTextBox";
-            conditionTypeTextBox.Size = new Size(318, 23);
+            conditionTypeTextBox.Size = new Size(59, 23);
             conditionTypeTextBox.TabIndex = 121;
+            conditionTypeTextBox.TextChanged += conditionTypeTextBox_TextChanged;
             // 
             // label18
             // 
@@ -520,6 +523,7 @@
             conditionid.Name = "conditionid";
             conditionid.Size = new Size(205, 23);
             conditionid.TabIndex = 193;
+            conditionid.KeyDown += conditionid_KeyDown;
             // 
             // conditionInjectButton
             // 
@@ -766,6 +770,7 @@
             autoSaveCheckBox.TabIndex = 228;
             autoSaveCheckBox.Text = "Auto Save Edits";
             autoSaveCheckBox.UseVisualStyleBackColor = true;
+            autoSaveCheckBox.CheckedChanged += autoSaveCheckBox_CheckedChanged;
             // 
             // label1
             // 
@@ -778,20 +783,42 @@
             label1.Text = "Loaded Files:";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
+            // filterConditionType
+            // 
+            filterConditionType.FormattingEnabled = true;
+            filterConditionType.Location = new Point(934, 132);
+            filterConditionType.Margin = new Padding(3, 2, 3, 2);
+            filterConditionType.Name = "filterConditionType";
+            filterConditionType.Size = new Size(234, 23);
+            filterConditionType.TabIndex = 233;
+            filterConditionType.SelectedIndexChanged += filterConditionType_SelectedIndexChanged;
+            // 
+            // filterConditionTypeTextBox
+            // 
+            filterConditionTypeTextBox.Location = new Point(850, 132);
+            filterConditionTypeTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterConditionTypeTextBox.Name = "filterConditionTypeTextBox";
+            filterConditionTypeTextBox.Size = new Size(57, 23);
+            filterConditionTypeTextBox.TabIndex = 234;
+            filterConditionTypeTextBox.TextChanged += filterConditionTypeTextBox_TextChanged;
+            // 
             // conditionType
             // 
             conditionType.FormattingEnabled = true;
-            conditionType.Location = new Point(850, 132);
+            conditionType.Location = new Point(532, 130);
             conditionType.Margin = new Padding(3, 2, 3, 2);
             conditionType.Name = "conditionType";
-            conditionType.Size = new Size(318, 23);
-            conditionType.TabIndex = 233;
+            conditionType.Size = new Size(234, 23);
+            conditionType.TabIndex = 235;
+            conditionType.SelectedIndexChanged += conditionType_SelectedIndexChanged;
             // 
             // Condition
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(conditionType);
+            Controls.Add(filterConditionTypeTextBox);
+            Controls.Add(filterConditionType);
             Controls.Add(label1);
             Controls.Add(ramSaveCheckBox);
             Controls.Add(saveLabel);
@@ -866,7 +893,7 @@
             Controls.Add(label19);
             Controls.Add(label12);
             Name = "Condition";
-            Size = new Size(1200, 700);
+            Size = new Size(1200, 720);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -946,6 +973,8 @@
         private Button saveButton;
         private CheckBox autoSaveCheckBox;
         private Label label1;
+        private ComboBox filterConditionType;
+        private TextBox filterConditionTypeTextBox;
         private ComboBox conditionType;
     }
 }
