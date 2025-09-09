@@ -59,7 +59,7 @@
             // 
             // createNewIcon
             // 
-            createNewIcon.Location = new Point(22, 248);
+            createNewIcon.Location = new Point(59, 275);
             createNewIcon.Name = "createNewIcon";
             createNewIcon.Size = new Size(284, 116);
             createNewIcon.TabIndex = 3;
@@ -68,7 +68,7 @@
             // 
             // artistTextBox
             // 
-            artistTextBox.Location = new Point(380, 125);
+            artistTextBox.Location = new Point(417, 152);
             artistTextBox.Margin = new Padding(3, 2, 3, 2);
             artistTextBox.Name = "artistTextBox";
             artistTextBox.Size = new Size(407, 23);
@@ -77,7 +77,7 @@
             // artistLabel
             // 
             artistLabel.AutoSize = true;
-            artistLabel.Location = new Point(380, 108);
+            artistLabel.Location = new Point(417, 135);
             artistLabel.Name = "artistLabel";
             artistLabel.Size = new Size(305, 15);
             artistLabel.TabIndex = 7;
@@ -85,7 +85,7 @@
             // 
             // musicTextBox
             // 
-            musicTextBox.Location = new Point(380, 75);
+            musicTextBox.Location = new Point(417, 102);
             musicTextBox.Margin = new Padding(3, 2, 3, 2);
             musicTextBox.Name = "musicTextBox";
             musicTextBox.Size = new Size(407, 23);
@@ -94,7 +94,7 @@
             // musicLabel
             // 
             musicLabel.AutoSize = true;
-            musicLabel.Location = new Point(380, 58);
+            musicLabel.Location = new Point(417, 85);
             musicLabel.Name = "musicLabel";
             musicLabel.Size = new Size(354, 15);
             musicLabel.TabIndex = 5;
@@ -104,7 +104,7 @@
             // 
             progressBar.BackColor = SystemColors.ActiveCaptionText;
             progressBar.ForeColor = SystemColors.Desktop;
-            progressBar.Location = new Point(333, 22);
+            progressBar.Location = new Point(370, 49);
             progressBar.Margin = new Padding(0);
             progressBar.Name = "progressBar";
             progressBar.Size = new Size(19, 625);
@@ -113,7 +113,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(550, 22);
+            label1.Location = new Point(587, 49);
             label1.Name = "label1";
             label1.Size = new Size(72, 15);
             label1.TabIndex = 81;
@@ -121,7 +121,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(380, 225);
+            textBox1.Location = new Point(417, 252);
             textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(407, 23);
@@ -130,7 +130,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(380, 208);
+            label2.Location = new Point(417, 235);
             label2.Name = "label2";
             label2.Size = new Size(372, 15);
             label2.TabIndex = 85;
@@ -138,7 +138,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(380, 175);
+            textBox2.Location = new Point(417, 202);
             textBox2.Margin = new Padding(3, 2, 3, 2);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(407, 23);
@@ -147,7 +147,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(380, 158);
+            label3.Location = new Point(417, 185);
             label3.Name = "label3";
             label3.Size = new Size(180, 15);
             label3.TabIndex = 83;
@@ -155,7 +155,7 @@
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(380, 325);
+            textBox5.Location = new Point(417, 352);
             textBox5.Margin = new Padding(3, 2, 3, 2);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(407, 23);
@@ -164,7 +164,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(380, 308);
+            label6.Location = new Point(417, 335);
             label6.Name = "label6";
             label6.Size = new Size(183, 15);
             label6.TabIndex = 89;
@@ -172,7 +172,7 @@
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(380, 275);
+            textBox6.Location = new Point(417, 302);
             textBox6.Margin = new Padding(3, 2, 3, 2);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(407, 23);
@@ -181,7 +181,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(380, 258);
+            label7.Location = new Point(417, 285);
             label7.Name = "label7";
             label7.Size = new Size(368, 15);
             label7.TabIndex = 87;
@@ -190,7 +190,7 @@
             // bIsInitItem
             // 
             bIsInitItem.AutoSize = true;
-            bIsInitItem.Location = new Point(380, 565);
+            bIsInitItem.Location = new Point(417, 592);
             bIsInitItem.Name = "bIsInitItem";
             bIsInitItem.Size = new Size(288, 34);
             bIsInitItem.TabIndex = 90;
@@ -200,7 +200,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 408);
+            label4.Location = new Point(49, 435);
             label4.Name = "label4";
             label4.Size = new Size(308, 30);
             label4.TabIndex = 91;
@@ -208,7 +208,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(380, 425);
+            textBox3.Location = new Point(417, 452);
             textBox3.Margin = new Padding(3, 2, 3, 2);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(407, 23);
@@ -217,7 +217,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(380, 408);
+            label5.Location = new Point(417, 435);
             label5.Name = "label5";
             label5.Size = new Size(407, 15);
             label5.TabIndex = 95;
@@ -225,7 +225,7 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(380, 375);
+            textBox4.Location = new Point(417, 402);
             textBox4.Margin = new Padding(3, 2, 3, 2);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(407, 23);
@@ -234,7 +234,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(380, 358);
+            label8.Location = new Point(417, 385);
             label8.Name = "label8";
             label8.Size = new Size(196, 15);
             label8.TabIndex = 93;
@@ -243,7 +243,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(36, 470);
+            label9.Location = new Point(73, 497);
             label9.Name = "label9";
             label9.Size = new Size(79, 15);
             label9.TabIndex = 96;
@@ -252,7 +252,7 @@
             // textBox7
             // 
             textBox7.Enabled = false;
-            textBox7.Location = new Point(380, 525);
+            textBox7.Location = new Point(417, 552);
             textBox7.Margin = new Padding(3, 2, 3, 2);
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(407, 23);
@@ -261,7 +261,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(380, 508);
+            label10.Location = new Point(417, 535);
             label10.Name = "label10";
             label10.Size = new Size(108, 15);
             label10.TabIndex = 100;
@@ -270,7 +270,7 @@
             // textBox8
             // 
             textBox8.Enabled = false;
-            textBox8.Location = new Point(380, 475);
+            textBox8.Location = new Point(417, 502);
             textBox8.Margin = new Padding(3, 2, 3, 2);
             textBox8.Name = "textBox8";
             textBox8.Size = new Size(407, 23);
@@ -279,7 +279,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(380, 458);
+            label11.Location = new Point(417, 485);
             label11.Name = "label11";
             label11.Size = new Size(57, 15);
             label11.TabIndex = 98;
@@ -287,7 +287,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(840, 248);
+            button1.Location = new Point(877, 275);
             button1.Name = "button1";
             button1.Size = new Size(284, 116);
             button1.TabIndex = 101;
@@ -326,7 +326,7 @@
             Controls.Add(musicLabel);
             Controls.Add(createNewIcon);
             Name = "Icon";
-            Size = new Size(1200, 700);
+            Size = new Size(1364, 720);
             ResumeLayout(false);
             PerformLayout();
         }

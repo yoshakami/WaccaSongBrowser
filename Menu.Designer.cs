@@ -42,7 +42,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(500, 132);
+            label1.Location = new Point(573, 134);
             label1.Name = "label1";
             label1.Size = new Size(231, 15);
             label1.TabIndex = 0;
@@ -51,7 +51,7 @@
             // labal2
             // 
             labal2.AutoSize = true;
-            labal2.Location = new Point(541, 201);
+            labal2.Location = new Point(614, 203);
             labal2.Name = "labal2";
             labal2.Size = new Size(119, 15);
             labal2.TabIndex = 1;
@@ -60,7 +60,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(689, 269);
+            label2.Location = new Point(762, 271);
             label2.Name = "label2";
             label2.Size = new Size(156, 15);
             label2.TabIndex = 2;
@@ -69,7 +69,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(552, 269);
+            label3.Location = new Point(625, 271);
             label3.Name = "label3";
             label3.Size = new Size(100, 15);
             label3.TabIndex = 3;
@@ -78,7 +78,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(561, 413);
+            label4.Location = new Point(634, 415);
             label4.Name = "label4";
             label4.Size = new Size(93, 15);
             label4.TabIndex = 4;
@@ -88,7 +88,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(538, 350);
+            label5.Location = new Point(611, 352);
             label5.Name = "label5";
             label5.Size = new Size(123, 15);
             label5.TabIndex = 5;
@@ -97,7 +97,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(891, 269);
+            label6.Location = new Point(964, 271);
             label6.Name = "label6";
             label6.Size = new Size(139, 15);
             label6.TabIndex = 6;
@@ -106,7 +106,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(691, 350);
+            label7.Location = new Point(764, 352);
             label7.Name = "label7";
             label7.Size = new Size(210, 15);
             label7.TabIndex = 7;
@@ -115,7 +115,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(517, 471);
+            label8.Location = new Point(590, 473);
             label8.Name = "label8";
             label8.Size = new Size(183, 15);
             label8.TabIndex = 8;
@@ -134,7 +134,7 @@
             Controls.Add(labal2);
             Controls.Add(label1);
             Name = "Menu";
-            Size = new Size(1200, 700);
+            Size = new Size(1364, 720);
             ResumeLayout(false);
             PerformLayout();
         }

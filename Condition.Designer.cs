@@ -109,7 +109,7 @@
             // conditionCheckBox
             // 
             conditionCheckBox.AutoSize = true;
-            conditionCheckBox.Location = new Point(448, 424);
+            conditionCheckBox.Location = new Point(491, 441);
             conditionCheckBox.Name = "conditionCheckBox";
             conditionCheckBox.Size = new Size(175, 19);
             conditionCheckBox.TabIndex = 134;
@@ -120,7 +120,7 @@
             // 
             progressBar1.BackColor = SystemColors.ActiveCaptionText;
             progressBar1.ForeColor = SystemColors.Desktop;
-            progressBar1.Location = new Point(404, 27);
+            progressBar1.Location = new Point(447, 44);
             progressBar1.Margin = new Padding(0);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(19, 625);
@@ -128,7 +128,7 @@
             // 
             // condition5textBox
             // 
-            condition5textBox.Location = new Point(448, 380);
+            condition5textBox.Location = new Point(491, 397);
             condition5textBox.Margin = new Padding(3, 2, 3, 2);
             condition5textBox.Name = "condition5textBox";
             condition5textBox.Size = new Size(318, 23);
@@ -137,7 +137,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(448, 363);
+            label13.Location = new Point(491, 380);
             label13.Name = "label13";
             label13.Size = new Size(41, 15);
             label13.TabIndex = 132;
@@ -145,7 +145,7 @@
             // 
             // condition4textBox
             // 
-            condition4textBox.Location = new Point(448, 330);
+            condition4textBox.Location = new Point(491, 347);
             condition4textBox.Margin = new Padding(3, 2, 3, 2);
             condition4textBox.Name = "condition4textBox";
             condition4textBox.Size = new Size(318, 23);
@@ -154,7 +154,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(448, 313);
+            label14.Location = new Point(491, 330);
             label14.Name = "label14";
             label14.Size = new Size(41, 15);
             label14.TabIndex = 130;
@@ -162,7 +162,7 @@
             // 
             // condition3textBox
             // 
-            condition3textBox.Location = new Point(448, 280);
+            condition3textBox.Location = new Point(491, 297);
             condition3textBox.Margin = new Padding(3, 2, 3, 2);
             condition3textBox.Name = "condition3textBox";
             condition3textBox.Size = new Size(318, 23);
@@ -171,7 +171,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(448, 263);
+            label15.Location = new Point(491, 280);
             label15.Name = "label15";
             label15.Size = new Size(41, 15);
             label15.TabIndex = 128;
@@ -179,7 +179,7 @@
             // 
             // condition2textBox
             // 
-            condition2textBox.Location = new Point(448, 230);
+            condition2textBox.Location = new Point(491, 247);
             condition2textBox.Margin = new Padding(3, 2, 3, 2);
             condition2textBox.Name = "condition2textBox";
             condition2textBox.Size = new Size(318, 23);
@@ -188,7 +188,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(448, 213);
+            label16.Location = new Point(491, 230);
             label16.Name = "label16";
             label16.Size = new Size(41, 15);
             label16.TabIndex = 126;
@@ -196,7 +196,7 @@
             // 
             // condition1textBox
             // 
-            condition1textBox.Location = new Point(448, 180);
+            condition1textBox.Location = new Point(491, 197);
             condition1textBox.Margin = new Padding(3, 2, 3, 2);
             condition1textBox.Name = "condition1textBox";
             condition1textBox.Size = new Size(318, 23);
@@ -205,7 +205,7 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(448, 163);
+            label17.Location = new Point(491, 180);
             label17.Name = "label17";
             label17.Size = new Size(41, 15);
             label17.TabIndex = 124;
@@ -213,7 +213,7 @@
             // 
             // conditionTypeTextBox
             // 
-            conditionTypeTextBox.Location = new Point(448, 130);
+            conditionTypeTextBox.Location = new Point(491, 147);
             conditionTypeTextBox.Margin = new Padding(3, 2, 3, 2);
             conditionTypeTextBox.Name = "conditionTypeTextBox";
             conditionTypeTextBox.Size = new Size(59, 23);
@@ -223,7 +223,7 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(448, 113);
+            label18.Location = new Point(491, 130);
             label18.Name = "label18";
             label18.Size = new Size(84, 15);
             label18.TabIndex = 122;
@@ -231,7 +231,7 @@
             // 
             // conditionIdTextBox
             // 
-            conditionIdTextBox.Location = new Point(448, 80);
+            conditionIdTextBox.Location = new Point(491, 97);
             conditionIdTextBox.Margin = new Padding(3, 2, 3, 2);
             conditionIdTextBox.Name = "conditionIdTextBox";
             conditionIdTextBox.Size = new Size(318, 23);
@@ -240,7 +240,7 @@
             // label19
             // 
             label19.AutoSize = true;
-            label19.Location = new Point(448, 63);
+            label19.Location = new Point(491, 80);
             label19.Name = "label19";
             label19.Size = new Size(70, 15);
             label19.TabIndex = 120;
@@ -249,7 +249,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(590, 27);
+            label12.Location = new Point(633, 44);
             label12.Name = "label12";
             label12.Size = new Size(60, 15);
             label12.TabIndex = 118;
@@ -259,7 +259,7 @@
             // 
             progressBar2.BackColor = SystemColors.ActiveCaptionText;
             progressBar2.ForeColor = SystemColors.Desktop;
-            progressBar2.Location = new Point(791, 27);
+            progressBar2.Location = new Point(834, 44);
             progressBar2.Margin = new Padding(0);
             progressBar2.Name = "progressBar2";
             progressBar2.Size = new Size(19, 625);
@@ -268,7 +268,7 @@
             // filterConditionCheckBox
             // 
             filterConditionCheckBox.AutoSize = true;
-            filterConditionCheckBox.Location = new Point(850, 420);
+            filterConditionCheckBox.Location = new Point(893, 437);
             filterConditionCheckBox.Name = "filterConditionCheckBox";
             filterConditionCheckBox.Size = new Size(175, 19);
             filterConditionCheckBox.TabIndex = 151;
@@ -277,7 +277,7 @@
             // 
             // filter5textBox
             // 
-            filter5textBox.Location = new Point(850, 380);
+            filter5textBox.Location = new Point(893, 397);
             filter5textBox.Margin = new Padding(3, 2, 3, 2);
             filter5textBox.Name = "filter5textBox";
             filter5textBox.Size = new Size(318, 23);
@@ -286,7 +286,7 @@
             // filter5label
             // 
             filter5label.AutoSize = true;
-            filter5label.Location = new Point(850, 363);
+            filter5label.Location = new Point(893, 380);
             filter5label.Name = "filter5label";
             filter5label.Size = new Size(41, 15);
             filter5label.TabIndex = 150;
@@ -294,7 +294,7 @@
             // 
             // filter4textBox
             // 
-            filter4textBox.Location = new Point(850, 330);
+            filter4textBox.Location = new Point(893, 347);
             filter4textBox.Margin = new Padding(3, 2, 3, 2);
             filter4textBox.Name = "filter4textBox";
             filter4textBox.Size = new Size(318, 23);
@@ -303,7 +303,7 @@
             // filter4label
             // 
             filter4label.AutoSize = true;
-            filter4label.Location = new Point(850, 313);
+            filter4label.Location = new Point(893, 330);
             filter4label.Name = "filter4label";
             filter4label.Size = new Size(41, 15);
             filter4label.TabIndex = 148;
@@ -311,7 +311,7 @@
             // 
             // filter3textBox
             // 
-            filter3textBox.Location = new Point(850, 280);
+            filter3textBox.Location = new Point(893, 297);
             filter3textBox.Margin = new Padding(3, 2, 3, 2);
             filter3textBox.Name = "filter3textBox";
             filter3textBox.Size = new Size(318, 23);
@@ -320,7 +320,7 @@
             // filter3label
             // 
             filter3label.AutoSize = true;
-            filter3label.Location = new Point(850, 263);
+            filter3label.Location = new Point(893, 280);
             filter3label.Name = "filter3label";
             filter3label.Size = new Size(41, 15);
             filter3label.TabIndex = 146;
@@ -328,7 +328,7 @@
             // 
             // filter2textBox
             // 
-            filter2textBox.Location = new Point(850, 230);
+            filter2textBox.Location = new Point(893, 247);
             filter2textBox.Margin = new Padding(3, 2, 3, 2);
             filter2textBox.Name = "filter2textBox";
             filter2textBox.Size = new Size(318, 23);
@@ -337,7 +337,7 @@
             // filter2label
             // 
             filter2label.AutoSize = true;
-            filter2label.Location = new Point(850, 213);
+            filter2label.Location = new Point(893, 230);
             filter2label.Name = "filter2label";
             filter2label.Size = new Size(41, 15);
             filter2label.TabIndex = 144;
@@ -345,7 +345,7 @@
             // 
             // filter1textBox
             // 
-            filter1textBox.Location = new Point(850, 180);
+            filter1textBox.Location = new Point(893, 197);
             filter1textBox.Margin = new Padding(3, 2, 3, 2);
             filter1textBox.Name = "filter1textBox";
             filter1textBox.Size = new Size(318, 23);
@@ -354,7 +354,7 @@
             // filter1label
             // 
             filter1label.AutoSize = true;
-            filter1label.Location = new Point(850, 163);
+            filter1label.Location = new Point(893, 180);
             filter1label.Name = "filter1label";
             filter1label.Size = new Size(41, 15);
             filter1label.TabIndex = 142;
@@ -363,7 +363,7 @@
             // filterTypeLabel
             // 
             filterTypeLabel.AutoSize = true;
-            filterTypeLabel.Location = new Point(850, 113);
+            filterTypeLabel.Location = new Point(893, 130);
             filterTypeLabel.Name = "filterTypeLabel";
             filterTypeLabel.Size = new Size(84, 15);
             filterTypeLabel.TabIndex = 140;
@@ -372,7 +372,7 @@
             // conditionidLabel
             // 
             conditionidLabel.AutoSize = true;
-            conditionidLabel.Location = new Point(850, 22);
+            conditionidLabel.Location = new Point(893, 39);
             conditionidLabel.Name = "conditionidLabel";
             conditionidLabel.Size = new Size(70, 15);
             conditionidLabel.TabIndex = 138;
@@ -381,7 +381,7 @@
             // filterlabel
             // 
             filterlabel.AutoSize = true;
-            filterlabel.Location = new Point(987, 83);
+            filterlabel.Location = new Point(1030, 100);
             filterlabel.Name = "filterlabel";
             filterlabel.Size = new Size(38, 15);
             filterlabel.TabIndex = 136;
@@ -390,7 +390,7 @@
             // filterConditionEnablecheckBox
             // 
             filterConditionEnablecheckBox.AutoSize = true;
-            filterConditionEnablecheckBox.Location = new Point(824, 422);
+            filterConditionEnablecheckBox.Location = new Point(867, 439);
             filterConditionEnablecheckBox.Name = "filterConditionEnablecheckBox";
             filterConditionEnablecheckBox.Size = new Size(15, 14);
             filterConditionEnablecheckBox.TabIndex = 152;
@@ -400,7 +400,7 @@
             // filter5checkBox
             // 
             filter5checkBox.AutoSize = true;
-            filter5checkBox.Location = new Point(824, 386);
+            filter5checkBox.Location = new Point(867, 403);
             filter5checkBox.Name = "filter5checkBox";
             filter5checkBox.Size = new Size(15, 14);
             filter5checkBox.TabIndex = 153;
@@ -410,7 +410,7 @@
             // filter4checkBox
             // 
             filter4checkBox.AutoSize = true;
-            filter4checkBox.Location = new Point(824, 337);
+            filter4checkBox.Location = new Point(867, 354);
             filter4checkBox.Name = "filter4checkBox";
             filter4checkBox.Size = new Size(15, 14);
             filter4checkBox.TabIndex = 154;
@@ -420,7 +420,7 @@
             // filter3checkBox
             // 
             filter3checkBox.AutoSize = true;
-            filter3checkBox.Location = new Point(824, 286);
+            filter3checkBox.Location = new Point(867, 303);
             filter3checkBox.Name = "filter3checkBox";
             filter3checkBox.Size = new Size(15, 14);
             filter3checkBox.TabIndex = 155;
@@ -430,7 +430,7 @@
             // filter2checkBox
             // 
             filter2checkBox.AutoSize = true;
-            filter2checkBox.Location = new Point(824, 236);
+            filter2checkBox.Location = new Point(867, 253);
             filter2checkBox.Name = "filter2checkBox";
             filter2checkBox.Size = new Size(15, 14);
             filter2checkBox.TabIndex = 156;
@@ -440,7 +440,7 @@
             // filter1checkBox
             // 
             filter1checkBox.AutoSize = true;
-            filter1checkBox.Location = new Point(824, 186);
+            filter1checkBox.Location = new Point(867, 203);
             filter1checkBox.Name = "filter1checkBox";
             filter1checkBox.Size = new Size(15, 14);
             filter1checkBox.TabIndex = 157;
@@ -450,7 +450,7 @@
             // filterTypeCheckBox
             // 
             filterTypeCheckBox.AutoSize = true;
-            filterTypeCheckBox.Location = new Point(824, 136);
+            filterTypeCheckBox.Location = new Point(867, 153);
             filterTypeCheckBox.Name = "filterTypeCheckBox";
             filterTypeCheckBox.Size = new Size(15, 14);
             filterTypeCheckBox.TabIndex = 158;
@@ -459,7 +459,7 @@
             // 
             // searchPreviousButton
             // 
-            searchPreviousButton.Location = new Point(963, 655);
+            searchPreviousButton.Location = new Point(1006, 672);
             searchPreviousButton.Name = "searchPreviousButton";
             searchPreviousButton.Size = new Size(92, 23);
             searchPreviousButton.TabIndex = 199;
@@ -469,7 +469,7 @@
             // 
             // searchNextButton
             // 
-            searchNextButton.Location = new Point(1076, 655);
+            searchNextButton.Location = new Point(1119, 672);
             searchNextButton.Name = "searchNextButton";
             searchNextButton.Size = new Size(92, 23);
             searchNextButton.TabIndex = 198;
@@ -480,7 +480,7 @@
             // searchSectionLabel
             // 
             searchSectionLabel.AutoSize = true;
-            searchSectionLabel.Location = new Point(1030, 611);
+            searchSectionLabel.Location = new Point(1073, 628);
             searchSectionLabel.Name = "searchSectionLabel";
             searchSectionLabel.Size = new Size(82, 30);
             searchSectionLabel.TabIndex = 197;
@@ -489,7 +489,7 @@
             // searchResultLabel
             // 
             searchResultLabel.AutoSize = true;
-            searchResultLabel.Location = new Point(934, 622);
+            searchResultLabel.Location = new Point(977, 639);
             searchResultLabel.Name = "searchResultLabel";
             searchResultLabel.Size = new Size(50, 15);
             searchResultLabel.TabIndex = 196;
@@ -497,7 +497,7 @@
             // 
             // filterSearchButton
             // 
-            filterSearchButton.Location = new Point(824, 618);
+            filterSearchButton.Location = new Point(867, 635);
             filterSearchButton.Name = "filterSearchButton";
             filterSearchButton.Size = new Size(92, 23);
             filterSearchButton.TabIndex = 195;
@@ -507,7 +507,7 @@
             // 
             // conditionidButton
             // 
-            conditionidButton.Location = new Point(1076, 41);
+            conditionidButton.Location = new Point(1119, 58);
             conditionidButton.Name = "conditionidButton";
             conditionidButton.Size = new Size(92, 23);
             conditionidButton.TabIndex = 194;
@@ -518,7 +518,7 @@
             // conditionid
             // 
             conditionid.FormattingEnabled = true;
-            conditionid.Location = new Point(850, 41);
+            conditionid.Location = new Point(893, 58);
             conditionid.Margin = new Padding(3, 2, 3, 2);
             conditionid.Name = "conditionid";
             conditionid.Size = new Size(205, 23);
@@ -527,7 +527,7 @@
             // 
             // conditionInjectButton
             // 
-            conditionInjectButton.Location = new Point(448, 468);
+            conditionInjectButton.Location = new Point(491, 485);
             conditionInjectButton.Name = "conditionInjectButton";
             conditionInjectButton.Size = new Size(318, 77);
             conditionInjectButton.TabIndex = 200;
@@ -538,7 +538,7 @@
             // conditionOutputLabel
             // 
             conditionOutputLabel.AutoSize = true;
-            conditionOutputLabel.Location = new Point(448, 572);
+            conditionOutputLabel.Location = new Point(491, 589);
             conditionOutputLabel.MinimumSize = new Size(318, 15);
             conditionOutputLabel.Name = "conditionOutputLabel";
             conditionOutputLabel.Size = new Size(318, 15);
@@ -549,7 +549,7 @@
             // resultOutputLabel
             // 
             resultOutputLabel.AutoSize = true;
-            resultOutputLabel.Location = new Point(40, 569);
+            resultOutputLabel.Location = new Point(83, 586);
             resultOutputLabel.MinimumSize = new Size(318, 15);
             resultOutputLabel.Name = "resultOutputLabel";
             resultOutputLabel.Size = new Size(318, 15);
@@ -559,7 +559,7 @@
             // 
             // resultInjectButton
             // 
-            resultInjectButton.Location = new Point(40, 465);
+            resultInjectButton.Location = new Point(83, 482);
             resultInjectButton.Name = "resultInjectButton";
             resultInjectButton.Size = new Size(318, 77);
             resultInjectButton.TabIndex = 204;
@@ -569,7 +569,7 @@
             // 
             // resultConditionTextBox
             // 
-            resultConditionTextBox.Location = new Point(40, 77);
+            resultConditionTextBox.Location = new Point(83, 94);
             resultConditionTextBox.Margin = new Padding(3, 2, 3, 2);
             resultConditionTextBox.Name = "resultConditionTextBox";
             resultConditionTextBox.Size = new Size(318, 23);
@@ -578,7 +578,7 @@
             // resultConditionLabel
             // 
             resultConditionLabel.AutoSize = true;
-            resultConditionLabel.Location = new Point(40, 60);
+            resultConditionLabel.Location = new Point(83, 77);
             resultConditionLabel.Name = "resultConditionLabel";
             resultConditionLabel.Size = new Size(70, 15);
             resultConditionLabel.TabIndex = 203;
@@ -587,7 +587,7 @@
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(115, 27);
+            label20.Location = new Point(158, 44);
             label20.Name = "label20";
             label20.Size = new Size(147, 15);
             label20.TabIndex = 206;
@@ -595,7 +595,7 @@
             // 
             // resultItemIdTextBox
             // 
-            resultItemIdTextBox.Location = new Point(40, 130);
+            resultItemIdTextBox.Location = new Point(83, 147);
             resultItemIdTextBox.Margin = new Padding(3, 2, 3, 2);
             resultItemIdTextBox.Name = "resultItemIdTextBox";
             resultItemIdTextBox.Size = new Size(318, 23);
@@ -604,7 +604,7 @@
             // resultItemIdLabel
             // 
             resultItemIdLabel.AutoSize = true;
-            resultItemIdLabel.Location = new Point(40, 113);
+            resultItemIdLabel.Location = new Point(83, 130);
             resultItemIdLabel.Name = "resultItemIdLabel";
             resultItemIdLabel.Size = new Size(173, 15);
             resultItemIdLabel.TabIndex = 208;
@@ -612,7 +612,7 @@
             // 
             // resultStartTimeTextBox
             // 
-            resultStartTimeTextBox.Location = new Point(40, 180);
+            resultStartTimeTextBox.Location = new Point(83, 197);
             resultStartTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             resultStartTimeTextBox.Name = "resultStartTimeTextBox";
             resultStartTimeTextBox.Size = new Size(318, 23);
@@ -621,7 +621,7 @@
             // resultStartTimeLabel
             // 
             resultStartTimeLabel.AutoSize = true;
-            resultStartTimeLabel.Location = new Point(40, 163);
+            resultStartTimeLabel.Location = new Point(83, 180);
             resultStartTimeLabel.Name = "resultStartTimeLabel";
             resultStartTimeLabel.Size = new Size(245, 15);
             resultStartTimeLabel.TabIndex = 210;
@@ -629,7 +629,7 @@
             // 
             // resultEndTimeTextBox
             // 
-            resultEndTimeTextBox.Location = new Point(40, 230);
+            resultEndTimeTextBox.Location = new Point(83, 247);
             resultEndTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             resultEndTimeTextBox.Name = "resultEndTimeTextBox";
             resultEndTimeTextBox.Size = new Size(318, 23);
@@ -638,7 +638,7 @@
             // resultEndTimeLabel
             // 
             resultEndTimeLabel.AutoSize = true;
-            resultEndTimeLabel.Location = new Point(40, 213);
+            resultEndTimeLabel.Location = new Point(83, 230);
             resultEndTimeLabel.Name = "resultEndTimeLabel";
             resultEndTimeLabel.Size = new Size(241, 15);
             resultEndTimeLabel.TabIndex = 212;
@@ -647,7 +647,7 @@
             // filterResultItemIdCheckBox
             // 
             filterResultItemIdCheckBox.AutoSize = true;
-            filterResultItemIdCheckBox.Location = new Point(824, 471);
+            filterResultItemIdCheckBox.Location = new Point(867, 488);
             filterResultItemIdCheckBox.Name = "filterResultItemIdCheckBox";
             filterResultItemIdCheckBox.Size = new Size(15, 14);
             filterResultItemIdCheckBox.TabIndex = 221;
@@ -657,7 +657,7 @@
             // filterResultStartTimeCheckBox
             // 
             filterResultStartTimeCheckBox.AutoSize = true;
-            filterResultStartTimeCheckBox.Location = new Point(824, 522);
+            filterResultStartTimeCheckBox.Location = new Point(867, 539);
             filterResultStartTimeCheckBox.Name = "filterResultStartTimeCheckBox";
             filterResultStartTimeCheckBox.Size = new Size(15, 14);
             filterResultStartTimeCheckBox.TabIndex = 220;
@@ -667,7 +667,7 @@
             // filterResultEndTimeCheckBox
             // 
             filterResultEndTimeCheckBox.AutoSize = true;
-            filterResultEndTimeCheckBox.Location = new Point(824, 571);
+            filterResultEndTimeCheckBox.Location = new Point(867, 588);
             filterResultEndTimeCheckBox.Name = "filterResultEndTimeCheckBox";
             filterResultEndTimeCheckBox.Size = new Size(15, 14);
             filterResultEndTimeCheckBox.TabIndex = 219;
@@ -676,7 +676,7 @@
             // 
             // filterResultEndTimeTextBox
             // 
-            filterResultEndTimeTextBox.Location = new Point(850, 566);
+            filterResultEndTimeTextBox.Location = new Point(893, 583);
             filterResultEndTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             filterResultEndTimeTextBox.Name = "filterResultEndTimeTextBox";
             filterResultEndTimeTextBox.Size = new Size(318, 23);
@@ -685,7 +685,7 @@
             // filterResultEndTimeLabel
             // 
             filterResultEndTimeLabel.AutoSize = true;
-            filterResultEndTimeLabel.Location = new Point(850, 549);
+            filterResultEndTimeLabel.Location = new Point(893, 566);
             filterResultEndTimeLabel.Name = "filterResultEndTimeLabel";
             filterResultEndTimeLabel.Size = new Size(241, 15);
             filterResultEndTimeLabel.TabIndex = 227;
@@ -693,7 +693,7 @@
             // 
             // filterResultStartTimeTextBox
             // 
-            filterResultStartTimeTextBox.Location = new Point(850, 516);
+            filterResultStartTimeTextBox.Location = new Point(893, 533);
             filterResultStartTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             filterResultStartTimeTextBox.Name = "filterResultStartTimeTextBox";
             filterResultStartTimeTextBox.Size = new Size(318, 23);
@@ -702,7 +702,7 @@
             // filterResultStartTimeLabel
             // 
             filterResultStartTimeLabel.AutoSize = true;
-            filterResultStartTimeLabel.Location = new Point(850, 499);
+            filterResultStartTimeLabel.Location = new Point(893, 516);
             filterResultStartTimeLabel.Name = "filterResultStartTimeLabel";
             filterResultStartTimeLabel.Size = new Size(245, 15);
             filterResultStartTimeLabel.TabIndex = 225;
@@ -710,7 +710,7 @@
             // 
             // filterResultItemIdTextBox
             // 
-            filterResultItemIdTextBox.Location = new Point(850, 466);
+            filterResultItemIdTextBox.Location = new Point(893, 483);
             filterResultItemIdTextBox.Margin = new Padding(3, 2, 3, 2);
             filterResultItemIdTextBox.Name = "filterResultItemIdTextBox";
             filterResultItemIdTextBox.Size = new Size(318, 23);
@@ -719,7 +719,7 @@
             // filterResultItemIdLabel
             // 
             filterResultItemIdLabel.AutoSize = true;
-            filterResultItemIdLabel.Location = new Point(850, 449);
+            filterResultItemIdLabel.Location = new Point(893, 466);
             filterResultItemIdLabel.Name = "filterResultItemIdLabel";
             filterResultItemIdLabel.Size = new Size(173, 15);
             filterResultItemIdLabel.TabIndex = 223;
@@ -730,7 +730,7 @@
             ramSaveCheckBox.AutoSize = true;
             ramSaveCheckBox.Checked = true;
             ramSaveCheckBox.CheckState = CheckState.Checked;
-            ramSaveCheckBox.Location = new Point(448, 618);
+            ramSaveCheckBox.Location = new Point(491, 635);
             ramSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
             ramSaveCheckBox.MinimumSize = new Size(0, 36);
             ramSaveCheckBox.Name = "ramSaveCheckBox";
@@ -743,7 +743,7 @@
             // saveLabel
             // 
             saveLabel.AutoSize = true;
-            saveLabel.Location = new Point(577, 659);
+            saveLabel.Location = new Point(620, 676);
             saveLabel.Name = "saveLabel";
             saveLabel.Size = new Size(61, 15);
             saveLabel.TabIndex = 230;
@@ -751,7 +751,7 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(564, 625);
+            saveButton.Location = new Point(607, 642);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(92, 23);
             saveButton.TabIndex = 229;
@@ -762,7 +762,7 @@
             // autoSaveCheckBox
             // 
             autoSaveCheckBox.AutoSize = true;
-            autoSaveCheckBox.Location = new Point(667, 628);
+            autoSaveCheckBox.Location = new Point(710, 645);
             autoSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
             autoSaveCheckBox.MinimumSize = new Size(110, 19);
             autoSaveCheckBox.Name = "autoSaveCheckBox";
@@ -775,7 +775,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(40, 313);
+            label1.Location = new Point(83, 330);
             label1.MinimumSize = new Size(318, 15);
             label1.Name = "label1";
             label1.Size = new Size(318, 15);
@@ -786,7 +786,7 @@
             // filterConditionType
             // 
             filterConditionType.FormattingEnabled = true;
-            filterConditionType.Location = new Point(934, 132);
+            filterConditionType.Location = new Point(977, 149);
             filterConditionType.Margin = new Padding(3, 2, 3, 2);
             filterConditionType.Name = "filterConditionType";
             filterConditionType.Size = new Size(234, 23);
@@ -795,7 +795,7 @@
             // 
             // filterConditionTypeTextBox
             // 
-            filterConditionTypeTextBox.Location = new Point(850, 132);
+            filterConditionTypeTextBox.Location = new Point(893, 149);
             filterConditionTypeTextBox.Margin = new Padding(3, 2, 3, 2);
             filterConditionTypeTextBox.Name = "filterConditionTypeTextBox";
             filterConditionTypeTextBox.Size = new Size(57, 23);
@@ -805,7 +805,7 @@
             // conditionType
             // 
             conditionType.FormattingEnabled = true;
-            conditionType.Location = new Point(532, 130);
+            conditionType.Location = new Point(575, 147);
             conditionType.Margin = new Padding(3, 2, 3, 2);
             conditionType.Name = "conditionType";
             conditionType.Size = new Size(234, 23);
@@ -893,7 +893,7 @@
             Controls.Add(label19);
             Controls.Add(label12);
             Name = "Condition";
-            Size = new Size(1200, 720);
+            Size = new Size(1364, 720);
             ResumeLayout(false);
             PerformLayout();
         }
