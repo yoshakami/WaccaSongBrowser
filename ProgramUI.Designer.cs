@@ -235,6 +235,25 @@
             sortAllBigButton = new Button();
             sortAllIDsmallButton = new Button();
             filterInvertMatchesButton = new Button();
+            easterEggLabel = new Label();
+            writeChartersNormalButton = new Button();
+            writeChartersHardButton = new Button();
+            writeChartersExtremeButton = new Button();
+            searchNext999Button = new Button();
+            next999Button = new Button();
+            writeChartersInfernoButton = new Button();
+            filterCreatorHardCheckBox = new CheckBox();
+            filterCreatorHardLabel = new Label();
+            filterCreatorHardTextBox = new TextBox();
+            filterCreatorExtremeCheckBox = new CheckBox();
+            filterCreatorExtremeLabel = new Label();
+            filterCreatorExtremeTextBox = new TextBox();
+            filterCreatorInfernoCheckBox = new CheckBox();
+            filterCreatorInfernoLabel = new Label();
+            filterCreatorInfernoTextBox = new TextBox();
+            writeArtistButton = new Button();
+            writeMusicButton = new Button();
+            rubiAutoFixCheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)jacketPictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -2239,13 +2258,220 @@
             filterInvertMatchesButton.UseVisualStyleBackColor = true;
             filterInvertMatchesButton.Click += filterInvertMatchesButton_Click;
             // 
+            // easterEggLabel
+            // 
+            easterEggLabel.AutoSize = true;
+            easterEggLabel.Location = new Point(1397, 15);
+            easterEggLabel.Name = "easterEggLabel";
+            easterEggLabel.Size = new Size(105, 15);
+            easterEggLabel.TabIndex = 242;
+            easterEggLabel.Text = "Easter Egg Buttons";
+            // 
+            // writeChartersNormalButton
+            // 
+            writeChartersNormalButton.Location = new Point(1355, 40);
+            writeChartersNormalButton.Name = "writeChartersNormalButton";
+            writeChartersNormalButton.Size = new Size(183, 50);
+            writeChartersNormalButton.TabIndex = 243;
+            writeChartersNormalButton.Text = "Write all Normal Chart Creators to ChartersNormal.txt";
+            writeChartersNormalButton.UseVisualStyleBackColor = true;
+            writeChartersNormalButton.Click += writeChartersNormalButton_Click;
+            // 
+            // writeChartersHardButton
+            // 
+            writeChartersHardButton.Location = new Point(1355, 100);
+            writeChartersHardButton.Name = "writeChartersHardButton";
+            writeChartersHardButton.Size = new Size(183, 50);
+            writeChartersHardButton.TabIndex = 244;
+            writeChartersHardButton.Text = "Write all Hard Chart Creators to ChartersHard.txt";
+            writeChartersHardButton.UseVisualStyleBackColor = true;
+            writeChartersHardButton.Click += writeChartersHardButton_Click;
+            // 
+            // writeChartersExtremeButton
+            // 
+            writeChartersExtremeButton.Location = new Point(1355, 160);
+            writeChartersExtremeButton.Name = "writeChartersExtremeButton";
+            writeChartersExtremeButton.Size = new Size(183, 50);
+            writeChartersExtremeButton.TabIndex = 245;
+            writeChartersExtremeButton.Text = "Write all Extreme Chart Creators to ChartersExtreme.txt";
+            writeChartersExtremeButton.UseVisualStyleBackColor = true;
+            writeChartersExtremeButton.Click += writeChartersExtremeButton_Click;
+            // 
+            // searchNext999Button
+            // 
+            searchNext999Button.Location = new Point(1355, 456);
+            searchNext999Button.Name = "searchNext999Button";
+            searchNext999Button.Size = new Size(183, 50);
+            searchNext999Button.TabIndex = 248;
+            searchNext999Button.Text = "Press Search Result Next Button 999 Times";
+            searchNext999Button.UseVisualStyleBackColor = true;
+            searchNext999Button.Click += searchNext999Button_Click;
+            // 
+            // next999Button
+            // 
+            next999Button.Location = new Point(1355, 396);
+            next999Button.Name = "next999Button";
+            next999Button.Size = new Size(183, 50);
+            next999Button.TabIndex = 247;
+            next999Button.Text = "Press SongID Next Button 999 Times";
+            next999Button.UseVisualStyleBackColor = true;
+            next999Button.Click += next999Button_Click;
+            // 
+            // writeChartersInfernoButton
+            // 
+            writeChartersInfernoButton.Location = new Point(1355, 219);
+            writeChartersInfernoButton.Name = "writeChartersInfernoButton";
+            writeChartersInfernoButton.Size = new Size(183, 50);
+            writeChartersInfernoButton.TabIndex = 246;
+            writeChartersInfernoButton.Text = "Write all Inferno Chart Creators to ChartersInferno.txt";
+            writeChartersInfernoButton.UseVisualStyleBackColor = true;
+            writeChartersInfernoButton.Click += writeChartersInfernoButton_Click;
+            // 
+            // filterCreatorHardCheckBox
+            // 
+            filterCreatorHardCheckBox.AutoSize = true;
+            filterCreatorHardCheckBox.Location = new Point(1357, 536);
+            filterCreatorHardCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterCreatorHardCheckBox.Name = "filterCreatorHardCheckBox";
+            filterCreatorHardCheckBox.Size = new Size(15, 14);
+            filterCreatorHardCheckBox.TabIndex = 251;
+            filterCreatorHardCheckBox.UseVisualStyleBackColor = true;
+            filterCreatorHardCheckBox.CheckedChanged += filterCreatorHardCheckBox_CheckedChanged;
+            // 
+            // filterCreatorHardLabel
+            // 
+            filterCreatorHardLabel.AutoSize = true;
+            filterCreatorHardLabel.Location = new Point(1392, 508);
+            filterCreatorHardLabel.Name = "filterCreatorHardLabel";
+            filterCreatorHardLabel.Size = new Size(107, 15);
+            filterCreatorHardLabel.TabIndex = 250;
+            filterCreatorHardLabel.Text = "Chart Creator Hard";
+            // 
+            // filterCreatorHardTextBox
+            // 
+            filterCreatorHardTextBox.Location = new Point(1376, 530);
+            filterCreatorHardTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterCreatorHardTextBox.Name = "filterCreatorHardTextBox";
+            filterCreatorHardTextBox.Size = new Size(162, 23);
+            filterCreatorHardTextBox.TabIndex = 249;
+            // 
+            // filterCreatorExtremeCheckBox
+            // 
+            filterCreatorExtremeCheckBox.AutoSize = true;
+            filterCreatorExtremeCheckBox.Location = new Point(1357, 588);
+            filterCreatorExtremeCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterCreatorExtremeCheckBox.Name = "filterCreatorExtremeCheckBox";
+            filterCreatorExtremeCheckBox.Size = new Size(15, 14);
+            filterCreatorExtremeCheckBox.TabIndex = 254;
+            filterCreatorExtremeCheckBox.UseVisualStyleBackColor = true;
+            filterCreatorExtremeCheckBox.CheckedChanged += filterCreatorExtremeCheckBox_CheckedChanged;
+            // 
+            // filterCreatorExtremeLabel
+            // 
+            filterCreatorExtremeLabel.AutoSize = true;
+            filterCreatorExtremeLabel.Location = new Point(1392, 560);
+            filterCreatorExtremeLabel.Name = "filterCreatorExtremeLabel";
+            filterCreatorExtremeLabel.Size = new Size(124, 15);
+            filterCreatorExtremeLabel.TabIndex = 253;
+            filterCreatorExtremeLabel.Text = "Chart Creator Extreme";
+            // 
+            // filterCreatorExtremeTextBox
+            // 
+            filterCreatorExtremeTextBox.Location = new Point(1376, 582);
+            filterCreatorExtremeTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterCreatorExtremeTextBox.Name = "filterCreatorExtremeTextBox";
+            filterCreatorExtremeTextBox.Size = new Size(162, 23);
+            filterCreatorExtremeTextBox.TabIndex = 252;
+            // 
+            // filterCreatorInfernoCheckBox
+            // 
+            filterCreatorInfernoCheckBox.AutoSize = true;
+            filterCreatorInfernoCheckBox.Location = new Point(1357, 639);
+            filterCreatorInfernoCheckBox.Margin = new Padding(3, 2, 3, 2);
+            filterCreatorInfernoCheckBox.Name = "filterCreatorInfernoCheckBox";
+            filterCreatorInfernoCheckBox.Size = new Size(15, 14);
+            filterCreatorInfernoCheckBox.TabIndex = 257;
+            filterCreatorInfernoCheckBox.UseVisualStyleBackColor = true;
+            filterCreatorInfernoCheckBox.CheckedChanged += filterCreatorInfernoCheckBox_CheckedChanged;
+            // 
+            // filterCreatorInfernoLabel
+            // 
+            filterCreatorInfernoLabel.AutoSize = true;
+            filterCreatorInfernoLabel.Location = new Point(1392, 611);
+            filterCreatorInfernoLabel.Name = "filterCreatorInfernoLabel";
+            filterCreatorInfernoLabel.Size = new Size(119, 15);
+            filterCreatorInfernoLabel.TabIndex = 256;
+            filterCreatorInfernoLabel.Text = "Chart Creator Inferno";
+            // 
+            // filterCreatorInfernoTextBox
+            // 
+            filterCreatorInfernoTextBox.Location = new Point(1376, 633);
+            filterCreatorInfernoTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterCreatorInfernoTextBox.Name = "filterCreatorInfernoTextBox";
+            filterCreatorInfernoTextBox.Size = new Size(162, 23);
+            filterCreatorInfernoTextBox.TabIndex = 255;
+            // 
+            // writeArtistButton
+            // 
+            writeArtistButton.Location = new Point(1355, 336);
+            writeArtistButton.Name = "writeArtistButton";
+            writeArtistButton.Size = new Size(183, 50);
+            writeArtistButton.TabIndex = 259;
+            writeArtistButton.Text = "Write all Artist Title to MusicArtist.txt";
+            writeArtistButton.UseVisualStyleBackColor = true;
+            writeArtistButton.Click += writeArtistButton_Click;
+            // 
+            // writeMusicButton
+            // 
+            writeMusicButton.Location = new Point(1355, 277);
+            writeMusicButton.Name = "writeMusicButton";
+            writeMusicButton.Size = new Size(183, 50);
+            writeMusicButton.TabIndex = 258;
+            writeMusicButton.Text = "Write all Music Title to MusicTitle.txt";
+            writeMusicButton.UseVisualStyleBackColor = true;
+            writeMusicButton.Click += writeMusicButton_Click;
+            // 
+            // rubiAutoFixCheckBox
+            // 
+            rubiAutoFixCheckBox.AutoSize = true;
+            rubiAutoFixCheckBox.Checked = true;
+            rubiAutoFixCheckBox.CheckState = CheckState.Checked;
+            rubiAutoFixCheckBox.Location = new Point(626, 196);
+            rubiAutoFixCheckBox.Margin = new Padding(0);
+            rubiAutoFixCheckBox.MaximumSize = new Size(9999, 16);
+            rubiAutoFixCheckBox.Name = "rubiAutoFixCheckBox";
+            rubiAutoFixCheckBox.Size = new Size(97, 16);
+            rubiAutoFixCheckBox.TabIndex = 260;
+            rubiAutoFixCheckBox.Text = "Auto Fix Rubi";
+            rubiAutoFixCheckBox.UseVisualStyleBackColor = true;
+            rubiAutoFixCheckBox.CheckedChanged += rubiAutoFixCheckBox_CheckedChanged;
+            // 
             // WaccaSongBrowser
             // 
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1348, 681);
+            ClientSize = new Size(1613, 681);
             Controls.Add(panelMainContainer);
+            Controls.Add(rubiAutoFixCheckBox);
+            Controls.Add(writeArtistButton);
+            Controls.Add(writeMusicButton);
+            Controls.Add(filterCreatorInfernoCheckBox);
+            Controls.Add(filterCreatorInfernoLabel);
+            Controls.Add(filterCreatorInfernoTextBox);
+            Controls.Add(filterCreatorExtremeCheckBox);
+            Controls.Add(filterCreatorExtremeLabel);
+            Controls.Add(filterCreatorExtremeTextBox);
+            Controls.Add(filterCreatorHardCheckBox);
+            Controls.Add(filterCreatorHardLabel);
+            Controls.Add(filterCreatorHardTextBox);
+            Controls.Add(searchNext999Button);
+            Controls.Add(next999Button);
+            Controls.Add(writeChartersInfernoButton);
+            Controls.Add(writeChartersExtremeButton);
+            Controls.Add(writeChartersHardButton);
+            Controls.Add(writeChartersNormalButton);
+            Controls.Add(easterEggLabel);
             Controls.Add(filterInvertMatchesButton);
             Controls.Add(sortAllBigButton);
             Controls.Add(sortAllIDsmallButton);
@@ -2670,5 +2896,24 @@
         private Button sortAllBigButton;
         private Button sortAllIDsmallButton;
         private Button filterInvertMatchesButton;
+        private Label easterEggLabel;
+        private Button writeChartersNormalButton;
+        private Button writeChartersHardButton;
+        private Button writeChartersExtremeButton;
+        private Button searchNext999Button;
+        private Button next999Button;
+        private Button writeChartersInfernoButton;
+        private CheckBox filterCreatorHardCheckBox;
+        private Label filterCreatorHardLabel;
+        private TextBox filterCreatorHardTextBox;
+        private CheckBox filterCreatorExtremeCheckBox;
+        private Label filterCreatorExtremeLabel;
+        private TextBox filterCreatorExtremeTextBox;
+        private CheckBox filterCreatorInfernoCheckBox;
+        private Label filterCreatorInfernoLabel;
+        private TextBox filterCreatorInfernoTextBox;
+        private Button writeArtistButton;
+        private Button writeMusicButton;
+        private CheckBox rubiAutoFixCheckBox;
     }
 }

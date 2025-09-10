@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using UAssetAPI;
@@ -11,68 +10,19 @@ namespace WaccaSongBrowser
 {
     public partial class WaccaSongBrowser : Form
     {
+        //string[] WaccaVersions = { "1: Wacca", "2: Wacca S", "3: Wacca Lily", "4: Wacca Lily R", "5: Wacca Reverse", "6: Hidden" };
+        string[] WaccaVersions = { "Luxance", "Takahashi", "Tiger", "Snowball", "Twis", "6: Hidden" };
+
+        // string[] ScoreGenre = { "0: Anime/Pop", "1: Vocaloid", "2: Touhou", "3: 2.5D", "4: Variety", "5: Original", "6: Tano*C" };
+        string[] ScoreGenre = { "0: Anime/Pop", "1: Vocaloid", "2: Touhou", "3: Hot Picks", "4: Variety", "5: Nanahira", "6: Tano*C", "7: Hidden" };
+
         public WaccaSongBrowser()
         {
             // I use UserControls for other pages. they are inside panelMainContainer
-            // search up that word in this code and you'll see what to edit
+            // see right under this function
             InitializeComponent();
-            panelMainContainer.Dock = DockStyle.Fill;
-            genre.Items.Add("0: Anime/Pop");
-            genre.Items.Add("1: Vocaloid");
-            genre.Items.Add("2: Touhou");
-            genre.Items.Add("3: Hot Picks");
-            genre.Items.Add("4: Variety");
-            genre.Items.Add("5: Nanahira");
-            genre.Items.Add("6: Tano*C");
-            filterGenre.Items.Add("0: Anime/Pop");
-            filterGenre.Items.Add("1: Vocaloid");
-            filterGenre.Items.Add("2: Touhou");
-            filterGenre.Items.Add("3: Hot Picks");
-            filterGenre.Items.Add("4: Variety");
-            filterGenre.Items.Add("5: Nanahira");
-            filterGenre.Items.Add("6: Tano*C");
-            version.Items.Add("1: Wacca");
-            version.Items.Add("2: Wacca S");
-            version.Items.Add("3: Wacca Lily");
-            version.Items.Add("4: Wacca Lily R");
-            version.Items.Add("5: Wacca Reverse");
-            filterVersion.Items.Add("1: Wacca");
-            filterVersion.Items.Add("2: Wacca S");
-            filterVersion.Items.Add("3: Wacca Lily");
-            filterVersion.Items.Add("4: Wacca Lily R");
-            filterVersion.Items.Add("5: Wacca Reverse");
-
-            filterMusicEnableCheckBox_CheckedChanged(null, null);
-            filterArtistEnableCheckBox_CheckedChanged(null, null);
-            filterGenreEnableCheckBox_CheckedChanged(null, null);
-            filterVersionEnableCheckBox_CheckedChanged(null, null);
-            filterNewEnableCheckBox_CheckedChanged(null, null);
-            filterBeginnerEnableCheckBox_CheckedChanged(null, null);
-            filterOfflineEnableCheckBox_CheckedChanged(null, null);
-            filterjaEnableCheckBox_CheckedChanged(null, null);
-            filterusaEnableCheckBox_CheckedChanged(null, null);
-            filterzhtwEnableCheckBox_CheckedChanged(null, null);
-            filterenhkEnableCheckBox_CheckedChanged(null, null);
-            filterensgEnableCheckBox_CheckedChanged(null, null);
-            filterkokrEnableCheckBox_CheckedChanged(null, null);
-            filtercnguEnableCheckBox_CheckedChanged(null, null);
-            filtercngeEnableCheckBox_CheckedChanged(null, null);
-            filtercnvipEnableCheckBox_CheckedChanged(null, null);
-            filternotAvailableEnableCheckBox_CheckedChanged(null, null);
-            filterBingoCheckBox0_CheckedChanged(null, null);
-            filterBingoCheckBox1_CheckedChanged(null, null);
-            filterBingoCheckBox2_CheckedChanged(null, null);
-            filterBingoCheckBox3_CheckedChanged(null, null);
-            filterBingoCheckBox4_CheckedChanged(null, null);
-            filterBingoCheckBox5_CheckedChanged(null, null);
-            filterBingoCheckBox6_CheckedChanged(null, null);
-            filterBingoCheckBox7_CheckedChanged(null, null);
-            filterBingoCheckBox8_CheckedChanged(null, null);
-            filterBingoCheckBox9_CheckedChanged(null, null);
-            filterPointCostCheckBox_CheckedChanged(null, null);
-            filterMovieNormalCheckBox_CheckedChanged(null, null);
-            filterCreatorNormalCheckBox_CheckedChanged(null, null);
-            filterInfernoEnableCheckBox_CheckedChanged(null, null);
+            FillLists();
+            this.Size = new Size(1354, 720);
             // load the "main page"
             LoadPage(new Menu());
         }
@@ -510,12 +460,30 @@ namespace WaccaSongBrowser
                 filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_ja_JP") == filterjaCheckBox.Checked);
 
 
-            // --- chart creator normal
+            // --- chart creatorzzzzzzzz
             if (filterCreatorNormalCheckBox.Checked)
             {
                 string filter = filterCreatorNormalTextBox.Text.Trim().ToLower();
                 if (!string.IsNullOrEmpty(filter))
                     filtered = filtered.Where(song => song.NotesDesignerNormal != null && song.NotesDesignerNormal.ToLower().Contains(filter));
+            }
+            if (filterCreatorHardCheckBox.Checked)
+            {
+                string filter = filterCreatorHardTextBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.NotesDesignerHard != null && song.NotesDesignerHard.ToLower().Contains(filter));
+            }
+            if (filterCreatorExtremeCheckBox.Checked)
+            {
+                string filter = filterCreatorExtremeTextBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.NotesDesignerExpert != null && song.NotesDesignerExpert.ToLower().Contains(filter));
+            }
+            if (filterCreatorInfernoCheckBox.Checked)
+            {
+                string filter = filterCreatorInfernoTextBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.NotesDesignerInferno != null && song.NotesDesignerInferno.ToLower().Contains(filter));
             }
             // --- movie asset name normal
             if (filterMovieNormalCheckBox.Checked)
@@ -674,7 +642,7 @@ namespace WaccaSongBrowser
 
         private void searchPreviousButton_Click(object sender, EventArgs e)
         {
-            if (filteredSongs == null) return;
+            if (filteredSongs.Count == 0) return;
             filteredSongsSelectedIndex--;
             if (filteredSongsSelectedIndex < 0)
             {
@@ -687,7 +655,7 @@ namespace WaccaSongBrowser
 
         private void searchNextButton_Click(object sender, EventArgs e)
         {
-            if (filteredSongs == null) return;
+            if (filteredSongs.Count == 0) return;
             filteredSongsSelectedIndex++;
             if (filteredSongsSelectedIndex >= filteredSongs.Count)
             {
@@ -696,6 +664,74 @@ namespace WaccaSongBrowser
             saveChanges();
             currentSongId = filteredSongs[filteredSongsSelectedIndex].UniqueID;
             LoadUI(filteredSongs[filteredSongsSelectedIndex]);
+        }
+        void FillLists()
+        {
+            panelMainContainer.Dock = DockStyle.Fill;
+            genre.Items.Add(ScoreGenre[0]);
+            genre.Items.Add(ScoreGenre[1]);
+            genre.Items.Add(ScoreGenre[2]);
+            genre.Items.Add(ScoreGenre[3]);
+            genre.Items.Add(ScoreGenre[4]);
+            genre.Items.Add(ScoreGenre[5]);
+            genre.Items.Add(ScoreGenre[6]);
+            genre.Items.Add(ScoreGenre[7]);
+            filterGenre.Items.Add(ScoreGenre[0]);
+            filterGenre.Items.Add(ScoreGenre[1]);
+            filterGenre.Items.Add(ScoreGenre[2]);
+            filterGenre.Items.Add(ScoreGenre[3]);
+            filterGenre.Items.Add(ScoreGenre[4]);
+            filterGenre.Items.Add(ScoreGenre[5]);
+            filterGenre.Items.Add(ScoreGenre[6]);
+            filterGenre.Items.Add(ScoreGenre[7]);
+            version.Items.Add(WaccaVersions[0]);
+            version.Items.Add(WaccaVersions[1]);
+            version.Items.Add(WaccaVersions[2]);
+            version.Items.Add(WaccaVersions[3]);
+            version.Items.Add(WaccaVersions[4]);
+            version.Items.Add(WaccaVersions[5]);
+            filterVersion.Items.Add(WaccaVersions[0]);
+            filterVersion.Items.Add(WaccaVersions[1]);
+            filterVersion.Items.Add(WaccaVersions[2]);
+            filterVersion.Items.Add(WaccaVersions[3]);
+            filterVersion.Items.Add(WaccaVersions[4]);
+            filterVersion.Items.Add(WaccaVersions[5]);
+
+            filterMusicEnableCheckBox_CheckedChanged(null, null);
+            filterArtistEnableCheckBox_CheckedChanged(null, null);
+            filterGenreEnableCheckBox_CheckedChanged(null, null);
+            filterVersionEnableCheckBox_CheckedChanged(null, null);
+            filterNewEnableCheckBox_CheckedChanged(null, null);
+            filterBeginnerEnableCheckBox_CheckedChanged(null, null);
+            filterOfflineEnableCheckBox_CheckedChanged(null, null);
+            filterjaEnableCheckBox_CheckedChanged(null, null);
+            filterusaEnableCheckBox_CheckedChanged(null, null);
+            filterzhtwEnableCheckBox_CheckedChanged(null, null);
+            filterenhkEnableCheckBox_CheckedChanged(null, null);
+            filterensgEnableCheckBox_CheckedChanged(null, null);
+            filterkokrEnableCheckBox_CheckedChanged(null, null);
+            filtercnguEnableCheckBox_CheckedChanged(null, null);
+            filtercngeEnableCheckBox_CheckedChanged(null, null);
+            filtercnvipEnableCheckBox_CheckedChanged(null, null);
+            filternotAvailableEnableCheckBox_CheckedChanged(null, null);
+            filterBingoCheckBox0_CheckedChanged(null, null);
+            filterBingoCheckBox1_CheckedChanged(null, null);
+            filterBingoCheckBox2_CheckedChanged(null, null);
+            filterBingoCheckBox3_CheckedChanged(null, null);
+            filterBingoCheckBox4_CheckedChanged(null, null);
+            filterBingoCheckBox5_CheckedChanged(null, null);
+            filterBingoCheckBox6_CheckedChanged(null, null);
+            filterBingoCheckBox7_CheckedChanged(null, null);
+            filterBingoCheckBox8_CheckedChanged(null, null);
+            filterBingoCheckBox9_CheckedChanged(null, null);
+            filterPointCostCheckBox_CheckedChanged(null, null);
+            filterMovieNormalCheckBox_CheckedChanged(null, null);
+            filterCreatorNormalCheckBox_CheckedChanged(null, null);
+            filterInfernoEnableCheckBox_CheckedChanged(null, null);
+            filterCreatorHardCheckBox_CheckedChanged(null, null);
+            filterCreatorExtremeCheckBox_CheckedChanged(null, null);
+            filterCreatorInfernoCheckBox_CheckedChanged(null, null);
+
         }
         private void filternotAvailableButton_Click(object sender, EventArgs e)
         {
@@ -893,7 +929,7 @@ namespace WaccaSongBrowser
                         else
                         {
                             // --- Create new row ---
-                            var newRow = new StructPropertyData(new FName(UnlockMusicTable, "RowStruct"))
+                            var newRow = new StructPropertyData(new FName(UnlockMusicTable, $"Data_{musicId}"))
                             {
                                 Value = new List<PropertyData>
                                 {
@@ -950,7 +986,7 @@ namespace WaccaSongBrowser
                     else
                     {
                         // --- Create new row ---
-                        var newRow = new StructPropertyData(new FName(UnlockMusicTable, "RowStruct"))
+                        var newRow = new StructPropertyData(new FName(UnlockMusicTable, newId.ToString()))
                         {
                             Value = new List<PropertyData>
                                 {
@@ -1006,7 +1042,7 @@ namespace WaccaSongBrowser
                             SetFieldValue(rowStruct, "MusicMessage", songData.MusicMessage);
                             SetFieldValue(rowStruct, "ArtistMessage", songData.ArtistMessage);
                             //SetFieldValue(rowStruct, "CopyrightMessage", songData.CopyrightMessage);
-                            SetFieldValue(rowStruct, "VersionNo", (songData.Version + 1));
+                            SetFieldValue(rowStruct, "VersionNo", songData.Version);
                             SetFieldValue(rowStruct, "AssetDirectory", songData.AssetDirectory);
                             SetFieldValue(rowStruct, "MovieAssetName", songData.MovieAssetName);
                             SetFieldValue(rowStruct, "MovieAssetNameHard", songData.MovieAssetNameHard);
@@ -1108,24 +1144,21 @@ namespace WaccaSongBrowser
                 Console.WriteLine($"Unsupported or mismatched type for field '{fieldName}'");
             }
         }
-
         private void nextSongButton_Click(object sender, EventArgs e)
         {
-            songid.SelectedIndex += 1;
-            if (songid.SelectedIndex >= songid.Items.Count)
-            {
+            if (songid.SelectedIndex >= songid.Items.Count - 1)
                 songid.SelectedIndex = 0;
-            }
+            else
+                songid.SelectedIndex += 1;
             songidButton_Click(null, null);
         }
 
         private void previousSongButton_Click(object sender, EventArgs e)
         {
-            songid.SelectedIndex -= 1;
-            if (songid.SelectedIndex < 0)
-            {
+            if (songid.SelectedIndex <= 0)
                 songid.SelectedIndex = songid.Items.Count - 1;
-            }
+            else
+                songid.SelectedIndex -= 1;
             songidButton_Click(null, null);
         }
 
@@ -1418,6 +1451,7 @@ namespace WaccaSongBrowser
             if (File.Exists(newPath))
             {
                 UnlockInfernoTableFilePath = newPath;
+                UnlockInfernoTable = new UAsset(UnlockInfernoTableFilePath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
                 //ReadUnlockMusic();
             }
             else
@@ -1496,33 +1530,43 @@ namespace WaccaSongBrowser
         static bool finished = true;
         private void rubiTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!finished)
+            if (!finished || !rubiAutoFixCheckBox.Checked)
                 return;
 
             finished = false;
 
-            // Save the caret position
             int caretIndex = rubiTextBox.SelectionStart;
 
-            // Convert each character to full-width
-            string input = rubiTextBox.Text;
+            string input = musicTextBox.Text ?? "0";
+
+            // If '|' exists, take only the part after it
+            int pipeIndex = input.IndexOf('|');
+            if (pipeIndex >= 0 && pipeIndex < input.Length - 1)
+            {
+                input = input.Substring(pipeIndex + 1);
+            }
+
+            // Convert to uppercase
+            input = input.ToUpperInvariant();
+
+            // Keep only A–Z and 0–9
             var sb = new StringBuilder(input.Length);
             foreach (char c in input)
             {
-                if (c >= '!' && c <= '~')
+                if ((c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))
                     sb.Append((char)(c + 0xFEE0));
-                else
-                    sb.Append(c);
             }
 
             rubiTextBox.Text = sb.ToString();
+            if (rubiTextBox.Text == "")
+                rubiTextBox.Text = ((char)('0' + 0xFEE0)).ToString();
 
-            // Restore caret position
-            rubiTextBox.SelectionStart = caretIndex;
+            rubiTextBox.SelectionStart = Math.Min(caretIndex, rubiTextBox.Text.Length);
             rubiTextBox.SelectionLength = 0;
 
             finished = true;
         }
+
 
         private void songid_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1956,6 +2000,24 @@ namespace WaccaSongBrowser
             filterCreatorNormalTextBox.Enabled = filterCreatorNormalCheckBox.Checked;
         }
 
+        private void filterCreatorHardCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterCreatorHardLabel.Enabled = filterCreatorHardCheckBox.Checked;
+            filterCreatorHardTextBox.Enabled = filterCreatorHardCheckBox.Checked;
+        }
+
+        private void filterCreatorExtremeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterCreatorExtremeLabel.Enabled = filterCreatorExtremeCheckBox.Checked;
+            filterCreatorExtremeTextBox.Enabled = filterCreatorExtremeCheckBox.Checked;
+        }
+
+        private void filterCreatorInfernoCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterCreatorInfernoLabel.Enabled = filterCreatorInfernoCheckBox.Checked;
+            filterCreatorInfernoTextBox.Enabled = filterCreatorInfernoCheckBox.Checked;
+        }
+
         private void filterMovieNormalCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             filterMovieNormalLabel.Enabled = filterMovieNormalCheckBox.Checked;
@@ -2307,6 +2369,83 @@ namespace WaccaSongBrowser
 
             // If we reach here, no DataTableExport found
             consoleLabel.Text = "MusicParameterTable export not found.";
+        }
+
+        // --- Helpers ---
+        private void WriteListToFile(IEnumerable<string> lines, string filename)
+        {
+            try
+            {
+                File.WriteAllLines(filename, lines.Where(l => !string.IsNullOrWhiteSpace(l)));
+                consoleLabel.Text = $"Wrote {lines.Count()} lines to {filename}";
+            }
+            catch (Exception ex)
+            {
+                consoleLabel.Text = $"Error writing {filename}: {ex.Message}";
+            }
+        }
+
+        // --- Buttons ---
+
+        private void writeChartersNormalButton_Click(object sender, EventArgs e)
+        {
+            var lines = allSongs.Select(s => s.NotesDesignerNormal);
+            WriteListToFile(lines, "ChartersNormal.txt");
+        }
+
+        private void writeChartersHardButton_Click(object sender, EventArgs e)
+        {
+            var lines = allSongs.Select(s => s.NotesDesignerHard);
+            WriteListToFile(lines, "ChartersHard.txt");
+        }
+
+        private void writeChartersExtremeButton_Click(object sender, EventArgs e)
+        {
+            var lines = allSongs.Select(s => s.NotesDesignerExpert);
+            WriteListToFile(lines, "ChartersExtreme.txt");
+        }
+
+        private void writeChartersInfernoButton_Click(object sender, EventArgs e)
+        {
+            var lines = allSongs.Select(s => s.NotesDesignerInferno);
+            WriteListToFile(lines, "ChartersInferno.txt");
+        }
+
+        private void writeMusicButton_Click(object sender, EventArgs e)
+        {
+            var lines = allSongs.Select(s => s.MusicMessage);
+            WriteListToFile(lines, "MusicTitle.txt");
+        }
+
+        private void writeArtistButton_Click(object sender, EventArgs e)
+        {
+            var lines = allSongs.Select(s => s.ArtistMessage);
+            WriteListToFile(lines, "MusicArtist.txt");
+        }
+
+
+        private void next999Button_Click(object sender, EventArgs e)
+        {
+            for (short i = 0; i < 1000; i++)
+            {
+                nextSongButton_Click(null, null);
+            }
+        }
+
+        private void searchNext999Button_Click(object sender, EventArgs e)
+        {
+            for (short i = 0; i < 1000; i++)
+            {
+                searchNextButton_Click(null, null);
+            }
+        }
+
+        private void rubiAutoFixCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rubiAutoFixCheckBox.Checked)
+            {
+                rubiTextBox_TextChanged(null, null);
+            }
         }
     }
 }
