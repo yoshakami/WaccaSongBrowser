@@ -18,16 +18,16 @@ namespace WaccaSongBrowser
             genre.Items.Add("0: Anime/Pop");
             genre.Items.Add("1: Vocaloid");
             genre.Items.Add("2: Touhou");
-            genre.Items.Add("3: 2.5D");
+            genre.Items.Add("3: Hot Picks");
             genre.Items.Add("4: Variety");
-            genre.Items.Add("5: Original");
+            genre.Items.Add("5: Nanahira");
             genre.Items.Add("6: Tano*C");
             filterGenre.Items.Add("0: Anime/Pop");
             filterGenre.Items.Add("1: Vocaloid");
             filterGenre.Items.Add("2: Touhou");
-            filterGenre.Items.Add("3: 2.5D");
+            filterGenre.Items.Add("3: Hot Picks");
             filterGenre.Items.Add("4: Variety");
-            filterGenre.Items.Add("5: Original");
+            filterGenre.Items.Add("5: Nanahira");
             filterGenre.Items.Add("6: Tano*C");
             version.Items.Add("1: Wacca");
             version.Items.Add("2: Wacca S");
@@ -57,6 +57,20 @@ namespace WaccaSongBrowser
             filtercngeEnableCheckBox_CheckedChanged(null, null);
             filtercnvipEnableCheckBox_CheckedChanged(null, null);
             filternotAvailableEnableCheckBox_CheckedChanged(null, null);
+            filterBingoCheckBox0_CheckedChanged(null, null);
+            filterBingoCheckBox1_CheckedChanged(null, null);
+            filterBingoCheckBox2_CheckedChanged(null, null);
+            filterBingoCheckBox3_CheckedChanged(null, null);
+            filterBingoCheckBox4_CheckedChanged(null, null);
+            filterBingoCheckBox5_CheckedChanged(null, null);
+            filterBingoCheckBox6_CheckedChanged(null, null);
+            filterBingoCheckBox7_CheckedChanged(null, null);
+            filterBingoCheckBox8_CheckedChanged(null, null);
+            filterBingoCheckBox9_CheckedChanged(null, null);
+            filterPointCostCheckBox_CheckedChanged(null, null);
+            filterMovieNormalCheckBox_CheckedChanged(null, null);
+            filterCreatorNormalCheckBox_CheckedChanged(null, null);
+            filterInfernoEnableCheckBox_CheckedChanged(null, null);
             // load the "main page"
             LoadPage(new Menu());
         }
@@ -478,17 +492,46 @@ namespace WaccaSongBrowser
             if (filterBeginnerEnableCheckBox.Checked)
                 filtered = filtered.Where(song => song.Recommend == filterBeginnerCheckBox.Checked);
 
-            // --- Offline / NotAvailable ---
+            // --- has inferno
+            if (filterInfernoEnableCheckBox.Checked)
+            {
+                if (filterInfernoCheckBox.Checked)
+                    filtered = filtered.Where(song => song.DifficultyInfernoLv != 0);
+                else
+                    filtered = filtered.Where(song => song.DifficultyInfernoLv == 0);
+
+            }
+            // --- Offline=
             if (filterOfflineEnableCheckBox.Checked)
                 filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_Offline") == filterofflineCheckBox.Checked);
-
-            if (filternotAvailableEnableCheckBox.Checked)
-                filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_NoneActive") == filternotAvailableCheckBox.Checked);
-
-            // --- Culture filters ---
             if (filterjaEnableCheckBox.Checked)
                 filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_ja_JP") == filterjaCheckBox.Checked);
 
+
+            // --- chart creator normal
+            if (filterCreatorNormalCheckBox.Checked)
+            {
+                string filter = filterCreatorNormalTextBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.NotesDesignerNormal != null && song.NotesDesignerNormal.ToLower().Contains(filter));
+            }
+            // --- movie asset name normal
+            if (filterMovieNormalCheckBox.Checked)
+            {
+                string filter = filterMovieNormalTextBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.MovieAssetName != null && song.MovieAssetName.ToLower().Contains(filter));
+            }
+            // --- PointCost
+            if (filterPointCostCheckBox.Checked)
+            {
+                if (int.TryParse(filterPointCostTextBox.Text.Trim().ToLower(), out int cost))
+                {
+                    filtered = filtered.Where(song => song.WaccaPointCost == cost);
+                }
+            }
+
+            // --- Culture filters ---
             if (filterusaEnableCheckBox.Checked)
                 filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_en_US") == filterusaCheckBox.Checked);
 
@@ -512,6 +555,61 @@ namespace WaccaSongBrowser
 
             if (filtercnvipEnableCheckBox.Checked)
                 filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_h_Hans_CN_VipMember") == filtercnvipCheckBox.Checked);
+
+            if (filternotAvailableEnableCheckBox.Checked)
+                filtered = filtered.Where(song => GetBoolProperty(song, "ValidCulture_NoneActive") == filternotAvailableCheckBox.Checked);
+
+            // --- bingo filters ---
+            if (filterBingoCheckBox0.Checked)
+            {
+                if (int.TryParse(filterBingoTextBox0.Text.Trim().ToLower(), out int bingo0))
+                    filtered = filtered.Where(song => song.bingo0 == bingo0);
+            }
+            if (filterBingoCheckBox1.Checked)
+            {
+                if (int.TryParse(filterBingoTextBox1.Text.Trim().ToLower(), out int bingo1))
+                    filtered = filtered.Where(song => song.bingo1 == bingo1);
+            }
+            if (filterBingoCheckBox2.Checked)
+            {
+                if (int.TryParse(filterBingoTextBox2.Text.Trim().ToLower(), out int bingo2))
+                    filtered = filtered.Where(song => song.bingo2 == bingo2);
+            }
+            if (filterBingoCheckBox3.Checked)
+            {
+                if (int.TryParse(filterBingoTextBox3.Text.Trim().ToLower(), out int bingo3))
+                    filtered = filtered.Where(song => song.bingo3 == bingo3);
+            }
+            if (filterBingoCheckBox4.Checked)
+            {
+                if (int.TryParse(filterBingoTextBox4.Text.Trim().ToLower(), out int bingo4))
+                    filtered = filtered.Where(song => song.bingo4 == bingo4);
+            }
+            if (filterBingoCheckBox5.Checked)
+            {
+                if (int.TryParse(filterBingoTextBox5.Text.Trim().ToLower(), out int bingo5))
+                    filtered = filtered.Where(song => song.bingo5 == bingo5);
+            }
+            if (filterBingoCheckBox6.Checked)
+            {
+                if (int.TryParse(filterBingoTextBox6.Text.Trim().ToLower(), out int bingo6))
+                    filtered = filtered.Where(song => song.bingo6 == bingo6);
+            }
+            if (filterBingoCheckBox7.Checked)
+            {
+                if (int.TryParse(filterBingoTextBox7.Text.Trim().ToLower(), out int bingo7))
+                    filtered = filtered.Where(song => song.bingo7 == bingo7);
+            }
+            if (filterBingoCheckBox8.Checked)
+            {
+                if (int.TryParse(filterBingoTextBox8.Text.Trim().ToLower(), out int bingo8))
+                    filtered = filtered.Where(song => song.bingo8 == bingo8);
+            }
+            if (filterBingoCheckBox9.Checked)
+            {
+                if (int.TryParse(filterBingoTextBox9.Text.Trim().ToLower(), out int bingo9))
+                    filtered = filtered.Where(song => song.bingo9 == bingo9);
+            }
 
             // --- Final result ---
             var resultList = filtered.ToList();
@@ -537,7 +635,39 @@ namespace WaccaSongBrowser
             filteredSongs = resultList;
             filteredSongsSelectedIndex = 0;
         }
-        static List<SongData> filteredSongs;
+
+        private void filterInvertMatchesButton_Click(object sender, EventArgs e)
+        {
+            IEnumerable<SongData> filtered = allSongs;
+
+            // Exclude songs already in filteredSongs
+            filtered = filtered.Where(song => !filteredSongs.Any(fs => fs.UniqueID == song.UniqueID));
+
+            // --- Final result ---
+            var resultList = filtered.ToList();
+            if (resultList.Count == 0)
+            {
+                searchResultLabel.Text = "No match.";
+                return;
+            }
+
+            // Option A: Show first match immediately
+            var firstSong = resultList.First();
+            if (resultList.Count > 1)
+                searchResultLabel.Text = $"{resultList.Count} matches!";
+            else
+                searchResultLabel.Text = $"{resultList.Count} match!";
+
+            saveChanges();
+            currentSongId = firstSong.UniqueID;
+            LoadUI(firstSong);
+
+            // Option B: keep resultList for navigation (next/previous)
+            filteredSongs = resultList;
+            filteredSongsSelectedIndex = 0;
+        }
+
+        static List<SongData> filteredSongs = new List<SongData>();
         static int filteredSongsSelectedIndex;
 
         private void searchPreviousButton_Click(object sender, EventArgs e)
@@ -1673,21 +1803,25 @@ namespace WaccaSongBrowser
         }
         private void filterMusicEnableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            filterMusicLabel.Enabled = filterMusicEnableCheckBox.Checked;
             filterMusicTextBox.Enabled = filterMusicEnableCheckBox.Checked;
         }
 
         private void filterArtistEnableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            filterArtistLabel.Enabled = filterArtistEnableCheckBox.Checked;
             filterArtistTextBox.Enabled = filterArtistEnableCheckBox.Checked;
         }
 
         private void filterGenreEnableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            filterGenreLabel.Enabled = filterGenreEnableCheckBox.Checked;
             filterGenre.Enabled = filterGenreEnableCheckBox.Checked;
         }
 
         private void filterVersionEnableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            filterVersionLabel.Enabled = filterVersionEnableCheckBox.Checked;
             filterVersion.Enabled = filterVersionEnableCheckBox.Checked;
         }
 
@@ -1754,6 +1888,165 @@ namespace WaccaSongBrowser
         private void filternotAvailableEnableCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             filternotAvailableCheckBox.Enabled = filternotAvailableEnableCheckBox.Checked;
+        }
+
+        private void filterBingoCheckBox0_CheckedChanged(object sender, EventArgs e)
+        {
+            filterBingoTextBox0.Enabled = filterBingoCheckBox0.Checked;
+            filterBingoLabel0.Enabled = filterBingoCheckBox0.Checked;
+        }
+
+        private void filterBingoCheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            filterBingoTextBox1.Enabled = filterBingoCheckBox1.Checked;
+            filterBingoLabel1.Enabled = filterBingoCheckBox1.Checked;
+        }
+
+        private void filterBingoCheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            filterBingoTextBox2.Enabled = filterBingoCheckBox2.Checked;
+            filterBingoLabel2.Enabled = filterBingoCheckBox2.Checked;
+        }
+
+        private void filterBingoCheckBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            filterBingoTextBox3.Enabled = filterBingoCheckBox3.Checked;
+            filterBingoLabel3.Enabled = filterBingoCheckBox3.Checked;
+        }
+
+        private void filterBingoCheckBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            filterBingoTextBox4.Enabled = filterBingoCheckBox4.Checked;
+            filterBingoLabel4.Enabled = filterBingoCheckBox4.Checked;
+        }
+
+        private void filterBingoCheckBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            filterBingoTextBox5.Enabled = filterBingoCheckBox5.Checked;
+            filterBingoLabel5.Enabled = filterBingoCheckBox5.Checked;
+        }
+
+        private void filterBingoCheckBox6_CheckedChanged(object sender, EventArgs e)
+        {
+
+            filterBingoTextBox6.Enabled = filterBingoCheckBox6.Checked;
+            filterBingoLabel6.Enabled = filterBingoCheckBox6.Checked;
+        }
+
+        private void filterBingoCheckBox7_CheckedChanged(object sender, EventArgs e)
+        {
+
+            filterBingoTextBox7.Enabled = filterBingoCheckBox7.Checked;
+            filterBingoLabel7.Enabled = filterBingoCheckBox7.Checked;
+        }
+
+        private void filterBingoCheckBox8_CheckedChanged(object sender, EventArgs e)
+        {
+
+            filterBingoTextBox8.Enabled = filterBingoCheckBox8.Checked;
+            filterBingoLabel8.Enabled = filterBingoCheckBox8.Checked;
+        }
+
+        private void filterBingoCheckBox9_CheckedChanged(object sender, EventArgs e)
+        {
+
+            filterBingoTextBox9.Enabled = filterBingoCheckBox9.Checked;
+            filterBingoLabel9.Enabled = filterBingoCheckBox9.Checked;
+        }
+
+        private void filterInfernoEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterInfernoCheckBox.Enabled = filterInfernoEnableCheckBox.Checked;
+        }
+
+        private void filterCreatorNormalCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterCreatorNormalLabel.Enabled = filterCreatorNormalCheckBox.Checked;
+            filterCreatorNormalTextBox.Enabled = filterCreatorNormalCheckBox.Checked;
+        }
+
+        private void filterMovieNormalCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterMovieNormalLabel.Enabled = filterMovieNormalCheckBox.Checked;
+            filterMovieNormalTextBox.Enabled = filterMovieNormalCheckBox.Checked;
+        }
+
+        private void filterPointCostCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterPointCostLabel.Enabled = filterPointCostCheckBox.Checked;
+            filterPointCostTextBox.Enabled = filterPointCostCheckBox.Checked;
+        }
+        private void sortAllArtistButton_Click(object sender, EventArgs e)
+        {
+            allSongs = allSongs
+                .OrderBy(song => song.ArtistMessage)
+                .ToList();
+            RefreshSongListUI();
+        }
+
+        private void sortAllIDsmallButton_Click(object sender, EventArgs e)
+        {
+            allSongs = allSongs
+                .OrderBy(song => song.UniqueID)
+                .ToList();
+            RefreshSongListUI();
+        }
+
+        private void sortAllBigButton_Click(object sender, EventArgs e)
+        {
+            allSongs = allSongs
+                .OrderByDescending(song => song.UniqueID)
+                .ToList();
+            RefreshSongListUI();
+        }
+
+        private void sortAllBPMsmallButton_Click(object sender, EventArgs e)
+        {
+            allSongs = allSongs
+                .OrderBy(song =>
+                {
+                    if (uint.TryParse(song.Bpm, out uint bpmVal))
+                        return bpmVal;
+                    return uint.MaxValue; // non-numeric BPMs go to the end
+                })
+                .ToList();
+            RefreshSongListUI();
+        }
+
+        private void sortAllBPMbigButton_Click(object sender, EventArgs e)
+        {
+            allSongs = allSongs
+                .OrderByDescending(song =>
+                {
+                    if (uint.TryParse(song.Bpm, out uint bpmVal))
+                        return bpmVal;
+                    return uint.MinValue; // non-numeric BPMs go to the end
+                })
+                .ToList();
+            RefreshSongListUI();
+        }
+        private void RefreshSongListUI()
+        {
+            songid.Items.Clear();
+            foreach (var song in allSongs)
+            {
+                songid.Items.Add(song.UniqueID.ToString());
+            }
+
+            if (allSongs.Count > 0)
+            {
+                currentSongId = allSongs[0].UniqueID;
+                LoadUI(allSongs[0]);
+            }
+            else
+            {
+                searchResultLabel.Text = "No songs.";
+            }
+        }
+
+        private void injectNewIDButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

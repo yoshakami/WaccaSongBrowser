@@ -186,7 +186,7 @@
             searchSectionLabel = new Label();
             searchPreviousButton = new Button();
             searchNextButton = new Button();
-            button1 = new Button();
+            injectNewIDButton = new Button();
             filterCreatorNormalCheckBox = new CheckBox();
             filterCreatorNormalLabel = new Label();
             filterCreatorNormalTextBox = new TextBox();
@@ -198,36 +198,43 @@
             filterPointCostCheckBox = new CheckBox();
             filterPointCostLabel = new Label();
             filterPointCostTextBox = new TextBox();
-            textBox1 = new TextBox();
-            label1 = new Label();
-            textBox2 = new TextBox();
-            label2 = new Label();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            label3 = new Label();
-            label4 = new Label();
-            textBox5 = new TextBox();
-            label5 = new Label();
-            textBox6 = new TextBox();
-            label6 = new Label();
-            textBox7 = new TextBox();
-            textBox8 = new TextBox();
-            label7 = new Label();
-            label8 = new Label();
-            textBox9 = new TextBox();
-            label9 = new Label();
-            textBox10 = new TextBox();
-            label10 = new Label();
-            checkBox1 = new CheckBox();
-            checkBox2 = new CheckBox();
-            checkBox3 = new CheckBox();
-            checkBox4 = new CheckBox();
-            checkBox5 = new CheckBox();
-            checkBox6 = new CheckBox();
-            checkBox7 = new CheckBox();
-            checkBox8 = new CheckBox();
-            checkBox9 = new CheckBox();
-            checkBox10 = new CheckBox();
+            filterBingoTextBox3 = new TextBox();
+            filterBingoLabel3 = new Label();
+            filterBingoTextBox2 = new TextBox();
+            filterBingoLabel2 = new Label();
+            filterBingoTextBox1 = new TextBox();
+            filterBingoTextBox0 = new TextBox();
+            filterBingoLabel1 = new Label();
+            filterBingoLabel0 = new Label();
+            filterBingoTextBox7 = new TextBox();
+            filterBingoLabel7 = new Label();
+            filterBingoTextBox6 = new TextBox();
+            filterBingoLabel6 = new Label();
+            filterBingoTextBox5 = new TextBox();
+            filterBingoTextBox4 = new TextBox();
+            filterBingoLabel5 = new Label();
+            filterBingoLabel4 = new Label();
+            filterBingoTextBox9 = new TextBox();
+            filterBingoLabel9 = new Label();
+            filterBingoTextBox8 = new TextBox();
+            filterBingoLabel8 = new Label();
+            filterBingoCheckBox0 = new CheckBox();
+            filterBingoCheckBox2 = new CheckBox();
+            filterBingoCheckBox4 = new CheckBox();
+            filterBingoCheckBox6 = new CheckBox();
+            filterBingoCheckBox8 = new CheckBox();
+            filterBingoCheckBox9 = new CheckBox();
+            filterBingoCheckBox7 = new CheckBox();
+            filterBingoCheckBox5 = new CheckBox();
+            filterBingoCheckBox3 = new CheckBox();
+            filterBingoCheckBox1 = new CheckBox();
+            sortAllArtistButton = new Button();
+            sortAllLabel = new Label();
+            sortAllBPMsmallButton = new Button();
+            sortAllBPMbigButton = new Button();
+            sortAllBigButton = new Button();
+            sortAllIDsmallButton = new Button();
+            filterInvertMatchesButton = new Button();
             ((System.ComponentModel.ISupportInitialize)jacketPictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -913,7 +920,7 @@
             // autoSaveCheckBox
             // 
             autoSaveCheckBox.AutoSize = true;
-            autoSaveCheckBox.Location = new Point(827, 588);
+            autoSaveCheckBox.Location = new Point(827, 536);
             autoSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
             autoSaveCheckBox.MinimumSize = new Size(110, 19);
             autoSaveCheckBox.Name = "autoSaveCheckBox";
@@ -1181,7 +1188,7 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(842, 611);
+            saveButton.Location = new Point(842, 559);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(92, 23);
             saveButton.TabIndex = 129;
@@ -1192,11 +1199,13 @@
             // saveLabel
             // 
             saveLabel.AutoSize = true;
-            saveLabel.Location = new Point(842, 639);
+            saveLabel.Location = new Point(822, 587);
+            saveLabel.MinimumSize = new Size(120, 15);
             saveLabel.Name = "saveLabel";
-            saveLabel.Size = new Size(61, 15);
+            saveLabel.Size = new Size(120, 15);
             saveLabel.TabIndex = 133;
             saveLabel.Text = "Not Saved";
+            saveLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // bingo3TextBox
             // 
@@ -1373,7 +1382,7 @@
             ramSaveCheckBox.AutoSize = true;
             ramSaveCheckBox.Checked = true;
             ramSaveCheckBox.CheckState = CheckState.Checked;
-            ramSaveCheckBox.Location = new Point(827, 543);
+            ramSaveCheckBox.Location = new Point(827, 494);
             ramSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
             ramSaveCheckBox.MinimumSize = new Size(0, 36);
             ramSaveCheckBox.Name = "ramSaveCheckBox";
@@ -1418,7 +1427,7 @@
             // freezeVersionCheckBox
             // 
             freezeVersionCheckBox.AutoSize = true;
-            freezeVersionCheckBox.Location = new Point(827, 394);
+            freezeVersionCheckBox.Location = new Point(827, 345);
             freezeVersionCheckBox.Margin = new Padding(3, 2, 3, 2);
             freezeVersionCheckBox.MinimumSize = new Size(110, 36);
             freezeVersionCheckBox.Name = "freezeVersionCheckBox";
@@ -1433,7 +1442,7 @@
             // 
             freezeGenreCheckBox.AutoSize = true;
             freezeGenreCheckBox.BackColor = SystemColors.Control;
-            freezeGenreCheckBox.Location = new Point(827, 364);
+            freezeGenreCheckBox.Location = new Point(827, 315);
             freezeGenreCheckBox.Margin = new Padding(3, 2, 3, 2);
             freezeGenreCheckBox.MinimumSize = new Size(110, 36);
             freezeGenreCheckBox.Name = "freezeGenreCheckBox";
@@ -1447,7 +1456,7 @@
             // freezePointCostCheckBox
             // 
             freezePointCostCheckBox.AutoSize = true;
-            freezePointCostCheckBox.Location = new Point(827, 424);
+            freezePointCostCheckBox.Location = new Point(827, 375);
             freezePointCostCheckBox.Margin = new Padding(3, 2, 3, 2);
             freezePointCostCheckBox.MinimumSize = new Size(110, 36);
             freezePointCostCheckBox.Name = "freezePointCostCheckBox";
@@ -1461,7 +1470,7 @@
             // freezeNewCheckBox
             // 
             freezeNewCheckBox.AutoSize = true;
-            freezeNewCheckBox.Location = new Point(827, 454);
+            freezeNewCheckBox.Location = new Point(827, 405);
             freezeNewCheckBox.Margin = new Padding(3, 2, 3, 2);
             freezeNewCheckBox.MinimumSize = new Size(110, 36);
             freezeNewCheckBox.Name = "freezeNewCheckBox";
@@ -1475,7 +1484,7 @@
             // freezeBeginnerCheckBox
             // 
             freezeBeginnerCheckBox.AutoSize = true;
-            freezeBeginnerCheckBox.Location = new Point(827, 483);
+            freezeBeginnerCheckBox.Location = new Point(827, 434);
             freezeBeginnerCheckBox.Margin = new Padding(3, 2, 3, 2);
             freezeBeginnerCheckBox.MinimumSize = new Size(110, 36);
             freezeBeginnerCheckBox.Name = "freezeBeginnerCheckBox";
@@ -1489,7 +1498,7 @@
             // freezeAvailableCheckBox
             // 
             freezeAvailableCheckBox.AutoSize = true;
-            freezeAvailableCheckBox.Location = new Point(827, 521);
+            freezeAvailableCheckBox.Location = new Point(827, 470);
             freezeAvailableCheckBox.Margin = new Padding(3, 2, 3, 2);
             freezeAvailableCheckBox.MinimumSize = new Size(110, 19);
             freezeAvailableCheckBox.Name = "freezeAvailableCheckBox";
@@ -1765,14 +1774,15 @@
             searchNextButton.UseVisualStyleBackColor = true;
             searchNextButton.Click += searchNextButton_Click;
             // 
-            // button1
+            // injectNewIDButton
             // 
-            button1.Location = new Point(837, 292);
-            button1.Name = "button1";
-            button1.Size = new Size(92, 46);
-            button1.TabIndex = 192;
-            button1.Text = "Inject NEW";
-            button1.UseVisualStyleBackColor = true;
+            injectNewIDButton.Location = new Point(837, 605);
+            injectNewIDButton.Name = "injectNewIDButton";
+            injectNewIDButton.Size = new Size(92, 46);
+            injectNewIDButton.TabIndex = 192;
+            injectNewIDButton.Text = "Inject NEW ID";
+            injectNewIDButton.UseVisualStyleBackColor = true;
+            injectNewIDButton.Click += injectNewIDButton_Click;
             // 
             // filterCreatorNormalCheckBox
             // 
@@ -1783,6 +1793,7 @@
             filterCreatorNormalCheckBox.Size = new Size(15, 14);
             filterCreatorNormalCheckBox.TabIndex = 195;
             filterCreatorNormalCheckBox.UseVisualStyleBackColor = true;
+            filterCreatorNormalCheckBox.CheckedChanged += filterCreatorNormalCheckBox_CheckedChanged;
             // 
             // filterCreatorNormalLabel
             // 
@@ -1810,6 +1821,7 @@
             filterMovieNormalCheckBox.Size = new Size(15, 14);
             filterMovieNormalCheckBox.TabIndex = 198;
             filterMovieNormalCheckBox.UseVisualStyleBackColor = true;
+            filterMovieNormalCheckBox.CheckedChanged += filterMovieNormalCheckBox_CheckedChanged;
             // 
             // filterMovieNormalLabel
             // 
@@ -1837,6 +1849,7 @@
             filterInfernoEnableCheckBox.Size = new Size(15, 14);
             filterInfernoEnableCheckBox.TabIndex = 200;
             filterInfernoEnableCheckBox.UseVisualStyleBackColor = true;
+            filterInfernoEnableCheckBox.CheckedChanged += filterInfernoEnableCheckBox_CheckedChanged;
             // 
             // filterInfernoCheckBox
             // 
@@ -1858,6 +1871,7 @@
             filterPointCostCheckBox.Size = new Size(15, 14);
             filterPointCostCheckBox.TabIndex = 203;
             filterPointCostCheckBox.UseVisualStyleBackColor = true;
+            filterPointCostCheckBox.CheckedChanged += filterPointCostCheckBox_CheckedChanged;
             // 
             // filterPointCostLabel
             // 
@@ -1876,275 +1890,354 @@
             filterPointCostTextBox.Size = new Size(176, 23);
             filterPointCostTextBox.TabIndex = 201;
             // 
-            // textBox1
+            // filterBingoTextBox3
             // 
-            textBox1.Location = new Point(1257, 407);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(60, 23);
-            textBox1.TabIndex = 207;
+            filterBingoTextBox3.Location = new Point(1257, 407);
+            filterBingoTextBox3.Margin = new Padding(3, 2, 3, 2);
+            filterBingoTextBox3.Name = "filterBingoTextBox3";
+            filterBingoTextBox3.Size = new Size(60, 23);
+            filterBingoTextBox3.TabIndex = 207;
             // 
-            // label1
+            // filterBingoLabel3
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(1271, 386);
-            label1.Name = "label1";
-            label1.Size = new Size(47, 15);
-            label1.TabIndex = 211;
-            label1.Text = "Bingo 3";
+            filterBingoLabel3.AutoSize = true;
+            filterBingoLabel3.Location = new Point(1271, 386);
+            filterBingoLabel3.Name = "filterBingoLabel3";
+            filterBingoLabel3.Size = new Size(47, 15);
+            filterBingoLabel3.TabIndex = 211;
+            filterBingoLabel3.Text = "Bingo 3";
             // 
-            // textBox2
+            // filterBingoTextBox2
             // 
-            textBox2.Location = new Point(1182, 407);
-            textBox2.Margin = new Padding(3, 2, 3, 2);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(60, 23);
-            textBox2.TabIndex = 206;
+            filterBingoTextBox2.Location = new Point(1182, 407);
+            filterBingoTextBox2.Margin = new Padding(3, 2, 3, 2);
+            filterBingoTextBox2.Name = "filterBingoTextBox2";
+            filterBingoTextBox2.Size = new Size(60, 23);
+            filterBingoTextBox2.TabIndex = 206;
             // 
-            // label2
+            // filterBingoLabel2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(1194, 386);
-            label2.Name = "label2";
-            label2.Size = new Size(47, 15);
-            label2.TabIndex = 210;
-            label2.Text = "Bingo 2";
+            filterBingoLabel2.AutoSize = true;
+            filterBingoLabel2.Location = new Point(1194, 386);
+            filterBingoLabel2.Name = "filterBingoLabel2";
+            filterBingoLabel2.Size = new Size(47, 15);
+            filterBingoLabel2.TabIndex = 210;
+            filterBingoLabel2.Text = "Bingo 2";
             // 
-            // textBox3
+            // filterBingoTextBox1
             // 
-            textBox3.Location = new Point(1257, 352);
-            textBox3.Margin = new Padding(3, 2, 3, 2);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(60, 23);
-            textBox3.TabIndex = 205;
+            filterBingoTextBox1.Location = new Point(1257, 352);
+            filterBingoTextBox1.Margin = new Padding(3, 2, 3, 2);
+            filterBingoTextBox1.Name = "filterBingoTextBox1";
+            filterBingoTextBox1.Size = new Size(60, 23);
+            filterBingoTextBox1.TabIndex = 205;
             // 
-            // textBox4
+            // filterBingoTextBox0
             // 
-            textBox4.Location = new Point(1182, 352);
-            textBox4.Margin = new Padding(3, 2, 3, 2);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(60, 23);
-            textBox4.TabIndex = 204;
+            filterBingoTextBox0.Location = new Point(1182, 352);
+            filterBingoTextBox0.Margin = new Padding(3, 2, 3, 2);
+            filterBingoTextBox0.Name = "filterBingoTextBox0";
+            filterBingoTextBox0.Size = new Size(60, 23);
+            filterBingoTextBox0.TabIndex = 204;
             // 
-            // label3
+            // filterBingoLabel1
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(1269, 332);
-            label3.Name = "label3";
-            label3.Size = new Size(47, 15);
-            label3.TabIndex = 209;
-            label3.Text = "Bingo 1";
+            filterBingoLabel1.AutoSize = true;
+            filterBingoLabel1.Location = new Point(1269, 332);
+            filterBingoLabel1.Name = "filterBingoLabel1";
+            filterBingoLabel1.Size = new Size(47, 15);
+            filterBingoLabel1.TabIndex = 209;
+            filterBingoLabel1.Text = "Bingo 1";
             // 
-            // label4
+            // filterBingoLabel0
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(1195, 331);
-            label4.Name = "label4";
-            label4.Size = new Size(47, 15);
-            label4.TabIndex = 208;
-            label4.Text = "Bingo 0";
+            filterBingoLabel0.AutoSize = true;
+            filterBingoLabel0.Location = new Point(1195, 331);
+            filterBingoLabel0.Name = "filterBingoLabel0";
+            filterBingoLabel0.Size = new Size(47, 15);
+            filterBingoLabel0.TabIndex = 208;
+            filterBingoLabel0.Text = "Bingo 0";
             // 
-            // textBox5
+            // filterBingoTextBox7
             // 
-            textBox5.Location = new Point(1257, 517);
-            textBox5.Margin = new Padding(3, 2, 3, 2);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(60, 23);
-            textBox5.TabIndex = 215;
+            filterBingoTextBox7.Location = new Point(1257, 517);
+            filterBingoTextBox7.Margin = new Padding(3, 2, 3, 2);
+            filterBingoTextBox7.Name = "filterBingoTextBox7";
+            filterBingoTextBox7.Size = new Size(60, 23);
+            filterBingoTextBox7.TabIndex = 215;
             // 
-            // label5
+            // filterBingoLabel7
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(1271, 497);
-            label5.Name = "label5";
-            label5.Size = new Size(47, 15);
-            label5.TabIndex = 219;
-            label5.Text = "Bingo 7";
+            filterBingoLabel7.AutoSize = true;
+            filterBingoLabel7.Location = new Point(1271, 497);
+            filterBingoLabel7.Name = "filterBingoLabel7";
+            filterBingoLabel7.Size = new Size(47, 15);
+            filterBingoLabel7.TabIndex = 219;
+            filterBingoLabel7.Text = "Bingo 7";
             // 
-            // textBox6
+            // filterBingoTextBox6
             // 
-            textBox6.Location = new Point(1182, 517);
-            textBox6.Margin = new Padding(3, 2, 3, 2);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(60, 23);
-            textBox6.TabIndex = 214;
+            filterBingoTextBox6.Location = new Point(1182, 517);
+            filterBingoTextBox6.Margin = new Padding(3, 2, 3, 2);
+            filterBingoTextBox6.Name = "filterBingoTextBox6";
+            filterBingoTextBox6.Size = new Size(60, 23);
+            filterBingoTextBox6.TabIndex = 214;
             // 
-            // label6
+            // filterBingoLabel6
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(1194, 497);
-            label6.Name = "label6";
-            label6.Size = new Size(47, 15);
-            label6.TabIndex = 218;
-            label6.Text = "Bingo 6";
+            filterBingoLabel6.AutoSize = true;
+            filterBingoLabel6.Location = new Point(1194, 497);
+            filterBingoLabel6.Name = "filterBingoLabel6";
+            filterBingoLabel6.Size = new Size(47, 15);
+            filterBingoLabel6.TabIndex = 218;
+            filterBingoLabel6.Text = "Bingo 6";
             // 
-            // textBox7
+            // filterBingoTextBox5
             // 
-            textBox7.Location = new Point(1257, 462);
-            textBox7.Margin = new Padding(3, 2, 3, 2);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(60, 23);
-            textBox7.TabIndex = 213;
+            filterBingoTextBox5.Location = new Point(1257, 462);
+            filterBingoTextBox5.Margin = new Padding(3, 2, 3, 2);
+            filterBingoTextBox5.Name = "filterBingoTextBox5";
+            filterBingoTextBox5.Size = new Size(60, 23);
+            filterBingoTextBox5.TabIndex = 213;
             // 
-            // textBox8
+            // filterBingoTextBox4
             // 
-            textBox8.Location = new Point(1182, 462);
-            textBox8.Margin = new Padding(3, 2, 3, 2);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(60, 23);
-            textBox8.TabIndex = 212;
+            filterBingoTextBox4.Location = new Point(1182, 462);
+            filterBingoTextBox4.Margin = new Padding(3, 2, 3, 2);
+            filterBingoTextBox4.Name = "filterBingoTextBox4";
+            filterBingoTextBox4.Size = new Size(60, 23);
+            filterBingoTextBox4.TabIndex = 212;
             // 
-            // label7
+            // filterBingoLabel5
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(1269, 442);
-            label7.Name = "label7";
-            label7.Size = new Size(47, 15);
-            label7.TabIndex = 217;
-            label7.Text = "Bingo 5";
+            filterBingoLabel5.AutoSize = true;
+            filterBingoLabel5.Location = new Point(1269, 442);
+            filterBingoLabel5.Name = "filterBingoLabel5";
+            filterBingoLabel5.Size = new Size(47, 15);
+            filterBingoLabel5.TabIndex = 217;
+            filterBingoLabel5.Text = "Bingo 5";
             // 
-            // label8
+            // filterBingoLabel4
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(1194, 441);
-            label8.Name = "label8";
-            label8.Size = new Size(47, 15);
-            label8.TabIndex = 216;
-            label8.Text = "Bingo 4";
+            filterBingoLabel4.AutoSize = true;
+            filterBingoLabel4.Location = new Point(1194, 441);
+            filterBingoLabel4.Name = "filterBingoLabel4";
+            filterBingoLabel4.Size = new Size(47, 15);
+            filterBingoLabel4.TabIndex = 216;
+            filterBingoLabel4.Text = "Bingo 4";
             // 
-            // textBox9
+            // filterBingoTextBox9
             // 
-            textBox9.Location = new Point(1257, 571);
-            textBox9.Margin = new Padding(3, 2, 3, 2);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(60, 23);
-            textBox9.TabIndex = 221;
+            filterBingoTextBox9.Location = new Point(1257, 571);
+            filterBingoTextBox9.Margin = new Padding(3, 2, 3, 2);
+            filterBingoTextBox9.Name = "filterBingoTextBox9";
+            filterBingoTextBox9.Size = new Size(60, 23);
+            filterBingoTextBox9.TabIndex = 221;
             // 
-            // label9
+            // filterBingoLabel9
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(1271, 551);
-            label9.Name = "label9";
-            label9.Size = new Size(47, 15);
-            label9.TabIndex = 223;
-            label9.Text = "Bingo 9";
+            filterBingoLabel9.AutoSize = true;
+            filterBingoLabel9.Location = new Point(1271, 551);
+            filterBingoLabel9.Name = "filterBingoLabel9";
+            filterBingoLabel9.Size = new Size(47, 15);
+            filterBingoLabel9.TabIndex = 223;
+            filterBingoLabel9.Text = "Bingo 9";
             // 
-            // textBox10
+            // filterBingoTextBox8
             // 
-            textBox10.Location = new Point(1182, 571);
-            textBox10.Margin = new Padding(3, 2, 3, 2);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(60, 23);
-            textBox10.TabIndex = 220;
+            filterBingoTextBox8.Location = new Point(1182, 571);
+            filterBingoTextBox8.Margin = new Padding(3, 2, 3, 2);
+            filterBingoTextBox8.Name = "filterBingoTextBox8";
+            filterBingoTextBox8.Size = new Size(60, 23);
+            filterBingoTextBox8.TabIndex = 220;
             // 
-            // label10
+            // filterBingoLabel8
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(1194, 551);
-            label10.Name = "label10";
-            label10.Size = new Size(47, 15);
-            label10.TabIndex = 222;
-            label10.Text = "Bingo 8";
+            filterBingoLabel8.AutoSize = true;
+            filterBingoLabel8.Location = new Point(1194, 551);
+            filterBingoLabel8.Name = "filterBingoLabel8";
+            filterBingoLabel8.Size = new Size(47, 15);
+            filterBingoLabel8.TabIndex = 222;
+            filterBingoLabel8.Text = "Bingo 8";
             // 
-            // checkBox1
+            // filterBingoCheckBox0
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(1181, 332);
-            checkBox1.Margin = new Padding(3, 2, 3, 2);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(15, 14);
-            checkBox1.TabIndex = 224;
-            checkBox1.UseVisualStyleBackColor = true;
+            filterBingoCheckBox0.AutoSize = true;
+            filterBingoCheckBox0.Location = new Point(1181, 332);
+            filterBingoCheckBox0.Margin = new Padding(3, 2, 3, 2);
+            filterBingoCheckBox0.Name = "filterBingoCheckBox0";
+            filterBingoCheckBox0.Size = new Size(15, 14);
+            filterBingoCheckBox0.TabIndex = 224;
+            filterBingoCheckBox0.UseVisualStyleBackColor = true;
+            filterBingoCheckBox0.CheckedChanged += filterBingoCheckBox0_CheckedChanged;
             // 
-            // checkBox2
+            // filterBingoCheckBox2
             // 
-            checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(1181, 387);
-            checkBox2.Margin = new Padding(3, 2, 3, 2);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(15, 14);
-            checkBox2.TabIndex = 225;
-            checkBox2.UseVisualStyleBackColor = true;
+            filterBingoCheckBox2.AutoSize = true;
+            filterBingoCheckBox2.Location = new Point(1181, 387);
+            filterBingoCheckBox2.Margin = new Padding(3, 2, 3, 2);
+            filterBingoCheckBox2.Name = "filterBingoCheckBox2";
+            filterBingoCheckBox2.Size = new Size(15, 14);
+            filterBingoCheckBox2.TabIndex = 225;
+            filterBingoCheckBox2.UseVisualStyleBackColor = true;
+            filterBingoCheckBox2.CheckedChanged += filterBingoCheckBox2_CheckedChanged;
             // 
-            // checkBox3
+            // filterBingoCheckBox4
             // 
-            checkBox3.AutoSize = true;
-            checkBox3.Location = new Point(1181, 443);
-            checkBox3.Margin = new Padding(3, 2, 3, 2);
-            checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(15, 14);
-            checkBox3.TabIndex = 226;
-            checkBox3.UseVisualStyleBackColor = true;
+            filterBingoCheckBox4.AutoSize = true;
+            filterBingoCheckBox4.Location = new Point(1181, 443);
+            filterBingoCheckBox4.Margin = new Padding(3, 2, 3, 2);
+            filterBingoCheckBox4.Name = "filterBingoCheckBox4";
+            filterBingoCheckBox4.Size = new Size(15, 14);
+            filterBingoCheckBox4.TabIndex = 226;
+            filterBingoCheckBox4.UseVisualStyleBackColor = true;
+            filterBingoCheckBox4.CheckedChanged += filterBingoCheckBox4_CheckedChanged;
             // 
-            // checkBox4
+            // filterBingoCheckBox6
             // 
-            checkBox4.AutoSize = true;
-            checkBox4.Location = new Point(1181, 498);
-            checkBox4.Margin = new Padding(3, 2, 3, 2);
-            checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(15, 14);
-            checkBox4.TabIndex = 227;
-            checkBox4.UseVisualStyleBackColor = true;
+            filterBingoCheckBox6.AutoSize = true;
+            filterBingoCheckBox6.Location = new Point(1181, 498);
+            filterBingoCheckBox6.Margin = new Padding(3, 2, 3, 2);
+            filterBingoCheckBox6.Name = "filterBingoCheckBox6";
+            filterBingoCheckBox6.Size = new Size(15, 14);
+            filterBingoCheckBox6.TabIndex = 227;
+            filterBingoCheckBox6.UseVisualStyleBackColor = true;
+            filterBingoCheckBox6.CheckedChanged += filterBingoCheckBox6_CheckedChanged;
             // 
-            // checkBox5
+            // filterBingoCheckBox8
             // 
-            checkBox5.AutoSize = true;
-            checkBox5.Location = new Point(1181, 552);
-            checkBox5.Margin = new Padding(3, 2, 3, 2);
-            checkBox5.Name = "checkBox5";
-            checkBox5.Size = new Size(15, 14);
-            checkBox5.TabIndex = 228;
-            checkBox5.UseVisualStyleBackColor = true;
+            filterBingoCheckBox8.AutoSize = true;
+            filterBingoCheckBox8.Location = new Point(1181, 552);
+            filterBingoCheckBox8.Margin = new Padding(3, 2, 3, 2);
+            filterBingoCheckBox8.Name = "filterBingoCheckBox8";
+            filterBingoCheckBox8.Size = new Size(15, 14);
+            filterBingoCheckBox8.TabIndex = 228;
+            filterBingoCheckBox8.UseVisualStyleBackColor = true;
+            filterBingoCheckBox8.CheckedChanged += filterBingoCheckBox8_CheckedChanged;
             // 
-            // checkBox6
+            // filterBingoCheckBox9
             // 
-            checkBox6.AutoSize = true;
-            checkBox6.Location = new Point(1257, 552);
-            checkBox6.Margin = new Padding(3, 2, 3, 2);
-            checkBox6.Name = "checkBox6";
-            checkBox6.Size = new Size(15, 14);
-            checkBox6.TabIndex = 229;
-            checkBox6.UseVisualStyleBackColor = true;
+            filterBingoCheckBox9.AutoSize = true;
+            filterBingoCheckBox9.Location = new Point(1257, 552);
+            filterBingoCheckBox9.Margin = new Padding(3, 2, 3, 2);
+            filterBingoCheckBox9.Name = "filterBingoCheckBox9";
+            filterBingoCheckBox9.Size = new Size(15, 14);
+            filterBingoCheckBox9.TabIndex = 229;
+            filterBingoCheckBox9.UseVisualStyleBackColor = true;
+            filterBingoCheckBox9.CheckedChanged += filterBingoCheckBox9_CheckedChanged;
             // 
-            // checkBox7
+            // filterBingoCheckBox7
             // 
-            checkBox7.AutoSize = true;
-            checkBox7.Location = new Point(1257, 498);
-            checkBox7.Margin = new Padding(3, 2, 3, 2);
-            checkBox7.Name = "checkBox7";
-            checkBox7.Size = new Size(15, 14);
-            checkBox7.TabIndex = 230;
-            checkBox7.UseVisualStyleBackColor = true;
+            filterBingoCheckBox7.AutoSize = true;
+            filterBingoCheckBox7.Location = new Point(1257, 498);
+            filterBingoCheckBox7.Margin = new Padding(3, 2, 3, 2);
+            filterBingoCheckBox7.Name = "filterBingoCheckBox7";
+            filterBingoCheckBox7.Size = new Size(15, 14);
+            filterBingoCheckBox7.TabIndex = 230;
+            filterBingoCheckBox7.UseVisualStyleBackColor = true;
+            filterBingoCheckBox7.CheckedChanged += filterBingoCheckBox7_CheckedChanged;
             // 
-            // checkBox8
+            // filterBingoCheckBox5
             // 
-            checkBox8.AutoSize = true;
-            checkBox8.Location = new Point(1257, 442);
-            checkBox8.Margin = new Padding(3, 2, 3, 2);
-            checkBox8.Name = "checkBox8";
-            checkBox8.Size = new Size(15, 14);
-            checkBox8.TabIndex = 231;
-            checkBox8.UseVisualStyleBackColor = true;
+            filterBingoCheckBox5.AutoSize = true;
+            filterBingoCheckBox5.Location = new Point(1257, 442);
+            filterBingoCheckBox5.Margin = new Padding(3, 2, 3, 2);
+            filterBingoCheckBox5.Name = "filterBingoCheckBox5";
+            filterBingoCheckBox5.Size = new Size(15, 14);
+            filterBingoCheckBox5.TabIndex = 231;
+            filterBingoCheckBox5.UseVisualStyleBackColor = true;
+            filterBingoCheckBox5.CheckedChanged += filterBingoCheckBox5_CheckedChanged;
             // 
-            // checkBox9
+            // filterBingoCheckBox3
             // 
-            checkBox9.AutoSize = true;
-            checkBox9.Location = new Point(1257, 386);
-            checkBox9.Margin = new Padding(3, 2, 3, 2);
-            checkBox9.Name = "checkBox9";
-            checkBox9.Size = new Size(15, 14);
-            checkBox9.TabIndex = 232;
-            checkBox9.UseVisualStyleBackColor = true;
+            filterBingoCheckBox3.AutoSize = true;
+            filterBingoCheckBox3.Location = new Point(1257, 386);
+            filterBingoCheckBox3.Margin = new Padding(3, 2, 3, 2);
+            filterBingoCheckBox3.Name = "filterBingoCheckBox3";
+            filterBingoCheckBox3.Size = new Size(15, 14);
+            filterBingoCheckBox3.TabIndex = 232;
+            filterBingoCheckBox3.UseVisualStyleBackColor = true;
+            filterBingoCheckBox3.CheckedChanged += filterBingoCheckBox3_CheckedChanged;
             // 
-            // checkBox10
+            // filterBingoCheckBox1
             // 
-            checkBox10.AutoSize = true;
-            checkBox10.Location = new Point(1257, 332);
-            checkBox10.Margin = new Padding(3, 2, 3, 2);
-            checkBox10.Name = "checkBox10";
-            checkBox10.Size = new Size(15, 14);
-            checkBox10.TabIndex = 233;
-            checkBox10.UseVisualStyleBackColor = true;
+            filterBingoCheckBox1.AutoSize = true;
+            filterBingoCheckBox1.Location = new Point(1257, 332);
+            filterBingoCheckBox1.Margin = new Padding(3, 2, 3, 2);
+            filterBingoCheckBox1.Name = "filterBingoCheckBox1";
+            filterBingoCheckBox1.Size = new Size(15, 14);
+            filterBingoCheckBox1.TabIndex = 233;
+            filterBingoCheckBox1.UseVisualStyleBackColor = true;
+            filterBingoCheckBox1.CheckedChanged += filterBingoCheckBox1_CheckedChanged;
+            // 
+            // sortAllArtistButton
+            // 
+            sortAllArtistButton.Location = new Point(837, 100);
+            sortAllArtistButton.Name = "sortAllArtistButton";
+            sortAllArtistButton.Size = new Size(92, 34);
+            sortAllArtistButton.TabIndex = 234;
+            sortAllArtistButton.Text = "By Artist";
+            sortAllArtistButton.UseVisualStyleBackColor = true;
+            sortAllArtistButton.Click += sortAllArtistButton_Click;
+            // 
+            // sortAllLabel
+            // 
+            sortAllLabel.AutoSize = true;
+            sortAllLabel.Location = new Point(840, 77);
+            sortAllLabel.Name = "sortAllLabel";
+            sortAllLabel.Size = new Size(86, 15);
+            sortAllLabel.TabIndex = 235;
+            sortAllLabel.Text = "Sort all song ID";
+            // 
+            // sortAllBPMsmallButton
+            // 
+            sortAllBPMsmallButton.Location = new Point(837, 225);
+            sortAllBPMsmallButton.Name = "sortAllBPMsmallButton";
+            sortAllBPMsmallButton.Size = new Size(92, 39);
+            sortAllBPMsmallButton.TabIndex = 237;
+            sortAllBPMsmallButton.Text = "By BPM (Smallest First)";
+            sortAllBPMsmallButton.UseVisualStyleBackColor = true;
+            sortAllBPMsmallButton.Click += sortAllBPMsmallButton_Click;
+            // 
+            // sortAllBPMbigButton
+            // 
+            sortAllBPMbigButton.Location = new Point(837, 270);
+            sortAllBPMbigButton.Name = "sortAllBPMbigButton";
+            sortAllBPMbigButton.Size = new Size(92, 39);
+            sortAllBPMbigButton.TabIndex = 238;
+            sortAllBPMbigButton.Text = "By BPM (Biggest First)";
+            sortAllBPMbigButton.UseVisualStyleBackColor = true;
+            sortAllBPMbigButton.Click += sortAllBPMbigButton_Click;
+            // 
+            // sortAllBigButton
+            // 
+            sortAllBigButton.Location = new Point(837, 181);
+            sortAllBigButton.Name = "sortAllBigButton";
+            sortAllBigButton.Size = new Size(92, 39);
+            sortAllBigButton.TabIndex = 240;
+            sortAllBigButton.Text = "   By ID   (Biggest First)";
+            sortAllBigButton.UseVisualStyleBackColor = true;
+            sortAllBigButton.Click += sortAllBigButton_Click;
+            // 
+            // sortAllIDsmallButton
+            // 
+            sortAllIDsmallButton.Location = new Point(837, 138);
+            sortAllIDsmallButton.Name = "sortAllIDsmallButton";
+            sortAllIDsmallButton.Size = new Size(92, 39);
+            sortAllIDsmallButton.TabIndex = 239;
+            sortAllIDsmallButton.Text = "By ID (Smallest First)";
+            sortAllIDsmallButton.UseVisualStyleBackColor = true;
+            sortAllIDsmallButton.Click += sortAllIDsmallButton_Click;
+            // 
+            // filterInvertMatchesButton
+            // 
+            filterInvertMatchesButton.Location = new Point(972, 607);
+            filterInvertMatchesButton.Name = "filterInvertMatchesButton";
+            filterInvertMatchesButton.Size = new Size(176, 23);
+            filterInvertMatchesButton.TabIndex = 241;
+            filterInvertMatchesButton.Text = "Invert Matches";
+            filterInvertMatchesButton.UseVisualStyleBackColor = true;
+            filterInvertMatchesButton.Click += filterInvertMatchesButton_Click;
             // 
             // WaccaSongBrowser
             // 
@@ -2152,37 +2245,44 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1348, 681);
+            Controls.Add(filterInvertMatchesButton);
             Controls.Add(panelMainContainer);
-            Controls.Add(checkBox10);
-            Controls.Add(checkBox9);
-            Controls.Add(checkBox8);
-            Controls.Add(checkBox7);
-            Controls.Add(checkBox6);
-            Controls.Add(checkBox5);
-            Controls.Add(checkBox4);
-            Controls.Add(checkBox3);
-            Controls.Add(checkBox2);
-            Controls.Add(checkBox1);
-            Controls.Add(textBox9);
-            Controls.Add(label9);
-            Controls.Add(textBox10);
-            Controls.Add(label10);
-            Controls.Add(textBox5);
-            Controls.Add(label5);
-            Controls.Add(textBox6);
-            Controls.Add(label6);
-            Controls.Add(textBox7);
-            Controls.Add(textBox8);
-            Controls.Add(label7);
-            Controls.Add(label8);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
-            Controls.Add(textBox2);
-            Controls.Add(label2);
-            Controls.Add(textBox3);
-            Controls.Add(textBox4);
-            Controls.Add(label3);
-            Controls.Add(label4);
+            Controls.Add(sortAllBigButton);
+            Controls.Add(sortAllIDsmallButton);
+            Controls.Add(sortAllBPMbigButton);
+            Controls.Add(sortAllBPMsmallButton);
+            Controls.Add(sortAllLabel);
+            Controls.Add(sortAllArtistButton);
+            Controls.Add(filterBingoCheckBox1);
+            Controls.Add(filterBingoCheckBox3);
+            Controls.Add(filterBingoCheckBox5);
+            Controls.Add(filterBingoCheckBox7);
+            Controls.Add(filterBingoCheckBox9);
+            Controls.Add(filterBingoCheckBox8);
+            Controls.Add(filterBingoCheckBox6);
+            Controls.Add(filterBingoCheckBox4);
+            Controls.Add(filterBingoCheckBox2);
+            Controls.Add(filterBingoCheckBox0);
+            Controls.Add(filterBingoTextBox9);
+            Controls.Add(filterBingoLabel9);
+            Controls.Add(filterBingoTextBox8);
+            Controls.Add(filterBingoLabel8);
+            Controls.Add(filterBingoTextBox7);
+            Controls.Add(filterBingoLabel7);
+            Controls.Add(filterBingoTextBox6);
+            Controls.Add(filterBingoLabel6);
+            Controls.Add(filterBingoTextBox5);
+            Controls.Add(filterBingoTextBox4);
+            Controls.Add(filterBingoLabel5);
+            Controls.Add(filterBingoLabel4);
+            Controls.Add(filterBingoTextBox3);
+            Controls.Add(filterBingoLabel3);
+            Controls.Add(filterBingoTextBox2);
+            Controls.Add(filterBingoLabel2);
+            Controls.Add(filterBingoTextBox1);
+            Controls.Add(filterBingoTextBox0);
+            Controls.Add(filterBingoLabel1);
+            Controls.Add(filterBingoLabel0);
             Controls.Add(filterPointCostCheckBox);
             Controls.Add(filterPointCostLabel);
             Controls.Add(filterPointCostTextBox);
@@ -2194,7 +2294,7 @@
             Controls.Add(filterCreatorNormalCheckBox);
             Controls.Add(filterCreatorNormalLabel);
             Controls.Add(filterCreatorNormalTextBox);
-            Controls.Add(button1);
+            Controls.Add(injectNewIDButton);
             Controls.Add(searchPreviousButton);
             Controls.Add(searchNextButton);
             Controls.Add(searchSectionLabel);
@@ -2521,7 +2621,7 @@
         private Label searchSectionLabel;
         private Button searchPreviousButton;
         private Button searchNextButton;
-        private Button button1;
+        private Button injectNewIDButton;
         private CheckBox filterCreatorNormalCheckBox;
         private Label filterCreatorNormalLabel;
         private TextBox filterCreatorNormalTextBox;
@@ -2533,35 +2633,42 @@
         private CheckBox filterPointCostCheckBox;
         private Label filterPointCostLabel;
         private TextBox filterPointCostTextBox;
-        private TextBox textBox1;
-        private Label label1;
-        private TextBox textBox2;
-        private Label label2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private Label label3;
-        private Label label4;
-        private TextBox textBox5;
-        private Label label5;
-        private TextBox textBox6;
-        private Label label6;
-        private TextBox textBox7;
-        private TextBox textBox8;
-        private Label label7;
-        private Label label8;
-        private TextBox textBox9;
-        private Label label9;
-        private TextBox textBox10;
-        private Label label10;
-        private CheckBox checkBox1;
-        private CheckBox checkBox2;
-        private CheckBox checkBox3;
-        private CheckBox checkBox4;
-        private CheckBox checkBox5;
-        private CheckBox checkBox6;
-        private CheckBox checkBox7;
-        private CheckBox checkBox8;
-        private CheckBox checkBox9;
-        private CheckBox checkBox10;
+        private TextBox filterBingoTextBox3;
+        private Label filterBingoLabel3;
+        private TextBox filterBingoTextBox2;
+        private Label filterBingoLabel2;
+        private TextBox filterBingoTextBox1;
+        private TextBox filterBingoTextBox0;
+        private Label filterBingoLabel1;
+        private Label filterBingoLabel0;
+        private TextBox filterBingoTextBox7;
+        private Label filterBingoLabel7;
+        private TextBox filterBingoTextBox6;
+        private Label filterBingoLabel6;
+        private TextBox filterBingoTextBox5;
+        private TextBox filterBingoTextBox4;
+        private Label filterBingoLabel5;
+        private Label filterBingoLabel4;
+        private TextBox filterBingoTextBox9;
+        private Label filterBingoLabel9;
+        private TextBox filterBingoTextBox8;
+        private Label filterBingoLabel8;
+        private CheckBox filterBingoCheckBox0;
+        private CheckBox filterBingoCheckBox2;
+        private CheckBox filterBingoCheckBox4;
+        private CheckBox filterBingoCheckBox6;
+        private CheckBox filterBingoCheckBox8;
+        private CheckBox filterBingoCheckBox9;
+        private CheckBox filterBingoCheckBox7;
+        private CheckBox filterBingoCheckBox5;
+        private CheckBox filterBingoCheckBox3;
+        private CheckBox filterBingoCheckBox1;
+        private Button sortAllArtistButton;
+        private Label sortAllLabel;
+        private Button sortAllBPMsmallButton;
+        private Button sortAllBPMbigButton;
+        private Button sortAllBigButton;
+        private Button sortAllIDsmallButton;
+        private Button filterInvertMatchesButton;
     }
 }
