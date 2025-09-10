@@ -2022,26 +2022,22 @@ namespace WaccaSongBrowser
 
                 if (numeric)
                 {
-                    // numeric key selector (parses numbers robustly, fallback places invalids at the end)
                     Func<StructPropertyData, double> numericKey = row =>
                     {
                         var raw = GetStructFieldValueRaw(row, fieldName);
                         if (raw == null)
                             return descending ? double.MinValue : double.MaxValue;
 
-                        // handle numeric property types first
                         if (raw is uint u) return (double)u;
                         if (raw is int i) return (double)i;
                         if (raw is long l) return (double)l;
                         if (raw is double dval) return dval;
                         if (raw is float fval) return (double)fval;
 
-                        // fallback parse string with invariant culture
                         var s = raw.ToString();
                         if (double.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out double d))
                             return d;
 
-                        // invalid numeric: place at end (choose value depending on ascending/descending)
                         return descending ? double.MinValue : double.MaxValue;
                     };
 
@@ -2051,7 +2047,6 @@ namespace WaccaSongBrowser
                 }
                 else
                 {
-                    // string key selector (case-insensitive optional)
                     Func<StructPropertyData, string> stringKey = row =>
                     {
                         var raw = GetStructFieldValueRaw(row, fieldName);
@@ -2064,24 +2059,19 @@ namespace WaccaSongBrowser
                         : structRows.OrderBy(stringKey).ToList();
                 }
 
-                // Replace DataTable rows (keep non-Struct items, but put sorted struct rows after them)
-                var nonStructItems = dataTable.Table.Data.Where(p => !(p is StructPropertyData)).ToList();
-                var newDataList = new List<PropertyData>();
-                newDataList.AddRange(nonStructItems);
-                newDataList.AddRange(sortedRows.Cast<PropertyData>());
-
-                // Replace contents of the original list (safer than assigning new object)
+                // --- FIXED PART ---
+                // We must replace the Table.Data contents with StructPropertyData items.
+                // table.Data is List<StructPropertyData>, so add only StructPropertyData objects.
                 dataTable.Table.Data.Clear();
-                dataTable.Table.Data.AddRange(newDataList);
+                dataTable.Table.Data.AddRange(sortedRows);
+                // --- END FIXED PART ---
 
                 // Reorder your in-memory allSongs to match the new table order (by UniqueID)
                 var newAllSongs = new List<SongData>();
-                // Build a fast lookup for the existing songs (avoid O(n^2) if many entries)
                 var songsById = allSongs.ToDictionary(s => s.UniqueID);
 
                 foreach (var row in sortedRows)
                 {
-                    // read UniqueID from the struct (robust parsing)
                     var idRaw = GetStructFieldValueRaw(row, "UniqueID");
                     uint id = 0;
                     if (idRaw is uint uid) id = uid;
@@ -2099,22 +2089,20 @@ namespace WaccaSongBrowser
                     }
                 }
 
-                // append any songs not present in the table (shouldn't normally happen but safe)
                 foreach (var s in allSongs)
                     if (!newAllSongs.Contains(s))
                         newAllSongs.Add(s);
 
                 allSongs = newAllSongs;
 
-                // Refresh UI to match new order (reuse your existing function)
+                // Refresh UI and persist
                 RefreshSongListUI();
-
-                // Persist according to user's save mode (auto/ram/manual)
                 saveChanges();
 
-                return; // we handled the first DataTableExport found
+                return; // handled first DataTableExport found
             }
         }
+
 
         // ---------- Helper: read property value from StructPropertyData ----------
         private static object GetStructFieldValueRaw(StructPropertyData structData, string fieldName)
