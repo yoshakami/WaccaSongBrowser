@@ -830,12 +830,17 @@ namespace WaccaSongBrowser
         {
             if (saveChangesInRam())
             {
+                SaveAllUnlockMusic();
                 saveLabel.Text = $"Saved {++savecount} times";
                 consoleLabel.Text = "";
                 MusicParameterTable.Write(openedFileName);
                 if (UnlockMusicTableFilePath != null)
                 {
                     UnlockMusicTable.Write(UnlockMusicTableFilePath);
+                }
+                if (UnlockInfernoTableFilePath != null)
+                {
+                    UnlockInfernoTable.Write(UnlockInfernoTableFilePath);
                 }
             }
             else
@@ -851,7 +856,7 @@ namespace WaccaSongBrowser
                 saveChangesInRam();
             }
         }
-        public static void SaveUnlockMusic()
+        public static void SaveAllUnlockMusic()
         {
             if (UnlockMusicTable == null || musicUnlockStatus == null)
                 return;
@@ -888,32 +893,84 @@ namespace WaccaSongBrowser
                         else
                         {
                             // --- Create new row ---
-                            var newRow = new StructPropertyData("RowStruct");
-
-                            newRow.Value = new List<PropertyData>
-                    {
-                        new IntPropertyData("MusicId"){ Value = musicId },
-                        new Int64PropertyData("AdaptStartTime"){ Value = 0 },
-                        new Int64PropertyData("AdaptEndTime"){ Value = 0 },
-                        new BoolPropertyData("bRequirePurchase"){ Value = false },
-                        new IntPropertyData("RequiredMusicOpenWaccaPoint"){ Value = 0 },
-                        new BoolPropertyData("bVipPreOpen"){ Value = false },
-                        new StrPropertyData("NameTag"){ Value = "" },
-                        new StrPropertyData("ExplanationTextTag"){ Value = "" },
-                        new Int64PropertyData("ItemActivateStartTime"){ Value = newStartTime },
-                        new Int64PropertyData("ItemActivateEndTime"){ Value = 0 },
-                        new BoolPropertyData("bIsInitItem"){ Value = true },
-                        new IntPropertyData("GainWaccaPoint"){ Value = 0 }
-                    };
-
+                            var newRow = new StructPropertyData(new FName(UnlockMusicTable, "RowStruct"))
+                            {
+                                Value = new List<PropertyData>
+                                {
+                                    new IntPropertyData(new FName(UnlockMusicTable, "MusicId")) { Value = musicId },
+                                    new Int64PropertyData(new FName(UnlockMusicTable, "AdaptStartTime")) { Value = 0 },
+                                    new Int64PropertyData(new FName(UnlockMusicTable, "AdaptEndTime")) { Value = 0 },
+                                    new BoolPropertyData(new FName(UnlockMusicTable, "bRequirePurchase")) { Value = false },
+                                    new IntPropertyData(new FName(UnlockMusicTable, "RequiredMusicOpenWaccaPoint")) { Value = 0 },
+                                    new BoolPropertyData(new FName(UnlockMusicTable, "bVipPreOpen")) { Value = false },
+                                    new StrPropertyData(new FName(UnlockMusicTable, "NameTag")) { Value = null },
+                                    new StrPropertyData(new FName(UnlockMusicTable, "ExplanationTextTag")) { Value = null },
+                                    new Int64PropertyData(new FName(UnlockMusicTable, "ItemActivateStartTime")) { Value = newStartTime },
+                                    new Int64PropertyData(new FName(UnlockMusicTable, "ItemActivateEndTime")) { Value = 0 },
+                                    new BoolPropertyData(new FName(UnlockMusicTable, "bIsInitItem")) { Value = true },
+                                    new IntPropertyData(new FName(UnlockMusicTable, "GainWaccaPoint")) { Value = 0 }
+                                }
+                            };
                             dataTable.Table.Data.Add(newRow);
                         }
                     }
                 }
             }
         }
+        void SaveCurentUnlockInferno()
+        {
+            if (UnlockInfernoTable == null || !int.TryParse(songid.Text, out int newId) || diffInfernoTextBox.Text == "0")
+                return;
+
+            foreach (var export in UnlockInfernoTable.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    var structRows = dataTable.Table.Data.OfType<StructPropertyData>().ToList();
 
 
+                    // Find existing row
+                    var existingRow = structRows
+                        .FirstOrDefault(r => GetFieldValue<int>(r, "MusicId") == newId);
+
+                    long newStartTime = 0;
+                    if (checkBoxNew.Checked)
+                    {
+                        // Use yesterday (24h ago) for safety with timezones
+                        DateTime yesterday = DateTime.Now.AddDays(-1);
+                        string formatted = yesterday.ToString("yyyyMMddHH");
+                        newStartTime = long.Parse(formatted);
+                    }
+
+                    if (existingRow != null)
+                    {
+                        // Update existing entry
+                        SetFieldValue(existingRow, "ItemActivateStartTime", newStartTime);
+                    }
+                    else
+                    {
+                        // --- Create new row ---
+                        var newRow = new StructPropertyData(new FName(UnlockMusicTable, "RowStruct"))
+                        {
+                            Value = new List<PropertyData>
+                                {
+                                    new IntPropertyData(new FName(UnlockMusicTable, "MusicId")) { Value = newId },
+                                    new BoolPropertyData(new FName(UnlockMusicTable, "bRequirePurchase")) { Value = false },
+                                    new IntPropertyData(new FName(UnlockMusicTable, "RequiredInfernoOpenWaccaPoint")) { Value = 0 },
+                                    new BoolPropertyData(new FName(UnlockMusicTable, "bVipPreOpen")) { Value = false },
+                                    new StrPropertyData(new FName(UnlockMusicTable, "NameTag")) { Value = null },
+                                    new StrPropertyData(new FName(UnlockMusicTable, "ExplanationTextTag")) { Value = null },
+                                    new Int64PropertyData(new FName(UnlockMusicTable, "ItemActivateStartTime")) { Value = newStartTime },
+                                    new Int64PropertyData(new FName(UnlockMusicTable, "ItemActivateEndTime")) { Value = 0 },
+                                    new BoolPropertyData(new FName(UnlockMusicTable, "bIsInitItem")) { Value = true },
+                                    new IntPropertyData(new FName(UnlockMusicTable, "GainWaccaPoint")) { Value = 0 }
+                                }
+                        };
+                        dataTable.Table.Data.Add(newRow);
+                    }
+                }
+            }
+        }
 
 
         private bool saveChangesInRam()
@@ -944,7 +1001,7 @@ namespace WaccaSongBrowser
                                 continue;
                             }
                             musicUnlockStatus[(int)id] = checkBoxNew.Checked;
-                            SaveUnlockMusic();
+                            SaveCurentUnlockInferno();
                             // Lookup the song data you want to save (replace this with your data source)
                             SetFieldValue(rowStruct, "MusicMessage", songData.MusicMessage);
                             SetFieldValue(rowStruct, "ArtistMessage", songData.ArtistMessage);
@@ -1355,12 +1412,29 @@ namespace WaccaSongBrowser
                 checkBoxNew.BackColor = Color.FromArgb(0xff, 0xAA, 0xAA, 0xAA);
                 checkBoxNew.Enabled = false;
             }
+
+            // Combine with the new filename
+            newPath = Path.Combine(directory, "UnlockInfernoTable.uasset");
+            if (File.Exists(newPath))
+            {
+                UnlockInfernoTableFilePath = newPath;
+                //ReadUnlockMusic();
+            }
+            else
+            {
+                UnlockInfernoTableFilePath = null;
+                UnlockInfernoTable = null;
+                checkBoxNew.BackColor = Color.FromArgb(0xff, 0xAA, 0xAA, 0xAA);
+                checkBoxNew.Enabled = false;
+            }
             nextSongButton_Click(null, null);
             return 0;
         }
         static string UnlockMusicTableFilePath;
         static UAsset UnlockMusicTable;
         static Dictionary<int, bool> musicUnlockStatus;
+        static string UnlockInfernoTableFilePath;
+        static UAsset UnlockInfernoTable;
         public static int ReadUnlockMusic()
         {
             musicUnlockStatus = new Dictionary<int, bool>();
@@ -2211,7 +2285,8 @@ namespace WaccaSongBrowser
                 try
                 {
                     musicUnlockStatus[(int)newId] = checkBoxNew.Checked;
-                    SaveUnlockMusic();
+                    //SaveAllUnlockMusic();
+                    SaveCurentUnlockInferno();
                 }
                 catch
                 {
