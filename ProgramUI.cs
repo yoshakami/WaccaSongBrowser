@@ -1,9 +1,11 @@
+using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
+using UAssetAPI;
 using UAssetAPI.ExportTypes;
 using UAssetAPI.PropertyTypes.Objects;
 using UAssetAPI.PropertyTypes.Structs;
-using UAssetAPI;
 using UAssetAPI.UnrealTypes;
-using System.Text;
 
 namespace WaccaSongBrowser
 {
@@ -1976,62 +1978,190 @@ namespace WaccaSongBrowser
             filterPointCostLabel.Enabled = filterPointCostCheckBox.Checked;
             filterPointCostTextBox.Enabled = filterPointCostCheckBox.Checked;
         }
+        // ---------- Click handlers ----------
         private void sortAllArtistButton_Click(object sender, EventArgs e)
         {
-            allSongs = allSongs
-                .OrderBy(song => song.ArtistMessage)
-                .ToList();
-            RefreshSongListUI();
+            SortMusicParameterTableByField("ArtistMessage", numeric: false, descending: false, caseInsensitive: true);
         }
 
         private void sortAllIDsmallButton_Click(object sender, EventArgs e)
         {
-            allSongs = allSongs
-                .OrderBy(song => song.UniqueID)
-                .ToList();
-            RefreshSongListUI();
+            SortMusicParameterTableByField("UniqueID", numeric: true, descending: false);
         }
 
         private void sortAllBigButton_Click(object sender, EventArgs e)
         {
-            allSongs = allSongs
-                .OrderByDescending(song => song.UniqueID)
-                .ToList();
-            RefreshSongListUI();
+            SortMusicParameterTableByField("UniqueID", numeric: true, descending: true);
         }
 
         private void sortAllBPMsmallButton_Click(object sender, EventArgs e)
         {
-            allSongs = allSongs
-                .OrderBy(song =>
-                {
-                    if (uint.TryParse(song.Bpm, out uint bpmVal))
-                        return bpmVal;
-                    return uint.MaxValue; // non-numeric BPMs go to the end
-                })
-                .ToList();
-            RefreshSongListUI();
+            SortMusicParameterTableByField("Bpm", numeric: true, descending: false);
         }
 
         private void sortAllBPMbigButton_Click(object sender, EventArgs e)
         {
-            allSongs = allSongs
-                .OrderByDescending(song =>
+            SortMusicParameterTableByField("Bpm", numeric: true, descending: true);
+        }
+
+        // ---------- Main sorter ----------
+        private void SortMusicParameterTableByField(string fieldName, bool numeric, bool descending, bool caseInsensitive = false)
+        {
+            // Find the DataTableExport inside MusicParameterTable
+            foreach (var export in MusicParameterTable.Exports)
+            {
+                if (!(export is DataTableExport dataTable))
+                    continue;
+
+                // Extract StructPropertyData rows (these represent each song row)
+                var structRows = dataTable.Table.Data.OfType<StructPropertyData>().ToList();
+                if (structRows.Count == 0)
+                    return; // nothing to sort
+
+                List<StructPropertyData> sortedRows;
+
+                if (numeric)
                 {
-                    if (uint.TryParse(song.Bpm, out uint bpmVal))
-                        return bpmVal;
-                    return uint.MinValue; // non-numeric BPMs go to the end
-                })
-                .ToList();
-            RefreshSongListUI();
+                    // numeric key selector (parses numbers robustly, fallback places invalids at the end)
+                    Func<StructPropertyData, double> numericKey = row =>
+                    {
+                        var raw = GetStructFieldValueRaw(row, fieldName);
+                        if (raw == null)
+                            return descending ? double.MinValue : double.MaxValue;
+
+                        // handle numeric property types first
+                        if (raw is uint u) return (double)u;
+                        if (raw is int i) return (double)i;
+                        if (raw is long l) return (double)l;
+                        if (raw is double dval) return dval;
+                        if (raw is float fval) return (double)fval;
+
+                        // fallback parse string with invariant culture
+                        var s = raw.ToString();
+                        if (double.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out double d))
+                            return d;
+
+                        // invalid numeric: place at end (choose value depending on ascending/descending)
+                        return descending ? double.MinValue : double.MaxValue;
+                    };
+
+                    sortedRows = descending
+                        ? structRows.OrderByDescending(numericKey).ToList()
+                        : structRows.OrderBy(numericKey).ToList();
+                }
+                else
+                {
+                    // string key selector (case-insensitive optional)
+                    Func<StructPropertyData, string> stringKey = row =>
+                    {
+                        var raw = GetStructFieldValueRaw(row, fieldName);
+                        var s = raw?.ToString() ?? string.Empty;
+                        return caseInsensitive ? s.ToLowerInvariant() : s;
+                    };
+
+                    sortedRows = descending
+                        ? structRows.OrderByDescending(stringKey).ToList()
+                        : structRows.OrderBy(stringKey).ToList();
+                }
+
+                // Replace DataTable rows (keep non-Struct items, but put sorted struct rows after them)
+                var nonStructItems = dataTable.Table.Data.Where(p => !(p is StructPropertyData)).ToList();
+                var newDataList = new List<PropertyData>();
+                newDataList.AddRange(nonStructItems);
+                newDataList.AddRange(sortedRows.Cast<PropertyData>());
+
+                // Replace contents of the original list (safer than assigning new object)
+                dataTable.Table.Data.Clear();
+                dataTable.Table.Data.AddRange(newDataList);
+
+                // Reorder your in-memory allSongs to match the new table order (by UniqueID)
+                var newAllSongs = new List<SongData>();
+                // Build a fast lookup for the existing songs (avoid O(n^2) if many entries)
+                var songsById = allSongs.ToDictionary(s => s.UniqueID);
+
+                foreach (var row in sortedRows)
+                {
+                    // read UniqueID from the struct (robust parsing)
+                    var idRaw = GetStructFieldValueRaw(row, "UniqueID");
+                    uint id = 0;
+                    if (idRaw is uint uid) id = uid;
+                    else if (idRaw is int iid) id = (uint)iid;
+                    else if (idRaw is long lid) id = (uint)lid;
+                    else
+                    {
+                        var s = idRaw?.ToString();
+                        if (!string.IsNullOrEmpty(s) && uint.TryParse(s, out uint parsed)) id = parsed;
+                    }
+
+                    if (songsById.TryGetValue(id, out var song))
+                    {
+                        newAllSongs.Add(song);
+                    }
+                }
+
+                // append any songs not present in the table (shouldn't normally happen but safe)
+                foreach (var s in allSongs)
+                    if (!newAllSongs.Contains(s))
+                        newAllSongs.Add(s);
+
+                allSongs = newAllSongs;
+
+                // Refresh UI to match new order (reuse your existing function)
+                RefreshSongListUI();
+
+                // Persist according to user's save mode (auto/ram/manual)
+                saveChanges();
+
+                return; // we handled the first DataTableExport found
+            }
+        }
+
+        // ---------- Helper: read property value from StructPropertyData ----------
+        private static object GetStructFieldValueRaw(StructPropertyData structData, string fieldName)
+        {
+            var prop = structData.Value.FirstOrDefault(p => p.Name.Value.ToString() == fieldName);
+            if (prop == null) return null;
+
+            // match the property types you use in save code
+            if (prop is StrPropertyData strProp)
+            {
+                // StrPropertyData.Value is an FString sometimes - ToString() is safe
+                return strProp.Value?.ToString();
+            }
+            if (prop is UInt32PropertyData u32Prop)
+            {
+                return u32Prop.Value;
+            }
+            if (prop is IntPropertyData iProp)
+            {
+                return iProp.Value;
+            }
+            if (prop is Int64PropertyData i64Prop)
+            {
+                return i64Prop.Value;
+            }
+            if (prop is UInt64PropertyData u64Prop)
+            {
+                return u64Prop.Value;
+            }
+            if (prop is FloatPropertyData fProp)
+            {
+                return fProp.Value;
+            }
+            if (prop is BoolPropertyData bProp)
+            {
+                return bProp.Value;
+            }
+
+            // fallback
+            return prop.ToString();
         }
         private void RefreshSongListUI()
         {
+            // adapt to your existing UI code if needed
             songid.Items.Clear();
             foreach (var song in allSongs)
-            {
                 songid.Items.Add(song.UniqueID.ToString());
-            }
 
             if (allSongs.Count > 0)
             {
