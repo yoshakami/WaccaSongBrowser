@@ -589,6 +589,7 @@ namespace WaccaSongBrowser
             if (resultList.Count == 0)
             {
                 searchResultLabel.Text = "No match.";
+                searchSectionLabel.Text = $"Showing Result 0/0";
                 return;
             }
 
@@ -607,6 +608,7 @@ namespace WaccaSongBrowser
             // store in a field:
             filteredSongs = resultList;
             filteredSongsSelectedIndex = 0;
+            searchSectionLabel.Text = $"Showing Result {filteredSongsSelectedIndex}/{filteredSongs.Count}";
         }
 
         private void filterInvertMatchesButton_Click(object sender, EventArgs e)
@@ -621,6 +623,7 @@ namespace WaccaSongBrowser
             if (resultList.Count == 0)
             {
                 searchResultLabel.Text = "No match.";
+                searchSectionLabel.Text = $"Showing Result 0/0";
                 return;
             }
 
@@ -638,6 +641,7 @@ namespace WaccaSongBrowser
             // Option B: keep resultList for navigation (next/previous)
             filteredSongs = resultList;
             filteredSongsSelectedIndex = 0;
+            searchSectionLabel.Text = $"Showing Result {filteredSongsSelectedIndex}/{filteredSongs.Count}";
         }
 
         static List<SongData> filteredSongs = new List<SongData>();
@@ -654,6 +658,7 @@ namespace WaccaSongBrowser
             saveChanges();
             currentSongId = filteredSongs[filteredSongsSelectedIndex].UniqueID;
             LoadUI(filteredSongs[filteredSongsSelectedIndex]);
+            searchSectionLabel.Text = $"Showing Result {filteredSongsSelectedIndex}/{filteredSongs.Count}";
         }
 
         private void searchNextButton_Click(object sender, EventArgs e)
@@ -667,6 +672,7 @@ namespace WaccaSongBrowser
             saveChanges();
             currentSongId = filteredSongs[filteredSongsSelectedIndex].UniqueID;
             LoadUI(filteredSongs[filteredSongsSelectedIndex]);
+            searchSectionLabel.Text = $"Showing Result {filteredSongsSelectedIndex}/{filteredSongs.Count}";
         }
         void FillLists()
         {

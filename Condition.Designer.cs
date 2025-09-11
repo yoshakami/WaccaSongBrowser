@@ -100,7 +100,7 @@
             saveLabel = new Label();
             saveButton = new Button();
             autoSaveCheckBox = new CheckBox();
-            loadedFilesLabel = new Label();
+            resultItemLabel = new Label();
             filterConditionType = new ComboBox();
             filterConditionTypeTextBox = new TextBox();
             conditionType = new ComboBox();
@@ -109,12 +109,15 @@
             resultSearchLabel = new Label();
             resultPreviousButton = new Button();
             resultNextButton = new Button();
+            searchOutputLabel = new Label();
+            loadedFilesLabel = new Label();
+            label1 = new Label();
             SuspendLayout();
             // 
             // conditionCheckBox
             // 
             conditionCheckBox.AutoSize = true;
-            conditionCheckBox.Location = new Point(453, 413);
+            conditionCheckBox.Location = new Point(453, 404);
             conditionCheckBox.Name = "conditionCheckBox";
             conditionCheckBox.Size = new Size(175, 19);
             conditionCheckBox.TabIndex = 134;
@@ -532,9 +535,9 @@
             // 
             // conditionInjectButton
             // 
-            conditionInjectButton.Location = new Point(453, 457);
+            conditionInjectButton.Location = new Point(453, 555);
             conditionInjectButton.Name = "conditionInjectButton";
-            conditionInjectButton.Size = new Size(318, 77);
+            conditionInjectButton.Size = new Size(318, 29);
             conditionInjectButton.TabIndex = 200;
             conditionInjectButton.Text = "Inject NEW";
             conditionInjectButton.UseVisualStyleBackColor = true;
@@ -543,7 +546,7 @@
             // conditionOutputLabel
             // 
             conditionOutputLabel.AutoSize = true;
-            conditionOutputLabel.Location = new Point(453, 561);
+            conditionOutputLabel.Location = new Point(453, 590);
             conditionOutputLabel.MinimumSize = new Size(318, 15);
             conditionOutputLabel.Name = "conditionOutputLabel";
             conditionOutputLabel.Size = new Size(318, 15);
@@ -554,7 +557,7 @@
             // resultOutputLabel
             // 
             resultOutputLabel.AutoSize = true;
-            resultOutputLabel.Location = new Point(45, 558);
+            resultOutputLabel.Location = new Point(45, 590);
             resultOutputLabel.MinimumSize = new Size(318, 15);
             resultOutputLabel.Name = "resultOutputLabel";
             resultOutputLabel.Size = new Size(318, 15);
@@ -564,9 +567,9 @@
             // 
             // resultInjectButton
             // 
-            resultInjectButton.Location = new Point(45, 454);
+            resultInjectButton.Location = new Point(45, 555);
             resultInjectButton.Name = "resultInjectButton";
-            resultInjectButton.Size = new Size(318, 77);
+            resultInjectButton.Size = new Size(318, 29);
             resultInjectButton.TabIndex = 204;
             resultInjectButton.Text = "Inject NEW";
             resultInjectButton.UseVisualStyleBackColor = true;
@@ -777,16 +780,16 @@
             autoSaveCheckBox.UseVisualStyleBackColor = true;
             autoSaveCheckBox.CheckedChanged += autoSaveCheckBox_CheckedChanged;
             // 
-            // loadedFilesLabel
+            // resultItemLabel
             // 
-            loadedFilesLabel.AutoSize = true;
-            loadedFilesLabel.Location = new Point(45, 302);
-            loadedFilesLabel.MinimumSize = new Size(318, 15);
-            loadedFilesLabel.Name = "loadedFilesLabel";
-            loadedFilesLabel.Size = new Size(318, 15);
-            loadedFilesLabel.TabIndex = 232;
-            loadedFilesLabel.Text = "Loaded Files:";
-            loadedFilesLabel.TextAlign = ContentAlignment.TopCenter;
+            resultItemLabel.AutoSize = true;
+            resultItemLabel.Location = new Point(45, 302);
+            resultItemLabel.MinimumSize = new Size(318, 15);
+            resultItemLabel.Name = "resultItemLabel";
+            resultItemLabel.Size = new Size(318, 15);
+            resultItemLabel.TabIndex = 232;
+            resultItemLabel.Text = "Loaded Files:";
+            resultItemLabel.TextAlign = ContentAlignment.TopCenter;
             // 
             // filterConditionType
             // 
@@ -868,10 +871,43 @@
             resultNextButton.UseVisualStyleBackColor = true;
             resultNextButton.Click += resultNextButton_Click;
             // 
+            // searchOutputLabel
+            // 
+            searchOutputLabel.AutoSize = true;
+            searchOutputLabel.Location = new Point(829, 648);
+            searchOutputLabel.Name = "searchOutputLabel";
+            searchOutputLabel.Size = new Size(108, 15);
+            searchOutputLabel.TabIndex = 241;
+            searchOutputLabel.Text = "Showing Result 0/0";
+            // 
+            // loadedFilesLabel
+            // 
+            loadedFilesLabel.AutoSize = true;
+            loadedFilesLabel.Location = new Point(453, 424);
+            loadedFilesLabel.MinimumSize = new Size(318, 15);
+            loadedFilesLabel.Name = "loadedFilesLabel";
+            loadedFilesLabel.Size = new Size(318, 15);
+            loadedFilesLabel.TabIndex = 242;
+            loadedFilesLabel.Text = "Loaded Files:";
+            loadedFilesLabel.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(453, 463);
+            label1.Name = "label1";
+            label1.Size = new Size(75, 15);
+            label1.TabIndex = 243;
+            label1.Text = "Loaded Files:";
+            label1.TextAlign = ContentAlignment.TopCenter;
+            // 
             // Condition
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label1);
+            Controls.Add(loadedFilesLabel);
+            Controls.Add(searchOutputLabel);
             Controls.Add(resultPreviousButton);
             Controls.Add(resultNextButton);
             Controls.Add(resultSearchLabel);
@@ -880,7 +916,7 @@
             Controls.Add(conditionType);
             Controls.Add(filterConditionTypeTextBox);
             Controls.Add(filterConditionType);
-            Controls.Add(loadedFilesLabel);
+            Controls.Add(resultItemLabel);
             Controls.Add(ramSaveCheckBox);
             Controls.Add(saveLabel);
             Controls.Add(saveButton);
@@ -1033,7 +1069,7 @@
         private Label saveLabel;
         private Button saveButton;
         private CheckBox autoSaveCheckBox;
-        private Label loadedFilesLabel;
+        private Label resultItemLabel;
         private ComboBox filterConditionType;
         private TextBox filterConditionTypeTextBox;
         private ComboBox conditionType;
@@ -1042,5 +1078,8 @@
         private Label resultSearchLabel;
         private Button resultPreviousButton;
         private Button resultNextButton;
+        private Label searchOutputLabel;
+        private Label loadedFilesLabel;
+        private Label label1;
     }
 }
