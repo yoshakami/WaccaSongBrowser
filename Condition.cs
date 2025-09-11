@@ -234,21 +234,26 @@ namespace WaccaSongBrowser
             condition4textBox.Text = song.Value4;
             condition5textBox.Text = song.Value5;
             conditionTypeTextBox.Text = song.ConditionType.ToString();
-
-            // usage
-            count = 0;
-            foreach (var totalResultItemData in resultDict[conditionIdTextBox.Text])
+            count = 0; string key = song.ConditionId.ToString().PadLeft(9, '0');
+            if (resultDict.TryGetValue(key, out var items))
             {
-                count += 1;
-                resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
-                resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
-                resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
-            }
-            if (count > 1)
-            {
+                foreach (var totalResultItemData in items)
+                {
+                    count++;
+                    resultConditionTextBox.Text = totalResultItemData.ConditionKeys[0];
+                    resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
+                    resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
+                    resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
+                }
                 resultSearchLabel.Text = $"Showing item {count}/{count}";
+                current = count;
             }
-            current = count;
+            else
+            {
+                // key not found
+                resultSearchLabel.Text = "No results found ❌";
+                current = 0;
+            }
         }
         static int current;
         static int count;
@@ -265,9 +270,10 @@ namespace WaccaSongBrowser
                 count += 1;
                 if (current == count)
                 {
+                    resultConditionTextBox.Text = totalResultItemData.ConditionKeys[0];
+                    resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
                     resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
                     resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
-                    resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
                 }
             }
             resultSearchLabel.Text = $"Showing item {current}/{count}";
@@ -286,9 +292,10 @@ namespace WaccaSongBrowser
                 count += 1;
                 if (current == count)
                 {
+                    resultConditionTextBox.Text = totalResultItemData.ConditionKeys[0];
+                    resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
                     resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
                     resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
-                    resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
                 }
             }
             resultSearchLabel.Text = $"Showing item {current}/{count}";
