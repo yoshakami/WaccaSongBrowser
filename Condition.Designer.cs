@@ -69,13 +69,12 @@
             filterTypeCheckBox = new CheckBox();
             searchPreviousButton = new Button();
             searchNextButton = new Button();
-            searchSectionLabel = new Label();
             searchResultLabel = new Label();
             filterSearchButton = new Button();
             conditionidButton = new Button();
             conditionid = new ComboBox();
             conditionInjectButton = new Button();
-            conditionOutputLabel = new Label();
+            saveLabel = new Label();
             resultOutputLabel = new Label();
             resultInjectButton = new Button();
             resultConditionTextBox = new TextBox();
@@ -97,10 +96,8 @@
             filterResultItemIdTextBox = new TextBox();
             filterResultItemIdLabel = new Label();
             ramSaveCheckBox = new CheckBox();
-            saveLabel = new Label();
             saveButton = new Button();
             autoSaveCheckBox = new CheckBox();
-            resultItemLabel = new Label();
             filterConditionType = new ComboBox();
             filterConditionTypeTextBox = new TextBox();
             conditionType = new ComboBox();
@@ -111,13 +108,27 @@
             resultNextButton = new Button();
             searchOutputLabel = new Label();
             loadedFilesLabel = new Label();
-            label1 = new Label();
+            itemPictureBox = new PictureBox();
+            itemTextBox = new TextBox();
+            filterResultItemCheckBox = new CheckBox();
+            filterResultItemMinTextBox = new TextBox();
+            filterResultItemRangeLabel = new Label();
+            filterResultItemRangeCheckBox = new CheckBox();
+            filterResultItemMaxTextBox = new TextBox();
+            filterResultItemEnableCheckBox = new CheckBox();
+            filterResultItemType = new ComboBox();
+            filterResultItemTypeLabel = new Label();
+            filterResultItemTypeCheckBox = new CheckBox();
+            bgPictureBox = new PictureBox();
+            filterInvertMatchesButton = new Button();
+            ((System.ComponentModel.ISupportInitialize)itemPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bgPictureBox).BeginInit();
             SuspendLayout();
             // 
             // conditionCheckBox
             // 
             conditionCheckBox.AutoSize = true;
-            conditionCheckBox.Location = new Point(453, 404);
+            conditionCheckBox.Location = new Point(453, 401);
             conditionCheckBox.Name = "conditionCheckBox";
             conditionCheckBox.Size = new Size(175, 19);
             conditionCheckBox.TabIndex = 134;
@@ -131,7 +142,7 @@
             progressBar1.Location = new Point(409, 16);
             progressBar1.Margin = new Padding(0);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(19, 625);
+            progressBar1.Size = new Size(19, 393);
             progressBar1.TabIndex = 133;
             // 
             // condition5textBox
@@ -467,7 +478,7 @@
             // 
             // searchPreviousButton
             // 
-            searchPreviousButton.Location = new Point(968, 644);
+            searchPreviousButton.Location = new Point(1023, 644);
             searchPreviousButton.Name = "searchPreviousButton";
             searchPreviousButton.Size = new Size(92, 23);
             searchPreviousButton.TabIndex = 199;
@@ -477,7 +488,7 @@
             // 
             // searchNextButton
             // 
-            searchNextButton.Location = new Point(1081, 644);
+            searchNextButton.Location = new Point(1136, 644);
             searchNextButton.Name = "searchNextButton";
             searchNextButton.Size = new Size(92, 23);
             searchNextButton.TabIndex = 198;
@@ -485,19 +496,10 @@
             searchNextButton.UseVisualStyleBackColor = true;
             searchNextButton.Click += searchNextButton_Click;
             // 
-            // searchSectionLabel
-            // 
-            searchSectionLabel.AutoSize = true;
-            searchSectionLabel.Location = new Point(1035, 600);
-            searchSectionLabel.Name = "searchSectionLabel";
-            searchSectionLabel.Size = new Size(82, 30);
-            searchSectionLabel.TabIndex = 197;
-            searchSectionLabel.Text = "Search Results\n   Navigation";
-            // 
             // searchResultLabel
             // 
             searchResultLabel.AutoSize = true;
-            searchResultLabel.Location = new Point(939, 611);
+            searchResultLabel.Location = new Point(939, 648);
             searchResultLabel.Name = "searchResultLabel";
             searchResultLabel.Size = new Size(50, 15);
             searchResultLabel.TabIndex = 196;
@@ -505,7 +507,7 @@
             // 
             // filterSearchButton
             // 
-            filterSearchButton.Location = new Point(829, 607);
+            filterSearchButton.Location = new Point(829, 644);
             filterSearchButton.Name = "filterSearchButton";
             filterSearchButton.Size = new Size(92, 23);
             filterSearchButton.TabIndex = 195;
@@ -535,7 +537,7 @@
             // 
             // conditionInjectButton
             // 
-            conditionInjectButton.Location = new Point(453, 555);
+            conditionInjectButton.Location = new Point(453, 613);
             conditionInjectButton.Name = "conditionInjectButton";
             conditionInjectButton.Size = new Size(318, 29);
             conditionInjectButton.TabIndex = 200;
@@ -543,21 +545,21 @@
             conditionInjectButton.UseVisualStyleBackColor = true;
             conditionInjectButton.Click += conditionInjectButton_Click;
             // 
-            // conditionOutputLabel
+            // saveLabel
             // 
-            conditionOutputLabel.AutoSize = true;
-            conditionOutputLabel.Location = new Point(453, 590);
-            conditionOutputLabel.MinimumSize = new Size(318, 15);
-            conditionOutputLabel.Name = "conditionOutputLabel";
-            conditionOutputLabel.Size = new Size(318, 15);
-            conditionOutputLabel.TabIndex = 201;
-            conditionOutputLabel.Text = "Output:";
-            conditionOutputLabel.TextAlign = ContentAlignment.TopCenter;
+            saveLabel.AutoSize = true;
+            saveLabel.Location = new Point(453, 648);
+            saveLabel.MinimumSize = new Size(318, 15);
+            saveLabel.Name = "saveLabel";
+            saveLabel.Size = new Size(318, 15);
+            saveLabel.TabIndex = 201;
+            saveLabel.Text = "Output:";
+            saveLabel.TextAlign = ContentAlignment.TopCenter;
             // 
             // resultOutputLabel
             // 
             resultOutputLabel.AutoSize = true;
-            resultOutputLabel.Location = new Point(45, 590);
+            resultOutputLabel.Location = new Point(45, 648);
             resultOutputLabel.MinimumSize = new Size(318, 15);
             resultOutputLabel.Name = "resultOutputLabel";
             resultOutputLabel.Size = new Size(318, 15);
@@ -567,7 +569,7 @@
             // 
             // resultInjectButton
             // 
-            resultInjectButton.Location = new Point(45, 555);
+            resultInjectButton.Location = new Point(45, 613);
             resultInjectButton.Name = "resultInjectButton";
             resultInjectButton.Size = new Size(318, 29);
             resultInjectButton.TabIndex = 204;
@@ -687,7 +689,7 @@
             filterResultEndTimeTextBox.Location = new Point(855, 555);
             filterResultEndTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             filterResultEndTimeTextBox.Name = "filterResultEndTimeTextBox";
-            filterResultEndTimeTextBox.Size = new Size(318, 23);
+            filterResultEndTimeTextBox.Size = new Size(241, 23);
             filterResultEndTimeTextBox.TabIndex = 226;
             // 
             // filterResultEndTimeLabel
@@ -704,7 +706,7 @@
             filterResultStartTimeTextBox.Location = new Point(855, 505);
             filterResultStartTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             filterResultStartTimeTextBox.Name = "filterResultStartTimeTextBox";
-            filterResultStartTimeTextBox.Size = new Size(318, 23);
+            filterResultStartTimeTextBox.Size = new Size(241, 23);
             filterResultStartTimeTextBox.TabIndex = 224;
             // 
             // filterResultStartTimeLabel
@@ -721,7 +723,7 @@
             filterResultItemIdTextBox.Location = new Point(855, 455);
             filterResultItemIdTextBox.Margin = new Padding(3, 2, 3, 2);
             filterResultItemIdTextBox.Name = "filterResultItemIdTextBox";
-            filterResultItemIdTextBox.Size = new Size(318, 23);
+            filterResultItemIdTextBox.Size = new Size(175, 23);
             filterResultItemIdTextBox.TabIndex = 222;
             // 
             // filterResultItemIdLabel
@@ -738,7 +740,7 @@
             ramSaveCheckBox.AutoSize = true;
             ramSaveCheckBox.Checked = true;
             ramSaveCheckBox.CheckState = CheckState.Checked;
-            ramSaveCheckBox.Location = new Point(453, 607);
+            ramSaveCheckBox.Location = new Point(453, 572);
             ramSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
             ramSaveCheckBox.MinimumSize = new Size(0, 36);
             ramSaveCheckBox.Name = "ramSaveCheckBox";
@@ -748,18 +750,9 @@
             ramSaveCheckBox.TextAlign = ContentAlignment.MiddleCenter;
             ramSaveCheckBox.UseVisualStyleBackColor = true;
             // 
-            // saveLabel
-            // 
-            saveLabel.AutoSize = true;
-            saveLabel.Location = new Point(582, 648);
-            saveLabel.Name = "saveLabel";
-            saveLabel.Size = new Size(61, 15);
-            saveLabel.TabIndex = 230;
-            saveLabel.Text = "Not Saved";
-            // 
             // saveButton
             // 
-            saveButton.Location = new Point(569, 614);
+            saveButton.Location = new Point(569, 579);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(92, 23);
             saveButton.TabIndex = 229;
@@ -770,7 +763,7 @@
             // autoSaveCheckBox
             // 
             autoSaveCheckBox.AutoSize = true;
-            autoSaveCheckBox.Location = new Point(672, 617);
+            autoSaveCheckBox.Location = new Point(672, 582);
             autoSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
             autoSaveCheckBox.MinimumSize = new Size(110, 19);
             autoSaveCheckBox.Name = "autoSaveCheckBox";
@@ -779,17 +772,6 @@
             autoSaveCheckBox.Text = "Auto Save Edits";
             autoSaveCheckBox.UseVisualStyleBackColor = true;
             autoSaveCheckBox.CheckedChanged += autoSaveCheckBox_CheckedChanged;
-            // 
-            // resultItemLabel
-            // 
-            resultItemLabel.AutoSize = true;
-            resultItemLabel.Location = new Point(45, 302);
-            resultItemLabel.MinimumSize = new Size(318, 15);
-            resultItemLabel.Name = "resultItemLabel";
-            resultItemLabel.Size = new Size(318, 15);
-            resultItemLabel.TabIndex = 232;
-            resultItemLabel.Text = "Loaded Files:";
-            resultItemLabel.TextAlign = ContentAlignment.TopCenter;
             // 
             // filterConditionType
             // 
@@ -874,7 +856,7 @@
             // searchOutputLabel
             // 
             searchOutputLabel.AutoSize = true;
-            searchOutputLabel.Location = new Point(829, 648);
+            searchOutputLabel.Location = new Point(1065, 620);
             searchOutputLabel.Name = "searchOutputLabel";
             searchOutputLabel.Size = new Size(108, 15);
             searchOutputLabel.TabIndex = 241;
@@ -883,29 +865,154 @@
             // loadedFilesLabel
             // 
             loadedFilesLabel.AutoSize = true;
-            loadedFilesLabel.Location = new Point(453, 424);
-            loadedFilesLabel.MinimumSize = new Size(318, 15);
+            loadedFilesLabel.Location = new Point(1185, 119);
+            loadedFilesLabel.MinimumSize = new Size(150, 15);
             loadedFilesLabel.Name = "loadedFilesLabel";
-            loadedFilesLabel.Size = new Size(318, 15);
+            loadedFilesLabel.Size = new Size(150, 15);
             loadedFilesLabel.TabIndex = 242;
             loadedFilesLabel.Text = "Loaded Files:";
-            loadedFilesLabel.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label1
+            // itemPictureBox
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(453, 463);
-            label1.Name = "label1";
-            label1.Size = new Size(75, 15);
-            label1.TabIndex = 243;
-            label1.Text = "Loaded Files:";
-            label1.TextAlign = ContentAlignment.TopCenter;
+            itemPictureBox.Location = new Point(74, 328);
+            itemPictureBox.Margin = new Padding(3, 2, 3, 2);
+            itemPictureBox.Name = "itemPictureBox";
+            itemPictureBox.Size = new Size(256, 256);
+            itemPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            itemPictureBox.TabIndex = 244;
+            itemPictureBox.TabStop = false;
+            // 
+            // itemTextBox
+            // 
+            itemTextBox.BackColor = SystemColors.Menu;
+            itemTextBox.Location = new Point(45, 298);
+            itemTextBox.Margin = new Padding(3, 2, 3, 2);
+            itemTextBox.Name = "itemTextBox";
+            itemTextBox.ReadOnly = true;
+            itemTextBox.Size = new Size(318, 23);
+            itemTextBox.TabIndex = 245;
+            itemTextBox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // filterResultItemCheckBox
+            // 
+            filterResultItemCheckBox.AutoSize = true;
+            filterResultItemCheckBox.Location = new Point(1165, 503);
+            filterResultItemCheckBox.Name = "filterResultItemCheckBox";
+            filterResultItemCheckBox.Size = new Size(84, 19);
+            filterResultItemCheckBox.TabIndex = 246;
+            filterResultItemCheckBox.Text = "Has ItemID";
+            filterResultItemCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // filterResultItemMinTextBox
+            // 
+            filterResultItemMinTextBox.Location = new Point(1086, 455);
+            filterResultItemMinTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterResultItemMinTextBox.Name = "filterResultItemMinTextBox";
+            filterResultItemMinTextBox.Size = new Size(102, 23);
+            filterResultItemMinTextBox.TabIndex = 248;
+            // 
+            // filterResultItemRangeLabel
+            // 
+            filterResultItemRangeLabel.AutoSize = true;
+            filterResultItemRangeLabel.Location = new Point(1109, 438);
+            filterResultItemRangeLabel.Name = "filterResultItemRangeLabel";
+            filterResultItemRangeLabel.Size = new Size(169, 15);
+            filterResultItemRangeLabel.TabIndex = 249;
+            filterResultItemRangeLabel.Text = "Min <= Item ID Range <= Max";
+            // 
+            // filterResultItemRangeCheckBox
+            // 
+            filterResultItemRangeCheckBox.AutoSize = true;
+            filterResultItemRangeCheckBox.Location = new Point(1060, 460);
+            filterResultItemRangeCheckBox.Name = "filterResultItemRangeCheckBox";
+            filterResultItemRangeCheckBox.Size = new Size(15, 14);
+            filterResultItemRangeCheckBox.TabIndex = 247;
+            filterResultItemRangeCheckBox.UseVisualStyleBackColor = true;
+            filterResultItemRangeCheckBox.CheckedChanged += filterResultItemRangeCheckBox_CheckedChanged;
+            // 
+            // filterResultItemMaxTextBox
+            // 
+            filterResultItemMaxTextBox.Location = new Point(1200, 455);
+            filterResultItemMaxTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterResultItemMaxTextBox.Name = "filterResultItemMaxTextBox";
+            filterResultItemMaxTextBox.Size = new Size(103, 23);
+            filterResultItemMaxTextBox.TabIndex = 250;
+            // 
+            // filterResultItemEnableCheckBox
+            // 
+            filterResultItemEnableCheckBox.AutoSize = true;
+            filterResultItemEnableCheckBox.Location = new Point(1136, 505);
+            filterResultItemEnableCheckBox.Name = "filterResultItemEnableCheckBox";
+            filterResultItemEnableCheckBox.Size = new Size(15, 14);
+            filterResultItemEnableCheckBox.TabIndex = 251;
+            filterResultItemEnableCheckBox.UseVisualStyleBackColor = true;
+            filterResultItemEnableCheckBox.CheckedChanged += filterResultItemEnableCheckBox_CheckedChanged;
+            // 
+            // filterResultItemType
+            // 
+            filterResultItemType.FormattingEnabled = true;
+            filterResultItemType.Location = new Point(1158, 555);
+            filterResultItemType.Margin = new Padding(3, 2, 3, 2);
+            filterResultItemType.Name = "filterResultItemType";
+            filterResultItemType.Size = new Size(148, 23);
+            filterResultItemType.TabIndex = 252;
+            // 
+            // filterResultItemTypeLabel
+            // 
+            filterResultItemTypeLabel.AutoSize = true;
+            filterResultItemTypeLabel.Location = new Point(1200, 538);
+            filterResultItemTypeLabel.Name = "filterResultItemTypeLabel";
+            filterResultItemTypeLabel.Size = new Size(58, 15);
+            filterResultItemTypeLabel.TabIndex = 253;
+            filterResultItemTypeLabel.Text = "Item Type";
+            // 
+            // filterResultItemTypeCheckBox
+            // 
+            filterResultItemTypeCheckBox.AutoSize = true;
+            filterResultItemTypeCheckBox.Location = new Point(1136, 560);
+            filterResultItemTypeCheckBox.Name = "filterResultItemTypeCheckBox";
+            filterResultItemTypeCheckBox.Size = new Size(15, 14);
+            filterResultItemTypeCheckBox.TabIndex = 254;
+            filterResultItemTypeCheckBox.UseVisualStyleBackColor = true;
+            filterResultItemTypeCheckBox.CheckedChanged += filterResultItemTypeCheckBox_CheckedChanged;
+            // 
+            // bgPictureBox
+            // 
+            bgPictureBox.Location = new Point(173, 435);
+            bgPictureBox.Margin = new Padding(3, 2, 3, 2);
+            bgPictureBox.Name = "bgPictureBox";
+            bgPictureBox.Size = new Size(512, 128);
+            bgPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            bgPictureBox.TabIndex = 255;
+            bgPictureBox.TabStop = false;
+            // 
+            // filterInvertMatchesButton
+            // 
+            filterInvertMatchesButton.Location = new Point(829, 602);
+            filterInvertMatchesButton.Name = "filterInvertMatchesButton";
+            filterInvertMatchesButton.Size = new Size(199, 23);
+            filterInvertMatchesButton.TabIndex = 256;
+            filterInvertMatchesButton.Text = "Invert Matches";
+            filterInvertMatchesButton.UseVisualStyleBackColor = true;
+            filterInvertMatchesButton.Click += filterInvertMatchesButton_Click;
             // 
             // Condition
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label1);
+            Controls.Add(filterInvertMatchesButton);
+            Controls.Add(bgPictureBox);
+            Controls.Add(filterResultItemTypeCheckBox);
+            Controls.Add(filterResultItemTypeLabel);
+            Controls.Add(filterResultItemType);
+            Controls.Add(filterResultItemEnableCheckBox);
+            Controls.Add(filterResultItemMaxTextBox);
+            Controls.Add(filterResultItemMinTextBox);
+            Controls.Add(filterResultItemRangeLabel);
+            Controls.Add(filterResultItemRangeCheckBox);
+            Controls.Add(filterResultItemCheckBox);
+            Controls.Add(itemTextBox);
+            Controls.Add(itemPictureBox);
             Controls.Add(loadedFilesLabel);
             Controls.Add(searchOutputLabel);
             Controls.Add(resultPreviousButton);
@@ -916,9 +1023,7 @@
             Controls.Add(conditionType);
             Controls.Add(filterConditionTypeTextBox);
             Controls.Add(filterConditionType);
-            Controls.Add(resultItemLabel);
             Controls.Add(ramSaveCheckBox);
-            Controls.Add(saveLabel);
             Controls.Add(saveButton);
             Controls.Add(autoSaveCheckBox);
             Controls.Add(filterResultEndTimeTextBox);
@@ -941,11 +1046,10 @@
             Controls.Add(resultInjectButton);
             Controls.Add(resultConditionTextBox);
             Controls.Add(resultConditionLabel);
-            Controls.Add(conditionOutputLabel);
+            Controls.Add(saveLabel);
             Controls.Add(conditionInjectButton);
             Controls.Add(searchPreviousButton);
             Controls.Add(searchNextButton);
-            Controls.Add(searchSectionLabel);
             Controls.Add(searchResultLabel);
             Controls.Add(filterSearchButton);
             Controls.Add(conditionidButton);
@@ -990,7 +1094,9 @@
             Controls.Add(label19);
             Controls.Add(label12);
             Name = "Condition";
-            Size = new Size(1340, 682);
+            Size = new Size(1625, 682);
+            ((System.ComponentModel.ISupportInitialize)itemPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bgPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1038,13 +1144,11 @@
         private CheckBox filterTypeCheckBox;
         private Button searchPreviousButton;
         private Button searchNextButton;
-        private Label searchSectionLabel;
         private Label searchResultLabel;
         private Button filterSearchButton;
         private Button conditionidButton;
         private ComboBox conditionid;
         private Button conditionInjectButton;
-        private Label conditionOutputLabel;
         private Label resultOutputLabel;
         private Button resultInjectButton;
         private TextBox resultConditionTextBox;
@@ -1069,7 +1173,6 @@
         private Label saveLabel;
         private Button saveButton;
         private CheckBox autoSaveCheckBox;
-        private Label resultItemLabel;
         private ComboBox filterConditionType;
         private TextBox filterConditionTypeTextBox;
         private ComboBox conditionType;
@@ -1080,6 +1183,18 @@
         private Button resultNextButton;
         private Label searchOutputLabel;
         private Label loadedFilesLabel;
-        private Label label1;
+        private PictureBox itemPictureBox;
+        private TextBox itemTextBox;
+        private CheckBox filterResultItemCheckBox;
+        private TextBox filterResultItemMinTextBox;
+        private Label filterResultItemRangeLabel;
+        private CheckBox filterResultItemRangeCheckBox;
+        private TextBox filterResultItemMaxTextBox;
+        private CheckBox filterResultItemEnableCheckBox;
+        private ComboBox filterResultItemType;
+        private Label filterResultItemTypeLabel;
+        private CheckBox filterResultItemTypeCheckBox;
+        private PictureBox bgPictureBox;
+        private Button filterInvertMatchesButton;
     }
 }

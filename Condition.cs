@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Text;
+using System.Windows.Forms;
 using UAssetAPI;
 using UAssetAPI.ExportTypes;
 using UAssetAPI.PropertyTypes.Objects;
 using UAssetAPI.PropertyTypes.Structs;
 using UAssetAPI.UnrealTypes;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WaccaSongBrowser
 {
@@ -25,6 +25,14 @@ namespace WaccaSongBrowser
             conditionType.DataSource = new BindingSource(Conditions.Types, null);
             conditionType.DisplayMember = "Value"; // text shown
             conditionType.ValueMember = "Key";     // the ID
+            filterResultItemType.Items.Add("Background");
+            filterResultItemType.Items.Add("Color");
+            filterResultItemType.Items.Add("Icon");
+            filterResultItemType.Items.Add("Navigator");
+            filterResultItemType.Items.Add("SFX");
+            filterResultItemType.Items.Add("Title");
+            filterResultItemType.Items.Add("Trophy");
+            filterResultItemType.Items.Add("Other");
             // if (Read(fileName) != -1) // already called as static!!!!!!
             // fill UI elements since these can't be in a static method
             foreach (ConditionData data in allConditions)
@@ -39,13 +47,13 @@ namespace WaccaSongBrowser
                 g => g.Key,
                 g => g.Select(x => x.r).ToList()
             );
-            loadedFilesLabel.Text = "";
+            loadedFilesLabel.Text = "Loaded Files: ";
             if (IconTable != null)
                 loadedFilesLabel.Text += "\nIconTable";
-            if (GradeTable != null)
-                loadedFilesLabel.Text += "\nGradeTable";
             if (SESetTable != null)
                 loadedFilesLabel.Text += "\nSESetTable";
+            if (GradeTable != null)
+                loadedFilesLabel.Text += "\nGradeTable";
             if (TrophyTable != null)
                 loadedFilesLabel.Text += "\nTrophyTable";
             loadedFilesLabel.Text += "\nConditionTable";
@@ -70,7 +78,14 @@ namespace WaccaSongBrowser
                 resultStartTimeTextBox.Enabled = false;
                 resultEndTimeTextBox.Enabled = false;
             }
-            loadedFilesLabel.Text = loadedFilesLabel.Text.Substring(1);
+            if (IconMessage != null)
+                loadedFilesLabel.Text += "\n../Message/IconMessage";
+            if (SESetMessage != null)
+                loadedFilesLabel.Text += "\n../Message/AttackSEMessage";
+            if (UserPlateBackgroundMessage != null)
+                loadedFilesLabel.Text += "\n../Message/UserPlateBackgroundMessage";
+            if (ColorMessage != null)
+                loadedFilesLabel.Text += "\n../Message/TouchPanelSymbolColorMessage";
 
             nextButton_Click(null, null); // read returns -1 if allconditions is empty
 
@@ -82,6 +97,9 @@ namespace WaccaSongBrowser
             filterTypeCheckBox_CheckedChanged(null, null);
             filterConditionEnablecheckBox_CheckedChanged(null, null);
             filterResultItemIdCheckBox_CheckedChanged(null, null);
+            filterResultItemTypeCheckBox_CheckedChanged(null, null);
+            filterResultItemEnableCheckBox_CheckedChanged(null, null);
+            filterResultItemRangeCheckBox_CheckedChanged(null, null);
             filterResultStartTimeCheckBox_CheckedChanged(null, null);
             filterResultEndTimeCheckBox_CheckedChanged(null, null);
         }
@@ -240,13 +258,67 @@ namespace WaccaSongBrowser
                 SESetTable = null;
                 // cannot read SESetTable
             }
+            newPath = Path.GetFullPath(Path.Combine(directory, "..", "Message", "AttackSEMessage.uasset"));
+            if (File.Exists(newPath))
+            {
+                SESetMessageFilePath = newPath;
+                ReadSESetMessage();
+            }
+            else
+            {
+                SESetMessageFilePath = null;
+                SESetMessage = null;
+                // cannot read SESetMessage
+            }
+            newPath = Path.GetFullPath(Path.Combine(directory, "..", "Message", "TouchPanelSymbolColorMessage.uasset"));
+            if (File.Exists(newPath))
+            {
+                ColorMessageFilePath = newPath;
+                ReadColorMessage();
+            }
+            else
+            {
+                ColorMessageFilePath = null;
+                ColorMessage = null;
+                // cannot read SESetMessage
+            }
+            newPath = Path.GetFullPath(Path.Combine(directory, "..", "Message", "UserPlateBackgroundMessage.uasset"));
+            if (File.Exists(newPath))
+            {
+                UserPlateBackgroundMessageFilePath = newPath;
+                ReadUserPlateBackgroundMessage();
+            }
+            else
+            {
+                UserPlateBackgroundMessageFilePath = null;
+                UserPlateBackgroundMessage = null;
+                // cannot read SESetMessage
+            }
+            newPath = Path.GetFullPath(Path.Combine(directory, "..", "Message", "IconMessage.uasset"));
+            if (File.Exists(newPath))
+            {
+                IconMessageFilePath = newPath;
+                ReadIconMessage();
+            }
+            else
+            {
+                IconMessageFilePath = null;
+                IconMessage = null;
+                // cannot read SESetMessage
+            }
             //nextSongButton_Click(null, null);
             return 0;
         }
         static string SESetTableFilePath;
         static UAsset SESetTable;  // sound effects
+        static string UserPlateBackgroundMessageFilePath;
+        static UAsset UserPlateBackgroundMessage;
+        static string SESetMessageFilePath;
+        static UAsset SESetMessage;  // sound effects
         static string TouchPanelSymbolColorTableFilePath;
         static UAsset TouchPanelSymbolColorTable;  // circle colors
+        static string ColorMessageFilePath;
+        static UAsset ColorMessage;  // circle colors
         static string TrophyTableFilePath;
         static UAsset TrophyTable;  // trophy
         static string TotalResultItemJudgementTableFilePath;
@@ -257,6 +329,8 @@ namespace WaccaSongBrowser
         static UAsset GradeTable;  // title
         static string IconTableFilePath;
         static UAsset IconTable;  // icon
+        static string IconMessageFilePath;
+        static UAsset IconMessage;  // icon
 
         // No navigator!!!!!!!! NavigateCharacterTable only has link to the UI, but no link to messages or Voices. so I'll hardcode it for now
         static readonly Dictionary<int, string> navigators = new Dictionary<int, string>
@@ -274,196 +348,197 @@ namespace WaccaSongBrowser
             { 210060, "Seine" },
             { 210061, "HARDCORE TANO*C CREW" },
         };
+        static readonly Dictionary<int, string[]> icon = new Dictionary<int, string[]>();
+        static readonly Dictionary<string, int> iconReverse = new Dictionary<string, int>();
+        static readonly Dictionary<int, string> grade = new Dictionary<int, string>();
+        static readonly Dictionary<int, string[]> bg = new Dictionary<int, string[]>();
+        static readonly Dictionary<string, int> bgReverse = new Dictionary<string, int>();
+        static readonly Dictionary<int, string> trophy = new Dictionary<int, string>();
+        static readonly Dictionary<int, string> colors = new Dictionary<int, string>();
+        static readonly Dictionary<string, int> colorsReverse = new Dictionary<string, int>();
+        static readonly Dictionary<int, string> seset = new Dictionary<int, string>();
+        static readonly Dictionary<string, int> sesetReverse = new Dictionary<string, int>();
 
-
-        private static sbyte ReadSESetTable()
+        private static void ReadSESetTable()
         {
             // Load the asset (assumes .uexp is in the same folder)
             SESetTable = new UAsset(
                 SESetTableFilePath,
                 UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19
             );
-
+            int id;
             foreach (var export in SESetTable.Exports)
             {
                 if (export is DataTableExport dataTable)
                 {
-                    Console.WriteLine("Reading rows from DataTable...\n");
-
                     foreach (var row in dataTable.Table.Data)
                     {
                         if (row is StructPropertyData rowStruct)
                         {
-                            TotalResultItemJudgementData data = new TotalResultItemJudgementData
-                            {
-                                ItemId = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "ItemId"),
-                                ConditionGetableStartTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableStartTime"),
-                                ConditionGetableEndTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableEndTime"),
-                            };
-
-                            // Read the ConditionKeys array
-                            var keysArray = rowStruct.Value.FirstOrDefault(
-                                v => v.Name.ToString() == "ConditionKeys"
-                            ) as ArrayPropertyData;
-
-                            if (keysArray != null)
-                            {
-                                foreach (var entry in keysArray.Value)
-                                {
-                                    if (entry is StrPropertyData strProp)
-                                    {
-                                        data.ConditionKeys.Add(strProp.Value.ToString());
-                                    }
-                                }
-                            }
-                            allResult.Add(data);
+                            id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "SESetID");
+                            seset[id] = "SFX";
+                            sesetReverse[WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag")] = id;
                         }
                     }
                 }
             }
-            return 0;
         }
-        private static sbyte ReadTouchPanelSymbolColorTable()
+        private static void ReadSESetMessage()
+        {
+            // Load the asset (assumes .uexp is in the same folder)
+            SESetMessage = new UAsset(
+                SESetMessageFilePath,
+                UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19
+            );
+            string message;
+            int id;
+            foreach (var export in SESetMessage.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            message = row.Name.ToString();
+                            if (sesetReverse.TryGetValue(message, out id))
+                            {
+                                seset[id] = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "JapaneseMessage");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private static void ReadTouchPanelSymbolColorTable()
         {
             // Load the asset (assumes .uexp is in the same folder)
             TouchPanelSymbolColorTable = new UAsset(
                 TouchPanelSymbolColorTableFilePath,
                 UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19
             );
-
+            int id;
             foreach (var export in TouchPanelSymbolColorTable.Exports)
             {
                 if (export is DataTableExport dataTable)
                 {
-                    Console.WriteLine("Reading rows from DataTable...\n");
-
                     foreach (var row in dataTable.Table.Data)
                     {
                         if (row is StructPropertyData rowStruct)
                         {
-                            TotalResultItemJudgementData data = new TotalResultItemJudgementData
-                            {
-                                ItemId = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "ItemId"),
-                                ConditionGetableStartTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableStartTime"),
-                                ConditionGetableEndTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableEndTime"),
-                            };
-
-                            // Read the ConditionKeys array
-                            var keysArray = rowStruct.Value.FirstOrDefault(
-                                v => v.Name.ToString() == "ConditionKeys"
-                            ) as ArrayPropertyData;
-
-                            if (keysArray != null)
-                            {
-                                foreach (var entry in keysArray.Value)
-                                {
-                                    if (entry is StrPropertyData strProp)
-                                    {
-                                        data.ConditionKeys.Add(strProp.Value.ToString());
-                                    }
-                                }
-                            }
-                            allResult.Add(data);
+                            id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "SymbolColorId");
+                            colors[id] = "Color";
+                            colorsReverse[WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag")] = id;
                         }
                     }
                 }
             }
-            return 0;
         }
-        private static sbyte ReadTrophyTable()
+        private static void ReadColorMessage()
+        {
+            // Load the asset (assumes .uexp is in the same folder)
+            ColorMessage = new UAsset(
+                ColorMessageFilePath,
+                UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19
+            );
+            string message;
+            int id;
+            foreach (var export in ColorMessage.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            message = row.Name.ToString();
+                            if (colorsReverse.TryGetValue(message, out id))
+                            {
+                                colors[id] = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "JapaneseMessage");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private static void ReadTrophyTable()
         {
             // Load the asset (assumes .uexp is in the same folder)
             TrophyTable = new UAsset(
                 TrophyTableFilePath,
                 UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19
             );
-
             foreach (var export in TrophyTable.Exports)
             {
                 if (export is DataTableExport dataTable)
                 {
-                    Console.WriteLine("Reading rows from DataTable...\n");
-
                     foreach (var row in dataTable.Table.Data)
                     {
                         if (row is StructPropertyData rowStruct)
                         {
-                            TotalResultItemJudgementData data = new TotalResultItemJudgementData
-                            {
-                                ItemId = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "ItemId"),
-                                ConditionGetableStartTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableStartTime"),
-                                ConditionGetableEndTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableEndTime"),
-                            };
-
-                            // Read the ConditionKeys array
-                            var keysArray = rowStruct.Value.FirstOrDefault(
-                                v => v.Name.ToString() == "ConditionKeys"
-                            ) as ArrayPropertyData;
-
-                            if (keysArray != null)
-                            {
-                                foreach (var entry in keysArray.Value)
-                                {
-                                    if (entry is StrPropertyData strProp)
-                                    {
-                                        data.ConditionKeys.Add(strProp.Value.ToString());
-                                    }
-                                }
-                            }
-                            allResult.Add(data);
+                            trophy[WaccaSongBrowser.GetFieldValue<int>(rowStruct, "TrophyId")] = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag");
                         }
                     }
                 }
             }
-            return 0;
         }
-        private static sbyte ReadUserPlateBackgroundTable()
+        private static void ReadUserPlateBackgroundTable()
         {
             // Load the asset (assumes .uexp is in the same folder)
             UserPlateBackgroundTable = new UAsset(
                 UserPlateBackgroundTableFilePath,
                 UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19
             );
-
+            int id;
+            string[] namePath = { "", "" };
             foreach (var export in UserPlateBackgroundTable.Exports)
             {
                 if (export is DataTableExport dataTable)
                 {
-                    Console.WriteLine("Reading rows from DataTable...\n");
-
                     foreach (var row in dataTable.Table.Data)
                     {
                         if (row is StructPropertyData rowStruct)
                         {
-                            TotalResultItemJudgementData data = new TotalResultItemJudgementData
-                            {
-                                ItemId = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "ItemId"),
-                                ConditionGetableStartTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableStartTime"),
-                                ConditionGetableEndTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableEndTime"),
-                            };
-
-                            // Read the ConditionKeys array
-                            var keysArray = rowStruct.Value.FirstOrDefault(
-                                v => v.Name.ToString() == "ConditionKeys"
-                            ) as ArrayPropertyData;
-
-                            if (keysArray != null)
-                            {
-                                foreach (var entry in keysArray.Value)
-                                {
-                                    if (entry is StrPropertyData strProp)
-                                    {
-                                        data.ConditionKeys.Add(strProp.Value.ToString());
-                                    }
-                                }
-                            }
-                            allResult.Add(data);
+                            id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "UserPlateBackgroundId");
+                            namePath[0] = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag");
+                            namePath[1] = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "UserPlateBacgroundTextureName");
+                            bg[id] = namePath.ToArray();
+                            bgReverse[namePath[0]] = id;
                         }
                     }
                 }
             }
-            return 0;
         }
+        private static void ReadUserPlateBackgroundMessage()
+        {
+            // Load the asset (assumes .uexp is in the same folder)
+            UserPlateBackgroundMessage = new UAsset(
+                UserPlateBackgroundMessageFilePath,
+                UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19
+            );
+            int id;
+            string[] namePath;
+            foreach (var export in UserPlateBackgroundMessage.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            if (bgReverse.TryGetValue(row.Name.ToString(), out id))
+                            {
+                                if (bg.TryGetValue(id, out namePath))
+                                {
+                                    namePath[0] = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "JapaneseMessage");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         private static sbyte ReadIconTable()
         {
             // Load the asset (assumes .uexp is in the same folder)
@@ -471,40 +546,51 @@ namespace WaccaSongBrowser
                 IconTableFilePath,
                 UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19
             );
-
+            int id;
+            string[] namePath = { "", "" };
             foreach (var export in IconTable.Exports)
             {
                 if (export is DataTableExport dataTable)
                 {
-                    Console.WriteLine("Reading rows from DataTable...\n");
-
                     foreach (var row in dataTable.Table.Data)
                     {
                         if (row is StructPropertyData rowStruct)
                         {
-                            TotalResultItemJudgementData data = new TotalResultItemJudgementData
+                            id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "IconId");
+                            namePath[0] = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag");
+                            namePath[1] = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "IconTextureName");
+                            icon[id] = namePath.ToArray();
+                            iconReverse[namePath[0]] = id;
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+        private static sbyte ReadIconMessage()
+        {
+            // Load the asset (assumes .uexp is in the same folder)
+            IconMessage = new UAsset(
+                IconMessageFilePath,
+                UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19
+            );
+            int id;
+            string[] namePath;
+            foreach (var export in IconMessage.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            if (iconReverse.TryGetValue(row.Name.ToString(), out id))
                             {
-                                ItemId = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "ItemId"),
-                                ConditionGetableStartTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableStartTime"),
-                                ConditionGetableEndTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableEndTime"),
-                            };
-
-                            // Read the ConditionKeys array
-                            var keysArray = rowStruct.Value.FirstOrDefault(
-                                v => v.Name.ToString() == "ConditionKeys"
-                            ) as ArrayPropertyData;
-
-                            if (keysArray != null)
-                            {
-                                foreach (var entry in keysArray.Value)
+                                if (icon.TryGetValue(id, out namePath))
                                 {
-                                    if (entry is StrPropertyData strProp)
-                                    {
-                                        data.ConditionKeys.Add(strProp.Value.ToString());
-                                    }
+                                    namePath[0] = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "JapaneseMessage");
                                 }
                             }
-                            allResult.Add(data);
                         }
                     }
                 }
@@ -523,35 +609,11 @@ namespace WaccaSongBrowser
             {
                 if (export is DataTableExport dataTable)
                 {
-                    Console.WriteLine("Reading rows from DataTable...\n");
-
                     foreach (var row in dataTable.Table.Data)
                     {
                         if (row is StructPropertyData rowStruct)
                         {
-                            TotalResultItemJudgementData data = new TotalResultItemJudgementData
-                            {
-                                ItemId = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "ItemId"),
-                                ConditionGetableStartTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableStartTime"),
-                                ConditionGetableEndTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableEndTime"),
-                            };
-
-                            // Read the ConditionKeys array
-                            var keysArray = rowStruct.Value.FirstOrDefault(
-                                v => v.Name.ToString() == "ConditionKeys"
-                            ) as ArrayPropertyData;
-
-                            if (keysArray != null)
-                            {
-                                foreach (var entry in keysArray.Value)
-                                {
-                                    if (entry is StrPropertyData strProp)
-                                    {
-                                        data.ConditionKeys.Add(strProp.Value.ToString());
-                                    }
-                                }
-                            }
-                            allResult.Add(data);
+                            grade[WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GradeId")] = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag");
                         }
                     }
                 }
@@ -573,8 +635,6 @@ namespace WaccaSongBrowser
             {
                 if (export is DataTableExport dataTable)
                 {
-                    Console.WriteLine("Reading rows from DataTable...\n");
-
                     foreach (var row in dataTable.Table.Data)
                     {
                         if (row is StructPropertyData rowStruct)
@@ -633,6 +693,7 @@ namespace WaccaSongBrowser
             }
             LoadUI(allConditions[currentIndex]);
         }
+        int navId;
         /**!
          * this function fills all UI elements with the data from song
          */
@@ -649,18 +710,23 @@ namespace WaccaSongBrowser
             conditionTypeTextBox.Text = song.ConditionType.ToString();
             count = 0;
             string key = song.ConditionId.ToString().PadLeft(9, '0');
+            bgPictureBox.Visible = false;
+            itemPictureBox.Visible = true;
             if (resultDict.TryGetValue(key, out var items))
             {
+                int id = 0;
                 foreach (var totalResultItemData in items)
                 {
                     count++;
                     resultConditionTextBox.Text = totalResultItemData.ConditionKeys[0];
                     resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
+                    id = totalResultItemData.ItemId;
                     resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
                     resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
                 }
                 resultSearchLabel.Text = $"Showing item {count}/{count}";
                 current = count;
+                UpdateImage(id);
             }
             else
             {
@@ -671,8 +737,91 @@ namespace WaccaSongBrowser
                 resultItemIdTextBox.Text = "";
                 resultStartTimeTextBox.Text = "";
                 resultEndTimeTextBox.Text = "";
+                itemTextBox.Text = "";
+                itemPictureBox.Image = null;
+                bgPictureBox.Image = null;
             }
         }
+        private void UpdateImage(int id)
+        {
+            string name;
+            string[] namePath;
+            string path;
+            if (navigators.TryGetValue(id, out name))
+            {
+                itemTextBox.Text = "Navigator: " + name;
+                path = $"{execPath}navigators/{id}.png";
+                if (File.Exists(path))
+                {
+                    using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    using (var ms = new MemoryStream())
+                    {
+                        fs.CopyTo(ms);                  // Copy file into memory
+                        ms.Position = 0;                // Reset position to beginning
+                        itemPictureBox.Image = Image.FromStream(ms); // Load image from memory
+                    }
+                }
+            }
+            else if (seset.TryGetValue(id, out name))
+            {
+                itemTextBox.Text = "SFX: " + name;
+                itemPictureBox.Image = null;
+            }
+            else if (icon.TryGetValue(id, out namePath))
+            {
+                itemTextBox.Text = "Icon: " + namePath[0];
+                path = $"{execPath}icons/{namePath[1].Substring(namePath[1].IndexOf('/') + 1)}.png";
+                if (File.Exists(path))
+                {
+                    using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    using (var ms = new MemoryStream())
+                    {
+                        fs.CopyTo(ms);                  // Copy file into memory
+                        ms.Position = 0;                // Reset position to beginning
+                        itemPictureBox.Image = Image.FromStream(ms); // Load image from memory
+                    }
+                }
+            }
+            else if (grade.TryGetValue(id, out name))
+            {
+                itemTextBox.Text = "Title: " + name;
+                itemPictureBox.Image = null;
+            }
+            else if (colors.TryGetValue(id, out name))
+            {
+                itemTextBox.Text = "Color: " + name;
+                itemPictureBox.Image = null;
+            }
+            else if (trophy.TryGetValue(id, out name))
+            {
+                itemTextBox.Text = "Trophy: " + name;
+                itemPictureBox.Image = null;
+            }
+            else if (bg.TryGetValue(id, out namePath))
+            {
+                bgPictureBox.Visible = true;
+                itemPictureBox.Visible = false;
+                itemTextBox.Text = "Bg: " + namePath[0];
+                path = $"{execPath}bg/{namePath[1]}.png";
+                if (File.Exists(path))
+                {
+                    using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    using (var ms = new MemoryStream())
+                    {
+                        fs.CopyTo(ms);                  // Copy file into memory
+                        ms.Position = 0;                // Reset position to beginning
+                        bgPictureBox.Image = Image.FromStream(ms); // Load image from memory
+                    }
+                }
+            }
+            else
+            {
+                itemTextBox.Text = "";
+                itemPictureBox.Image = null;
+                bgPictureBox.Image = null;
+            }
+        }
+        static readonly string execPath = AppDomain.CurrentDomain.BaseDirectory.Replace("\\", "/");
         static int current;
         static int count;
         private void resultNextButton_Click(object sender, EventArgs e)
@@ -698,6 +847,9 @@ namespace WaccaSongBrowser
                     }
                 }
                 resultSearchLabel.Text = $"Showing item {current}/{count}";
+                int id;
+                int.TryParse(resultItemIdTextBox.Text, out id);
+                UpdateImage(id);
             }
         }
 
@@ -724,6 +876,9 @@ namespace WaccaSongBrowser
                     }
                 }
                 resultSearchLabel.Text = $"Showing item {current}/{count}";
+                int id;
+                int.TryParse(resultItemIdTextBox.Text, out id);
+                UpdateImage(id);
             }
         }
         private bool? GetBoolProperty(ConditionData song, string propertyName)
@@ -790,40 +945,80 @@ namespace WaccaSongBrowser
             // --- LimitSeason filter ---
             if (filterConditionEnablecheckBox.Checked)
             {
-                    filtered = filtered.Where(song => GetBoolProperty(song, "bConditionLimitNowSeason") == filterConditionCheckBox.Checked);
+                filtered = filtered.Where(song => GetBoolProperty(song, "bConditionLimitNowSeason") == filterConditionCheckBox.Checked);
             }
 
 
             IEnumerable<TotalResultItemJudgementData> resuFiltered = allResult;
-
-            // --- ItemID filter ---
-            if (filterResultItemIdCheckBox.Checked)
+            if (filterResultItemEnableCheckBox.Checked && !filterResultItemCheckBox.Checked)
+            { }
+            else
             {
-                resuFiltered = resuFiltered.Where(song => int.TryParse(filterResultItemIdTextBox.Text, out int newID) && song.ItemId == newID);
+                int min, max;
+                // --- ItemID filter ---
+                if (filterResultItemIdCheckBox.Checked)
+                {
+                    resuFiltered = resuFiltered.Where(song => int.TryParse(filterResultItemIdTextBox.Text, out min) && song.ItemId == min);
+                }
+                if (filterResultItemRangeCheckBox.Checked)
+                {
+                    int.TryParse(filterResultItemMinTextBox.Text, out min);
+                    int.TryParse(filterResultItemMaxTextBox.Text, out max);
+                    resuFiltered = resuFiltered.Where(song => min <= song.ItemId && song.ItemId <= max);
+                }
+                if (filterResultItemTypeCheckBox.Checked)
+                {
+                    switch (filterResultItemType.SelectedIndex)
+                    {
+                        case 0:
+                            resuFiltered = resuFiltered.Where(song => bg.ContainsKey(song.ItemId));
+                            break;
+                        case 1:
+                            resuFiltered = resuFiltered.Where(song => colors.ContainsKey(song.ItemId));
+                            break;
+                        case 2:
+                            resuFiltered = resuFiltered.Where(song => icon.ContainsKey(song.ItemId));
+                            break;
+                        case 3:
+                            resuFiltered = resuFiltered.Where(song => navigators.ContainsKey(song.ItemId));
+                            break;
+                        case 4:
+                            resuFiltered = resuFiltered.Where(song => seset.ContainsKey(song.ItemId));
+                            break;
+                        case 5:
+                            resuFiltered = resuFiltered.Where(song => grade.ContainsKey(song.ItemId));
+                            break;
+                        case 6:
+                            resuFiltered = resuFiltered.Where(song => trophy.ContainsKey(song.ItemId));
+                            break;
+                        default:
+                            resuFiltered = resuFiltered.Where(song => !trophy.ContainsKey(song.ItemId) && !grade.ContainsKey(song.ItemId) && !seset.ContainsKey(song.ItemId) && !navigators.ContainsKey(song.ItemId) && !icon.ContainsKey(song.ItemId) && !colors.ContainsKey(song.ItemId) && !bg.ContainsKey(song.ItemId));
+                            break;
+                    }
+                }
+
+                // --- Start filter
+                if (filterResultStartTimeCheckBox.Checked)
+                {
+                    resuFiltered = resuFiltered.Where(song => long.TryParse(filterResultStartTimeTextBox.Text, out long start) && song.ConditionGetableStartTime == start);
+                }
+                // --- End filter
+                if (filterResultEndTimeCheckBox.Checked)
+                {
+                    resuFiltered = resuFiltered.Where(song => long.TryParse(filterResultEndTimeTextBox.Text, out long end) && song.ConditionGetableEndTime == end);
+                }
+
+                // Collect all condition IDs from resuFiltered.ConditionKeys
+                var validConditionIds = resuFiltered
+                    .SelectMany(r => r.ConditionKeys)   // flatten list of keys
+                    .Select(k => int.TryParse(k, out var id) ? id : (int?)null)
+                    .Where(id => id.HasValue)
+                    .Select(id => id.Value)
+                    .ToHashSet();
+
+                // Now restrict filtered (ConditionData) by these IDs
+                filtered = filtered.Where(song => validConditionIds.Contains(song.ConditionId));
             }
-
-            // --- Start filter
-            if (filterResultStartTimeCheckBox.Checked)
-            {
-                resuFiltered = resuFiltered.Where(song => long.TryParse(filterResultStartTimeTextBox.Text, out long start) && song.ConditionGetableStartTime == start);
-            }
-            // --- End filter
-            if (filterResultEndTimeCheckBox.Checked)
-            {
-                resuFiltered = resuFiltered.Where(song => long.TryParse(filterResultEndTimeTextBox.Text, out long end) && song.ConditionGetableEndTime == end);
-            }
-
-            // Collect all condition IDs from resuFiltered.ConditionKeys
-            var validConditionIds = resuFiltered
-                .SelectMany(r => r.ConditionKeys)   // flatten list of keys
-                .Select(k => int.TryParse(k, out var id) ? id : (int?)null)
-                .Where(id => id.HasValue)
-                .Select(id => id.Value)
-                .ToHashSet();
-
-            // Now restrict filtered (ConditionData) by these IDs
-            filtered = filtered.Where(song => validConditionIds.Contains(song.ConditionId));
-
             // --- Final result ---
             var resultList = filtered.ToList();
             if (resultList.Count == 0)
@@ -848,7 +1043,7 @@ namespace WaccaSongBrowser
             // store in a field:
             filteredSongs = resultList;
             filteredSongsSelectedIndex = 0;
-            searchOutputLabel.Text = $"Showing Result 0/{resultList.Count}";
+            searchOutputLabel.Text = $"Showing Result 1/{resultList.Count}";
         }
 
         private void filterInvertMatchesButton_Click(object sender, EventArgs e)
@@ -863,7 +1058,7 @@ namespace WaccaSongBrowser
             if (resultList.Count == 0)
             {
                 searchResultLabel.Text = "No match.";
-                searchSectionLabel.Text = $"Showing Result 0/0";
+                searchOutputLabel.Text = $"Showing Result 0/0";
                 return;
             }
 
@@ -881,7 +1076,7 @@ namespace WaccaSongBrowser
             // Option B: keep resultList for navigation (next/previous)
             filteredSongs = resultList;
             filteredSongsSelectedIndex = 0;
-            searchOutputLabel.Text = $"Showing Result 0/{resultList.Count}";
+            searchOutputLabel.Text = $"Showing Result 1/{resultList.Count}";
         }
 
         static List<ConditionData> filteredSongs = new List<ConditionData>();
@@ -898,7 +1093,7 @@ namespace WaccaSongBrowser
             saveChanges();
             currentSongId = filteredSongs[filteredSongsSelectedIndex].ConditionId;
             LoadUI(filteredSongs[filteredSongsSelectedIndex]);
-            searchOutputLabel.Text = $"Showing Result {filteredSongsSelectedIndex}/{filteredSongs.Count}";
+            searchOutputLabel.Text = $"Showing Result {filteredSongsSelectedIndex + 1}/{filteredSongs.Count}";
         }
 
         private void searchNextButton_Click(object sender, EventArgs e)
@@ -912,7 +1107,7 @@ namespace WaccaSongBrowser
             saveChanges();
             currentSongId = filteredSongs[filteredSongsSelectedIndex].ConditionId;
             LoadUI(filteredSongs[filteredSongsSelectedIndex]);
-            searchOutputLabel.Text = $"Showing Result {filteredSongsSelectedIndex}/{filteredSongs.Count}";
+            searchOutputLabel.Text = $"Showing Result {filteredSongsSelectedIndex + 1}/{filteredSongs.Count}";
         }
         private void saveChanges()
         {
@@ -1198,6 +1393,7 @@ namespace WaccaSongBrowser
 
         private void filterResultItemIdCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (filterResultItemIdCheckBox.Checked) filterResultItemRangeCheckBox.Checked = false;
             filterResultItemIdTextBox.Enabled = filterResultItemIdCheckBox.Checked;
         }
 
@@ -1210,6 +1406,23 @@ namespace WaccaSongBrowser
         {
             filterResultEndTimeTextBox.Enabled = filterResultEndTimeCheckBox.Checked;
         }
+        private void filterResultItemRangeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (filterResultItemRangeCheckBox.Checked) filterResultItemIdCheckBox.Checked = false;
+            filterResultItemMaxTextBox.Enabled = filterResultItemRangeCheckBox.Checked;
+            filterResultItemMinTextBox.Enabled = filterResultItemRangeCheckBox.Checked;
+        }
+
+        private void filterResultItemEnableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterResultItemCheckBox.Enabled = filterResultItemEnableCheckBox.Checked;
+        }
+
+        private void filterResultItemTypeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            filterResultItemType.Enabled = filterResultItemTypeCheckBox.Checked;
+        }
+
 
         private void autoSaveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -1278,7 +1491,6 @@ namespace WaccaSongBrowser
             filterConditionTypeTextBox.Text = (filterConditionType.SelectedIndex - 2).ToString();
             doNotChangeType = false;
         }
-
         private void nextButton_Click(object sender, EventArgs e)
         {
             if (conditionid.SelectedIndex >= conditionid.Items.Count - 1)

@@ -608,7 +608,7 @@ namespace WaccaSongBrowser
             // store in a field:
             filteredSongs = resultList;
             filteredSongsSelectedIndex = 0;
-            searchSectionLabel.Text = $"Showing Result {filteredSongsSelectedIndex}/{filteredSongs.Count}";
+            searchSectionLabel.Text = $"Showing Result 1/{filteredSongs.Count}";
         }
 
         private void filterInvertMatchesButton_Click(object sender, EventArgs e)
@@ -641,7 +641,7 @@ namespace WaccaSongBrowser
             // Option B: keep resultList for navigation (next/previous)
             filteredSongs = resultList;
             filteredSongsSelectedIndex = 0;
-            searchSectionLabel.Text = $"Showing Result {filteredSongsSelectedIndex}/{filteredSongs.Count}";
+            searchSectionLabel.Text = $"Showing Result 1/{filteredSongs.Count}";
         }
 
         static List<SongData> filteredSongs = new List<SongData>();
@@ -658,7 +658,7 @@ namespace WaccaSongBrowser
             saveChanges();
             currentSongId = filteredSongs[filteredSongsSelectedIndex].UniqueID;
             LoadUI(filteredSongs[filteredSongsSelectedIndex]);
-            searchSectionLabel.Text = $"Showing Result {filteredSongsSelectedIndex}/{filteredSongs.Count}";
+            searchSectionLabel.Text = $"Showing Result {filteredSongsSelectedIndex + 1}/{filteredSongs.Count}";
         }
 
         private void searchNextButton_Click(object sender, EventArgs e)
@@ -672,7 +672,7 @@ namespace WaccaSongBrowser
             saveChanges();
             currentSongId = filteredSongs[filteredSongsSelectedIndex].UniqueID;
             LoadUI(filteredSongs[filteredSongsSelectedIndex]);
-            searchSectionLabel.Text = $"Showing Result {filteredSongsSelectedIndex}/{filteredSongs.Count}";
+            searchSectionLabel.Text = $"Showing Result {filteredSongsSelectedIndex + 1}/{filteredSongs.Count}";
         }
         void FillLists()
         {
@@ -1027,7 +1027,6 @@ namespace WaccaSongBrowser
             {
                 if (export is DataTableExport dataTable)
                 {
-                    Console.WriteLine("Reading rows from DataTable...\n");
                     var songData = allSongs.FirstOrDefault(s => s.UniqueID == currentSongId);
                     if (songData == null)
                     {
@@ -1349,8 +1348,6 @@ namespace WaccaSongBrowser
             {
                 if (export is DataTableExport dataTable)
                 {
-                    Console.WriteLine("Reading rows from DataTable...\n");
-
                     foreach (var row in dataTable.Table.Data)
                     {
                         if (row is StructPropertyData rowStruct)
