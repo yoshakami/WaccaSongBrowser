@@ -24,14 +24,19 @@ namespace WaccaSongBrowser
             conditionType.DataSource = new BindingSource(Conditions.Types, null);
             conditionType.DisplayMember = "Value"; // text shown
             conditionType.ValueMember = "Key";     // the ID
-            if (Read(fileName) != -1)
+            // if (Read(fileName) != -1) // already called as static!!!!!!
+            // fill UI elements since these can't be in a static method
+            foreach (ConditionData data in allConditions)
             {
-                foreach (ConditionData data in allConditions)
-                {
-                    conditionid.Items.Add(data.ConditionId.ToString());
-                }
-                LoadUI(allConditions[0]); // read returns -1 if allconditions is empty
+                conditionid.Items.Add(data.ConditionId.ToString());
             }
+            resultDict =
+    allResult
+        .SelectMany(r => r.ConditionKeys.Select(k => new { k, r }))
+        .ToDictionary(x => x.k, x => x.r);
+
+            nextButton_Click(null, null); // read returns -1 if allconditions is empty
+            
             filter1checkBox_CheckedChanged(null, null);
             filter2checkBox_CheckedChanged(null, null);
             filter3checkBox_CheckedChanged(null, null);
@@ -129,7 +134,7 @@ namespace WaccaSongBrowser
 
             }
             //nextSongButton_Click(null, null);
-            
+
 
             return 0;
         }
@@ -137,12 +142,15 @@ namespace WaccaSongBrowser
         static UAsset TotalResultItemJudgementTable;
 
         static List<TotalResultItemJudgementData> allResult = new List<TotalResultItemJudgementData>();
+        Dictionary<string, TotalResultItemJudgementData> resultDict;
         private static sbyte ReadTotalResultItemJudgementTable()
         {
             // Load the asset (assumes .uexp is in the same folder)
-            TotalResultItemJudgementTable = new UAsset(TotalResultItemJudgementTableFilePath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
+            TotalResultItemJudgementTable = new UAsset(
+                TotalResultItemJudgementTableFilePath,
+                UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19
+            );
 
-            // Go through each export to find the DataTable
             foreach (var export in TotalResultItemJudgementTable.Exports)
             {
                 if (export is DataTableExport dataTable)
@@ -158,14 +166,23 @@ namespace WaccaSongBrowser
                                 ItemId = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "ItemId"),
                                 ConditionGetableStartTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableStartTime"),
                                 ConditionGetableEndTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ConditionGetableEndTime"),
-                                //TODO: get ConditionKeys
                             };
-                            /*
-                            if (data.ConditionID.ToString() == "0")
+
+                            // Read the ConditionKeys array
+                            var keysArray = rowStruct.Value.FirstOrDefault(
+                                v => v.Name.ToString() == "ConditionKeys"
+                            ) as ArrayPropertyData;
+
+                            if (keysArray != null)
                             {
-                                return -1;
-                            }*/
-                            // conditionid.Items.Add(data.ConditionId.ToString());
+                                foreach (var entry in keysArray.Value)
+                                {
+                                    if (entry is StrPropertyData strProp)
+                                    {
+                                        data.ConditionKeys.Add(strProp.Value.ToString());
+                                    }
+                                }
+                            }
                             allResult.Add(data);
                         }
                     }
@@ -173,6 +190,7 @@ namespace WaccaSongBrowser
             }
             return 0;
         }
+
         int currentSongId = 0;
         private void conditionidButton_Click(object sender, EventArgs e)
         {
@@ -590,6 +608,24 @@ namespace WaccaSongBrowser
             doNotChangeType = true;
             filterConditionTypeTextBox.Text = (filterConditionType.SelectedIndex - 2).ToString();
             doNotChangeType = false;
+        }
+
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+            if (conditionid.SelectedIndex >= conditionid.Items.Count - 1)
+                conditionid.SelectedIndex = 0;
+            else
+                conditionid.SelectedIndex += 1;
+            conditionidButton_Click(null, null);
+        }
+
+        private void previousButton_Click(object sender, EventArgs e)
+        {
+            if (conditionid.SelectedIndex <= 0)
+                conditionid.SelectedIndex = conditionid.Items.Count - 1;
+            else
+                conditionid.SelectedIndex -= 1;
+            conditionidButton_Click(null, null);
         }
     }
 }
