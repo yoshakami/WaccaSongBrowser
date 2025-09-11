@@ -247,9 +247,9 @@
             label19.AutoSize = true;
             label19.Location = new Point(453, 52);
             label19.Name = "label19";
-            label19.Size = new Size(70, 15);
+            label19.Size = new Size(95, 15);
             label19.TabIndex = 120;
-            label19.Text = "ConditionId";
+            label19.Text = "ConditionId (int)";
             // 
             // label12
             // 
@@ -377,7 +377,7 @@
             // conditionidLabel
             // 
             conditionidLabel.AutoSize = true;
-            conditionidLabel.Location = new Point(855, 11);
+            conditionidLabel.Location = new Point(909, 13);
             conditionidLabel.Name = "conditionidLabel";
             conditionidLabel.Size = new Size(70, 15);
             conditionidLabel.TabIndex = 138;
@@ -585,9 +585,9 @@
             resultConditionLabel.AutoSize = true;
             resultConditionLabel.Location = new Point(45, 49);
             resultConditionLabel.Name = "resultConditionLabel";
-            resultConditionLabel.Size = new Size(70, 15);
+            resultConditionLabel.Size = new Size(112, 15);
             resultConditionLabel.TabIndex = 203;
-            resultConditionLabel.Text = "ConditionId";
+            resultConditionLabel.Text = "ConditionId (String)";
             // 
             // label20
             // 

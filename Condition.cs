@@ -31,6 +31,7 @@ namespace WaccaSongBrowser
             {
                 conditionid.Items.Add(data.ConditionId.ToString());
             }
+            resultDict.Clear();
             resultDict = allResult
             .SelectMany(r => r.ConditionKeys.Select(k => new { k, r }))
             .GroupBy(x => x.k)
@@ -58,6 +59,7 @@ namespace WaccaSongBrowser
         public static sbyte Read(string file)
         {
             allConditions.Clear();
+            allResult.Clear();
             if (!File.Exists(file)) return -1;
 
             string uassetPath = file;
@@ -67,7 +69,7 @@ namespace WaccaSongBrowser
             // Get just the file name
             string fileName = Path.GetFileName(uassetPath);
 
-            if (fileName.Equals("TotalResultItemJudgementTable.uasset", StringComparison.OrdinalIgnoreCase))
+            if (fileName.StartsWith("TotalResultItemJudgementTable", StringComparison.OrdinalIgnoreCase))
             {
                 // swap file if it's UnlockMusicTable.uasset
                 // Get the directory part
@@ -147,7 +149,7 @@ namespace WaccaSongBrowser
         static UAsset TotalResultItemJudgementTable;
 
         static List<TotalResultItemJudgementData> allResult = new List<TotalResultItemJudgementData>();
-        Dictionary<string, List<TotalResultItemJudgementData>> resultDict;
+        static Dictionary<string, List<TotalResultItemJudgementData>> resultDict;
         private static sbyte ReadTotalResultItemJudgementTable()
         {
             // Load the asset (assumes .uexp is in the same folder)
@@ -234,7 +236,8 @@ namespace WaccaSongBrowser
             condition4textBox.Text = song.Value4;
             condition5textBox.Text = song.Value5;
             conditionTypeTextBox.Text = song.ConditionType.ToString();
-            count = 0; string key = song.ConditionId.ToString().PadLeft(9, '0');
+            count = 0;
+            string key = song.ConditionId.ToString().PadLeft(9, '0');
             if (resultDict.TryGetValue(key, out var items))
             {
                 foreach (var totalResultItemData in items)
@@ -253,6 +256,10 @@ namespace WaccaSongBrowser
                 // key not found
                 resultSearchLabel.Text = "No results found ❌";
                 current = 0;
+                resultConditionTextBox.Text = "";
+                resultItemIdTextBox.Text = "";
+                resultStartTimeTextBox.Text = "";
+                resultEndTimeTextBox.Text = "";
             }
         }
         static int current;
@@ -265,18 +272,22 @@ namespace WaccaSongBrowser
             else
                 current += 1;
             count = 0;
-            foreach (var totalResultItemData in resultDict[conditionIdTextBox.Text])
+            string key = currentSongId.ToString().PadLeft(9, '0');
+            if (resultDict.TryGetValue(key, out var items))
             {
-                count += 1;
-                if (current == count)
+                foreach (var totalResultItemData in items)
                 {
-                    resultConditionTextBox.Text = totalResultItemData.ConditionKeys[0];
-                    resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
-                    resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
-                    resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
+                    count += 1;
+                    if (current == count)
+                    {
+                        resultConditionTextBox.Text = totalResultItemData.ConditionKeys[0];
+                        resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
+                        resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
+                        resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
+                    }
                 }
+                resultSearchLabel.Text = $"Showing item {current}/{count}";
             }
-            resultSearchLabel.Text = $"Showing item {current}/{count}";
         }
 
         private void resultPreviousButton_Click(object sender, EventArgs e)
@@ -287,32 +298,204 @@ namespace WaccaSongBrowser
             else
                 current -= 1;
             count = 0;
-            foreach (var totalResultItemData in resultDict[conditionIdTextBox.Text])
+            string key = currentSongId.ToString().PadLeft(9, '0');
+            if (resultDict.TryGetValue(key, out var items))
             {
-                count += 1;
-                if (current == count)
+                foreach (var totalResultItemData in items)
                 {
-                    resultConditionTextBox.Text = totalResultItemData.ConditionKeys[0];
-                    resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
-                    resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
-                    resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
+                    count += 1;
+                    if (current == count)
+                    {
+                        resultConditionTextBox.Text = totalResultItemData.ConditionKeys[0];
+                        resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
+                        resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
+                        resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
+                    }
                 }
+                resultSearchLabel.Text = $"Showing item {current}/{count}";
             }
-            resultSearchLabel.Text = $"Showing item {current}/{count}";
         }
-        private void searchNextButton_Click(object sender, EventArgs e)
+        private bool? GetBoolProperty(ConditionData song, string propertyName)
         {
+            var propInfo = typeof(ConditionData).GetProperty(propertyName);
+            if (propInfo != null && propInfo.PropertyType == typeof(bool))
+            {
+                return (bool)propInfo.GetValue(song);
+            }
 
+            var fieldInfo = typeof(ConditionData).GetField(propertyName);
+            if (fieldInfo != null && fieldInfo.FieldType == typeof(bool))
+            {
+                return (bool)fieldInfo.GetValue(song);
+            }
+
+            return null; // Not found or not a bool
         }
+        private void filterSearchButton_Click(object sender, EventArgs e)
+        {
+            IEnumerable<ConditionData> filtered = allConditions;
+
+
+            // --- Int/Uint filters ---
+            if (filterTypeCheckBox.Checked)
+                filtered = filtered.Where(song => int.TryParse(filterConditionTypeTextBox.Text, out int newType) && song.ConditionType == newType);
+
+            // --- Text filters ---
+            if (filter1checkBox.Checked)
+            {
+                string filter = filter1textBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.Value1 != null &&
+                                                      song.Value1.ToLower().Equals(filter));
+            }
+            if (filter2checkBox.Checked)
+            {
+                string filter = filter2textBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.Value2 != null &&
+                                                      song.Value2.ToLower().Equals(filter));
+            }
+            if (filter3checkBox.Checked)
+            {
+                string filter = filter3textBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.Value3 != null &&
+                                                      song.Value3.ToLower().Equals(filter));
+            }
+            if (filter4checkBox.Checked)
+            {
+                string filter = filter4textBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.Value4 != null &&
+                                                      song.Value4.ToLower().Equals(filter));
+            }
+            if (filter5checkBox.Checked)
+            {
+                string filter = filter5textBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.Value5 != null &&
+                                                      song.Value5.ToLower().Equals(filter));
+            }
+            // --- LimitSeason filter ---
+            if (filterConditionEnablecheckBox.Checked)
+            {
+                    filtered = filtered.Where(song => GetBoolProperty(song, "bConditionLimitNowSeason") == filterConditionCheckBox.Checked);
+            }
+
+
+            IEnumerable<TotalResultItemJudgementData> resuFiltered = allResult;
+
+            // --- ItemID filter ---
+            if (filterResultItemIdCheckBox.Checked)
+            {
+                resuFiltered = resuFiltered.Where(song => int.TryParse(filterResultItemIdTextBox.Text, out int newID) && song.ItemId == newID);
+            }
+
+            // --- Start filter
+            if (filterResultStartTimeCheckBox.Checked)
+            {
+                resuFiltered = resuFiltered.Where(song => long.TryParse(filterResultStartTimeTextBox.Text, out long start) && song.ConditionGetableStartTime == start);
+            }
+            // --- End filter
+            if (filterResultEndTimeCheckBox.Checked)
+            {
+                resuFiltered = resuFiltered.Where(song => long.TryParse(filterResultStartTimeTextBox.Text, out long start) && song.ConditionGetableStartTime == start);
+            }
+
+            // Collect all condition IDs from resuFiltered.ConditionKeys
+            var validConditionIds = resuFiltered
+                .SelectMany(r => r.ConditionKeys)   // flatten list of keys
+                .Select(k => int.TryParse(k, out var id) ? id : (int?)null)
+                .Where(id => id.HasValue)
+                .Select(id => id.Value)
+                .ToHashSet();
+
+            // Now restrict filtered (ConditionData) by these IDs
+            filtered = filtered.Where(song => validConditionIds.Contains(song.ConditionId));
+
+            // --- Final result ---
+            var resultList = filtered.ToList();
+            if (resultList.Count == 0)
+            {
+                searchResultLabel.Text = "No match.";
+                return;
+            }
+
+            // Option A: Show first match immediately
+            var firstSong = resultList.First();
+            if (resultList.Count > 1)
+                searchResultLabel.Text = $"{resultList.Count} matches!";
+            else
+                searchResultLabel.Text = $"{resultList.Count} match!";
+            saveChanges();
+            currentSongId = firstSong.ConditionId;
+            LoadUI(firstSong);
+
+
+            // Option B: keep resultList for navigation (next/previous)
+            // store in a field:
+            filteredSongs = resultList;
+            filteredSongsSelectedIndex = 0;
+        }
+
+        private void filterInvertMatchesButton_Click(object sender, EventArgs e)
+        {
+            IEnumerable<ConditionData> filtered = allConditions;
+
+            // Exclude songs already in filteredSongs
+            filtered = filtered.Where(song => !filteredSongs.Any(fs => fs.ConditionId == song.ConditionId));
+
+            // --- Final result ---
+            var resultList = filtered.ToList();
+            if (resultList.Count == 0)
+            {
+                searchResultLabel.Text = "No match.";
+                return;
+            }
+
+            // Option A: Show first match immediately
+            var firstSong = resultList.First();
+            if (resultList.Count > 1)
+                searchResultLabel.Text = $"{resultList.Count} matches!";
+            else
+                searchResultLabel.Text = $"{resultList.Count} match!";
+
+            saveChanges();
+            currentSongId = firstSong.ConditionId;
+            LoadUI(firstSong);
+
+            // Option B: keep resultList for navigation (next/previous)
+            filteredSongs = resultList;
+            filteredSongsSelectedIndex = 0;
+        }
+
+        static List<ConditionData> filteredSongs = new List<ConditionData>();
+        static int filteredSongsSelectedIndex;
 
         private void searchPreviousButton_Click(object sender, EventArgs e)
         {
-
+            if (filteredSongs.Count == 0) return;
+            filteredSongsSelectedIndex--;
+            if (filteredSongsSelectedIndex < 0)
+            {
+                filteredSongsSelectedIndex = filteredSongs.Count - 1;
+            }
+            saveChanges();
+            currentSongId = filteredSongs[filteredSongsSelectedIndex].ConditionId;
+            LoadUI(filteredSongs[filteredSongsSelectedIndex]);
         }
 
-        private void filterSearchButton_Click(object sender, EventArgs e)
+        private void searchNextButton_Click(object sender, EventArgs e)
         {
-
+            if (filteredSongs.Count == 0) return;
+            filteredSongsSelectedIndex++;
+            if (filteredSongsSelectedIndex >= filteredSongs.Count)
+            {
+                filteredSongsSelectedIndex = 0;
+            }
+            saveChanges();
+            currentSongId = filteredSongs[filteredSongsSelectedIndex].ConditionId;
+            LoadUI(filteredSongs[filteredSongsSelectedIndex]);
         }
         private void saveChanges()
         {
