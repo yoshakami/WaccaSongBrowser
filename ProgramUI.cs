@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text;
 using UAssetAPI;
 using UAssetAPI.ExportTypes;
@@ -76,31 +76,30 @@ namespace WaccaSongBrowser
                             // It's a file
                             allSongs.Clear();
                             songid.Items.Clear();
-                            if (Read(path) == -1)  // if MusicParameterTable Fails to read
+                            if (Read(path) != -1)  // if MusicParameterTable Fails to read
                             {
+                                openedFileName = path;
+                                consoleLabel.Text = "File loaded successfully! -> will overwrite on next save";
+                                panelMainContainer.Visible = false;
+                                panelMainContainer.Enabled = false;
+                                return;
+                            }
                                 // read ConditionTable
-                                if (Condition.Read(path) == -1)
-                                {
-                                    // TODO:
-                                    // read IconTable
-                                }
-                                else
+                                if (Condition.Read(path) != -1)
                                 {
                                     panelMainContainer.Visible = true;
                                     panelMainContainer.Enabled = true;
                                     LoadPage(new Condition(path));  // Load Condition UI
                                     return;
                                 }
-                                panelMainContainer.Visible = true;
+
+                            // TODO:
+                            // read IconTable
+                            panelMainContainer.Visible = true;
                                 panelMainContainer.Enabled = true;
                                 LoadPage(new Message(path));
                                 return;
-                            }
-                            openedFileName = path;
-                            consoleLabel.Text = "File loaded successfully! -> will overwrite on next save";
-                            panelMainContainer.Visible = false;
-                            panelMainContainer.Enabled = false;
-                            return;
+                            
                         }
                     }
                     catch (Exception ex)
@@ -1541,6 +1540,8 @@ namespace WaccaSongBrowser
 
             // If '|' exists, take only the part after it
             int pipeIndex = input.IndexOf('|');
+            if (pipeIndex < 0)
+                pipeIndex = input.IndexOf('｜'); // U+FF5C
             if (pipeIndex >= 0 && pipeIndex < input.Length - 1)
             {
                 input = input.Substring(pipeIndex + 1);
@@ -1549,7 +1550,7 @@ namespace WaccaSongBrowser
             // Convert to uppercase
             input = input.ToUpperInvariant();
 
-            // Keep only A�Z and 0�9
+            // Keep only A–Z and 0–9
             var sb = new StringBuilder(input.Length);
             foreach (char c in input)
             {

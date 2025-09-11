@@ -102,7 +102,9 @@ namespace WaccaSongBrowser
         public int ItemId { get; set; }
         public long ConditionGetableStartTime { get; set; }
         public long ConditionGetableEndTime { get; set; }
+        public List<string> ConditionKeys { get; set; } = new List<string>();
     }
+
     // Define your mapping once (dictionary)
     public class Conditions
     {
