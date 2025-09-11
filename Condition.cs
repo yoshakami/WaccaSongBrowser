@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 using UAssetAPI;
 using UAssetAPI.ExportTypes;
 using UAssetAPI.PropertyTypes.Objects;
@@ -30,13 +31,17 @@ namespace WaccaSongBrowser
             {
                 conditionid.Items.Add(data.ConditionId.ToString());
             }
-            resultDict =
-    allResult
-        .SelectMany(r => r.ConditionKeys.Select(k => new { k, r }))
-        .ToDictionary(x => x.k, x => x.r);
+            resultDict = allResult
+            .SelectMany(r => r.ConditionKeys.Select(k => new { k, r }))
+            .GroupBy(x => x.k)
+            .ToDictionary(
+                g => g.Key,
+                g => g.Select(x => x.r).ToList()
+            );
+
 
             nextButton_Click(null, null); // read returns -1 if allconditions is empty
-            
+
             filter1checkBox_CheckedChanged(null, null);
             filter2checkBox_CheckedChanged(null, null);
             filter3checkBox_CheckedChanged(null, null);
@@ -142,7 +147,7 @@ namespace WaccaSongBrowser
         static UAsset TotalResultItemJudgementTable;
 
         static List<TotalResultItemJudgementData> allResult = new List<TotalResultItemJudgementData>();
-        Dictionary<string, TotalResultItemJudgementData> resultDict;
+        Dictionary<string, List<TotalResultItemJudgementData>> resultDict;
         private static sbyte ReadTotalResultItemJudgementTable()
         {
             // Load the asset (assumes .uexp is in the same folder)
@@ -229,8 +234,65 @@ namespace WaccaSongBrowser
             condition4textBox.Text = song.Value4;
             condition5textBox.Text = song.Value5;
             conditionTypeTextBox.Text = song.ConditionType.ToString();
+
+            // usage
+            count = 0;
+            foreach (var totalResultItemData in resultDict[conditionIdTextBox.Text])
+            {
+                count += 1;
+                resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
+                resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
+                resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
+            }
+            if (count > 1)
+            {
+                resultSearchLabel.Text = $"Showing item {count}/{count}";
+            }
+            current = count;
+        }
+        static int current;
+        static int count;
+        private void resultNextButton_Click(object sender, EventArgs e)
+        {
+            if (count < 2) return;
+            if (current >= count)
+                current = 1;
+            else
+                current += 1;
+            count = 0;
+            foreach (var totalResultItemData in resultDict[conditionIdTextBox.Text])
+            {
+                count += 1;
+                if (current == count)
+                {
+                    resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
+                    resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
+                    resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
+                }
+            }
+            resultSearchLabel.Text = $"Showing item {current}/{count}";
         }
 
+        private void resultPreviousButton_Click(object sender, EventArgs e)
+        {
+            if (count < 2) return;
+            if (current <= 1)
+                current = count;
+            else
+                current -= 1;
+            count = 0;
+            foreach (var totalResultItemData in resultDict[conditionIdTextBox.Text])
+            {
+                count += 1;
+                if (current == count)
+                {
+                    resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
+                    resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
+                    resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
+                }
+            }
+            resultSearchLabel.Text = $"Showing item {current}/{count}";
+        }
         private void searchNextButton_Click(object sender, EventArgs e)
         {
 

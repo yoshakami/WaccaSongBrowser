@@ -106,6 +106,9 @@
             conditionType = new ComboBox();
             previousButton = new Button();
             nextButton = new Button();
+            resultSearchLabel = new Label();
+            resultPreviousButton = new Button();
+            resultNextButton = new Button();
             SuspendLayout();
             // 
             // conditionCheckBox
@@ -834,10 +837,44 @@
             nextButton.UseVisualStyleBackColor = true;
             nextButton.Click += nextButton_Click;
             // 
+            // resultSearchLabel
+            // 
+            resultSearchLabel.AutoSize = true;
+            resultSearchLabel.Location = new Point(45, 252);
+            resultSearchLabel.MinimumSize = new Size(318, 15);
+            resultSearchLabel.Name = "resultSearchLabel";
+            resultSearchLabel.Size = new Size(318, 15);
+            resultSearchLabel.TabIndex = 238;
+            resultSearchLabel.Text = "Showing Item 0/0";
+            resultSearchLabel.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // resultPreviousButton
+            // 
+            resultPreviousButton.Location = new Point(96, 270);
+            resultPreviousButton.Name = "resultPreviousButton";
+            resultPreviousButton.Size = new Size(92, 23);
+            resultPreviousButton.TabIndex = 240;
+            resultPreviousButton.Text = "Previous";
+            resultPreviousButton.UseVisualStyleBackColor = true;
+            resultPreviousButton.Click += resultPreviousButton_Click;
+            // 
+            // resultNextButton
+            // 
+            resultNextButton.Location = new Point(209, 270);
+            resultNextButton.Name = "resultNextButton";
+            resultNextButton.Size = new Size(92, 23);
+            resultNextButton.TabIndex = 239;
+            resultNextButton.Text = "Next";
+            resultNextButton.UseVisualStyleBackColor = true;
+            resultNextButton.Click += resultNextButton_Click;
+            // 
             // Condition
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(resultPreviousButton);
+            Controls.Add(resultNextButton);
+            Controls.Add(resultSearchLabel);
             Controls.Add(previousButton);
             Controls.Add(nextButton);
             Controls.Add(conditionType);
@@ -1002,5 +1039,8 @@
         private ComboBox conditionType;
         private Button previousButton;
         private Button nextButton;
+        private Label resultSearchLabel;
+        private Button resultPreviousButton;
+        private Button resultNextButton;
     }
 }
