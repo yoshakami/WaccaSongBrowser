@@ -38,6 +38,7 @@ namespace WaccaSongBrowser
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] paths = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string path2;
                 foreach (var path in paths)
                 {
                     try
@@ -73,23 +74,26 @@ namespace WaccaSongBrowser
                         }
                         else if (File.Exists(path))
                         {
+                            path2 = path;
                             // It's a file
                             allSongs.Clear();
                             songid.Items.Clear();
-                            if (Read(path) != -1)  // if MusicParameterTable Fails to read
+                            if (path2.EndsWith(".uexp"))
+                                path2 = path2.Substring(0, path2.Length - 4) + "uasset";
+                            if (Read(path2) != -1)  // it is MusicParameterTable!!!! (or UnlockMusicTable)
                             {
-                                openedFileName = path;
+                                openedFileName = path2;
                                 consoleLabel.Text = "File loaded successfully! -> will overwrite on next save";
                                 panelMainContainer.Visible = false;
                                 panelMainContainer.Enabled = false;
                                 return;
                             }
                                 // read ConditionTable
-                                if (Condition.Read(path) != -1)
+                                if (Condition.Read(path2) != -1)
                                 {
                                     panelMainContainer.Visible = true;
                                     panelMainContainer.Enabled = true;
-                                    LoadPage(new Condition(path));  // Load Condition UI
+                                    LoadPage(new Condition(path2));  // Load Condition UI
                                     return;
                                 }
 
@@ -97,7 +101,7 @@ namespace WaccaSongBrowser
                             // read IconTable
                             panelMainContainer.Visible = true;
                                 panelMainContainer.Enabled = true;
-                                LoadPage(new Message(path));
+                                LoadPage(new Message(path2));
                                 return;
                             
                         }
@@ -1319,7 +1323,7 @@ namespace WaccaSongBrowser
             // Get just the file name
             string fileName = Path.GetFileName(uassetPath);
 
-            if (fileName.Equals("UnlockMusicTable.uasset", StringComparison.OrdinalIgnoreCase))
+            if (fileName.StartsWith("UnlockMusicTable", StringComparison.OrdinalIgnoreCase))
             {
                 // swap file if it's UnlockMusicTable.uasset
                 // Get the directory part
