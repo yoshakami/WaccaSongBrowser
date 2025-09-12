@@ -86,24 +86,36 @@ namespace WaccaSongBrowser
                                 consoleLabel.Text = "File loaded successfully! -> will overwrite on next save";
                                 panelMainContainer.Visible = false;
                                 panelMainContainer.Enabled = false;
-                                return;
                             }
-                                // read ConditionTable
-                                if (Condition.Read(path2) != -1)
-                                {
-                                    panelMainContainer.Visible = true;
-                                    panelMainContainer.Enabled = true;
-                                    LoadPage(new Condition());  // Load Condition UI
-                                    return;
-                                }
+                            // read ConditionTable
+                            else if (Condition.Read(path2) != -1)
+                            {
+                                panelMainContainer.Visible = true;
+                                panelMainContainer.Enabled = true;
+                                LoadPage(new Condition());  // Load Condition UI
+                            }
+                            else if (Message.ReadTrophy(path2) != -1)
+                            {
+                                panelMainContainer.Visible = true;
+                                panelMainContainer.Enabled = true;
+                                LoadPage(new Message(path2, "trophy"));
+                            }
+                            else if (Message.ReadGrade(path2) != -1)
+                            {
+                                panelMainContainer.Visible = true;
+                                panelMainContainer.Enabled = true;
+                                LoadPage(new Message(path2, "grade"));
+                            }
+                            else
+                            {
 
+                            
                             // TODO:
                             // read IconTable
                             panelMainContainer.Visible = true;
-                                panelMainContainer.Enabled = true;
-                                LoadPage(new Message(path2));
-                                return;
-                            
+                            panelMainContainer.Enabled = true;
+                            LoadPage(new Message(path2)); }
+
                         }
                     }
                     catch (Exception ex)

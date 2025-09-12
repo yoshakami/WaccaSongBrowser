@@ -106,7 +106,6 @@
             injectWaccaTrophyButton.TabIndex = 7;
             injectWaccaTrophyButton.Text = "Inject Trophy.txt for TrophyTable";
             injectWaccaTrophyButton.UseVisualStyleBackColor = true;
-            injectWaccaTrophyButton.Visible = false;
             injectWaccaTrophyButton.Click += injectWaccaTrophyButton_Click;
             // 
             // createWaccaTrophyButton
@@ -117,7 +116,6 @@
             createWaccaTrophyButton.TabIndex = 6;
             createWaccaTrophyButton.Text = "Create Trophy.txt";
             createWaccaTrophyButton.UseVisualStyleBackColor = true;
-            createWaccaTrophyButton.Visible = false;
             createWaccaTrophyButton.Click += createWaccaTrophyButton_Click;
             // 
             // injectWaccaGradeButton
@@ -128,7 +126,6 @@
             injectWaccaGradeButton.TabIndex = 9;
             injectWaccaGradeButton.Text = "Inject Titles.txt for GradeTable";
             injectWaccaGradeButton.UseVisualStyleBackColor = true;
-            injectWaccaGradeButton.Visible = false;
             injectWaccaGradeButton.Click += injectWaccaGradeButton_Click;
             // 
             // createWaccaGradeButton
@@ -139,7 +136,6 @@
             createWaccaGradeButton.TabIndex = 8;
             createWaccaGradeButton.Text = "Create Titles.txt";
             createWaccaGradeButton.UseVisualStyleBackColor = true;
-            createWaccaGradeButton.Visible = false;
             createWaccaGradeButton.Click += createWaccaGradeButton_Click;
             // 
             // Message

@@ -23,13 +23,14 @@ namespace WaccaSongBrowser
         static string filePath;
         public Message(string fileName, string type)
         {
+            InitializeComponent();
             filePath = fileName;
+            createWacca.Visible = false;
+            createPo.Visible = false;
+            injectPo.Visible = false;
+            injectWacca.Visible = false;
             if (type == "trophy")
             {
-                createWacca.Visible = false;
-                createPo.Visible = false;
-                injectPo.Visible = false;
-                injectWacca.Visible = false;
                 injectWaccaGradeButton.Visible = false;
                 createWaccaGradeButton.Visible = false;
                 injectWaccaTrophyButton.Visible = true;
@@ -37,10 +38,6 @@ namespace WaccaSongBrowser
             }
             else if (type == "grade")
             {
-                createWacca.Visible = false;
-                createPo.Visible = false;
-                injectPo.Visible = false;
-                injectWacca.Visible = false;
                 injectWaccaGradeButton.Visible = true;
                 createWaccaGradeButton.Visible = true;
                 injectWaccaTrophyButton.Visible = false;
@@ -420,21 +417,55 @@ namespace WaccaSongBrowser
                 outputMessage.Text = "Titles.txt and TitlesVanilla.txt created in the Message folder. Do not edit the vanilla txt!!!!";
             }
         }
-
         private void injectWaccaGradeButton_Click(object sender, EventArgs e)
         {
             outputMessage.Text = "Processing...";
             messageFolder = Path.GetDirectoryName(filePath);
-            if (File.Exists(Path.Combine(messageFolder, "Titles.txt")) && File.Exists(Path.Combine(messageFolder, "TitlesVanilla.txt")))
+            string titlesPath = Path.Combine(messageFolder, "Titles.txt");
+            string titlesVanillaPath = Path.Combine(messageFolder, "TitlesVanilla.txt");
+
+            if (File.Exists(titlesPath) && File.Exists(titlesVanillaPath))
             {
-                outputMessage.Text = "successfully injected text";
-                text = File.ReadAllLines(Path.Combine(messageFolder, "Trophy.txt"), Encoding.UTF8).ToList();
-                textVanilla = File.ReadAllLines(Path.Combine(messageFolder, "TitlesVanilla.txt"), Encoding.UTF8).ToList();
-                //TODO: inject line if it matches vanilla Txt
+                text = File.ReadAllLines(titlesPath, Encoding.UTF8).ToList();
+                textVanilla = File.ReadAllLines(titlesVanillaPath, Encoding.UTF8).ToList();
+
+                if (GradeTable == null)
+                {
+                    outputMessage.Text = "GradeTable is not loaded. Please run ReadGrade first.";
+                    return;
+                }
+
+                foreach (var export in GradeTable.Exports)
+                {
+                    if (export is DataTableExport dataTable)
+                    {
+                        int index = 0;
+                        foreach (var row in dataTable.Table.Data)
+                        {
+                            if (row is StructPropertyData rowStruct)
+                            {
+                                string currentTag = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag");
+                                string vanillaTag = index < textVanilla.Count ? textVanilla[index] : null;
+                                string newTag = index < text.Count ? text[index] : currentTag;
+
+                                // Replace only if the current tag matches the vanilla one
+                                if (vanillaTag != null && currentTag == vanillaTag)
+                                {
+                                    WaccaSongBrowser.SetFieldValue(rowStruct, "NameTag", newTag);
+                                }
+
+                                index++;
+                            }
+                        }
+                    }
+                }
+
+                TrophyTable.Write(Path.Combine(messageFolder, "GradeTableNew.uasset"));
+                outputMessage.Text = "Successfully injected Titles.txt into GradeTableNew.uasset";
             }
             else
             {
-                outputMessage.Text = "missing txt, please click on the button to create them";
+                outputMessage.Text = "Missing Titles.txt or TitlesVanilla.txt. Please click the create button first.";
             }
         }
 
@@ -442,18 +473,53 @@ namespace WaccaSongBrowser
         {
             outputMessage.Text = "Processing...";
             messageFolder = Path.GetDirectoryName(filePath);
-            if (File.Exists(Path.Combine(messageFolder, "Trophy.txt")) && File.Exists(Path.Combine(messageFolder, "TrophyVanilla.txt")))
+            string trophyPath = Path.Combine(messageFolder, "Trophy.txt");
+            string trophyVanillaPath = Path.Combine(messageFolder, "TrophyVanilla.txt");
+
+            if (File.Exists(trophyPath) && File.Exists(trophyVanillaPath))
             {
-                outputMessage.Text = "successfully injected text";
-                text = File.ReadAllLines(Path.Combine(messageFolder, "Trophy.txt"), Encoding.UTF8).ToList();
-                textVanilla = File.ReadAllLines(Path.Combine(messageFolder, "TrophyVanilla.txt"), Encoding.UTF8).ToList();
-                //TODO: inject line if it matches vanilla Txt
+                text = File.ReadAllLines(trophyPath, Encoding.UTF8).ToList();
+                textVanilla = File.ReadAllLines(trophyVanillaPath, Encoding.UTF8).ToList();
+
+                if (TrophyTable == null)
+                {
+                    outputMessage.Text = "TrophyTable is not loaded. Please run ReadTrophy first.";
+                    return;
+                }
+
+                foreach (var export in TrophyTable.Exports)
+                {
+                    if (export is DataTableExport dataTable)
+                    {
+                        int index = 0;
+                        foreach (var row in dataTable.Table.Data)
+                        {
+                            if (row is StructPropertyData rowStruct)
+                            {
+                                string currentTag = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag");
+                                string vanillaTag = index < textVanilla.Count ? textVanilla[index] : null;
+                                string newTag = index < text.Count ? text[index] : currentTag;
+
+                                // Replace only if the current tag matches the vanilla one
+                                if (vanillaTag != null && currentTag == vanillaTag)
+                                {
+                                    WaccaSongBrowser.SetFieldValue(rowStruct, "NameTag", newTag);
+                                }
+
+                                index++;
+                            }
+                        }
+                    }
+                }
+                outputMessage.Text = "Successfully injected Trophy.txt into TrophyTableNew.uasset";
+                TrophyTable.Write(Path.Combine(messageFolder, "TrophyTableNew.uasset"));
             }
             else
             {
-                outputMessage.Text = "missing txt, please click on the button to create them";
+                outputMessage.Text = "Missing Trophy.txt or TrophyVanilla.txt. Please click the create button first.";
             }
         }
+
     }
 }
 
