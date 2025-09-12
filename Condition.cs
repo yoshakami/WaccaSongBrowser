@@ -15,11 +15,6 @@ namespace WaccaSongBrowser
         public Condition()
         {
             InitializeComponent();
-        }
-        public Condition(string fileName)
-        {
-            conditionFile = fileName;
-            InitializeComponent();
             filterConditionType.DataSource = new BindingSource(Conditions.Types, null);
             filterConditionType.DisplayMember = "Value"; // text shown
             filterConditionType.ValueMember = "Key";     // the ID
@@ -1281,7 +1276,7 @@ namespace WaccaSongBrowser
             int i;
             int.TryParse(conditionIdTextBox.Text, out i);
             songData.ConditionId = i;
-            int.TryParse(conditionType.Text, out i);
+            int.TryParse(conditionTypeTextBox.Text, out i);
             songData.ConditionType = i;
             songData.bConditionLimitNowSeason = conditionCheckBox.Checked;
             songData.Value1 = condition1textBox.Text;
@@ -1339,13 +1334,12 @@ namespace WaccaSongBrowser
                             WaccaSongBrowser.SetFieldValue(rowStruct, "Value3", songData.Value3);
                             WaccaSongBrowser.SetFieldValue(rowStruct, "Value4", songData.Value4);
                             WaccaSongBrowser.SetFieldValue(rowStruct, "Value5", songData.Value5);
-                            return true;
                         }
                     }
                     if (TotalResultItemJudgementTable != null)
                     {
                         int.TryParse(resultItemIdTextBox.Text, out currentSongId);
-                        foreach (var export1 in ConditionTable.Exports)
+                        foreach (var export1 in TotalResultItemJudgementTable.Exports)
                         {
                             if (export1 is DataTableExport dataTable1)
                             {
@@ -1436,11 +1430,11 @@ namespace WaccaSongBrowser
                 newRow.Value.Add(new IntPropertyData(new FName(ConditionTable, "ConditionId")) { Value = conditionData.ConditionId });
                 newRow.Value.Add(new BoolPropertyData(new FName(ConditionTable, "bConditionLimitNowSeason")) { Value = conditionData.bConditionLimitNowSeason });
                 newRow.Value.Add(new IntPropertyData(new FName(ConditionTable, "ConditionType")) { Value = conditionData.ConditionType });
-                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value1")) { Value = conditionData.Value1 });
-                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value2")) { Value = conditionData.Value2 });
-                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value3")) { Value = conditionData.Value3 });
-                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value4")) { Value = conditionData.Value4 });
-                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value5")) { Value = conditionData.Value5 });
+                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value1")) { Value = (FString)conditionData.Value1 });
+                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value2")) { Value = (FString)conditionData.Value2 });
+                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value3")) { Value = (FString)conditionData.Value3 });
+                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value4")) { Value = (FString)conditionData.Value4 });
+                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value5")) { Value = (FString)conditionData.Value5 });
 
                 // Insert at start
                 dataTable.Table.Data.Insert(0, newRow);

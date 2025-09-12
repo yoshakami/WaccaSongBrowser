@@ -478,7 +478,7 @@
             // 
             // searchPreviousButton
             // 
-            searchPreviousButton.Location = new Point(1135, 622);
+            searchPreviousButton.Location = new Point(1126, 622);
             searchPreviousButton.Name = "searchPreviousButton";
             searchPreviousButton.Size = new Size(92, 23);
             searchPreviousButton.TabIndex = 199;
@@ -488,7 +488,7 @@
             // 
             // searchNextButton
             // 
-            searchNextButton.Location = new Point(1248, 622);
+            searchNextButton.Location = new Point(1230, 622);
             searchNextButton.Name = "searchNextButton";
             searchNextButton.Size = new Size(92, 23);
             searchNextButton.TabIndex = 198;
@@ -857,7 +857,7 @@
             // searchOutputLabel
             // 
             searchOutputLabel.AutoSize = true;
-            searchOutputLabel.Location = new Point(1177, 598);
+            searchOutputLabel.Location = new Point(1172, 598);
             searchOutputLabel.Name = "searchOutputLabel";
             searchOutputLabel.Size = new Size(108, 15);
             searchOutputLabel.TabIndex = 241;

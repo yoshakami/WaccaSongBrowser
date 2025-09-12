@@ -93,7 +93,7 @@ namespace WaccaSongBrowser
                                 {
                                     panelMainContainer.Visible = true;
                                     panelMainContainer.Enabled = true;
-                                    LoadPage(new Condition(path2));  // Load Condition UI
+                                    LoadPage(new Condition());  // Load Condition UI
                                     return;
                                 }
 
@@ -1196,7 +1196,6 @@ namespace WaccaSongBrowser
             int currentIndex = allSongs.FindIndex(s => s.UniqueID == currentSongId);
             if (currentIndex == -1)
             {
-                // consoleLabel.Text = "Creating new song ID. Will be saved upon next click on save, or on next Song ID change if autosave is on"; // use WSongInject instead
                 consoleLabel.Text = $"ID {currentSongId} not found";
                 saveLabel.Text = "";
                 return;
