@@ -743,15 +743,15 @@ namespace WaccaSongBrowser
                 bgPictureBox.Image = null;
             }
         }
-        private void UpdateImage(int id)
+        private void UpdateImage(int itemId)
         {
             string name;
             string[] namePath;
             string path;
-            if (navigators.TryGetValue(id, out name))
+            if (navigators.TryGetValue(itemId, out name))
             {
                 itemTextBox.Text = "Navigator: " + name;
-                path = $"{execPath}navigators/{id}.png";
+                path = $"{execPath}navigators/{itemId}.png";
                 if (File.Exists(path))
                 {
                     using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -763,12 +763,12 @@ namespace WaccaSongBrowser
                     }
                 }
             }
-            else if (seset.TryGetValue(id, out name))
+            else if (seset.TryGetValue(itemId, out name))
             {
                 itemTextBox.Text = "SFX: " + name;
                 itemPictureBox.Image = null;
             }
-            else if (icon.TryGetValue(id, out namePath))
+            else if (icon.TryGetValue(itemId, out namePath))
             {
                 itemTextBox.Text = "Icon: " + namePath[0];
                 path = $"{execPath}icons/{namePath[1].Substring(namePath[1].IndexOf('/') + 1)}.png";
@@ -783,22 +783,22 @@ namespace WaccaSongBrowser
                     }
                 }
             }
-            else if (grade.TryGetValue(id, out name))
+            else if (grade.TryGetValue(itemId, out name))
             {
                 itemTextBox.Text = "Title: " + name;
                 itemPictureBox.Image = null;
             }
-            else if (colors.TryGetValue(id, out name))
+            else if (colors.TryGetValue(itemId, out name))
             {
                 itemTextBox.Text = "Color: " + name;
                 itemPictureBox.Image = null;
             }
-            else if (trophy.TryGetValue(id, out name))
+            else if (trophy.TryGetValue(itemId, out name))
             {
                 itemTextBox.Text = "Trophy: " + name;
                 itemPictureBox.Image = null;
             }
-            else if (bg.TryGetValue(id, out namePath))
+            else if (bg.TryGetValue(itemId, out namePath))
             {
                 bgPictureBox.Visible = true;
                 itemPictureBox.Visible = false;
@@ -1400,11 +1400,98 @@ namespace WaccaSongBrowser
         private void conditionInjectButton_Click(object sender, EventArgs e)
         {
 
+            // Parse new ID from the UI
+            if (!int.TryParse(conditionIdTextBox.Text, out int newId))
+            {
+                saveLabel.Text = "Invalid song ID.";
+                return;
+            }
+            if (newId == 0)
+            {
+                saveLabel.Text = "ID 0 is reserved.";
+                return;
+            }
+
+            // Prevent duplicates
+            if (allConditions.Any(s => s.ConditionId == newId))
+            {
+                saveLabel.Text = $"ID {newId} already exists.";
+                return;
+            }
+
+            // Find the MusicParameterTable DataTableExport
+            foreach (var export in ConditionTable.Exports)
+            {
+                if (!(export is DataTableExport dataTable))
+                    continue;
+
+                // Create a new SongData and fill fields from the current UI using your helper
+                var songData = new ConditionData();
+                saveSongData(songData); // populate fields from UI; UniqueID set below
+                songData.ConditionId = newId;
+
+
+                // Set current selection and show it
+                currentSongId = songData.ConditionId;
+                saveLabel.Text = $"Injected new ID {newId}.";
+                LoadUI(songData);
+
+                // Persist according to user mode (auto/ram/manual)
+                saveChanges();
+
+                return; // done
+            }
+
+            // If we reach here, no DataTableExport found
+            saveLabel.Text = "MusicParameterTable export not found.";
         }
 
         private void resultInjectButton_Click(object sender, EventArgs e)
         {
+            // Parse new ID from the UI
+            if (!int.TryParse(resultItemIdTextBox.Text, out int newId))
+            {
+                saveLabel.Text = "Invalid song ID.";
+                return;
+            }
+            if (newId == 0)
+            {
+                saveLabel.Text = "ID 0 is reserved.";
+                return;
+            }
 
+            // Prevent duplicates
+            if (allConditions.Any(s => s.ConditionId == newId))
+            {
+                saveLabel.Text = $"ID {newId} already exists.";
+                return;
+            }
+
+            // Find the MusicParameterTable DataTableExport
+            foreach (var export in TotalResultItemJudgementTable.Exports)
+            {
+                if (!(export is DataTableExport dataTable))
+                    continue;
+
+                // Create a new SongData and fill fields from the current UI using your helper
+                var songData = new TotalResultItemJudgementData();
+                saveResultData(songData); // populate fields from UI; UniqueID set below
+                songData.ItemId = newId;
+
+
+                // Set current selection and show it
+                currentSongId = songData.ItemId;
+                saveLabel.Text = $"Injected new ID {newId}.";
+                LoadUI(songData);
+
+                // Persist according to user mode (auto/ram/manual)
+                saveChanges();
+
+                return; // done
+            }
+
+            // If we reach here, no DataTableExport found
+            saveLabel.Text = "MusicParameterTable export not found.";
         }
 
         private void ramSaveCheckBox_CheckedChanged(object sender, EventArgs e)
