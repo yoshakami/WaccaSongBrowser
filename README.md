@@ -1,18 +1,28 @@
 # WaccaSongBrowser
-MusicParameterTable and Message editor
-This is a nice tool used to search for existing songs metadata and edit them.
-you can sort all categories to your liking quickly with it.
+Table and Message editor
+has several menus:
 
-Message editor is used to convert the Message folder into a txt, that can be converted back to a new message folder.
+## MusicParameterTable
+This is a nice tool used to search for existing songs metadata and edit them.<br>
+you can sort all categories to your liking quickly with it.<br>
+also edits UnlockMusicTable and UnlockInfernoTable to set the "new" attribute and inject new id
+
+## ConditionTable
+Here you can edit conditions for unlockables and also edit the unlockable ID<br>
+it edits TotalResultItemJudgementTable and shows all other loaded files for read only
+
+## Message
+You can convert all japanese strings of the game to Wacca.txt (or .po) and back from the txt to a new folder with all the corresponding uassets.
+
 <img width="1184" height="697" alt="image" src="https://github.com/user-attachments/assets/ff07d6a4-1999-4989-ba09-504572842146" />
 
 ## it does not add new entries!! use WsongInject to add a new song instead
 
 ## update notes
 you can now apply as much filters as you want as long as you enable them! <br>
-you can still take the hot shortcut of pressing enter (with the keyboard) on any filter to any search with this one only <br>
-MusicParameterTable and Message are fully functionnal. <br>
-future updates will include icon injector, plate background injector, condition table editor, and title injector
+you can still take the hot shortcut of pressing enter (with the keyboard) on any filter to any search with this one only (for MusicParameterTable) <br>
+MusicParameterTable, Message, and Condition are fully functionnal. <br>
+future updates will include icon injector, plate background injector, trophy editor, and title injector
 
 ## how to edit songs
 Drag and drop MusicParameterTable.uasset onto the window (found in WindowsNoEditor/Mercury/Content/Table)
