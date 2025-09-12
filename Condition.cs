@@ -1276,8 +1276,37 @@ namespace WaccaSongBrowser
             }
             // else don't save data
         }
+        private void saveSongData(ConditionData songData)
+        {
+            int i;
+            int.TryParse(conditionIdTextBox.Text, out i);
+            songData.ConditionId = i;
+            int.TryParse(conditionType.Text, out i);
+            songData.ConditionType = i;
+            songData.bConditionLimitNowSeason = conditionCheckBox.Checked;
+            songData.Value1 = condition1textBox.Text;
+            songData.Value2 = condition2textBox.Text;
+            songData.Value3 = condition3textBox.Text;
+            songData.Value4 = condition4textBox.Text;
+            songData.Value5 = condition5textBox.Text;
+        }
+        private void saveResultData(TotalResultItemJudgementData songData)
+        {
+            int i;
+            long k;
+            List<string> list = new List<string>();
+            int.TryParse(resultItemIdTextBox.Text, out i);
+            songData.ItemId = i;
+            long.TryParse(resultStartTimeTextBox.Text, out k);
+            songData.ConditionGetableStartTime = k;
+            long.TryParse(resultEndTimeTextBox.Text, out k);
+            songData.ConditionGetableEndTime = k;
+            list.Add(resultConditionTextBox.Text);
+            songData.ConditionKeys = list;
+        }
         private bool saveChangesInRam()
         {
+            int.TryParse(conditionIdTextBox.Text, out currentSongId);
             if (currentSongId == 0)
                 return false;
             // Go through each export to find the DataTable
@@ -1292,80 +1321,60 @@ namespace WaccaSongBrowser
                     }
 
                     saveSongData(songData);
-
+                    int id;
                     foreach (var row in dataTable.Table.Data)
                     {
                         if (row is StructPropertyData rowStruct)
                         {
-                            uint id = GetFieldValue<uint>(rowStruct, "UniqueID");
+                            id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "ConditionId");
                             if (id != currentSongId)
                             {
                                 continue;
                             }
-                            musicUnlockStatus[(int)id] = checkBoxNew.Checked;
-                            SaveCurentUnlockInferno();
                             // Lookup the song data you want to save (replace this with your data source)
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicMessage", songData.MusicMessage);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "ArtistMessage", songData.ArtistMessage);
-                            //WaccaSongBrowser.SetFieldValue(rowStruct, "CopyrightMessage", songData.CopyrightMessage);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "VersionNo", songData.Version);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "AssetDirectory", songData.AssetDirectory);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MovieAssetName", songData.MovieAssetName);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MovieAssetNameHard", songData.MovieAssetNameHard);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MovieAssetNameExpert", songData.MovieAssetNameExpert);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MovieAssetNameInferno", songData.MovieAssetNameInferno);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "JacketAssetName", songData.JacketAssetName);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "Rubi", songData.Rubi);
-
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_ja_JP", songData.ValidCulture_ja_JP);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_en_US", songData.ValidCulture_en_US);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_zh_Hant_TW", songData.ValidCulture_zh_Hant_TW);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_en_HK", songData.ValidCulture_en_HK);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_en_SG", songData.ValidCulture_en_SG);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_ko_KR", songData.ValidCulture_ko_KR);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_h_Hans_CN_Guest", songData.ValidCulture_h_Hans_CN_Guest);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_h_Hans_CN_GeneralMember", songData.ValidCulture_h_Hans_CN_GeneralMember);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_h_Hans_CN_VipMember", songData.ValidCulture_h_Hans_CN_VipMember);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_Offline", songData.ValidCulture_Offline);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_NoneActive", songData.ValidCulture_NoneActive);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "bRecommend", songData.Recommend);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "WaccaPointCost", songData.WaccaPointCost);
-                            //Collaboration = GetFieldValue<byte>(rowStruct, "bCollaboration"),
-                            //WaccaOriginal = GetFieldValue<byte>(rowStruct, "bWaccaOriginal"),
-                            //TrainingLevel = GetFieldValue<byte>(rowStruct, "TrainingLevel"),
-                            //Reserved = GetFieldValue<byte>(rowStruct, "Reserved"),
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "Bpm", songData.Bpm);
-                            //HashTag = GetFieldValue<string>(rowStruct, "HashTag"),
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "NotesDesignerNormal", songData.NotesDesignerNormal);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "NotesDesignerHard", songData.NotesDesignerHard);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "NotesDesignerExpert", songData.NotesDesignerExpert);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "NotesDesignerInferno", songData.NotesDesignerInferno);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "DifficultyNormalLv", songData.DifficultyNormalLv);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "DifficultyHardLv", songData.DifficultyHardLv);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "DifficultyExtremeLv", songData.DifficultyExpertLv);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "DifficultyInfernoLv", songData.DifficultyInfernoLv);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "ClearNormaRateNormal", songData.ClearRateNormal);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "ClearNormaRateHard", songData.ClearRateHard);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "ClearNormaRateExtreme", songData.ClearRateExpert);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "ClearNormaRateInferno", songData.ClearRateInferno);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "PreviewBeginTime", songData.PreviewBeginTime);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "PreviewSeconds", songData.PreviewSeconds);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "ScoreGenre", songData.ScoreGenre);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock0", songData.bingo0);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock1", songData.bingo1);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock2", songData.bingo2);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock3", songData.bingo3);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock4", songData.bingo4);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock5", songData.bingo5);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock6", songData.bingo6);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock7", songData.bingo7);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock8", songData.bingo8);
-                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock9", songData.bingo9);
-                            //public ulong WorkBuffer { get; set; }
-                            //WaccaSongBrowser.SetFieldValue(rowStruct, "AssetFullPath", songData.AssetFullPath);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bConditionLimitNowSeason", songData.bConditionLimitNowSeason);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "ConditionType", songData.ConditionType);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "Value1", songData.Value1);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "Value2", songData.Value2);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "Value3", songData.Value3);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "Value4", songData.Value4);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "Value5", songData.Value5);
                             return true;
                         }
                     }
+                    if (TotalResultItemJudgementTable != null)
+                    {
+                        int.TryParse(resultItemIdTextBox.Text, out currentSongId);
+                        foreach (var export1 in ConditionTable.Exports)
+                        {
+                            if (export1 is DataTableExport dataTable1)
+                            {
+                                var conditionData = allResult.FirstOrDefault(s => currentSongId == s.ItemId);
+                                if (conditionData == null)
+                                {
+                                    return false;
+                                }
+
+                                saveResultData(conditionData);
+                                foreach (var row in dataTable1.Table.Data)
+                                {
+                                    if (row is StructPropertyData rowStruct)
+                                    {
+                                        id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "ItemId");
+                                        if (id != currentSongId)
+                                        {
+                                            continue;
+                                        }
+                                        // Lookup the song data you want to save (replace this with your data source)
+                                        WaccaSongBrowser.SetFieldValue(rowStruct, "ConditionGetableStartTime", conditionData.ConditionGetableStartTime);
+                                        WaccaSongBrowser.SetFieldValue(rowStruct, "ConditionGetableEndTime", conditionData.ConditionGetableEndTime);
+                                        WaccaSongBrowser.SetFieldValue(rowStruct, "ConditionKeys", conditionData.ConditionKeys);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    return true;
                 }
             }
             return false;

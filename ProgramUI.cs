@@ -1112,20 +1112,13 @@ namespace WaccaSongBrowser
             }
             return false;
         }
-        static void SetFieldValue(StructPropertyData structData, string fieldName, object newValue)
+        public static void SetFieldValue(StructPropertyData structData, string fieldName, object newValue)
         {
             var prop = structData.Value.FirstOrDefault(p => p.Name.Value.ToString() == fieldName);
 
             if (prop is StrPropertyData strProp && newValue is string strVal)
             {
-                if (strVal == "null")
-                {
-                    strProp.Value = null;
-                }
-                else
-                {
-                    strProp.Value = (UAssetAPI.UnrealTypes.FString)strVal;
-                }
+                strProp.Value = (strVal == "null") ? null : (UAssetAPI.UnrealTypes.FString)strVal;
             }
             else if (prop is IntPropertyData intProp && newValue is int intVal)
             {
@@ -1147,11 +1140,27 @@ namespace WaccaSongBrowser
             {
                 floatProp.Value = floatVal;
             }
+            else if (prop is ArrayPropertyData arrProp && newValue is List<string> stringList)
+            {
+                // Build a new array of StrPropertyData
+                var newArray = new PropertyData[stringList.Count];
+                for (int i = 0; i < stringList.Count; i++)
+                {
+                    newArray[i] = new StrPropertyData
+                    {
+                        Name = arrProp.Name, // preserve the name
+                        Value = (UAssetAPI.UnrealTypes.FString)stringList[i]
+                    };
+                }
+
+                arrProp.Value = newArray;
+            }
             else
             {
                 Console.WriteLine($"Unsupported or mismatched type for field '{fieldName}'");
             }
         }
+
         private void nextSongButton_Click(object sender, EventArgs e)
         {
             if (songid.SelectedIndex >= songid.Items.Count - 1)
