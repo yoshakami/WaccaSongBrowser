@@ -20,10 +20,101 @@ namespace WaccaSongBrowser
     public partial class Message : UserControl
     {
         static string? messageFolder = null;
+        static string filePath;
+        public Message(string fileName, string type)
+        {
+            filePath = fileName;
+            if (type == "trophy")
+            {
+                createWacca.Visible = false;
+                createPo.Visible = false;
+                injectPo.Visible = false;
+                injectWacca.Visible = false;
+                injectWaccaGradeButton.Visible = false;
+                createWaccaGradeButton.Visible = false;
+                injectWaccaTrophyButton.Visible = true;
+                createWaccaTrophyButton.Visible = true;
+            }
+            else if (type == "grade")
+            {
+                createWacca.Visible = false;
+                createPo.Visible = false;
+                injectPo.Visible = false;
+                injectWacca.Visible = false;
+                injectWaccaGradeButton.Visible = true;
+                createWaccaGradeButton.Visible = true;
+                injectWaccaTrophyButton.Visible = false;
+                createWaccaTrophyButton.Visible = false;
+            }
+        }
         public Message(string folderName)
         {
             InitializeComponent();
             messageFolder = folderName;
+            createWacca.Visible = true;
+            createPo.Visible = true;
+            injectPo.Visible = true;
+            injectWacca.Visible = true;
+            injectWaccaGradeButton.Visible = false;
+            createWaccaGradeButton.Visible = false;
+            injectWaccaTrophyButton.Visible = false;
+            createWaccaTrophyButton.Visible = false;
+        }
+        static List<string> text = new List<string>();
+        static List<string> textVanilla = new List<string>();
+        static UAsset TrophyTable;
+        public static sbyte ReadTrophy(string uassetPath)
+        {
+            text.Clear();
+            if (!File.Exists(uassetPath)) return -1;
+            // Load the asset (assumes .uexp is in the same folder)
+            TrophyTable = new UAsset(uassetPath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
+            int id;
+            // Go through each export to find the DataTable
+            foreach (var export in TrophyTable.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        string ConditionId = row.Name.ToString();              // <-- "010010101"
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "TrophyId");
+                            if (id == 0) return -1;
+                            text.Add(WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag"));
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+        static UAsset GradeTable;
+        public static sbyte ReadGrade(string uassetPath)
+        {
+            text.Clear();
+            if (!File.Exists(uassetPath)) return -1;
+            // Load the asset (assumes .uexp is in the same folder)
+            GradeTable = new UAsset(uassetPath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
+            int id;
+            // Go through each export to find the DataTable
+            foreach (var export in GradeTable.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        string ConditionId = row.Name.ToString();              // <-- "010010101"
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GradeId");
+                            if (id == 0) return -1;
+                            text.Add(WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag"));
+                        }
+                    }
+                }
+            }
+            return 0;
         }
         public void ProcessFile(string assetPath, bool inject = false, bool waccaTxt = false)
         {
@@ -286,7 +377,81 @@ namespace WaccaSongBrowser
                 {
                     ProcessFile(file, true, true);
                 }
-                outputMessage.Text = "Wacca.txt and WaccaVanilla.txt created in the Message folder. Do not edit the vanilla txt!!!!";
+                outputMessage.Text = "successfully injected text";
+            }
+        }
+
+        private void createWaccaTrophyButton_Click(object sender, EventArgs e)
+        {
+            outputMessage.Text = "Processing...";
+            messageFolder = Path.GetDirectoryName(filePath);
+            if (File.Exists(Path.Combine(messageFolder, "Trophy.txt")))
+            {
+                outputMessage.Text = "Trophy.txt already exists in the current folder";
+            }
+            else if (File.Exists(Path.Combine(messageFolder, "TrophyVanilla.txt")))
+            {
+                outputMessage.Text = "TrophyVanilla.txt already exists in the current folder";
+            }
+            else
+            {
+                File.WriteAllLines(Path.Combine(messageFolder, "Trophy.txt"), text);
+                File.WriteAllLines(Path.Combine(messageFolder, "TrophyVanilla.txt"), text);
+                outputMessage.Text = "Trophy.txt and TrophyVanilla.txt created in the Message folder. Do not edit the vanilla txt!!!!";
+            }
+        }
+
+        private void createWaccaGradeButton_Click(object sender, EventArgs e)
+        {
+            outputMessage.Text = "Processing...";
+            messageFolder = Path.GetDirectoryName(filePath);
+            if (File.Exists(Path.Combine(messageFolder, "Titles.txt")))
+            {
+                outputMessage.Text = "Titles.txt already exists in the current folder";
+            }
+            else if (File.Exists(Path.Combine(messageFolder, "TitlesVanilla.txt")))
+            {
+                outputMessage.Text = "TitlesVanilla.txt already exists in the current folder";
+            }
+            else
+            {
+                File.WriteAllLines(Path.Combine(messageFolder, "Titles.txt"), text, Encoding.UTF8);
+                File.WriteAllLines(Path.Combine(messageFolder, "TitlesVanilla.txt"), text);
+                outputMessage.Text = "Titles.txt and TitlesVanilla.txt created in the Message folder. Do not edit the vanilla txt!!!!";
+            }
+        }
+
+        private void injectWaccaGradeButton_Click(object sender, EventArgs e)
+        {
+            outputMessage.Text = "Processing...";
+            messageFolder = Path.GetDirectoryName(filePath);
+            if (File.Exists(Path.Combine(messageFolder, "Titles.txt")) && File.Exists(Path.Combine(messageFolder, "TitlesVanilla.txt")))
+            {
+                outputMessage.Text = "successfully injected text";
+                text = File.ReadAllLines(Path.Combine(messageFolder, "Trophy.txt"), Encoding.UTF8).ToList();
+                textVanilla = File.ReadAllLines(Path.Combine(messageFolder, "TitlesVanilla.txt"), Encoding.UTF8).ToList();
+                //TODO: inject line if it matches vanilla Txt
+            }
+            else
+            {
+                outputMessage.Text = "missing txt, please click on the button to create them";
+            }
+        }
+
+        private void injectWaccaTrophyButton_Click(object sender, EventArgs e)
+        {
+            outputMessage.Text = "Processing...";
+            messageFolder = Path.GetDirectoryName(filePath);
+            if (File.Exists(Path.Combine(messageFolder, "Trophy.txt")) && File.Exists(Path.Combine(messageFolder, "TrophyVanilla.txt")))
+            {
+                outputMessage.Text = "successfully injected text";
+                text = File.ReadAllLines(Path.Combine(messageFolder, "Trophy.txt"), Encoding.UTF8).ToList();
+                textVanilla = File.ReadAllLines(Path.Combine(messageFolder, "TrophyVanilla.txt"), Encoding.UTF8).ToList();
+                //TODO: inject line if it matches vanilla Txt
+            }
+            else
+            {
+                outputMessage.Text = "missing txt, please click on the button to create them";
             }
         }
     }

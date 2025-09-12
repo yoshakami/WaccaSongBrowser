@@ -34,6 +34,10 @@
             injectWacca = new Button();
             injectPo = new Button();
             label1 = new Label();
+            injectWaccaTrophyButton = new Button();
+            createWaccaTrophyButton = new Button();
+            injectWaccaGradeButton = new Button();
+            createWaccaGradeButton = new Button();
             SuspendLayout();
             // 
             // outputMessage
@@ -94,8 +98,56 @@
             label1.TabIndex = 5;
             label1.Text = "Message management";
             // 
+            // injectWaccaTrophyButton
+            // 
+            injectWaccaTrophyButton.Location = new Point(752, 304);
+            injectWaccaTrophyButton.Name = "injectWaccaTrophyButton";
+            injectWaccaTrophyButton.Size = new Size(227, 47);
+            injectWaccaTrophyButton.TabIndex = 7;
+            injectWaccaTrophyButton.Text = "Inject Trophy.txt for TrophyTable";
+            injectWaccaTrophyButton.UseVisualStyleBackColor = true;
+            injectWaccaTrophyButton.Visible = false;
+            injectWaccaTrophyButton.Click += injectWaccaTrophyButton_Click;
+            // 
+            // createWaccaTrophyButton
+            // 
+            createWaccaTrophyButton.Location = new Point(421, 304);
+            createWaccaTrophyButton.Name = "createWaccaTrophyButton";
+            createWaccaTrophyButton.Size = new Size(227, 47);
+            createWaccaTrophyButton.TabIndex = 6;
+            createWaccaTrophyButton.Text = "Create Trophy.txt";
+            createWaccaTrophyButton.UseVisualStyleBackColor = true;
+            createWaccaTrophyButton.Visible = false;
+            createWaccaTrophyButton.Click += createWaccaTrophyButton_Click;
+            // 
+            // injectWaccaGradeButton
+            // 
+            injectWaccaGradeButton.Location = new Point(752, 407);
+            injectWaccaGradeButton.Name = "injectWaccaGradeButton";
+            injectWaccaGradeButton.Size = new Size(227, 47);
+            injectWaccaGradeButton.TabIndex = 9;
+            injectWaccaGradeButton.Text = "Inject Titles.txt for GradeTable";
+            injectWaccaGradeButton.UseVisualStyleBackColor = true;
+            injectWaccaGradeButton.Visible = false;
+            injectWaccaGradeButton.Click += injectWaccaGradeButton_Click;
+            // 
+            // createWaccaGradeButton
+            // 
+            createWaccaGradeButton.Location = new Point(421, 407);
+            createWaccaGradeButton.Name = "createWaccaGradeButton";
+            createWaccaGradeButton.Size = new Size(227, 47);
+            createWaccaGradeButton.TabIndex = 8;
+            createWaccaGradeButton.Text = "Create Titles.txt";
+            createWaccaGradeButton.UseVisualStyleBackColor = true;
+            createWaccaGradeButton.Visible = false;
+            createWaccaGradeButton.Click += createWaccaGradeButton_Click;
+            // 
             // Message
             // 
+            Controls.Add(injectWaccaGradeButton);
+            Controls.Add(createWaccaGradeButton);
+            Controls.Add(injectWaccaTrophyButton);
+            Controls.Add(createWaccaTrophyButton);
             Controls.Add(label1);
             Controls.Add(injectPo);
             Controls.Add(injectWacca);
@@ -116,5 +168,9 @@
         private Button injectWacca;
         private Button injectPo;
         private Label label1;
+        private Button injectWaccaTrophyButton;
+        private Button createWaccaTrophyButton;
+        private Button injectWaccaGradeButton;
+        private Button createWaccaGradeButton;
     }
 }

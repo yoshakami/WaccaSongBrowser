@@ -153,7 +153,7 @@ namespace WaccaSongBrowser
                                 Value5 = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "Value5"),
                             };
 
-                            if (data.ConditionId == 0 && data.ConditionType == 0 && data.Value1 == null && data.Value2 == null && data.Value3 == null && data.Value4 == null && data.Value5 == null && data.bConditionLimitNowSeason == false)
+                            if (data.ConditionId == 0 && data.ConditionType == 0)
                             {
                                 return -1;
                             }
