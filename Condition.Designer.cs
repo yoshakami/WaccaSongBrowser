@@ -478,7 +478,7 @@
             // 
             // searchPreviousButton
             // 
-            searchPreviousButton.Location = new Point(1023, 644);
+            searchPreviousButton.Location = new Point(1135, 622);
             searchPreviousButton.Name = "searchPreviousButton";
             searchPreviousButton.Size = new Size(92, 23);
             searchPreviousButton.TabIndex = 199;
@@ -488,7 +488,7 @@
             // 
             // searchNextButton
             // 
-            searchNextButton.Location = new Point(1136, 644);
+            searchNextButton.Location = new Point(1248, 622);
             searchNextButton.Name = "searchNextButton";
             searchNextButton.Size = new Size(92, 23);
             searchNextButton.TabIndex = 198;
@@ -499,7 +499,7 @@
             // searchResultLabel
             // 
             searchResultLabel.AutoSize = true;
-            searchResultLabel.Location = new Point(939, 648);
+            searchResultLabel.Location = new Point(1050, 626);
             searchResultLabel.Name = "searchResultLabel";
             searchResultLabel.Size = new Size(50, 15);
             searchResultLabel.TabIndex = 196;
@@ -507,9 +507,9 @@
             // 
             // filterSearchButton
             // 
-            filterSearchButton.Location = new Point(829, 644);
+            filterSearchButton.Location = new Point(829, 622);
             filterSearchButton.Name = "filterSearchButton";
-            filterSearchButton.Size = new Size(92, 23);
+            filterSearchButton.Size = new Size(199, 23);
             filterSearchButton.TabIndex = 195;
             filterSearchButton.Text = "Search";
             filterSearchButton.UseVisualStyleBackColor = true;
@@ -749,6 +749,7 @@
             ramSaveCheckBox.Text = "Keep every\n change in RAM";
             ramSaveCheckBox.TextAlign = ContentAlignment.MiddleCenter;
             ramSaveCheckBox.UseVisualStyleBackColor = true;
+            ramSaveCheckBox.CheckedChanged += ramSaveCheckBox_CheckedChanged;
             // 
             // saveButton
             // 
@@ -856,7 +857,7 @@
             // searchOutputLabel
             // 
             searchOutputLabel.AutoSize = true;
-            searchOutputLabel.Location = new Point(1065, 620);
+            searchOutputLabel.Location = new Point(1177, 598);
             searchOutputLabel.Name = "searchOutputLabel";
             searchOutputLabel.Size = new Size(108, 15);
             searchOutputLabel.TabIndex = 241;
@@ -988,7 +989,7 @@
             // 
             // filterInvertMatchesButton
             // 
-            filterInvertMatchesButton.Location = new Point(829, 602);
+            filterInvertMatchesButton.Location = new Point(829, 585);
             filterInvertMatchesButton.Name = "filterInvertMatchesButton";
             filterInvertMatchesButton.Size = new Size(199, 23);
             filterInvertMatchesButton.TabIndex = 256;

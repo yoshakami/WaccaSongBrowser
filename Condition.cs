@@ -18,6 +18,7 @@ namespace WaccaSongBrowser
         }
         public Condition(string fileName)
         {
+            conditionFile = fileName;
             InitializeComponent();
             filterConditionType.DataSource = new BindingSource(Conditions.Types, null);
             filterConditionType.DisplayMember = "Value"; // text shown
@@ -1109,251 +1110,6 @@ namespace WaccaSongBrowser
             LoadUI(filteredSongs[filteredSongsSelectedIndex]);
             searchOutputLabel.Text = $"Showing Result {filteredSongsSelectedIndex + 1}/{filteredSongs.Count}";
         }
-        private void saveChanges()
-        {
-            if (autoSaveCheckBox.Checked)
-            {
-                saveButton_Click(null, null);
-            }
-            else if (ramSaveCheckBox.Checked)
-            {
-                saveChangesInRam();
-            }
-            // else don't save data
-        }
-        private bool saveChangesInRam()
-        {
-            /*
-            if (currentSongId == 0)
-                return false;
-            // Go through each export to find the DataTable
-            foreach (var export in MusicParameterTable.Exports)
-            {
-                if (export is DataTableExport dataTable)
-                {
-                    Console.WriteLine("Reading rows from DataTable...\n");
-                    var songData = allSongs.FirstOrDefault(s => s.UniqueID == currentSongId);
-                    if (songData == null)
-                    {
-                        return false;
-                    }
-                    if (songData == null && 0 == 1)  // user added a new song id // Use WSongInject Instead.
-                    {
-                        songData = new SongData();
-                        saveSongData(songData);
-                        // Create a new StructPropertyData row
-                        var newRow = new StructPropertyData
-                        {
-                            Name = new FName(MusicParameterTable, new FString(currentSongId.ToString())), // peak code moment
-                            StructType = new FName(MusicParameterTable, new FString("MusicParameterTableData")),
-                            Value = new List<PropertyData>()
-                        };
-                        uint u;
-                        uint.TryParse(songid.Text, out u);
-                        musicUnlockStatus[(int)u] = checkBoxNew.Checked;
-                        songData.UniqueID = u;
-                        // regex is my friend
-                        newRow.Value.Add(new UInt32PropertyData(new FName(MusicParameterTable, "UniqueID")) { Value = songData.UniqueID });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "MusicMessage")) { Value = (FString)songData.MusicMessage });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "ArtistMessage")) { Value = (FString)songData.ArtistMessage });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "CopyrightMessage")) { Value = (FString)"-" });
-                        newRow.Value.Add(new UInt32PropertyData(new FName(MusicParameterTable, "VersionNo")) { Value = songData.Version });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "AssetDirectory")) { Value = (FString)songData.AssetDirectory });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "MovieAssetName")) { Value = (FString)songData.MovieAssetName });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "MovieAssetNameHard")) { Value = (FString)songData.MovieAssetNameHard });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "MovieAssetNameExpert")) { Value = (FString)songData.MovieAssetNameExpert });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "MovieAssetNameInferno")) { Value = (FString)songData.MovieAssetNameInferno });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "JacketAssetName")) { Value = (FString)songData.JacketAssetName });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "Rubi")) { Value = (FString)songData.Rubi });
-
-                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_ja_JP")) { Value = songData.ValidCulture_ja_JP });
-                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_en_US")) { Value = songData.ValidCulture_en_US });
-                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_zh_Hant_TW")) { Value = songData.ValidCulture_zh_Hant_TW });
-                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_en_HK")) { Value = songData.ValidCulture_en_HK });
-                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_en_SG")) { Value = songData.ValidCulture_en_SG });
-                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_ko_KR")) { Value = songData.ValidCulture_ko_KR });
-                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_h_Hans_CN_Guest")) { Value = songData.ValidCulture_h_Hans_CN_Guest });
-                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_h_Hans_CN_GeneralMember")) { Value = songData.ValidCulture_h_Hans_CN_GeneralMember });
-                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_h_Hans_CN_VipMember")) { Value = songData.ValidCulture_h_Hans_CN_VipMember });
-                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_Offline")) { Value = songData.ValidCulture_Offline });
-                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bValidCulture_NoneActive")) { Value = songData.ValidCulture_NoneActive });
-
-                        newRow.Value.Add(new BoolPropertyData(new FName(MusicParameterTable, "bRecommend")) { Value = songData.Recommend });
-                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "WaccaPointCost")) { Value = songData.WaccaPointCost });
-                        newRow.Value.Add(new BytePropertyData(new FName(MusicParameterTable, "bCollaboration"))
-                        {
-                            EnumType = new FName(MusicParameterTable, "None"), // Optional if "None" is needed
-                            Value = 0
-                        }); ;
-                        newRow.Value.Add(new BytePropertyData(new FName(MusicParameterTable, "bWaccaOriginal"))
-                        {
-                            EnumType = new FName(MusicParameterTable, "None"), // Optional if "None" is needed
-                            Value = 0
-                        });
-                        newRow.Value.Add(new BytePropertyData(new FName(MusicParameterTable, "TrainingLevel"))
-                        {
-                            EnumType = new FName(MusicParameterTable, "None"), // Optional if "None" is needed
-                            Value = 3 // Sets Value 2 to 3
-                        });
-                        newRow.Value.Add(new BytePropertyData(new FName(MusicParameterTable, "Reserved"))
-                        {
-                            EnumType = new FName(MusicParameterTable, "None"), // Optional if "None" is needed
-                            Value = 0
-                        });
-
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "Bpm")) { Value = (FString)songData.Bpm });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "HashTag")) { Value = (FString)"Yosh" });
-
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "NotesDesignerNormal")) { Value = (FString)songData.NotesDesignerNormal });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "NotesDesignerHard")) { Value = (FString)songData.NotesDesignerHard });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "NotesDesignerExpert")) { Value = (FString)songData.NotesDesignerExpert });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "NotesDesignerInferno")) { Value = (FString)songData.NotesDesignerInferno });
-
-                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "DifficultyNormalLv")) { Value = songData.DifficultyNormalLv });
-                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "DifficultyHardLv")) { Value = songData.DifficultyHardLv });
-                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "DifficultyExtremeLv")) { Value = songData.DifficultyExpertLv });
-                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "DifficultyInfernoLv")) { Value = songData.DifficultyInfernoLv });
-
-                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "ClearNormaRateNormal")) { Value = songData.ClearRateNormal });
-                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "ClearNormaRateHard")) { Value = songData.ClearRateHard });
-                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "ClearNormaRateExtreme")) { Value = songData.ClearRateExpert });
-                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "ClearNormaRateInferno")) { Value = songData.ClearRateInferno });
-
-                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "PreviewBeginTime")) { Value = songData.PreviewBeginTime });
-                        newRow.Value.Add(new FloatPropertyData(new FName(MusicParameterTable, "PreviewSeconds")) { Value = songData.PreviewSeconds });
-
-                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "ScoreGenre")) { Value = songData.ScoreGenre });
-                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock0")) { Value = songData.bingo0 });
-                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock1")) { Value = songData.bingo1 });
-                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock2")) { Value = songData.bingo2 });
-                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock3")) { Value = songData.bingo3 });
-                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock4")) { Value = songData.bingo4 });
-                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock5")) { Value = songData.bingo5 });
-                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock6")) { Value = songData.bingo6 });
-                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock7")) { Value = songData.bingo7 });
-                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock8")) { Value = songData.bingo8 });
-                        newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock9")) { Value = songData.bingo9 });
-                        newRow.Value.Add(new UInt64PropertyData(new FName(MusicParameterTable, "WorkBuffer")) { Value = 0 });
-                        newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "AssetFullPath")) { Value = (FString)$"D:/project/Mercury/Mercury/Content//MusicData/{songData.AssetDirectory}" });
-                        // all fields are there.
-
-                        // Finally, add it to the DataTable
-                        // dataTable.Table.Data.Prepend(newRow);  // this is wrong!!!!!!!!!!!!!!!!!!!!!
-                        dataTable.Table.Data.Insert(0, newRow);  // inserts at beginning
-                        songid.Items.Insert(0, songData.UniqueID.ToString());
-                        allSongs.Insert(0, songData);
-                        return true;
-                    }  // use Wsong Inject instead of this if
-
-                    saveSongData(songData);
-
-                    foreach (var row in dataTable.Table.Data)
-                    {
-                        if (row is StructPropertyData rowStruct)
-                        {
-                            uint id = GetFieldValue<uint>(rowStruct, "UniqueID");
-                            if (id != currentSongId)
-                            {
-                                continue;
-                            }
-                            musicUnlockStatus[(int)id] = checkBoxNew.Checked;
-                            SaveUnlockMusic();
-                            // Lookup the song data you want to save (replace this with your data source)
-                            SetFieldValue(rowStruct, "MusicMessage", songData.MusicMessage);
-                            SetFieldValue(rowStruct, "ArtistMessage", songData.ArtistMessage);
-                            //SetFieldValue(rowStruct, "CopyrightMessage", songData.CopyrightMessage);
-                            SetFieldValue(rowStruct, "VersionNo", (songData.Version + 1));
-                            SetFieldValue(rowStruct, "AssetDirectory", songData.AssetDirectory);
-                            SetFieldValue(rowStruct, "MovieAssetName", songData.MovieAssetName);
-                            SetFieldValue(rowStruct, "MovieAssetNameHard", songData.MovieAssetNameHard);
-                            SetFieldValue(rowStruct, "MovieAssetNameExpert", songData.MovieAssetNameExpert);
-                            SetFieldValue(rowStruct, "MovieAssetNameInferno", songData.MovieAssetNameInferno);
-                            SetFieldValue(rowStruct, "JacketAssetName", songData.JacketAssetName);
-                            SetFieldValue(rowStruct, "Rubi", songData.Rubi);
-
-                            SetFieldValue(rowStruct, "bValidCulture_ja_JP", songData.ValidCulture_ja_JP);
-                            SetFieldValue(rowStruct, "bValidCulture_en_US", songData.ValidCulture_en_US);
-                            SetFieldValue(rowStruct, "bValidCulture_zh_Hant_TW", songData.ValidCulture_zh_Hant_TW);
-                            SetFieldValue(rowStruct, "bValidCulture_en_HK", songData.ValidCulture_en_HK);
-                            SetFieldValue(rowStruct, "bValidCulture_en_SG", songData.ValidCulture_en_SG);
-                            SetFieldValue(rowStruct, "bValidCulture_ko_KR", songData.ValidCulture_ko_KR);
-                            SetFieldValue(rowStruct, "bValidCulture_h_Hans_CN_Guest", songData.ValidCulture_h_Hans_CN_Guest);
-                            SetFieldValue(rowStruct, "bValidCulture_h_Hans_CN_GeneralMember", songData.ValidCulture_h_Hans_CN_GeneralMember);
-                            SetFieldValue(rowStruct, "bValidCulture_h_Hans_CN_VipMember", songData.ValidCulture_h_Hans_CN_VipMember);
-                            SetFieldValue(rowStruct, "bValidCulture_Offline", songData.ValidCulture_Offline);
-                            SetFieldValue(rowStruct, "bValidCulture_NoneActive", songData.ValidCulture_NoneActive);
-                            SetFieldValue(rowStruct, "bRecommend", songData.Recommend);
-                            SetFieldValue(rowStruct, "WaccaPointCost", songData.WaccaPointCost);
-                            //Collaboration = GetFieldValue<byte>(rowStruct, "bCollaboration"),
-                            //WaccaOriginal = GetFieldValue<byte>(rowStruct, "bWaccaOriginal"),
-                            //TrainingLevel = GetFieldValue<byte>(rowStruct, "TrainingLevel"),
-                            //Reserved = GetFieldValue<byte>(rowStruct, "Reserved"),
-                            SetFieldValue(rowStruct, "Bpm", songData.Bpm);
-                            //HashTag = GetFieldValue<string>(rowStruct, "HashTag"),
-                            SetFieldValue(rowStruct, "NotesDesignerNormal", songData.NotesDesignerNormal);
-                            SetFieldValue(rowStruct, "NotesDesignerHard", songData.NotesDesignerHard);
-                            SetFieldValue(rowStruct, "NotesDesignerExpert", songData.NotesDesignerExpert);
-                            SetFieldValue(rowStruct, "NotesDesignerInferno", songData.NotesDesignerInferno);
-                            SetFieldValue(rowStruct, "DifficultyNormalLv", songData.DifficultyNormalLv);
-                            SetFieldValue(rowStruct, "DifficultyHardLv", songData.DifficultyHardLv);
-                            SetFieldValue(rowStruct, "DifficultyExtremeLv", songData.DifficultyExpertLv);
-                            SetFieldValue(rowStruct, "DifficultyInfernoLv", songData.DifficultyInfernoLv);
-                            SetFieldValue(rowStruct, "ClearNormaRateNormal", songData.ClearRateNormal);
-                            SetFieldValue(rowStruct, "ClearNormaRateHard", songData.ClearRateHard);
-                            SetFieldValue(rowStruct, "ClearNormaRateExtreme", songData.ClearRateExpert);
-                            SetFieldValue(rowStruct, "ClearNormaRateInferno", songData.ClearRateInferno);
-                            SetFieldValue(rowStruct, "PreviewBeginTime", songData.PreviewBeginTime);
-                            SetFieldValue(rowStruct, "PreviewSeconds", songData.PreviewSeconds);
-                            SetFieldValue(rowStruct, "ScoreGenre", songData.ScoreGenre);
-                            SetFieldValue(rowStruct, "MusicTagForUnlock0", songData.bingo0);
-                            SetFieldValue(rowStruct, "MusicTagForUnlock1", songData.bingo1);
-                            SetFieldValue(rowStruct, "MusicTagForUnlock2", songData.bingo2);
-                            SetFieldValue(rowStruct, "MusicTagForUnlock3", songData.bingo3);
-                            SetFieldValue(rowStruct, "MusicTagForUnlock4", songData.bingo4);
-                            SetFieldValue(rowStruct, "MusicTagForUnlock5", songData.bingo5);
-                            SetFieldValue(rowStruct, "MusicTagForUnlock6", songData.bingo6);
-                            SetFieldValue(rowStruct, "MusicTagForUnlock7", songData.bingo7);
-                            SetFieldValue(rowStruct, "MusicTagForUnlock8", songData.bingo8);
-                            SetFieldValue(rowStruct, "MusicTagForUnlock9", songData.bingo9);
-                            //public ulong WorkBuffer { get; set; }
-                            //SetFieldValue(rowStruct, "AssetFullPath", songData.AssetFullPath);
-                            return true;
-                        }
-                    }
-                }
-            } */
-            return false;
-        }
-        static int savecount = 0;
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            /*
-            if (saveChangesInRam())
-            {
-                saveLabel.Text = $"Saved {++savecount} times";
-                consoleLabel.Text = "";
-                MusicParameterTable.Write(openedFileName);
-                if (UnlockMusicTableFilePath != null)
-                {
-                    UnlockMusicTable.Write(UnlockMusicTableFilePath);
-                }
-            }
-            else
-            {
-                consoleLabel.Text = "";
-                saveLabel.Text = "file not saved.";
-            }*/
-        }
-
-        private void conditionInjectButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void resultInjectButton_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void filterTypeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -1507,6 +1263,147 @@ namespace WaccaSongBrowser
             else
                 conditionid.SelectedIndex -= 1;
             conditionidButton_Click(null, null);
+        }
+        private void saveChanges()
+        {
+            if (autoSaveCheckBox.Checked)
+            {
+                saveButton_Click(null, null);
+            }
+            else if (ramSaveCheckBox.Checked)
+            {
+                saveChangesInRam();
+            }
+            // else don't save data
+        }
+        private bool saveChangesInRam()
+        {
+            if (currentSongId == 0)
+                return false;
+            // Go through each export to find the DataTable
+            foreach (var export in ConditionTable.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    var songData = allConditions.FirstOrDefault(s => s.ConditionId == currentSongId);
+                    if (songData == null)
+                    {
+                        return false;
+                    }
+
+                    saveSongData(songData);
+
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            uint id = GetFieldValue<uint>(rowStruct, "UniqueID");
+                            if (id != currentSongId)
+                            {
+                                continue;
+                            }
+                            musicUnlockStatus[(int)id] = checkBoxNew.Checked;
+                            SaveCurentUnlockInferno();
+                            // Lookup the song data you want to save (replace this with your data source)
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicMessage", songData.MusicMessage);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "ArtistMessage", songData.ArtistMessage);
+                            //WaccaSongBrowser.SetFieldValue(rowStruct, "CopyrightMessage", songData.CopyrightMessage);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "VersionNo", songData.Version);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "AssetDirectory", songData.AssetDirectory);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MovieAssetName", songData.MovieAssetName);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MovieAssetNameHard", songData.MovieAssetNameHard);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MovieAssetNameExpert", songData.MovieAssetNameExpert);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MovieAssetNameInferno", songData.MovieAssetNameInferno);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "JacketAssetName", songData.JacketAssetName);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "Rubi", songData.Rubi);
+
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_ja_JP", songData.ValidCulture_ja_JP);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_en_US", songData.ValidCulture_en_US);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_zh_Hant_TW", songData.ValidCulture_zh_Hant_TW);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_en_HK", songData.ValidCulture_en_HK);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_en_SG", songData.ValidCulture_en_SG);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_ko_KR", songData.ValidCulture_ko_KR);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_h_Hans_CN_Guest", songData.ValidCulture_h_Hans_CN_Guest);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_h_Hans_CN_GeneralMember", songData.ValidCulture_h_Hans_CN_GeneralMember);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_h_Hans_CN_VipMember", songData.ValidCulture_h_Hans_CN_VipMember);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_Offline", songData.ValidCulture_Offline);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bValidCulture_NoneActive", songData.ValidCulture_NoneActive);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bRecommend", songData.Recommend);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "WaccaPointCost", songData.WaccaPointCost);
+                            //Collaboration = GetFieldValue<byte>(rowStruct, "bCollaboration"),
+                            //WaccaOriginal = GetFieldValue<byte>(rowStruct, "bWaccaOriginal"),
+                            //TrainingLevel = GetFieldValue<byte>(rowStruct, "TrainingLevel"),
+                            //Reserved = GetFieldValue<byte>(rowStruct, "Reserved"),
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "Bpm", songData.Bpm);
+                            //HashTag = GetFieldValue<string>(rowStruct, "HashTag"),
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "NotesDesignerNormal", songData.NotesDesignerNormal);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "NotesDesignerHard", songData.NotesDesignerHard);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "NotesDesignerExpert", songData.NotesDesignerExpert);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "NotesDesignerInferno", songData.NotesDesignerInferno);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "DifficultyNormalLv", songData.DifficultyNormalLv);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "DifficultyHardLv", songData.DifficultyHardLv);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "DifficultyExtremeLv", songData.DifficultyExpertLv);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "DifficultyInfernoLv", songData.DifficultyInfernoLv);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "ClearNormaRateNormal", songData.ClearRateNormal);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "ClearNormaRateHard", songData.ClearRateHard);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "ClearNormaRateExtreme", songData.ClearRateExpert);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "ClearNormaRateInferno", songData.ClearRateInferno);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "PreviewBeginTime", songData.PreviewBeginTime);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "PreviewSeconds", songData.PreviewSeconds);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "ScoreGenre", songData.ScoreGenre);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock0", songData.bingo0);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock1", songData.bingo1);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock2", songData.bingo2);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock3", songData.bingo3);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock4", songData.bingo4);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock5", songData.bingo5);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock6", songData.bingo6);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock7", songData.bingo7);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock8", songData.bingo8);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "MusicTagForUnlock9", songData.bingo9);
+                            //public ulong WorkBuffer { get; set; }
+                            //WaccaSongBrowser.SetFieldValue(rowStruct, "AssetFullPath", songData.AssetFullPath);
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        static int savecount = 0;
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            if (saveChangesInRam())
+            {
+                saveLabel.Text = $"Saved {++savecount} times";
+                ConditionTable.Write(conditionFile);
+                if (TotalResultItemJudgementTable != null)
+                {
+                    TotalResultItemJudgementTable.Write(TotalResultItemJudgementTableFilePath);
+                }
+            }
+            else
+            {
+                saveLabel.Text = "file not saved.";
+            }
+        }
+
+        private void conditionInjectButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void resultInjectButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ramSaveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ramSaveCheckBox.Checked)
+            {
+                saveChangesInRam();
+            }
         }
     }
 }

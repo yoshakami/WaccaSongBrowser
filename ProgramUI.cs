@@ -2066,6 +2066,7 @@ namespace WaccaSongBrowser
         // ---------- Main sorter ----------
         private void SortMusicParameterTableByField(string fieldName, bool numeric, bool descending, bool caseInsensitive = false)
         {
+            saveChanges();
             // Find the DataTableExport inside MusicParameterTable
             foreach (var export in MusicParameterTable.Exports)
             {
@@ -2366,8 +2367,8 @@ namespace WaccaSongBrowser
 
                 // Set current selection and show it
                 currentSongId = songData.UniqueID;
-                LoadUI(songData);
                 consoleLabel.Text = $"Injected new ID {newId}.";
+                LoadUI(songData);
 
                 // Persist according to user mode (auto/ram/manual)
                 saveChanges();
