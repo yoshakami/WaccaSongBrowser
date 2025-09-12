@@ -1396,14 +1396,11 @@ namespace WaccaSongBrowser
                 saveLabel.Text = "file not saved.";
             }
         }
-
         private void conditionInjectButton_Click(object sender, EventArgs e)
         {
-
-            // Parse new ID from the UI
             if (!int.TryParse(conditionIdTextBox.Text, out int newId))
             {
-                saveLabel.Text = "Invalid song ID.";
+                saveLabel.Text = "Invalid condition ID.";
                 return;
             }
             if (newId == 0)
@@ -1412,46 +1409,59 @@ namespace WaccaSongBrowser
                 return;
             }
 
-            // Prevent duplicates
             if (allConditions.Any(s => s.ConditionId == newId))
             {
-                saveLabel.Text = $"ID {newId} already exists.";
+                saveLabel.Text = $"Condition ID {newId} already exists.";
                 return;
             }
 
-            // Find the MusicParameterTable DataTableExport
             foreach (var export in ConditionTable.Exports)
             {
                 if (!(export is DataTableExport dataTable))
                     continue;
 
-                // Create a new SongData and fill fields from the current UI using your helper
-                var songData = new ConditionData();
-                saveSongData(songData); // populate fields from UI; UniqueID set below
-                songData.ConditionId = newId;
+                // Create ConditionData from UI
+                var conditionData = new ConditionData();
+                saveSongData(conditionData);
+                conditionData.ConditionId = newId;
 
+                // Build new row
+                var newRow = new StructPropertyData
+                {
+                    Name = new FName(ConditionTable, new FString(newId.ToString())),
+                    StructType = new FName(ConditionTable, new FString("ConditionData")),
+                    Value = new List<PropertyData>()
+                };
 
-                // Set current selection and show it
-                currentSongId = songData.ConditionId;
-                saveLabel.Text = $"Injected new ID {newId}.";
-                LoadUI(songData);
+                newRow.Value.Add(new IntPropertyData(new FName(ConditionTable, "ConditionId")) { Value = conditionData.ConditionId });
+                newRow.Value.Add(new BoolPropertyData(new FName(ConditionTable, "bConditionLimitNowSeason")) { Value = conditionData.bConditionLimitNowSeason });
+                newRow.Value.Add(new IntPropertyData(new FName(ConditionTable, "ConditionType")) { Value = conditionData.ConditionType });
+                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value1")) { Value = conditionData.Value1 });
+                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value2")) { Value = conditionData.Value2 });
+                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value3")) { Value = conditionData.Value3 });
+                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value4")) { Value = conditionData.Value4 });
+                newRow.Value.Add(new StrPropertyData(new FName(ConditionTable, "Value5")) { Value = conditionData.Value5 });
 
-                // Persist according to user mode (auto/ram/manual)
+                // Insert at start
+                dataTable.Table.Data.Insert(0, newRow);
+
+                // Update in-memory list + UI
+                allConditions.Insert(0, conditionData);
+                currentSongId = conditionData.ConditionId;
+                saveLabel.Text = $"Injected condition ID {newId}.";
+                LoadUI(conditionData);
                 saveChanges();
-
-                return; // done
+                return;
             }
 
-            // If we reach here, no DataTableExport found
-            saveLabel.Text = "MusicParameterTable export not found.";
+            saveLabel.Text = "ConditionTable export not found.";
         }
 
         private void resultInjectButton_Click(object sender, EventArgs e)
         {
-            // Parse new ID from the UI
             if (!int.TryParse(resultItemIdTextBox.Text, out int newId))
             {
-                saveLabel.Text = "Invalid song ID.";
+                saveLabel.Text = "Invalid result item ID.";
                 return;
             }
             if (newId == 0)
@@ -1460,39 +1470,61 @@ namespace WaccaSongBrowser
                 return;
             }
 
-            // Prevent duplicates
-            if (allConditions.Any(s => s.ConditionId == newId))
+            if (allResult.Any(s => s.ItemId == newId))
             {
-                saveLabel.Text = $"ID {newId} already exists.";
+                saveLabel.Text = $"Result item ID {newId} already exists.";
                 return;
             }
 
-            // Find the MusicParameterTable DataTableExport
             foreach (var export in TotalResultItemJudgementTable.Exports)
             {
                 if (!(export is DataTableExport dataTable))
                     continue;
 
-                // Create a new SongData and fill fields from the current UI using your helper
-                var songData = new TotalResultItemJudgementData();
-                saveResultData(songData); // populate fields from UI; UniqueID set below
-                songData.ItemId = newId;
+                // Create ResultData from UI
+                var resultData = new TotalResultItemJudgementData();
+                saveResultData(resultData);
+                resultData.ItemId = newId;
 
+                // Build new row
+                var newRow = new StructPropertyData
+                {
+                    Name = new FName(TotalResultItemJudgementTable, new FString(newId.ToString())),
+                    StructType = new FName(TotalResultItemJudgementTable, new FString("TotalResultItemJudgementData")),
+                    Value = new List<PropertyData>()
+                };
 
-                // Set current selection and show it
-                currentSongId = songData.ItemId;
-                saveLabel.Text = $"Injected new ID {newId}.";
-                LoadUI(songData);
+                newRow.Value.Add(new IntPropertyData(new FName(TotalResultItemJudgementTable, "ItemId")) { Value = resultData.ItemId });
+                newRow.Value.Add(new Int64PropertyData(new FName(TotalResultItemJudgementTable, "ConditionGetableStartTime")) { Value = resultData.ConditionGetableStartTime });
+                newRow.Value.Add(new Int64PropertyData(new FName(TotalResultItemJudgementTable, "ConditionGetableEndTime")) { Value = resultData.ConditionGetableEndTime });
 
-                // Persist according to user mode (auto/ram/manual)
+                // Array of ConditionKeys
+                var keysArray = new ArrayPropertyData(new FName(TotalResultItemJudgementTable, "ConditionKeys"))
+                {
+                    ArrayType = new FName(TotalResultItemJudgementTable, "StrProperty"),
+                    Value = resultData.ConditionKeys.Select(k => (PropertyData)new StrPropertyData(new FName(TotalResultItemJudgementTable, "ConditionKeys")){ Value = (FString)k }).ToArray()};
+                newRow.Value.Add(keysArray);
+
+                // Insert at start
+                dataTable.Table.Data.Insert(0, newRow);
+
+                // Update in-memory list + UI
+                allResult.Insert(0, resultData);
+                currentSongId = resultData.ItemId;
+                saveLabel.Text = $"Injected result item ID {newId}.";
+                resultConditionTextBox.Text = string.Join(",", resultData.ConditionKeys);
+                resultItemIdTextBox.Text = resultData.ItemId.ToString();
+                resultStartTimeTextBox.Text = resultData.ConditionGetableStartTime.ToString();
+                resultEndTimeTextBox.Text = resultData.ConditionGetableEndTime.ToString();
+                resultSearchLabel.Text = "Showing item";
+                UpdateImage(newId);
                 saveChanges();
-
-                return; // done
+                return;
             }
 
-            // If we reach here, no DataTableExport found
-            saveLabel.Text = "MusicParameterTable export not found.";
+            saveLabel.Text = "TotalResultItemJudgementTable export not found.";
         }
+
 
         private void ramSaveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
