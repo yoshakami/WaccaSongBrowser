@@ -1391,18 +1391,12 @@ namespace WaccaSongBrowser
         static int savecount = 0;
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (saveChangesInRam())
+            saveChangesInRam();
+            saveLabel.Text = $"Saved {++savecount} times";
+            ConditionTable.Write(conditionFile);
+            if (TotalResultItemJudgementTable != null)
             {
-                saveLabel.Text = $"Saved {++savecount} times";
-                ConditionTable.Write(conditionFile);
-                if (TotalResultItemJudgementTable != null)
-                {
-                    TotalResultItemJudgementTable.Write(TotalResultItemJudgementTableFilePath);
-                }
-            }
-            else
-            {
-                saveLabel.Text = "file not saved.";
+                TotalResultItemJudgementTable.Write(TotalResultItemJudgementTableFilePath);
             }
         }
         private void conditionInjectButton_Click(object sender, EventArgs e)
@@ -1470,18 +1464,18 @@ namespace WaccaSongBrowser
         {
             if (!int.TryParse(resultItemIdTextBox.Text, out int newId))
             {
-                saveLabel.Text = "Invalid result item ID.";
+                resultOutputLabel.Text = "Invalid result item ID.";
                 return;
             }
             if (newId == 0)
             {
-                saveLabel.Text = "ID 0 is reserved.";
+                resultOutputLabel.Text = "ID 0 is reserved.";
                 return;
             }
 
             if (allResult.Any(s => s.ItemId == newId))
             {
-                saveLabel.Text = $"Result item ID {newId} already exists.";
+                resultOutputLabel.Text = $"Result item ID {newId} already exists.";
                 return;
             }
 
@@ -1521,7 +1515,7 @@ namespace WaccaSongBrowser
                 // Update in-memory list + UI
                 allResult.Insert(0, resultData);
                 currentSongId = resultData.ItemId;
-                resultConditionLabel.Text = $"Injected result item ID {newId}.";
+                resultOutputLabel.Text = $"Injected result item ID {newId}.";
                 resultConditionTextBox.Text = string.Join(",", resultData.ConditionKeys);
                 resultItemIdTextBox.Text = resultData.ItemId.ToString();
                 if (!freezeCheckBoxResultStart.Checked)
@@ -1534,7 +1528,7 @@ namespace WaccaSongBrowser
                 return;
             }
 
-            saveLabel.Text = "TotalResultItemJudgementTable export not found.";
+            resultOutputLabel.Text = "TotalResultItemJudgementTable export not found.";
         }
 
 

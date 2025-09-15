@@ -109,12 +109,13 @@ namespace WaccaSongBrowser
                             else
                             {
 
-                            
-                            // TODO:
-                            // read IconTable
-                            panelMainContainer.Visible = true;
-                            panelMainContainer.Enabled = true;
-                            LoadPage(new Message(path2)); }
+
+                                // TODO:
+                                // read IconTable
+                                panelMainContainer.Visible = true;
+                                panelMainContainer.Enabled = true;
+                                LoadPage(new Message(path2));
+                            }
 
                         }
                     }
@@ -885,25 +886,18 @@ namespace WaccaSongBrowser
         static int savecount = 0;
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (saveChangesInRam())
+            saveChangesInRam();
+            SaveAllUnlockMusic();
+            saveLabel.Text = $"Saved {++savecount} times";
+            consoleLabel.Text = "";
+            MusicParameterTable.Write(openedFileName);
+            if (UnlockMusicTableFilePath != null)
             {
-                SaveAllUnlockMusic();
-                saveLabel.Text = $"Saved {++savecount} times";
-                consoleLabel.Text = "";
-                MusicParameterTable.Write(openedFileName);
-                if (UnlockMusicTableFilePath != null)
-                {
-                    UnlockMusicTable.Write(UnlockMusicTableFilePath);
-                }
-                if (UnlockInfernoTableFilePath != null)
-                {
-                    UnlockInfernoTable.Write(UnlockInfernoTableFilePath);
-                }
+                UnlockMusicTable.Write(UnlockMusicTableFilePath);
             }
-            else
+            if (UnlockInfernoTableFilePath != null)
             {
-                consoleLabel.Text = "";
-                saveLabel.Text = "file not saved.";
+                UnlockInfernoTable.Write(UnlockInfernoTableFilePath);
             }
         }
         private void ramSaveCheckBox_CheckedChanged(object sender, EventArgs e)
