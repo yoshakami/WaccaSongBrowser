@@ -1,19 +1,21 @@
 # WaccaSongBrowser
-Table and Message editor
-has several menus listed below
+Table and Message editor. It has several menus listed below
 
 ## MusicParameterTable
 This is a nice tool used to search for existing songs metadata and edit them.<br>
 you can sort all categories to your liking quickly with it.<br>
-also edits UnlockMusicTable and UnlockInfernoTable to set the "new" attribute and inject new id
+also edits UnlockMusicTable and UnlockInfernoTable to set the "new" attribute and inject new id<br><br>
+<img width="1340" height="713" alt="image" src="https://github.com/user-attachments/assets/656d6a69-a878-4ca6-8c0d-4cd467878e54" />
+
 
 ## ConditionTable
 Here you can edit conditions for unlockables and also edit the unlockable ID<br>
-it edits TotalResultItemJudgementTable and shows all other loaded files for read only
+it edits TotalResultItemJudgementTable and shows all other loaded files for read only<br><br>
+<img width="1340" height="713" alt="image" src="https://github.com/user-attachments/assets/818f2454-d77d-4921-a50d-a169800ba49e" />
+
 
 ## Message
-You can convert all japanese strings of the game to Wacca.txt (or .po) and back from the txt to a new folder with all the corresponding uassets.<br>
-<img width="1184" height="697" alt="image" src="https://github.com/user-attachments/assets/ff07d6a4-1999-4989-ba09-504572842146" />
+You can convert all japanese strings of the game to Wacca.txt (or .po) and back from the txt to a new folder with all the corresponding uassets.
 
 ## TrophyTable
 You can onvert all japanese strings of the trophy names to Trophy.txt, and back from the txt to a new uasset
