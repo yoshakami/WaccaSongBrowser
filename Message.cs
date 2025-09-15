@@ -447,20 +447,21 @@ namespace WaccaSongBrowser
                                 string currentTag = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag");
                                 string vanillaTag = index < textVanilla.Count ? textVanilla[index] : null;
                                 string newTag = index < text.Count ? text[index] : currentTag;
-
+                                WaccaSongBrowser.SetFieldValue(rowStruct, "GradePartsId01", 0);
+                                WaccaSongBrowser.SetFieldValue(rowStruct, "GradePartsId02", 0);
+                                WaccaSongBrowser.SetFieldValue(rowStruct, "GradePartsId03", 0);
                                 // Replace only if the current tag matches the vanilla one
                                 if (vanillaTag != null && currentTag == vanillaTag)
                                 {
                                     WaccaSongBrowser.SetFieldValue(rowStruct, "NameTag", newTag);
                                 }
-
                                 index++;
                             }
                         }
                     }
                 }
 
-                TrophyTable.Write(Path.Combine(messageFolder, "GradeTableNew.uasset"));
+                GradeTable.Write(Path.Combine(messageFolder, "GradeTableNew.uasset"));
                 outputMessage.Text = "Successfully injected Titles.txt into GradeTableNew.uasset";
             }
             else
