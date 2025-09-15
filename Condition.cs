@@ -697,13 +697,20 @@ namespace WaccaSongBrowser
         {
             currentSongId = song.ConditionId;
             conditionIdTextBox.Text = song.ConditionId.ToString();
-            conditionCheckBox.Checked = song.bConditionLimitNowSeason;
-            condition1textBox.Text = song.Value1;
-            condition2textBox.Text = song.Value2;
-            condition3textBox.Text = song.Value3;
-            condition4textBox.Text = song.Value4;
-            condition5textBox.Text = song.Value5;
-            conditionTypeTextBox.Text = song.ConditionType.ToString();
+            if (!freezeCheckBoxbCondition.Checked)
+                conditionCheckBox.Checked = song.bConditionLimitNowSeason;
+            if (!freezeCheckBox1.Checked)
+                condition1textBox.Text = song.Value1;
+            if (!freezeCheckBox2.Checked)
+                condition2textBox.Text = song.Value2;
+            if (!freezeCheckBox3.Checked)
+                condition3textBox.Text = song.Value3;
+            if (!freezeCheckBox4.Checked)
+                condition4textBox.Text = song.Value4;
+            if (!freezeCheckBox5.Checked)
+                condition5textBox.Text = song.Value5;
+            if (!freezeCheckBoxType.Checked)
+                conditionTypeTextBox.Text = song.ConditionType.ToString();
             count = 0;
             string key = song.ConditionId.ToString().PadLeft(9, '0');
             bgPictureBox.Visible = false;
@@ -717,8 +724,10 @@ namespace WaccaSongBrowser
                     resultConditionTextBox.Text = totalResultItemData.ConditionKeys[0];
                     resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
                     id = totalResultItemData.ItemId;
-                    resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
-                    resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
+                    if (!freezeCheckBoxResultStart.Checked)
+                        resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
+                    if (!freezeCheckBoxResultEnd.Checked)
+                        resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
                 }
                 resultSearchLabel.Text = $"Showing item {count}/{count}";
                 current = count;
@@ -731,8 +740,10 @@ namespace WaccaSongBrowser
                 current = 0;
                 resultConditionTextBox.Text = "";
                 resultItemIdTextBox.Text = "";
-                resultStartTimeTextBox.Text = "";
-                resultEndTimeTextBox.Text = "";
+                if (!freezeCheckBoxResultStart.Checked)
+                    resultStartTimeTextBox.Text = "";
+                if (!freezeCheckBoxResultEnd.Checked)
+                    resultEndTimeTextBox.Text = "";
                 itemTextBox.Text = "";
                 itemPictureBox.Image = null;
                 bgPictureBox.Image = null;
@@ -838,8 +849,10 @@ namespace WaccaSongBrowser
                     {
                         resultConditionTextBox.Text = totalResultItemData.ConditionKeys[0];
                         resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
-                        resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
-                        resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
+                        if (!freezeCheckBoxResultStart.Checked)
+                            resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
+                        if (!freezeCheckBoxResultEnd.Checked)
+                            resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
                     }
                 }
                 resultSearchLabel.Text = $"Showing item {current}/{count}";
@@ -867,8 +880,10 @@ namespace WaccaSongBrowser
                     {
                         resultConditionTextBox.Text = totalResultItemData.ConditionKeys[0];
                         resultItemIdTextBox.Text = totalResultItemData.ItemId.ToString();
-                        resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
-                        resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
+                        if (!freezeCheckBoxResultStart.Checked)
+                            resultStartTimeTextBox.Text = totalResultItemData.ConditionGetableStartTime.ToString();
+                        if (!freezeCheckBoxResultEnd.Checked)
+                            resultEndTimeTextBox.Text = totalResultItemData.ConditionGetableEndTime.ToString();
                     }
                 }
                 resultSearchLabel.Text = $"Showing item {current}/{count}";
@@ -1496,7 +1511,8 @@ namespace WaccaSongBrowser
                 var keysArray = new ArrayPropertyData(new FName(TotalResultItemJudgementTable, "ConditionKeys"))
                 {
                     ArrayType = new FName(TotalResultItemJudgementTable, "StrProperty"),
-                    Value = resultData.ConditionKeys.Select(k => (PropertyData)new StrPropertyData(new FName(TotalResultItemJudgementTable, "ConditionKeys")){ Value = (FString)k }).ToArray()};
+                    Value = resultData.ConditionKeys.Select(k => (PropertyData)new StrPropertyData(new FName(TotalResultItemJudgementTable, "ConditionKeys")) { Value = (FString)k }).ToArray()
+                };
                 newRow.Value.Add(keysArray);
 
                 // Insert at start
@@ -1505,11 +1521,13 @@ namespace WaccaSongBrowser
                 // Update in-memory list + UI
                 allResult.Insert(0, resultData);
                 currentSongId = resultData.ItemId;
-                saveLabel.Text = $"Injected result item ID {newId}.";
+                resultConditionLabel.Text = $"Injected result item ID {newId}.";
                 resultConditionTextBox.Text = string.Join(",", resultData.ConditionKeys);
                 resultItemIdTextBox.Text = resultData.ItemId.ToString();
-                resultStartTimeTextBox.Text = resultData.ConditionGetableStartTime.ToString();
-                resultEndTimeTextBox.Text = resultData.ConditionGetableEndTime.ToString();
+                if (!freezeCheckBoxResultStart.Checked)
+                    resultStartTimeTextBox.Text = resultData.ConditionGetableStartTime.ToString();
+                if (!freezeCheckBoxResultEnd.Checked)
+                    resultEndTimeTextBox.Text = resultData.ConditionGetableEndTime.ToString();
                 resultSearchLabel.Text = "Showing item";
                 UpdateImage(newId);
                 saveChanges();
@@ -1525,6 +1543,119 @@ namespace WaccaSongBrowser
             if (ramSaveCheckBox.Checked)
             {
                 saveChangesInRam();
+            }
+        }
+
+
+        private void freezeCheckBoxType_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeCheckBoxType.CheckState == CheckState.Checked)
+            {
+                conditionTypeTextBox.BackColor = Color.LightBlue;
+                conditionType.BackColor = Color.LightBlue;
+                freezeCheckBoxType.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                conditionTypeTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                conditionType.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                freezeCheckBoxType.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezeCheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeCheckBox1.CheckState == CheckState.Checked)
+            {
+                condition1textBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                condition1textBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezeCheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeCheckBox2.CheckState == CheckState.Checked)
+            {
+                condition2textBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                condition2textBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezeCheckBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeCheckBox3.CheckState == CheckState.Checked)
+            {
+                condition3textBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                condition3textBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezeCheckBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeCheckBox4.CheckState == CheckState.Checked)
+            {
+                condition4textBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                condition4textBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezeCheckBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeCheckBox5.CheckState == CheckState.Checked)
+            {
+                condition5textBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                condition5textBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezeCheckBoxbCondition_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeCheckBoxbCondition.CheckState == CheckState.Checked)
+            {
+                conditionCheckBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                conditionCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezeCheckBoxResultStart_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeCheckBoxResultStart.CheckState == CheckState.Checked)
+            {
+                resultStartTimeTextBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                resultStartTimeTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezeCheckBoxResultEnd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeCheckBoxResultEnd.CheckState == CheckState.Checked)
+            {
+                resultEndTimeTextBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                resultEndTimeTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
             }
         }
     }

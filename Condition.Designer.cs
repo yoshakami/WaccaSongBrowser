@@ -121,6 +121,15 @@
             filterResultItemTypeCheckBox = new CheckBox();
             bgPictureBox = new PictureBox();
             filterInvertMatchesButton = new Button();
+            freezeCheckBox1 = new CheckBox();
+            freezeCheckBox2 = new CheckBox();
+            freezeCheckBox4 = new CheckBox();
+            freezeCheckBox3 = new CheckBox();
+            freezeCheckBox5 = new CheckBox();
+            freezeCheckBoxbCondition = new CheckBox();
+            freezeCheckBoxResultStart = new CheckBox();
+            freezeCheckBoxResultEnd = new CheckBox();
+            freezeCheckBoxType = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)itemPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bgPictureBox).BeginInit();
             SuspendLayout();
@@ -150,7 +159,7 @@
             condition5textBox.Location = new Point(453, 369);
             condition5textBox.Margin = new Padding(3, 2, 3, 2);
             condition5textBox.Name = "condition5textBox";
-            condition5textBox.Size = new Size(318, 23);
+            condition5textBox.Size = new Size(232, 23);
             condition5textBox.TabIndex = 131;
             // 
             // label13
@@ -167,7 +176,7 @@
             condition4textBox.Location = new Point(453, 319);
             condition4textBox.Margin = new Padding(3, 2, 3, 2);
             condition4textBox.Name = "condition4textBox";
-            condition4textBox.Size = new Size(318, 23);
+            condition4textBox.Size = new Size(232, 23);
             condition4textBox.TabIndex = 129;
             // 
             // label14
@@ -184,7 +193,7 @@
             condition3textBox.Location = new Point(453, 269);
             condition3textBox.Margin = new Padding(3, 2, 3, 2);
             condition3textBox.Name = "condition3textBox";
-            condition3textBox.Size = new Size(318, 23);
+            condition3textBox.Size = new Size(232, 23);
             condition3textBox.TabIndex = 127;
             // 
             // label15
@@ -201,7 +210,7 @@
             condition2textBox.Location = new Point(453, 219);
             condition2textBox.Margin = new Padding(3, 2, 3, 2);
             condition2textBox.Name = "condition2textBox";
-            condition2textBox.Size = new Size(318, 23);
+            condition2textBox.Size = new Size(232, 23);
             condition2textBox.TabIndex = 125;
             // 
             // label16
@@ -218,7 +227,7 @@
             condition1textBox.Location = new Point(453, 169);
             condition1textBox.Margin = new Padding(3, 2, 3, 2);
             condition1textBox.Name = "condition1textBox";
-            condition1textBox.Size = new Size(318, 23);
+            condition1textBox.Size = new Size(232, 23);
             condition1textBox.TabIndex = 123;
             // 
             // label17
@@ -625,7 +634,7 @@
             resultStartTimeTextBox.Location = new Point(45, 169);
             resultStartTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             resultStartTimeTextBox.Name = "resultStartTimeTextBox";
-            resultStartTimeTextBox.Size = new Size(318, 23);
+            resultStartTimeTextBox.Size = new Size(241, 23);
             resultStartTimeTextBox.TabIndex = 209;
             // 
             // resultStartTimeLabel
@@ -642,7 +651,7 @@
             resultEndTimeTextBox.Location = new Point(45, 219);
             resultEndTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             resultEndTimeTextBox.Name = "resultEndTimeTextBox";
-            resultEndTimeTextBox.Size = new Size(318, 23);
+            resultEndTimeTextBox.Size = new Size(241, 23);
             resultEndTimeTextBox.TabIndex = 211;
             // 
             // resultEndTimeLabel
@@ -799,7 +808,7 @@
             conditionType.Location = new Point(537, 119);
             conditionType.Margin = new Padding(3, 2, 3, 2);
             conditionType.Name = "conditionType";
-            conditionType.Size = new Size(234, 23);
+            conditionType.Size = new Size(148, 23);
             conditionType.TabIndex = 235;
             conditionType.SelectedIndexChanged += conditionType_SelectedIndexChanged;
             // 
@@ -997,10 +1006,118 @@
             filterInvertMatchesButton.UseVisualStyleBackColor = true;
             filterInvertMatchesButton.Click += filterInvertMatchesButton_Click;
             // 
+            // freezeCheckBox1
+            // 
+            freezeCheckBox1.AutoSize = true;
+            freezeCheckBox1.Location = new Point(703, 171);
+            freezeCheckBox1.Name = "freezeCheckBox1";
+            freezeCheckBox1.Size = new Size(59, 19);
+            freezeCheckBox1.TabIndex = 257;
+            freezeCheckBox1.Text = "Freeze";
+            freezeCheckBox1.UseVisualStyleBackColor = true;
+            freezeCheckBox1.CheckedChanged += freezeCheckBox1_CheckedChanged;
+            // 
+            // freezeCheckBox2
+            // 
+            freezeCheckBox2.AutoSize = true;
+            freezeCheckBox2.Location = new Point(703, 221);
+            freezeCheckBox2.Name = "freezeCheckBox2";
+            freezeCheckBox2.Size = new Size(59, 19);
+            freezeCheckBox2.TabIndex = 258;
+            freezeCheckBox2.Text = "Freeze";
+            freezeCheckBox2.UseVisualStyleBackColor = true;
+            freezeCheckBox2.CheckedChanged += freezeCheckBox2_CheckedChanged;
+            // 
+            // freezeCheckBox4
+            // 
+            freezeCheckBox4.AutoSize = true;
+            freezeCheckBox4.Location = new Point(703, 321);
+            freezeCheckBox4.Name = "freezeCheckBox4";
+            freezeCheckBox4.Size = new Size(59, 19);
+            freezeCheckBox4.TabIndex = 260;
+            freezeCheckBox4.Text = "Freeze";
+            freezeCheckBox4.UseVisualStyleBackColor = true;
+            freezeCheckBox4.CheckedChanged += freezeCheckBox4_CheckedChanged;
+            // 
+            // freezeCheckBox3
+            // 
+            freezeCheckBox3.AutoSize = true;
+            freezeCheckBox3.Location = new Point(703, 271);
+            freezeCheckBox3.Name = "freezeCheckBox3";
+            freezeCheckBox3.Size = new Size(59, 19);
+            freezeCheckBox3.TabIndex = 259;
+            freezeCheckBox3.Text = "Freeze";
+            freezeCheckBox3.UseVisualStyleBackColor = true;
+            freezeCheckBox3.CheckedChanged += freezeCheckBox3_CheckedChanged;
+            // 
+            // freezeCheckBox5
+            // 
+            freezeCheckBox5.AutoSize = true;
+            freezeCheckBox5.Location = new Point(703, 371);
+            freezeCheckBox5.Name = "freezeCheckBox5";
+            freezeCheckBox5.Size = new Size(59, 19);
+            freezeCheckBox5.TabIndex = 261;
+            freezeCheckBox5.Text = "Freeze";
+            freezeCheckBox5.UseVisualStyleBackColor = true;
+            freezeCheckBox5.CheckedChanged += freezeCheckBox5_CheckedChanged;
+            // 
+            // freezeCheckBoxbCondition
+            // 
+            freezeCheckBoxbCondition.AutoSize = true;
+            freezeCheckBoxbCondition.Location = new Point(703, 401);
+            freezeCheckBoxbCondition.Name = "freezeCheckBoxbCondition";
+            freezeCheckBoxbCondition.Size = new Size(59, 19);
+            freezeCheckBoxbCondition.TabIndex = 262;
+            freezeCheckBoxbCondition.Text = "Freeze";
+            freezeCheckBoxbCondition.UseVisualStyleBackColor = true;
+            freezeCheckBoxbCondition.CheckedChanged += freezeCheckBoxbCondition_CheckedChanged;
+            // 
+            // freezeCheckBoxResultStart
+            // 
+            freezeCheckBoxResultStart.AutoSize = true;
+            freezeCheckBoxResultStart.Location = new Point(304, 171);
+            freezeCheckBoxResultStart.Name = "freezeCheckBoxResultStart";
+            freezeCheckBoxResultStart.Size = new Size(59, 19);
+            freezeCheckBoxResultStart.TabIndex = 263;
+            freezeCheckBoxResultStart.Text = "Freeze";
+            freezeCheckBoxResultStart.UseVisualStyleBackColor = true;
+            freezeCheckBoxResultStart.CheckedChanged += freezeCheckBoxResultStart_CheckedChanged;
+            // 
+            // freezeCheckBoxResultEnd
+            // 
+            freezeCheckBoxResultEnd.AutoSize = true;
+            freezeCheckBoxResultEnd.Location = new Point(304, 221);
+            freezeCheckBoxResultEnd.Name = "freezeCheckBoxResultEnd";
+            freezeCheckBoxResultEnd.Size = new Size(59, 19);
+            freezeCheckBoxResultEnd.TabIndex = 264;
+            freezeCheckBoxResultEnd.Text = "Freeze";
+            freezeCheckBoxResultEnd.UseVisualStyleBackColor = true;
+            freezeCheckBoxResultEnd.CheckedChanged += freezeCheckBoxResultEnd_CheckedChanged;
+            // 
+            // freezeCheckBoxType
+            // 
+            freezeCheckBoxType.AutoSize = true;
+            freezeCheckBoxType.Location = new Point(703, 121);
+            freezeCheckBoxType.Name = "freezeCheckBoxType";
+            freezeCheckBoxType.Size = new Size(59, 19);
+            freezeCheckBoxType.TabIndex = 265;
+            freezeCheckBoxType.Text = "Freeze";
+            freezeCheckBoxType.UseVisualStyleBackColor = true;
+            freezeCheckBoxType.CheckedChanged += freezeCheckBoxType_CheckedChanged;
+            // 
             // Condition
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(freezeCheckBoxType);
+            Controls.Add(freezeCheckBoxResultEnd);
+            Controls.Add(freezeCheckBoxResultStart);
+            Controls.Add(freezeCheckBoxbCondition);
+            Controls.Add(freezeCheckBox5);
+            Controls.Add(freezeCheckBox4);
+            Controls.Add(freezeCheckBox3);
+            Controls.Add(freezeCheckBox2);
+            Controls.Add(freezeCheckBox1);
             Controls.Add(filterInvertMatchesButton);
             Controls.Add(bgPictureBox);
             Controls.Add(filterResultItemTypeCheckBox);
@@ -1197,5 +1314,14 @@
         private CheckBox filterResultItemTypeCheckBox;
         private PictureBox bgPictureBox;
         private Button filterInvertMatchesButton;
+        private CheckBox freezeCheckBox1;
+        private CheckBox freezeCheckBox2;
+        private CheckBox freezeCheckBox4;
+        private CheckBox freezeCheckBox3;
+        private CheckBox freezeCheckBox5;
+        private CheckBox freezeCheckBoxbCondition;
+        private CheckBox freezeCheckBoxResultStart;
+        private CheckBox freezeCheckBoxResultEnd;
+        private CheckBox freezeCheckBoxType;
     }
 }
