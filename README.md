@@ -1,6 +1,6 @@
 # WaccaSongBrowser
 Table and Message editor
-has several menus:
+has several menus listed below
 
 ## MusicParameterTable
 This is a nice tool used to search for existing songs metadata and edit them.<br>
@@ -12,17 +12,22 @@ Here you can edit conditions for unlockables and also edit the unlockable ID<br>
 it edits TotalResultItemJudgementTable and shows all other loaded files for read only
 
 ## Message
-You can convert all japanese strings of the game to Wacca.txt (or .po) and back from the txt to a new folder with all the corresponding uassets.
-
+You can convert all japanese strings of the game to Wacca.txt (or .po) and back from the txt to a new folder with all the corresponding uassets.<br>
 <img width="1184" height="697" alt="image" src="https://github.com/user-attachments/assets/ff07d6a4-1999-4989-ba09-504572842146" />
 
-## it does not add new entries!! use WsongInject to add a new song instead
+## TrophyTable
+You can onvert all japanese strings of the trophy names to Trophy.txt, and back from the txt to a new uasset
+
+## GradeTable
+You can convert all japanese strings of the title names to Titles.txt, and back from the txt to a new uasset
+
+## it does not add jackets! use WsongInject to add a new jacket
 
 ## update notes
 you can now apply as much filters as you want as long as you enable them! <br>
 you can still take the hot shortcut of pressing enter (with the keyboard) on any filter to any search with this one only (for MusicParameterTable) <br>
-MusicParameterTable, Message, and Condition are fully functionnal. <br>
-future updates will include icon injector, plate background injector, trophy editor, and title injector
+MusicParameterTable, Message, Condition, trophy, and title are fully functionnal. <br>
+future updates will include icon injector, plate background injector, and title injector
 
 ## how to edit songs
 Drag and drop MusicParameterTable.uasset onto the window (found in WindowsNoEditor/Mercury/Content/Table)
