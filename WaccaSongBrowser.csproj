@@ -10,6 +10,11 @@
     <ApplicationIcon>WaccaCircle.ico</ApplicationIcon>
     <Configurations>Debug;Release;Tools</Configurations>
     <BaseOutputPath>bin\</BaseOutputPath>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+    <Version>4.0</Version>
+    <Authors>Yosh</Authors>
+    <Company>Yosh</Company>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Tools|AnyCPU'">
