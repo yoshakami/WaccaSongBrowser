@@ -23,6 +23,12 @@ You can onvert all japanese strings of the trophy names to Trophy.txt, and back 
 ## GradeTable
 You can convert all japanese strings of the title names to Titles.txt, and back from the txt to a new uasset
 
+##
+in order to grant yourself a new icon:
+1. (artemis) you need to edit wacca_item in mysql database, and add item id and type 6 (icon)
+2. (everywhere) you need to drag and drop ConditionTable in WaccaSongBrowser, and inject a new condition.
+these instructions also work for every other item in ConditionTable
+
 ## it does not add jackets! use WsongInject to add a new jacket
 
 ## update notes
