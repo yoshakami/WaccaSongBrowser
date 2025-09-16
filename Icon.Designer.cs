@@ -28,679 +28,703 @@
         /// </summary>
         private void InitializeComponent()
         {
-            createNewIcon = new Button();
-            artistTextBox = new TextBox();
-            artistLabel = new Label();
-            musicTextBox = new TextBox();
-            musicLabel = new Label();
+            createNewIconButton = new Button();
+            iconTextureNameTextBox = new TextBox();
+            iconTextureNameLabel = new Label();
+            iconIdTextBox = new TextBox();
+            iconIdLabel = new Label();
             progressBar = new ProgressBar();
-            label1 = new Label();
-            textBox1 = new TextBox();
-            label2 = new Label();
-            textBox2 = new TextBox();
-            label3 = new Label();
-            textBox5 = new TextBox();
-            label6 = new Label();
-            textBox6 = new TextBox();
-            label7 = new Label();
+            menuIconLabel = new Label();
+            itemActivateStartTimeTextBox = new TextBox();
+            itemActivateStartTimeLabel = new Label();
+            iconRarityTextBox = new TextBox();
+            iconRarityLabel = new Label();
+            gainWaccaPointTextBox = new TextBox();
+            gainWaccaPointLabel = new Label();
+            itemActivateEndTimeTextBox = new TextBox();
+            itemActivateEndTimeLabel = new Label();
             bIsInitItem = new CheckBox();
-            label4 = new Label();
-            textBox3 = new TextBox();
-            label5 = new Label();
-            textBox4 = new TextBox();
-            label8 = new Label();
-            label9 = new Label();
-            textBox7 = new TextBox();
-            label10 = new Label();
-            textBox8 = new TextBox();
-            label11 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            textBox9 = new TextBox();
-            label12 = new Label();
-            textBox10 = new TextBox();
-            label13 = new Label();
-            label14 = new Label();
-            textBox11 = new TextBox();
-            label15 = new Label();
-            textBox12 = new TextBox();
-            label16 = new Label();
-            checkBox1 = new CheckBox();
-            textBox13 = new TextBox();
-            label17 = new Label();
-            textBox14 = new TextBox();
-            label18 = new Label();
-            textBox15 = new TextBox();
-            label19 = new Label();
-            textBox16 = new TextBox();
-            label20 = new Label();
-            label21 = new Label();
+            showingItemLabel = new Label();
+            iconAcquisitionWayTextBox = new TextBox();
+            iconAcquisitionWayLabel = new Label();
+            iconNameTextBox = new TextBox();
+            iconNameLabel = new Label();
+            saveLabel = new Label();
+            explanationTextTagTextBox = new TextBox();
+            explanationTextTagLabel = new Label();
+            nameTagTextBox = new TextBox();
+            nameTagLabel = new Label();
+            injectNewButton = new Button();
+            searchButton = new Button();
+            filterexplanationTextTagTextBox = new TextBox();
+            filterexplanationTextTagLabel = new Label();
+            filterNameTagTextBox = new TextBox();
+            filterNameTagLabel = new Label();
+            searchLabel = new Label();
+            filtericonAcquisitionWayTextBox = new TextBox();
+            filtericonAcquisitionWayLabel = new Label();
+            filtericonNameTextBox = new TextBox();
+            filtericonNameLabel = new Label();
+            filterbIsInitItemCheckBox = new CheckBox();
+            filterGainWaccaPointTextBox = new TextBox();
+            filterGainWaccaPointLabel = new Label();
+            filteritemActivateEndTimeTextBox = new TextBox();
+            filteritemActivateEndTimeLabel = new Label();
+            filteritemActivateStartTimeTextBox = new TextBox();
+            filteritemActivateStartTimeLabel = new Label();
+            filtericonRarityTextBox = new TextBox();
+            filtericonRarityLabel = new Label();
+            menuFilterLabel = new Label();
             progressBar1 = new ProgressBar();
-            textBox17 = new TextBox();
-            label22 = new Label();
-            label23 = new Label();
-            button3 = new Button();
-            checkBox2 = new CheckBox();
-            checkBox3 = new CheckBox();
-            checkBox4 = new CheckBox();
-            checkBox5 = new CheckBox();
-            checkBox6 = new CheckBox();
-            checkBox7 = new CheckBox();
-            checkBox8 = new CheckBox();
-            checkBox9 = new CheckBox();
-            checkBox10 = new CheckBox();
-            checkBox12 = new CheckBox();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            button7 = new Button();
-            comboBox1 = new ComboBox();
+            filtericonTextureNameTextBox = new TextBox();
+            filtericonTextureNameLabel = new Label();
+            iconIdlabel23 = new Label();
+            searchNextButton = new Button();
+            filterbIsInitItemEnableCb = new CheckBox();
+            filterexplanationTextTagCheckBox = new CheckBox();
+            filterNameTagCheckBox = new CheckBox();
+            filtericonNameCheckBox = new CheckBox();
+            filtericonAcquisitionWayCheckBox = new CheckBox();
+            filtericonRarityCheckBox = new CheckBox();
+            filteritemActivateStartTimeCheckBox = new CheckBox();
+            filteritemActivateEndTimeCheckBox = new CheckBox();
+            filterGainWaccaPointCheckBox = new CheckBox();
+            filtericonTextureNameCheckBox = new CheckBox();
+            searchPreviousButton = new Button();
+            previousButton = new Button();
+            nextButton = new Button();
+            validateButton = new Button();
+            iconid = new ComboBox();
             progressBar2 = new ProgressBar();
-            checkBox11 = new CheckBox();
-            checkBox14 = new CheckBox();
-            checkBox15 = new CheckBox();
-            checkBox16 = new CheckBox();
-            checkBox17 = new CheckBox();
-            checkBox18 = new CheckBox();
-            checkBox19 = new CheckBox();
-            checkBox20 = new CheckBox();
-            checkBox21 = new CheckBox();
-            jacketPictureBox = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)jacketPictureBox).BeginInit();
+            iconTextureNamefreezeCheckBox = new CheckBox();
+            iconRarityfreezeCheckBox = new CheckBox();
+            itemActivateStartTimefreezeChechBox = new CheckBox();
+            ItemActivateEndTimefreezeCheckBox = new CheckBox();
+            gainWaccaPointfreezeCheckBox = new CheckBox();
+            iconNamefreezeCheckBox = new CheckBox();
+            iconAcquisitionWayfreezeCheckBox = new CheckBox();
+            nameTagfreezeCheckBox = new CheckBox();
+            explanationTextTagfreezeCheckBox = new CheckBox();
+            iconPictureBox = new PictureBox();
+            bIsInitItemfreezeCheckBox = new CheckBox();
+            ramSaveCheckBox = new CheckBox();
+            saveButton = new Button();
+            autoSaveCheckBox = new CheckBox();
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox).BeginInit();
             SuspendLayout();
             // 
-            // createNewIcon
+            // createNewIconButton
             // 
-            createNewIcon.Location = new Point(216, 604);
-            createNewIcon.Name = "createNewIcon";
-            createNewIcon.Size = new Size(214, 42);
-            createNewIcon.TabIndex = 3;
-            createNewIcon.Text = "Add All Missing Icons from /UI/Textures/USERICON/S* subfolders";
-            createNewIcon.UseVisualStyleBackColor = true;
+            createNewIconButton.Location = new Point(274, 591);
+            createNewIconButton.Name = "createNewIconButton";
+            createNewIconButton.Size = new Size(228, 42);
+            createNewIconButton.TabIndex = 3;
+            createNewIconButton.Text = "Add All Missing Icons from /UI/Textures/USERICON/S* subfolders";
+            createNewIconButton.UseVisualStyleBackColor = true;
+            createNewIconButton.Click += createNewIconButton_Click;
             // 
-            // artistTextBox
+            // iconTextureNameTextBox
             // 
-            artistTextBox.Location = new Point(23, 124);
-            artistTextBox.Margin = new Padding(3, 2, 3, 2);
-            artistTextBox.Name = "artistTextBox";
-            artistTextBox.Size = new Size(407, 23);
-            artistTextBox.TabIndex = 6;
+            iconTextureNameTextBox.Location = new Point(23, 111);
+            iconTextureNameTextBox.Margin = new Padding(3, 2, 3, 2);
+            iconTextureNameTextBox.Name = "iconTextureNameTextBox";
+            iconTextureNameTextBox.Size = new Size(407, 23);
+            iconTextureNameTextBox.TabIndex = 6;
             // 
-            // artistLabel
+            // iconTextureNameLabel
             // 
-            artistLabel.AutoSize = true;
-            artistLabel.Location = new Point(23, 107);
-            artistLabel.Name = "artistLabel";
-            artistLabel.Size = new Size(305, 15);
-            artistLabel.TabIndex = 7;
-            artistLabel.Text = "IconTextureName    <- example: S03/uT_UICN_S03_06_26";
+            iconTextureNameLabel.AutoSize = true;
+            iconTextureNameLabel.Location = new Point(23, 94);
+            iconTextureNameLabel.Name = "iconTextureNameLabel";
+            iconTextureNameLabel.Size = new Size(305, 15);
+            iconTextureNameLabel.TabIndex = 7;
+            iconTextureNameLabel.Text = "IconTextureName    <- example: S03/uT_UICN_S03_06_26";
             // 
-            // musicTextBox
+            // iconIdTextBox
             // 
-            musicTextBox.Location = new Point(23, 74);
-            musicTextBox.Margin = new Padding(3, 2, 3, 2);
-            musicTextBox.Name = "musicTextBox";
-            musicTextBox.Size = new Size(407, 23);
-            musicTextBox.TabIndex = 4;
+            iconIdTextBox.Location = new Point(23, 61);
+            iconIdTextBox.Margin = new Padding(3, 2, 3, 2);
+            iconIdTextBox.Name = "iconIdTextBox";
+            iconIdTextBox.Size = new Size(407, 23);
+            iconIdTextBox.TabIndex = 4;
             // 
-            // musicLabel
+            // iconIdLabel
             // 
-            musicLabel.AutoSize = true;
-            musicLabel.Location = new Point(23, 57);
-            musicLabel.Name = "musicLabel";
-            musicLabel.Size = new Size(354, 15);
-            musicLabel.TabIndex = 5;
-            musicLabel.Text = "IconId   <- I'd suggest not going below 400000 to avoid duplicates";
+            iconIdLabel.AutoSize = true;
+            iconIdLabel.Location = new Point(23, 44);
+            iconIdLabel.Name = "iconIdLabel";
+            iconIdLabel.Size = new Size(354, 15);
+            iconIdLabel.TabIndex = 5;
+            iconIdLabel.Text = "IconId   <- I'd suggest not going below 400000 to avoid duplicates";
             // 
             // progressBar
             // 
             progressBar.BackColor = SystemColors.ActiveCaptionText;
             progressBar.ForeColor = SystemColors.Desktop;
-            progressBar.Location = new Point(532, 56);
+            progressBar.Location = new Point(532, 43);
             progressBar.Margin = new Padding(0);
             progressBar.Name = "progressBar";
             progressBar.Size = new Size(19, 626);
             progressBar.TabIndex = 80;
             // 
-            // label1
+            // menuIconLabel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(193, 21);
-            label1.Name = "label1";
-            label1.Size = new Size(30, 15);
-            label1.TabIndex = 81;
-            label1.Text = "Icon";
+            menuIconLabel.AutoSize = true;
+            menuIconLabel.Location = new Point(193, 21);
+            menuIconLabel.Name = "menuIconLabel";
+            menuIconLabel.Size = new Size(30, 15);
+            menuIconLabel.TabIndex = 81;
+            menuIconLabel.Text = "Icon";
             // 
-            // textBox1
+            // itemActivateStartTimeTextBox
             // 
-            textBox1.Location = new Point(23, 224);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(407, 23);
-            textBox1.TabIndex = 84;
+            itemActivateStartTimeTextBox.Location = new Point(23, 211);
+            itemActivateStartTimeTextBox.Margin = new Padding(3, 2, 3, 2);
+            itemActivateStartTimeTextBox.Name = "itemActivateStartTimeTextBox";
+            itemActivateStartTimeTextBox.Size = new Size(407, 23);
+            itemActivateStartTimeTextBox.TabIndex = 84;
             // 
-            // label2
+            // itemActivateStartTimeLabel
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(23, 207);
-            label2.Name = "label2";
-            label2.Size = new Size(372, 15);
-            label2.TabIndex = 85;
-            label2.Text = "ItemActivateStartTime   <- AAAAMMDDHH  set to 0 for no restriction";
+            itemActivateStartTimeLabel.AutoSize = true;
+            itemActivateStartTimeLabel.Location = new Point(23, 194);
+            itemActivateStartTimeLabel.Name = "itemActivateStartTimeLabel";
+            itemActivateStartTimeLabel.Size = new Size(372, 15);
+            itemActivateStartTimeLabel.TabIndex = 85;
+            itemActivateStartTimeLabel.Text = "ItemActivateStartTime   <- AAAAMMDDHH  set to 0 for no restriction";
             // 
-            // textBox2
+            // iconRarityTextBox
             // 
-            textBox2.Location = new Point(23, 174);
-            textBox2.Margin = new Padding(3, 2, 3, 2);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(407, 23);
-            textBox2.TabIndex = 82;
+            iconRarityTextBox.Location = new Point(23, 161);
+            iconRarityTextBox.Margin = new Padding(3, 2, 3, 2);
+            iconRarityTextBox.Name = "iconRarityTextBox";
+            iconRarityTextBox.Size = new Size(407, 23);
+            iconRarityTextBox.TabIndex = 82;
             // 
-            // label3
+            // iconRarityLabel
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(23, 157);
-            label3.Name = "label3";
-            label3.Size = new Size(180, 15);
-            label3.TabIndex = 83;
-            label3.Text = "IconRarity   <- 1, 2, 3, or 4 is used";
+            iconRarityLabel.AutoSize = true;
+            iconRarityLabel.Location = new Point(23, 144);
+            iconRarityLabel.Name = "iconRarityLabel";
+            iconRarityLabel.Size = new Size(180, 15);
+            iconRarityLabel.TabIndex = 83;
+            iconRarityLabel.Text = "IconRarity   <- 1, 2, 3, or 4 is used";
             // 
-            // textBox5
+            // gainWaccaPointTextBox
             // 
-            textBox5.Location = new Point(23, 324);
-            textBox5.Margin = new Padding(3, 2, 3, 2);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(407, 23);
-            textBox5.TabIndex = 88;
+            gainWaccaPointTextBox.Location = new Point(23, 311);
+            gainWaccaPointTextBox.Margin = new Padding(3, 2, 3, 2);
+            gainWaccaPointTextBox.Name = "gainWaccaPointTextBox";
+            gainWaccaPointTextBox.Size = new Size(407, 23);
+            gainWaccaPointTextBox.TabIndex = 88;
             // 
-            // label6
+            // gainWaccaPointLabel
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(23, 307);
-            label6.Name = "label6";
-            label6.Size = new Size(183, 15);
-            label6.TabIndex = 89;
-            label6.Text = "GainWaccaPoint    <- default: 500";
+            gainWaccaPointLabel.AutoSize = true;
+            gainWaccaPointLabel.Location = new Point(23, 294);
+            gainWaccaPointLabel.Name = "gainWaccaPointLabel";
+            gainWaccaPointLabel.Size = new Size(183, 15);
+            gainWaccaPointLabel.TabIndex = 89;
+            gainWaccaPointLabel.Text = "GainWaccaPoint    <- default: 500";
             // 
-            // textBox6
+            // itemActivateEndTimeTextBox
             // 
-            textBox6.Location = new Point(23, 274);
-            textBox6.Margin = new Padding(3, 2, 3, 2);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(407, 23);
-            textBox6.TabIndex = 86;
+            itemActivateEndTimeTextBox.Location = new Point(23, 261);
+            itemActivateEndTimeTextBox.Margin = new Padding(3, 2, 3, 2);
+            itemActivateEndTimeTextBox.Name = "itemActivateEndTimeTextBox";
+            itemActivateEndTimeTextBox.Size = new Size(407, 23);
+            itemActivateEndTimeTextBox.TabIndex = 86;
             // 
-            // label7
+            // itemActivateEndTimeLabel
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(23, 257);
-            label7.Name = "label7";
-            label7.Size = new Size(368, 15);
-            label7.TabIndex = 87;
-            label7.Text = "ItemActivateEndTime   <- AAAAMMDDHH  set to 0 for no restriction";
+            itemActivateEndTimeLabel.AutoSize = true;
+            itemActivateEndTimeLabel.Location = new Point(23, 244);
+            itemActivateEndTimeLabel.Name = "itemActivateEndTimeLabel";
+            itemActivateEndTimeLabel.Size = new Size(368, 15);
+            itemActivateEndTimeLabel.TabIndex = 87;
+            itemActivateEndTimeLabel.Text = "ItemActivateEndTime   <- AAAAMMDDHH  set to 0 for no restriction";
             // 
             // bIsInitItem
             // 
             bIsInitItem.AutoSize = true;
-            bIsInitItem.Location = new Point(23, 564);
+            bIsInitItem.Location = new Point(23, 551);
             bIsInitItem.Name = "bIsInitItem";
             bIsInitItem.Size = new Size(288, 34);
             bIsInitItem.TabIndex = 90;
             bIsInitItem.Text = "bIsInitItem   <- unlocked by default for new users.\nwill not unlock this item for existing users";
             bIsInitItem.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // showingItemLabel
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(812, 601);
-            label4.MinimumSize = new Size(150, 15);
-            label4.Name = "label4";
-            label4.Size = new Size(150, 15);
-            label4.TabIndex = 91;
-            label4.Text = "Showing Item 0/0";
-            label4.TextAlign = ContentAlignment.MiddleCenter;
+            showingItemLabel.AutoSize = true;
+            showingItemLabel.Location = new Point(812, 588);
+            showingItemLabel.MinimumSize = new Size(150, 15);
+            showingItemLabel.Name = "showingItemLabel";
+            showingItemLabel.Size = new Size(150, 15);
+            showingItemLabel.TabIndex = 91;
+            showingItemLabel.Text = "Showing Item 0/0";
+            showingItemLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // textBox3
+            // iconAcquisitionWayTextBox
             // 
-            textBox3.Location = new Point(23, 424);
-            textBox3.Margin = new Padding(3, 2, 3, 2);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(407, 23);
-            textBox3.TabIndex = 94;
+            iconAcquisitionWayTextBox.Location = new Point(23, 411);
+            iconAcquisitionWayTextBox.Margin = new Padding(3, 2, 3, 2);
+            iconAcquisitionWayTextBox.Name = "iconAcquisitionWayTextBox";
+            iconAcquisitionWayTextBox.Size = new Size(407, 23);
+            iconAcquisitionWayTextBox.TabIndex = 94;
             // 
-            // label5
+            // iconAcquisitionWayLabel
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(23, 407);
-            label5.Name = "label5";
-            label5.Size = new Size(407, 15);
-            label5.TabIndex = 95;
-            label5.Text = "Icon Acquisition Way    <- shown in my room. ex: Play Dive With U in expert";
+            iconAcquisitionWayLabel.AutoSize = true;
+            iconAcquisitionWayLabel.Location = new Point(23, 394);
+            iconAcquisitionWayLabel.Name = "iconAcquisitionWayLabel";
+            iconAcquisitionWayLabel.Size = new Size(407, 15);
+            iconAcquisitionWayLabel.TabIndex = 95;
+            iconAcquisitionWayLabel.Text = "Icon Acquisition Way    <- shown in my room. ex: Play Dive With U in expert";
             // 
-            // textBox4
+            // iconNameTextBox
             // 
-            textBox4.Location = new Point(23, 374);
-            textBox4.Margin = new Padding(3, 2, 3, 2);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(407, 23);
-            textBox4.TabIndex = 92;
+            iconNameTextBox.Location = new Point(23, 361);
+            iconNameTextBox.Margin = new Padding(3, 2, 3, 2);
+            iconNameTextBox.Name = "iconNameTextBox";
+            iconNameTextBox.Size = new Size(407, 23);
+            iconNameTextBox.TabIndex = 92;
             // 
-            // label8
+            // iconNameLabel
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(23, 357);
-            label8.Name = "label8";
-            label8.Size = new Size(196, 15);
-            label8.TabIndex = 93;
-            label8.Text = "Icon Name    <- shown in My Room";
+            iconNameLabel.AutoSize = true;
+            iconNameLabel.Location = new Point(23, 344);
+            iconNameLabel.Name = "iconNameLabel";
+            iconNameLabel.Size = new Size(196, 15);
+            iconNameLabel.TabIndex = 93;
+            iconNameLabel.Text = "Icon Name    <- shown in My Room";
             // 
-            // label9
+            // saveLabel
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(23, 658);
-            label9.Name = "label9";
-            label9.Size = new Size(79, 15);
-            label9.TabIndex = 96;
-            label9.Text = "no file loaded";
+            saveLabel.AutoSize = true;
+            saveLabel.Location = new Point(23, 686);
+            saveLabel.MinimumSize = new Size(500, 0);
+            saveLabel.Name = "saveLabel";
+            saveLabel.Size = new Size(500, 15);
+            saveLabel.TabIndex = 96;
+            saveLabel.Text = "no file loaded";
+            saveLabel.TextAlign = ContentAlignment.TopCenter;
             // 
-            // textBox7
+            // explanationTextTagTextBox
             // 
-            textBox7.Enabled = false;
-            textBox7.Location = new Point(23, 524);
-            textBox7.Margin = new Padding(3, 2, 3, 2);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(407, 23);
-            textBox7.TabIndex = 99;
+            explanationTextTagTextBox.Enabled = false;
+            explanationTextTagTextBox.Location = new Point(23, 511);
+            explanationTextTagTextBox.Margin = new Padding(3, 2, 3, 2);
+            explanationTextTagTextBox.Name = "explanationTextTagTextBox";
+            explanationTextTagTextBox.Size = new Size(407, 23);
+            explanationTextTagTextBox.TabIndex = 99;
             // 
-            // label10
+            // explanationTextTagLabel
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(23, 507);
-            label10.Name = "label10";
-            label10.Size = new Size(271, 15);
-            label10.TabIndex = 100;
-            label10.Text = "ExplanationTextTag    <- reference to IconMessage";
+            explanationTextTagLabel.AutoSize = true;
+            explanationTextTagLabel.Location = new Point(23, 494);
+            explanationTextTagLabel.Name = "explanationTextTagLabel";
+            explanationTextTagLabel.Size = new Size(271, 15);
+            explanationTextTagLabel.TabIndex = 100;
+            explanationTextTagLabel.Text = "ExplanationTextTag    <- reference to IconMessage";
             // 
-            // textBox8
+            // nameTagTextBox
             // 
-            textBox8.Enabled = false;
-            textBox8.Location = new Point(23, 474);
-            textBox8.Margin = new Padding(3, 2, 3, 2);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(407, 23);
-            textBox8.TabIndex = 97;
+            nameTagTextBox.Enabled = false;
+            nameTagTextBox.Location = new Point(23, 461);
+            nameTagTextBox.Margin = new Padding(3, 2, 3, 2);
+            nameTagTextBox.Name = "nameTagTextBox";
+            nameTagTextBox.Size = new Size(407, 23);
+            nameTagTextBox.TabIndex = 97;
             // 
-            // label11
+            // nameTagLabel
             // 
-            label11.AutoSize = true;
-            label11.Location = new Point(23, 457);
-            label11.Name = "label11";
-            label11.Size = new Size(220, 15);
-            label11.TabIndex = 98;
-            label11.Text = "NameTag    <- reference to IconMessage";
+            nameTagLabel.AutoSize = true;
+            nameTagLabel.Location = new Point(23, 444);
+            nameTagLabel.Name = "nameTagLabel";
+            nameTagLabel.Size = new Size(220, 15);
+            nameTagLabel.TabIndex = 98;
+            nameTagLabel.Text = "NameTag    <- reference to IconMessage";
             // 
-            // button1
+            // injectNewButton
             // 
-            button1.Location = new Point(23, 604);
-            button1.Name = "button1";
-            button1.Size = new Size(175, 42);
-            button1.TabIndex = 101;
-            button1.Text = "Inject NEW";
-            button1.UseVisualStyleBackColor = true;
+            injectNewButton.Location = new Point(23, 591);
+            injectNewButton.Name = "injectNewButton";
+            injectNewButton.Size = new Size(229, 42);
+            injectNewButton.TabIndex = 101;
+            injectNewButton.Text = "Inject NEW";
+            injectNewButton.UseVisualStyleBackColor = true;
+            injectNewButton.Click += injectNewButton_Click;
             // 
-            // button2
+            // searchButton
             // 
-            button2.Location = new Point(572, 619);
-            button2.Name = "button2";
-            button2.Size = new Size(149, 27);
-            button2.TabIndex = 127;
-            button2.Text = "Search";
-            button2.UseVisualStyleBackColor = true;
+            searchButton.Location = new Point(572, 606);
+            searchButton.Name = "searchButton";
+            searchButton.Size = new Size(149, 27);
+            searchButton.TabIndex = 127;
+            searchButton.Text = "Search";
+            searchButton.UseVisualStyleBackColor = true;
+            searchButton.Click += searchButton_Click;
             // 
-            // textBox9
+            // filterexplanationTextTagTextBox
             // 
-            textBox9.Enabled = false;
-            textBox9.Location = new Point(595, 524);
-            textBox9.Margin = new Padding(3, 2, 3, 2);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(367, 23);
-            textBox9.TabIndex = 125;
+            filterexplanationTextTagTextBox.Enabled = false;
+            filterexplanationTextTagTextBox.Location = new Point(595, 511);
+            filterexplanationTextTagTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterexplanationTextTagTextBox.Name = "filterexplanationTextTagTextBox";
+            filterexplanationTextTagTextBox.Size = new Size(367, 23);
+            filterexplanationTextTagTextBox.TabIndex = 125;
             // 
-            // label12
+            // filterexplanationTextTagLabel
             // 
-            label12.AutoSize = true;
-            label12.Location = new Point(595, 507);
-            label12.Name = "label12";
-            label12.Size = new Size(108, 15);
-            label12.TabIndex = 126;
-            label12.Text = "ExplanationTextTag";
+            filterexplanationTextTagLabel.AutoSize = true;
+            filterexplanationTextTagLabel.Location = new Point(595, 494);
+            filterexplanationTextTagLabel.Name = "filterexplanationTextTagLabel";
+            filterexplanationTextTagLabel.Size = new Size(108, 15);
+            filterexplanationTextTagLabel.TabIndex = 126;
+            filterexplanationTextTagLabel.Text = "ExplanationTextTag";
             // 
-            // textBox10
+            // filterNameTagTextBox
             // 
-            textBox10.Enabled = false;
-            textBox10.Location = new Point(595, 474);
-            textBox10.Margin = new Padding(3, 2, 3, 2);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(367, 23);
-            textBox10.TabIndex = 123;
+            filterNameTagTextBox.Enabled = false;
+            filterNameTagTextBox.Location = new Point(595, 461);
+            filterNameTagTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterNameTagTextBox.Name = "filterNameTagTextBox";
+            filterNameTagTextBox.Size = new Size(367, 23);
+            filterNameTagTextBox.TabIndex = 123;
             // 
-            // label13
+            // filterNameTagLabel
             // 
-            label13.AutoSize = true;
-            label13.Location = new Point(595, 457);
-            label13.Name = "label13";
-            label13.Size = new Size(57, 15);
-            label13.TabIndex = 124;
-            label13.Text = "NameTag";
+            filterNameTagLabel.AutoSize = true;
+            filterNameTagLabel.Location = new Point(595, 444);
+            filterNameTagLabel.Name = "filterNameTagLabel";
+            filterNameTagLabel.Size = new Size(57, 15);
+            filterNameTagLabel.TabIndex = 124;
+            filterNameTagLabel.Text = "NameTag";
             // 
-            // label14
+            // searchLabel
             // 
-            label14.AutoSize = true;
-            label14.Location = new Point(729, 625);
-            label14.Name = "label14";
-            label14.Size = new Size(63, 15);
-            label14.TabIndex = 122;
-            label14.Text = "No match!";
+            searchLabel.AutoSize = true;
+            searchLabel.Location = new Point(729, 612);
+            searchLabel.Name = "searchLabel";
+            searchLabel.Size = new Size(63, 15);
+            searchLabel.TabIndex = 122;
+            searchLabel.Text = "No match!";
             // 
-            // textBox11
+            // filtericonAcquisitionWayTextBox
             // 
-            textBox11.Location = new Point(595, 424);
-            textBox11.Margin = new Padding(3, 2, 3, 2);
-            textBox11.Name = "textBox11";
-            textBox11.Size = new Size(367, 23);
-            textBox11.TabIndex = 120;
+            filtericonAcquisitionWayTextBox.Location = new Point(595, 411);
+            filtericonAcquisitionWayTextBox.Margin = new Padding(3, 2, 3, 2);
+            filtericonAcquisitionWayTextBox.Name = "filtericonAcquisitionWayTextBox";
+            filtericonAcquisitionWayTextBox.Size = new Size(367, 23);
+            filtericonAcquisitionWayTextBox.TabIndex = 120;
             // 
-            // label15
+            // filtericonAcquisitionWayLabel
             // 
-            label15.AutoSize = true;
-            label15.Location = new Point(595, 407);
-            label15.Name = "label15";
-            label15.Size = new Size(119, 15);
-            label15.TabIndex = 121;
-            label15.Text = "Icon Acquisition Way";
+            filtericonAcquisitionWayLabel.AutoSize = true;
+            filtericonAcquisitionWayLabel.Location = new Point(595, 394);
+            filtericonAcquisitionWayLabel.Name = "filtericonAcquisitionWayLabel";
+            filtericonAcquisitionWayLabel.Size = new Size(119, 15);
+            filtericonAcquisitionWayLabel.TabIndex = 121;
+            filtericonAcquisitionWayLabel.Text = "Icon Acquisition Way";
             // 
-            // textBox12
+            // filtericonNameTextBox
             // 
-            textBox12.Location = new Point(595, 374);
-            textBox12.Margin = new Padding(3, 2, 3, 2);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(367, 23);
-            textBox12.TabIndex = 118;
+            filtericonNameTextBox.Location = new Point(595, 361);
+            filtericonNameTextBox.Margin = new Padding(3, 2, 3, 2);
+            filtericonNameTextBox.Name = "filtericonNameTextBox";
+            filtericonNameTextBox.Size = new Size(367, 23);
+            filtericonNameTextBox.TabIndex = 118;
             // 
-            // label16
+            // filtericonNameLabel
             // 
-            label16.AutoSize = true;
-            label16.Location = new Point(595, 357);
-            label16.Name = "label16";
-            label16.Size = new Size(65, 15);
-            label16.TabIndex = 119;
-            label16.Text = "Icon Name";
+            filtericonNameLabel.AutoSize = true;
+            filtericonNameLabel.Location = new Point(595, 344);
+            filtericonNameLabel.Name = "filtericonNameLabel";
+            filtericonNameLabel.Size = new Size(65, 15);
+            filtericonNameLabel.TabIndex = 119;
+            filtericonNameLabel.Text = "Icon Name";
             // 
-            // checkBox1
+            // filterbIsInitItemCheckBox
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(595, 564);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(82, 19);
-            checkBox1.TabIndex = 117;
-            checkBox1.Text = "bIsInitItem";
-            checkBox1.UseVisualStyleBackColor = true;
+            filterbIsInitItemCheckBox.AutoSize = true;
+            filterbIsInitItemCheckBox.Location = new Point(595, 551);
+            filterbIsInitItemCheckBox.Name = "filterbIsInitItemCheckBox";
+            filterbIsInitItemCheckBox.Size = new Size(82, 19);
+            filterbIsInitItemCheckBox.TabIndex = 117;
+            filterbIsInitItemCheckBox.Text = "bIsInitItem";
+            filterbIsInitItemCheckBox.UseVisualStyleBackColor = true;
             // 
-            // textBox13
+            // filterGainWaccaPointTextBox
             // 
-            textBox13.Location = new Point(595, 324);
-            textBox13.Margin = new Padding(3, 2, 3, 2);
-            textBox13.Name = "textBox13";
-            textBox13.Size = new Size(367, 23);
-            textBox13.TabIndex = 115;
+            filterGainWaccaPointTextBox.Location = new Point(595, 311);
+            filterGainWaccaPointTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterGainWaccaPointTextBox.Name = "filterGainWaccaPointTextBox";
+            filterGainWaccaPointTextBox.Size = new Size(367, 23);
+            filterGainWaccaPointTextBox.TabIndex = 115;
             // 
-            // label17
+            // filterGainWaccaPointLabel
             // 
-            label17.AutoSize = true;
-            label17.Location = new Point(595, 307);
-            label17.Name = "label17";
-            label17.Size = new Size(94, 15);
-            label17.TabIndex = 116;
-            label17.Text = "GainWaccaPoint";
+            filterGainWaccaPointLabel.AutoSize = true;
+            filterGainWaccaPointLabel.Location = new Point(595, 294);
+            filterGainWaccaPointLabel.Name = "filterGainWaccaPointLabel";
+            filterGainWaccaPointLabel.Size = new Size(94, 15);
+            filterGainWaccaPointLabel.TabIndex = 116;
+            filterGainWaccaPointLabel.Text = "GainWaccaPoint";
             // 
-            // textBox14
+            // filteritemActivateEndTimeTextBox
             // 
-            textBox14.Location = new Point(595, 274);
-            textBox14.Margin = new Padding(3, 2, 3, 2);
-            textBox14.Name = "textBox14";
-            textBox14.Size = new Size(367, 23);
-            textBox14.TabIndex = 113;
+            filteritemActivateEndTimeTextBox.Location = new Point(595, 261);
+            filteritemActivateEndTimeTextBox.Margin = new Padding(3, 2, 3, 2);
+            filteritemActivateEndTimeTextBox.Name = "filteritemActivateEndTimeTextBox";
+            filteritemActivateEndTimeTextBox.Size = new Size(367, 23);
+            filteritemActivateEndTimeTextBox.TabIndex = 113;
             // 
-            // label18
+            // filteritemActivateEndTimeLabel
             // 
-            label18.AutoSize = true;
-            label18.Location = new Point(595, 257);
-            label18.Name = "label18";
-            label18.Size = new Size(120, 15);
-            label18.TabIndex = 114;
-            label18.Text = "ItemActivateEndTime";
+            filteritemActivateEndTimeLabel.AutoSize = true;
+            filteritemActivateEndTimeLabel.Location = new Point(595, 244);
+            filteritemActivateEndTimeLabel.Name = "filteritemActivateEndTimeLabel";
+            filteritemActivateEndTimeLabel.Size = new Size(120, 15);
+            filteritemActivateEndTimeLabel.TabIndex = 114;
+            filteritemActivateEndTimeLabel.Text = "ItemActivateEndTime";
             // 
-            // textBox15
+            // filteritemActivateStartTimeTextBox
             // 
-            textBox15.Location = new Point(595, 224);
-            textBox15.Margin = new Padding(3, 2, 3, 2);
-            textBox15.Name = "textBox15";
-            textBox15.Size = new Size(367, 23);
-            textBox15.TabIndex = 111;
+            filteritemActivateStartTimeTextBox.Location = new Point(595, 211);
+            filteritemActivateStartTimeTextBox.Margin = new Padding(3, 2, 3, 2);
+            filteritemActivateStartTimeTextBox.Name = "filteritemActivateStartTimeTextBox";
+            filteritemActivateStartTimeTextBox.Size = new Size(367, 23);
+            filteritemActivateStartTimeTextBox.TabIndex = 111;
             // 
-            // label19
+            // filteritemActivateStartTimeLabel
             // 
-            label19.AutoSize = true;
-            label19.Location = new Point(595, 207);
-            label19.Name = "label19";
-            label19.Size = new Size(124, 15);
-            label19.TabIndex = 112;
-            label19.Text = "ItemActivateStartTime";
+            filteritemActivateStartTimeLabel.AutoSize = true;
+            filteritemActivateStartTimeLabel.Location = new Point(595, 194);
+            filteritemActivateStartTimeLabel.Name = "filteritemActivateStartTimeLabel";
+            filteritemActivateStartTimeLabel.Size = new Size(124, 15);
+            filteritemActivateStartTimeLabel.TabIndex = 112;
+            filteritemActivateStartTimeLabel.Text = "ItemActivateStartTime";
             // 
-            // textBox16
+            // filtericonRarityTextBox
             // 
-            textBox16.Location = new Point(595, 174);
-            textBox16.Margin = new Padding(3, 2, 3, 2);
-            textBox16.Name = "textBox16";
-            textBox16.Size = new Size(367, 23);
-            textBox16.TabIndex = 109;
+            filtericonRarityTextBox.Location = new Point(595, 161);
+            filtericonRarityTextBox.Margin = new Padding(3, 2, 3, 2);
+            filtericonRarityTextBox.Name = "filtericonRarityTextBox";
+            filtericonRarityTextBox.Size = new Size(367, 23);
+            filtericonRarityTextBox.TabIndex = 109;
             // 
-            // label20
+            // filtericonRarityLabel
             // 
-            label20.AutoSize = true;
-            label20.Location = new Point(595, 157);
-            label20.Name = "label20";
-            label20.Size = new Size(60, 15);
-            label20.TabIndex = 110;
-            label20.Text = "IconRarity";
+            filtericonRarityLabel.AutoSize = true;
+            filtericonRarityLabel.Location = new Point(595, 144);
+            filtericonRarityLabel.Name = "filtericonRarityLabel";
+            filtericonRarityLabel.Size = new Size(60, 15);
+            filtericonRarityLabel.TabIndex = 110;
+            filtericonRarityLabel.Text = "IconRarity";
             // 
-            // label21
+            // menuFilterLabel
             // 
-            label21.AutoSize = true;
-            label21.Location = new Point(740, 21);
-            label21.Name = "label21";
-            label21.Size = new Size(38, 15);
-            label21.TabIndex = 108;
-            label21.Text = "Filters";
+            menuFilterLabel.AutoSize = true;
+            menuFilterLabel.Location = new Point(740, 21);
+            menuFilterLabel.Name = "menuFilterLabel";
+            menuFilterLabel.Size = new Size(38, 15);
+            menuFilterLabel.TabIndex = 108;
+            menuFilterLabel.Text = "Filters";
             // 
             // progressBar1
             // 
             progressBar1.BackColor = SystemColors.ActiveCaptionText;
             progressBar1.ForeColor = SystemColors.Desktop;
-            progressBar1.Location = new Point(984, 57);
+            progressBar1.Location = new Point(984, 44);
             progressBar1.Margin = new Padding(0);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(19, 625);
             progressBar1.TabIndex = 107;
             // 
-            // textBox17
+            // filtericonTextureNameTextBox
             // 
-            textBox17.Location = new Point(595, 124);
-            textBox17.Margin = new Padding(3, 2, 3, 2);
-            textBox17.Name = "textBox17";
-            textBox17.Size = new Size(367, 23);
-            textBox17.TabIndex = 105;
+            filtericonTextureNameTextBox.Location = new Point(595, 111);
+            filtericonTextureNameTextBox.Margin = new Padding(3, 2, 3, 2);
+            filtericonTextureNameTextBox.Name = "filtericonTextureNameTextBox";
+            filtericonTextureNameTextBox.Size = new Size(367, 23);
+            filtericonTextureNameTextBox.TabIndex = 105;
             // 
-            // label22
+            // filtericonTextureNameLabel
             // 
-            label22.AutoSize = true;
-            label22.Location = new Point(595, 107);
-            label22.Name = "label22";
-            label22.Size = new Size(100, 15);
-            label22.TabIndex = 106;
-            label22.Text = "IconTextureName";
+            filtericonTextureNameLabel.AutoSize = true;
+            filtericonTextureNameLabel.Location = new Point(595, 94);
+            filtericonTextureNameLabel.Name = "filtericonTextureNameLabel";
+            filtericonTextureNameLabel.Size = new Size(100, 15);
+            filtericonTextureNameLabel.TabIndex = 106;
+            filtericonTextureNameLabel.Text = "IconTextureName";
             // 
-            // label23
+            // iconIdlabel23
             // 
-            label23.AutoSize = true;
-            label23.Location = new Point(607, 56);
-            label23.Name = "label23";
-            label23.Size = new Size(40, 15);
-            label23.TabIndex = 104;
-            label23.Text = "IconId";
+            iconIdlabel23.AutoSize = true;
+            iconIdlabel23.Location = new Point(607, 43);
+            iconIdlabel23.Name = "iconIdlabel23";
+            iconIdlabel23.Size = new Size(40, 15);
+            iconIdlabel23.TabIndex = 104;
+            iconIdlabel23.Text = "IconId";
             // 
-            // button3
+            // searchNextButton
             // 
-            button3.Location = new Point(812, 619);
-            button3.Name = "button3";
-            button3.Size = new Size(70, 27);
-            button3.TabIndex = 102;
-            button3.Text = "Next";
-            button3.UseVisualStyleBackColor = true;
+            searchNextButton.Location = new Point(812, 606);
+            searchNextButton.Name = "searchNextButton";
+            searchNextButton.Size = new Size(70, 27);
+            searchNextButton.TabIndex = 102;
+            searchNextButton.Text = "Next";
+            searchNextButton.UseVisualStyleBackColor = true;
+            searchNextButton.Click += searchNextButton_Click;
             // 
-            // checkBox2
+            // filterbIsInitItemEnableCb
             // 
-            checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(572, 566);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(15, 14);
-            checkBox2.TabIndex = 128;
-            checkBox2.UseVisualStyleBackColor = true;
+            filterbIsInitItemEnableCb.AutoSize = true;
+            filterbIsInitItemEnableCb.Location = new Point(572, 553);
+            filterbIsInitItemEnableCb.Name = "filterbIsInitItemEnableCb";
+            filterbIsInitItemEnableCb.Size = new Size(15, 14);
+            filterbIsInitItemEnableCb.TabIndex = 128;
+            filterbIsInitItemEnableCb.UseVisualStyleBackColor = true;
+            filterbIsInitItemEnableCb.CheckedChanged += filterbIsInitItemEnableCb_CheckedChanged;
             // 
-            // checkBox3
+            // filterexplanationTextTagCheckBox
             // 
-            checkBox3.AutoSize = true;
-            checkBox3.Location = new Point(572, 530);
-            checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(15, 14);
-            checkBox3.TabIndex = 129;
-            checkBox3.UseVisualStyleBackColor = true;
+            filterexplanationTextTagCheckBox.AutoSize = true;
+            filterexplanationTextTagCheckBox.Location = new Point(572, 517);
+            filterexplanationTextTagCheckBox.Name = "filterexplanationTextTagCheckBox";
+            filterexplanationTextTagCheckBox.Size = new Size(15, 14);
+            filterexplanationTextTagCheckBox.TabIndex = 129;
+            filterexplanationTextTagCheckBox.UseVisualStyleBackColor = true;
+            filterexplanationTextTagCheckBox.CheckedChanged += filterexplanationTextTagCheckBox_CheckedChanged;
             // 
-            // checkBox4
+            // filterNameTagCheckBox
             // 
-            checkBox4.AutoSize = true;
-            checkBox4.Location = new Point(572, 480);
-            checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(15, 14);
-            checkBox4.TabIndex = 130;
-            checkBox4.UseVisualStyleBackColor = true;
+            filterNameTagCheckBox.AutoSize = true;
+            filterNameTagCheckBox.Location = new Point(572, 467);
+            filterNameTagCheckBox.Name = "filterNameTagCheckBox";
+            filterNameTagCheckBox.Size = new Size(15, 14);
+            filterNameTagCheckBox.TabIndex = 130;
+            filterNameTagCheckBox.UseVisualStyleBackColor = true;
+            filterNameTagCheckBox.CheckedChanged += filterNameTagCheckBox_CheckedChanged;
             // 
-            // checkBox5
+            // filtericonNameCheckBox
             // 
-            checkBox5.AutoSize = true;
-            checkBox5.Location = new Point(572, 380);
-            checkBox5.Name = "checkBox5";
-            checkBox5.Size = new Size(15, 14);
-            checkBox5.TabIndex = 132;
-            checkBox5.UseVisualStyleBackColor = true;
+            filtericonNameCheckBox.AutoSize = true;
+            filtericonNameCheckBox.Location = new Point(572, 367);
+            filtericonNameCheckBox.Name = "filtericonNameCheckBox";
+            filtericonNameCheckBox.Size = new Size(15, 14);
+            filtericonNameCheckBox.TabIndex = 132;
+            filtericonNameCheckBox.UseVisualStyleBackColor = true;
+            filtericonNameCheckBox.CheckedChanged += filtericonNameCheckBox_CheckedChanged;
             // 
-            // checkBox6
+            // filtericonAcquisitionWayCheckBox
             // 
-            checkBox6.AutoSize = true;
-            checkBox6.Location = new Point(572, 430);
-            checkBox6.Name = "checkBox6";
-            checkBox6.Size = new Size(15, 14);
-            checkBox6.TabIndex = 131;
-            checkBox6.UseVisualStyleBackColor = true;
+            filtericonAcquisitionWayCheckBox.AutoSize = true;
+            filtericonAcquisitionWayCheckBox.Location = new Point(572, 417);
+            filtericonAcquisitionWayCheckBox.Name = "filtericonAcquisitionWayCheckBox";
+            filtericonAcquisitionWayCheckBox.Size = new Size(15, 14);
+            filtericonAcquisitionWayCheckBox.TabIndex = 131;
+            filtericonAcquisitionWayCheckBox.UseVisualStyleBackColor = true;
+            filtericonAcquisitionWayCheckBox.CheckedChanged += filtericonAcquisitionWayCheckBox_CheckedChanged;
             // 
-            // checkBox7
+            // filtericonRarityCheckBox
             // 
-            checkBox7.AutoSize = true;
-            checkBox7.Location = new Point(572, 180);
-            checkBox7.Name = "checkBox7";
-            checkBox7.Size = new Size(15, 14);
-            checkBox7.TabIndex = 136;
-            checkBox7.UseVisualStyleBackColor = true;
+            filtericonRarityCheckBox.AutoSize = true;
+            filtericonRarityCheckBox.Location = new Point(572, 167);
+            filtericonRarityCheckBox.Name = "filtericonRarityCheckBox";
+            filtericonRarityCheckBox.Size = new Size(15, 14);
+            filtericonRarityCheckBox.TabIndex = 136;
+            filtericonRarityCheckBox.UseVisualStyleBackColor = true;
+            filtericonRarityCheckBox.CheckedChanged += filtericonRarityCheckBox_CheckedChanged;
             // 
-            // checkBox8
+            // filteritemActivateStartTimeCheckBox
             // 
-            checkBox8.AutoSize = true;
-            checkBox8.Location = new Point(572, 230);
-            checkBox8.Name = "checkBox8";
-            checkBox8.Size = new Size(15, 14);
-            checkBox8.TabIndex = 135;
-            checkBox8.UseVisualStyleBackColor = true;
+            filteritemActivateStartTimeCheckBox.AutoSize = true;
+            filteritemActivateStartTimeCheckBox.Location = new Point(572, 217);
+            filteritemActivateStartTimeCheckBox.Name = "filteritemActivateStartTimeCheckBox";
+            filteritemActivateStartTimeCheckBox.Size = new Size(15, 14);
+            filteritemActivateStartTimeCheckBox.TabIndex = 135;
+            filteritemActivateStartTimeCheckBox.UseVisualStyleBackColor = true;
+            filteritemActivateStartTimeCheckBox.CheckedChanged += filteritemActivateStartTimeCheckBox_CheckedChanged;
             // 
-            // checkBox9
+            // filteritemActivateEndTimeCheckBox
             // 
-            checkBox9.AutoSize = true;
-            checkBox9.Location = new Point(572, 280);
-            checkBox9.Name = "checkBox9";
-            checkBox9.Size = new Size(15, 14);
-            checkBox9.TabIndex = 134;
-            checkBox9.UseVisualStyleBackColor = true;
+            filteritemActivateEndTimeCheckBox.AutoSize = true;
+            filteritemActivateEndTimeCheckBox.Location = new Point(572, 267);
+            filteritemActivateEndTimeCheckBox.Name = "filteritemActivateEndTimeCheckBox";
+            filteritemActivateEndTimeCheckBox.Size = new Size(15, 14);
+            filteritemActivateEndTimeCheckBox.TabIndex = 134;
+            filteritemActivateEndTimeCheckBox.UseVisualStyleBackColor = true;
+            filteritemActivateEndTimeCheckBox.CheckedChanged += filteritemActivateEndTimeCheckBox_CheckedChanged;
             // 
-            // checkBox10
+            // filterGainWaccaPointCheckBox
             // 
-            checkBox10.AutoSize = true;
-            checkBox10.Location = new Point(572, 330);
-            checkBox10.Name = "checkBox10";
-            checkBox10.Size = new Size(15, 14);
-            checkBox10.TabIndex = 133;
-            checkBox10.UseVisualStyleBackColor = true;
+            filterGainWaccaPointCheckBox.AutoSize = true;
+            filterGainWaccaPointCheckBox.Location = new Point(572, 317);
+            filterGainWaccaPointCheckBox.Name = "filterGainWaccaPointCheckBox";
+            filterGainWaccaPointCheckBox.Size = new Size(15, 14);
+            filterGainWaccaPointCheckBox.TabIndex = 133;
+            filterGainWaccaPointCheckBox.UseVisualStyleBackColor = true;
+            filterGainWaccaPointCheckBox.CheckedChanged += filterGainWaccaPointCheckBox_CheckedChanged;
             // 
-            // checkBox12
+            // filtericonTextureNameCheckBox
             // 
-            checkBox12.AutoSize = true;
-            checkBox12.Location = new Point(572, 130);
-            checkBox12.Name = "checkBox12";
-            checkBox12.Size = new Size(15, 14);
-            checkBox12.TabIndex = 137;
-            checkBox12.UseVisualStyleBackColor = true;
+            filtericonTextureNameCheckBox.AutoSize = true;
+            filtericonTextureNameCheckBox.Location = new Point(572, 117);
+            filtericonTextureNameCheckBox.Name = "filtericonTextureNameCheckBox";
+            filtericonTextureNameCheckBox.Size = new Size(15, 14);
+            filtericonTextureNameCheckBox.TabIndex = 137;
+            filtericonTextureNameCheckBox.UseVisualStyleBackColor = true;
+            filtericonTextureNameCheckBox.CheckedChanged += filtericonTextureNameCheckBox_CheckedChanged;
             // 
-            // button4
+            // searchPreviousButton
             // 
-            button4.Location = new Point(892, 619);
-            button4.Name = "button4";
-            button4.Size = new Size(70, 27);
-            button4.TabIndex = 139;
-            button4.Text = "Previous";
-            button4.UseVisualStyleBackColor = true;
+            searchPreviousButton.Location = new Point(892, 606);
+            searchPreviousButton.Name = "searchPreviousButton";
+            searchPreviousButton.Size = new Size(70, 27);
+            searchPreviousButton.TabIndex = 139;
+            searchPreviousButton.Text = "Previous";
+            searchPreviousButton.UseVisualStyleBackColor = true;
+            searchPreviousButton.Click += searchPreviousButton_Click;
             // 
-            // button5
+            // previousButton
             // 
-            button5.Location = new Point(894, 72);
-            button5.Name = "button5";
-            button5.Size = new Size(70, 27);
-            button5.TabIndex = 141;
-            button5.Text = "Previous";
-            button5.UseVisualStyleBackColor = true;
+            previousButton.Location = new Point(894, 59);
+            previousButton.Name = "previousButton";
+            previousButton.Size = new Size(70, 27);
+            previousButton.TabIndex = 141;
+            previousButton.Text = "Previous";
+            previousButton.UseVisualStyleBackColor = true;
+            previousButton.Click += previousButton_Click;
             // 
-            // button6
+            // nextButton
             // 
-            button6.Location = new Point(814, 72);
-            button6.Name = "button6";
-            button6.Size = new Size(70, 27);
-            button6.TabIndex = 140;
-            button6.Text = "Next";
-            button6.UseVisualStyleBackColor = true;
+            nextButton.Location = new Point(814, 59);
+            nextButton.Name = "nextButton";
+            nextButton.Size = new Size(70, 27);
+            nextButton.TabIndex = 140;
+            nextButton.Text = "Next";
+            nextButton.UseVisualStyleBackColor = true;
+            nextButton.Click += nextButton_Click;
             // 
-            // button7
+            // validateButton
             // 
-            button7.Location = new Point(704, 72);
-            button7.Name = "button7";
-            button7.Size = new Size(86, 27);
-            button7.TabIndex = 142;
-            button7.Text = "Validate";
-            button7.UseVisualStyleBackColor = true;
+            validateButton.Location = new Point(704, 59);
+            validateButton.Name = "validateButton";
+            validateButton.Size = new Size(86, 27);
+            validateButton.TabIndex = 142;
+            validateButton.Text = "Validate";
+            validateButton.UseVisualStyleBackColor = true;
+            validateButton.Click += validateButton_Click;
             // 
-            // comboBox1
+            // iconid
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(570, 74);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 143;
+            iconid.FormattingEnabled = true;
+            iconid.Location = new Point(570, 61);
+            iconid.Name = "iconid";
+            iconid.Size = new Size(121, 23);
+            iconid.TabIndex = 143;
             // 
             // progressBar2
             // 
@@ -712,274 +736,341 @@
             progressBar2.Size = new Size(10, 625);
             progressBar2.TabIndex = 147;
             // 
-            // checkBox11
+            // iconTextureNamefreezeCheckBox
             // 
-            checkBox11.AutoSize = true;
-            checkBox11.Location = new Point(443, 126);
-            checkBox11.Name = "checkBox11";
-            checkBox11.Size = new Size(59, 19);
-            checkBox11.TabIndex = 169;
-            checkBox11.Text = "Freeze";
-            checkBox11.UseVisualStyleBackColor = true;
+            iconTextureNamefreezeCheckBox.AutoSize = true;
+            iconTextureNamefreezeCheckBox.Location = new Point(443, 113);
+            iconTextureNamefreezeCheckBox.Name = "iconTextureNamefreezeCheckBox";
+            iconTextureNamefreezeCheckBox.Size = new Size(59, 19);
+            iconTextureNamefreezeCheckBox.TabIndex = 169;
+            iconTextureNamefreezeCheckBox.Text = "Freeze";
+            iconTextureNamefreezeCheckBox.UseVisualStyleBackColor = true;
+            iconTextureNamefreezeCheckBox.CheckedChanged += iconTextureNamefreezeCheckBox_CheckedChanged;
             // 
-            // checkBox14
+            // iconRarityfreezeCheckBox
             // 
-            checkBox14.AutoSize = true;
-            checkBox14.Location = new Point(443, 178);
-            checkBox14.Name = "checkBox14";
-            checkBox14.Size = new Size(59, 19);
-            checkBox14.TabIndex = 170;
-            checkBox14.Text = "Freeze";
-            checkBox14.UseVisualStyleBackColor = true;
+            iconRarityfreezeCheckBox.AutoSize = true;
+            iconRarityfreezeCheckBox.Location = new Point(443, 165);
+            iconRarityfreezeCheckBox.Name = "iconRarityfreezeCheckBox";
+            iconRarityfreezeCheckBox.Size = new Size(59, 19);
+            iconRarityfreezeCheckBox.TabIndex = 170;
+            iconRarityfreezeCheckBox.Text = "Freeze";
+            iconRarityfreezeCheckBox.UseVisualStyleBackColor = true;
+            iconRarityfreezeCheckBox.CheckedChanged += iconRarityfreezeCheckBox_CheckedChanged;
             // 
-            // checkBox15
+            // itemActivateStartTimefreezeChechBox
             // 
-            checkBox15.AutoSize = true;
-            checkBox15.Location = new Point(444, 226);
-            checkBox15.Name = "checkBox15";
-            checkBox15.Size = new Size(59, 19);
-            checkBox15.TabIndex = 171;
-            checkBox15.Text = "Freeze";
-            checkBox15.UseVisualStyleBackColor = true;
+            itemActivateStartTimefreezeChechBox.AutoSize = true;
+            itemActivateStartTimefreezeChechBox.Location = new Point(444, 213);
+            itemActivateStartTimefreezeChechBox.Name = "itemActivateStartTimefreezeChechBox";
+            itemActivateStartTimefreezeChechBox.Size = new Size(59, 19);
+            itemActivateStartTimefreezeChechBox.TabIndex = 171;
+            itemActivateStartTimefreezeChechBox.Text = "Freeze";
+            itemActivateStartTimefreezeChechBox.UseVisualStyleBackColor = true;
+            itemActivateStartTimefreezeChechBox.CheckedChanged += itemActivateStartTimefreezeChechBox_CheckedChanged;
             // 
-            // checkBox16
+            // ItemActivateEndTimefreezeCheckBox
             // 
-            checkBox16.AutoSize = true;
-            checkBox16.Location = new Point(444, 276);
-            checkBox16.Name = "checkBox16";
-            checkBox16.Size = new Size(59, 19);
-            checkBox16.TabIndex = 172;
-            checkBox16.Text = "Freeze";
-            checkBox16.UseVisualStyleBackColor = true;
+            ItemActivateEndTimefreezeCheckBox.AutoSize = true;
+            ItemActivateEndTimefreezeCheckBox.Location = new Point(444, 263);
+            ItemActivateEndTimefreezeCheckBox.Name = "ItemActivateEndTimefreezeCheckBox";
+            ItemActivateEndTimefreezeCheckBox.Size = new Size(59, 19);
+            ItemActivateEndTimefreezeCheckBox.TabIndex = 172;
+            ItemActivateEndTimefreezeCheckBox.Text = "Freeze";
+            ItemActivateEndTimefreezeCheckBox.UseVisualStyleBackColor = true;
+            ItemActivateEndTimefreezeCheckBox.CheckedChanged += ItemActivateEndTimefreezeCheckBox_CheckedChanged;
             // 
-            // checkBox17
+            // gainWaccaPointfreezeCheckBox
             // 
-            checkBox17.AutoSize = true;
-            checkBox17.Location = new Point(443, 326);
-            checkBox17.Name = "checkBox17";
-            checkBox17.Size = new Size(59, 19);
-            checkBox17.TabIndex = 173;
-            checkBox17.Text = "Freeze";
-            checkBox17.UseVisualStyleBackColor = true;
+            gainWaccaPointfreezeCheckBox.AutoSize = true;
+            gainWaccaPointfreezeCheckBox.Location = new Point(443, 313);
+            gainWaccaPointfreezeCheckBox.Name = "gainWaccaPointfreezeCheckBox";
+            gainWaccaPointfreezeCheckBox.Size = new Size(59, 19);
+            gainWaccaPointfreezeCheckBox.TabIndex = 173;
+            gainWaccaPointfreezeCheckBox.Text = "Freeze";
+            gainWaccaPointfreezeCheckBox.UseVisualStyleBackColor = true;
+            gainWaccaPointfreezeCheckBox.CheckedChanged += gainWaccaPointfreezeCheckBox_CheckedChanged;
             // 
-            // checkBox18
+            // iconNamefreezeCheckBox
             // 
-            checkBox18.AutoSize = true;
-            checkBox18.Location = new Point(443, 376);
-            checkBox18.Name = "checkBox18";
-            checkBox18.Size = new Size(59, 19);
-            checkBox18.TabIndex = 174;
-            checkBox18.Text = "Freeze";
-            checkBox18.UseVisualStyleBackColor = true;
+            iconNamefreezeCheckBox.AutoSize = true;
+            iconNamefreezeCheckBox.Location = new Point(443, 363);
+            iconNamefreezeCheckBox.Name = "iconNamefreezeCheckBox";
+            iconNamefreezeCheckBox.Size = new Size(59, 19);
+            iconNamefreezeCheckBox.TabIndex = 174;
+            iconNamefreezeCheckBox.Text = "Freeze";
+            iconNamefreezeCheckBox.UseVisualStyleBackColor = true;
+            iconNamefreezeCheckBox.CheckedChanged += iconNamefreezeCheckBox_CheckedChanged;
             // 
-            // checkBox19
+            // iconAcquisitionWayfreezeCheckBox
             // 
-            checkBox19.AutoSize = true;
-            checkBox19.Location = new Point(443, 426);
-            checkBox19.Name = "checkBox19";
-            checkBox19.Size = new Size(59, 19);
-            checkBox19.TabIndex = 175;
-            checkBox19.Text = "Freeze";
-            checkBox19.UseVisualStyleBackColor = true;
+            iconAcquisitionWayfreezeCheckBox.AutoSize = true;
+            iconAcquisitionWayfreezeCheckBox.Location = new Point(443, 413);
+            iconAcquisitionWayfreezeCheckBox.Name = "iconAcquisitionWayfreezeCheckBox";
+            iconAcquisitionWayfreezeCheckBox.Size = new Size(59, 19);
+            iconAcquisitionWayfreezeCheckBox.TabIndex = 175;
+            iconAcquisitionWayfreezeCheckBox.Text = "Freeze";
+            iconAcquisitionWayfreezeCheckBox.UseVisualStyleBackColor = true;
+            iconAcquisitionWayfreezeCheckBox.CheckedChanged += iconAcquisitionWayfreezeCheckBox_CheckedChanged;
             // 
-            // checkBox20
+            // nameTagfreezeCheckBox
             // 
-            checkBox20.AutoSize = true;
-            checkBox20.Location = new Point(443, 476);
-            checkBox20.Name = "checkBox20";
-            checkBox20.Size = new Size(59, 19);
-            checkBox20.TabIndex = 176;
-            checkBox20.Text = "Freeze";
-            checkBox20.UseVisualStyleBackColor = true;
+            nameTagfreezeCheckBox.AutoSize = true;
+            nameTagfreezeCheckBox.Location = new Point(443, 463);
+            nameTagfreezeCheckBox.Name = "nameTagfreezeCheckBox";
+            nameTagfreezeCheckBox.Size = new Size(59, 19);
+            nameTagfreezeCheckBox.TabIndex = 176;
+            nameTagfreezeCheckBox.Text = "Freeze";
+            nameTagfreezeCheckBox.UseVisualStyleBackColor = true;
+            nameTagfreezeCheckBox.CheckedChanged += nameTagfreezeCheckBox_CheckedChanged;
             // 
-            // checkBox21
+            // explanationTextTagfreezeCheckBox
             // 
-            checkBox21.AutoSize = true;
-            checkBox21.Location = new Point(443, 526);
-            checkBox21.Name = "checkBox21";
-            checkBox21.Size = new Size(59, 19);
-            checkBox21.TabIndex = 177;
-            checkBox21.Text = "Freeze";
-            checkBox21.UseVisualStyleBackColor = true;
+            explanationTextTagfreezeCheckBox.AutoSize = true;
+            explanationTextTagfreezeCheckBox.Location = new Point(443, 513);
+            explanationTextTagfreezeCheckBox.Name = "explanationTextTagfreezeCheckBox";
+            explanationTextTagfreezeCheckBox.Size = new Size(59, 19);
+            explanationTextTagfreezeCheckBox.TabIndex = 177;
+            explanationTextTagfreezeCheckBox.Text = "Freeze";
+            explanationTextTagfreezeCheckBox.UseVisualStyleBackColor = true;
+            explanationTextTagfreezeCheckBox.CheckedChanged += explanationTextTagfreezeCheckBox_CheckedChanged;
             // 
-            // jacketPictureBox
+            // iconPictureBox
             // 
-            jacketPictureBox.Location = new Point(1050, 72);
-            jacketPictureBox.Margin = new Padding(3, 2, 3, 2);
-            jacketPictureBox.Name = "jacketPictureBox";
-            jacketPictureBox.Size = new Size(256, 256);
-            jacketPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-            jacketPictureBox.TabIndex = 178;
-            jacketPictureBox.TabStop = false;
+            iconPictureBox.Location = new Point(1050, 59);
+            iconPictureBox.Margin = new Padding(3, 2, 3, 2);
+            iconPictureBox.Name = "iconPictureBox";
+            iconPictureBox.Size = new Size(256, 256);
+            iconPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            iconPictureBox.TabIndex = 178;
+            iconPictureBox.TabStop = false;
+            // 
+            // bIsInitItemfreezeCheckBox
+            // 
+            bIsInitItemfreezeCheckBox.AutoSize = true;
+            bIsInitItemfreezeCheckBox.Location = new Point(443, 559);
+            bIsInitItemfreezeCheckBox.Name = "bIsInitItemfreezeCheckBox";
+            bIsInitItemfreezeCheckBox.Size = new Size(59, 19);
+            bIsInitItemfreezeCheckBox.TabIndex = 179;
+            bIsInitItemfreezeCheckBox.Text = "Freeze";
+            bIsInitItemfreezeCheckBox.UseVisualStyleBackColor = true;
+            bIsInitItemfreezeCheckBox.CheckedChanged += bIsInitItemfreezeCheckBox_CheckedChanged;
+            // 
+            // ramSaveCheckBox
+            // 
+            ramSaveCheckBox.AutoSize = true;
+            ramSaveCheckBox.Checked = true;
+            ramSaveCheckBox.CheckState = CheckState.Checked;
+            ramSaveCheckBox.Location = new Point(104, 640);
+            ramSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
+            ramSaveCheckBox.MinimumSize = new Size(0, 36);
+            ramSaveCheckBox.Name = "ramSaveCheckBox";
+            ramSaveCheckBox.Size = new Size(110, 36);
+            ramSaveCheckBox.TabIndex = 234;
+            ramSaveCheckBox.Text = "Keep every\n change in RAM";
+            ramSaveCheckBox.TextAlign = ContentAlignment.MiddleCenter;
+            ramSaveCheckBox.UseVisualStyleBackColor = true;
+            ramSaveCheckBox.CheckedChanged += ramSaveCheckBox_CheckedChanged;
+            // 
+            // saveButton
+            // 
+            saveButton.Location = new Point(220, 647);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(92, 23);
+            saveButton.TabIndex = 233;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
+            // 
+            // autoSaveCheckBox
+            // 
+            autoSaveCheckBox.AutoSize = true;
+            autoSaveCheckBox.Location = new Point(323, 650);
+            autoSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
+            autoSaveCheckBox.MinimumSize = new Size(110, 19);
+            autoSaveCheckBox.Name = "autoSaveCheckBox";
+            autoSaveCheckBox.Size = new Size(110, 19);
+            autoSaveCheckBox.TabIndex = 232;
+            autoSaveCheckBox.Text = "Auto Save Edits";
+            autoSaveCheckBox.UseVisualStyleBackColor = true;
+            autoSaveCheckBox.CheckedChanged += autoSaveCheckBox_CheckedChanged;
             // 
             // Icon
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(jacketPictureBox);
-            Controls.Add(checkBox21);
-            Controls.Add(checkBox20);
-            Controls.Add(checkBox19);
-            Controls.Add(checkBox18);
-            Controls.Add(checkBox17);
-            Controls.Add(checkBox16);
-            Controls.Add(checkBox15);
-            Controls.Add(checkBox14);
-            Controls.Add(checkBox11);
+            Controls.Add(ramSaveCheckBox);
+            Controls.Add(saveButton);
+            Controls.Add(autoSaveCheckBox);
+            Controls.Add(bIsInitItemfreezeCheckBox);
+            Controls.Add(iconPictureBox);
+            Controls.Add(explanationTextTagfreezeCheckBox);
+            Controls.Add(nameTagfreezeCheckBox);
+            Controls.Add(iconAcquisitionWayfreezeCheckBox);
+            Controls.Add(iconNamefreezeCheckBox);
+            Controls.Add(gainWaccaPointfreezeCheckBox);
+            Controls.Add(ItemActivateEndTimefreezeCheckBox);
+            Controls.Add(itemActivateStartTimefreezeChechBox);
+            Controls.Add(iconRarityfreezeCheckBox);
+            Controls.Add(iconTextureNamefreezeCheckBox);
             Controls.Add(progressBar2);
-            Controls.Add(comboBox1);
-            Controls.Add(button7);
-            Controls.Add(button5);
-            Controls.Add(button6);
-            Controls.Add(button4);
-            Controls.Add(checkBox12);
-            Controls.Add(checkBox7);
-            Controls.Add(checkBox8);
-            Controls.Add(checkBox9);
-            Controls.Add(checkBox10);
-            Controls.Add(checkBox5);
-            Controls.Add(checkBox6);
-            Controls.Add(checkBox4);
-            Controls.Add(checkBox3);
-            Controls.Add(checkBox2);
-            Controls.Add(button2);
-            Controls.Add(textBox9);
-            Controls.Add(label12);
-            Controls.Add(textBox10);
-            Controls.Add(label13);
-            Controls.Add(label14);
-            Controls.Add(textBox11);
-            Controls.Add(label15);
-            Controls.Add(textBox12);
-            Controls.Add(label16);
-            Controls.Add(checkBox1);
-            Controls.Add(textBox13);
-            Controls.Add(label17);
-            Controls.Add(textBox14);
-            Controls.Add(label18);
-            Controls.Add(textBox15);
-            Controls.Add(label19);
-            Controls.Add(textBox16);
-            Controls.Add(label20);
-            Controls.Add(label21);
+            Controls.Add(iconid);
+            Controls.Add(validateButton);
+            Controls.Add(previousButton);
+            Controls.Add(nextButton);
+            Controls.Add(searchPreviousButton);
+            Controls.Add(filtericonTextureNameCheckBox);
+            Controls.Add(filtericonRarityCheckBox);
+            Controls.Add(filteritemActivateStartTimeCheckBox);
+            Controls.Add(filteritemActivateEndTimeCheckBox);
+            Controls.Add(filterGainWaccaPointCheckBox);
+            Controls.Add(filtericonNameCheckBox);
+            Controls.Add(filtericonAcquisitionWayCheckBox);
+            Controls.Add(filterNameTagCheckBox);
+            Controls.Add(filterexplanationTextTagCheckBox);
+            Controls.Add(filterbIsInitItemEnableCb);
+            Controls.Add(searchButton);
+            Controls.Add(filterexplanationTextTagTextBox);
+            Controls.Add(filterexplanationTextTagLabel);
+            Controls.Add(filterNameTagTextBox);
+            Controls.Add(filterNameTagLabel);
+            Controls.Add(searchLabel);
+            Controls.Add(filtericonAcquisitionWayTextBox);
+            Controls.Add(filtericonAcquisitionWayLabel);
+            Controls.Add(filtericonNameTextBox);
+            Controls.Add(filtericonNameLabel);
+            Controls.Add(filterbIsInitItemCheckBox);
+            Controls.Add(filterGainWaccaPointTextBox);
+            Controls.Add(filterGainWaccaPointLabel);
+            Controls.Add(filteritemActivateEndTimeTextBox);
+            Controls.Add(filteritemActivateEndTimeLabel);
+            Controls.Add(filteritemActivateStartTimeTextBox);
+            Controls.Add(filteritemActivateStartTimeLabel);
+            Controls.Add(filtericonRarityTextBox);
+            Controls.Add(filtericonRarityLabel);
+            Controls.Add(menuFilterLabel);
             Controls.Add(progressBar1);
-            Controls.Add(textBox17);
-            Controls.Add(label22);
-            Controls.Add(label23);
-            Controls.Add(button3);
-            Controls.Add(button1);
-            Controls.Add(textBox7);
-            Controls.Add(label10);
-            Controls.Add(textBox8);
-            Controls.Add(label11);
-            Controls.Add(label9);
-            Controls.Add(textBox3);
-            Controls.Add(label5);
-            Controls.Add(textBox4);
-            Controls.Add(label8);
-            Controls.Add(label4);
+            Controls.Add(filtericonTextureNameTextBox);
+            Controls.Add(filtericonTextureNameLabel);
+            Controls.Add(iconIdlabel23);
+            Controls.Add(searchNextButton);
+            Controls.Add(injectNewButton);
+            Controls.Add(explanationTextTagTextBox);
+            Controls.Add(explanationTextTagLabel);
+            Controls.Add(nameTagTextBox);
+            Controls.Add(nameTagLabel);
+            Controls.Add(saveLabel);
+            Controls.Add(iconAcquisitionWayTextBox);
+            Controls.Add(iconAcquisitionWayLabel);
+            Controls.Add(iconNameTextBox);
+            Controls.Add(iconNameLabel);
+            Controls.Add(showingItemLabel);
             Controls.Add(bIsInitItem);
-            Controls.Add(textBox5);
-            Controls.Add(label6);
-            Controls.Add(textBox6);
-            Controls.Add(label7);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
-            Controls.Add(textBox2);
-            Controls.Add(label3);
-            Controls.Add(label1);
+            Controls.Add(gainWaccaPointTextBox);
+            Controls.Add(gainWaccaPointLabel);
+            Controls.Add(itemActivateEndTimeTextBox);
+            Controls.Add(itemActivateEndTimeLabel);
+            Controls.Add(itemActivateStartTimeTextBox);
+            Controls.Add(itemActivateStartTimeLabel);
+            Controls.Add(iconRarityTextBox);
+            Controls.Add(iconRarityLabel);
+            Controls.Add(menuIconLabel);
             Controls.Add(progressBar);
-            Controls.Add(artistTextBox);
-            Controls.Add(artistLabel);
-            Controls.Add(musicTextBox);
-            Controls.Add(musicLabel);
-            Controls.Add(createNewIcon);
+            Controls.Add(iconTextureNameTextBox);
+            Controls.Add(iconTextureNameLabel);
+            Controls.Add(iconIdTextBox);
+            Controls.Add(iconIdLabel);
+            Controls.Add(createNewIconButton);
             Name = "Icon";
             Size = new Size(1354, 720);
-            ((System.ComponentModel.ISupportInitialize)jacketPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button createNewIcon;
-        private TextBox artistTextBox;
-        private Label artistLabel;
-        private TextBox musicTextBox;
-        private Label musicLabel;
+        private Button createNewIconButton;
+        private TextBox iconTextureNameTextBox;
+        private Label iconTextureNameLabel;
+        private TextBox iconIdTextBox;
+        private Label iconIdLabel;
         private ProgressBar progressBar;
-        private Label label1;
-        private TextBox textBox1;
-        private Label label2;
-        private TextBox textBox2;
-        private Label label3;
-        private TextBox textBox5;
-        private Label label6;
-        private TextBox textBox6;
-        private Label label7;
+        private Label menuIconLabel;
+        private TextBox itemActivateStartTimeTextBox;
+        private Label itemActivateStartTimeLabel;
+        private TextBox iconRarityTextBox;
+        private Label iconRarityLabel;
+        private TextBox gainWaccaPointTextBox;
+        private Label gainWaccaPointLabel;
+        private TextBox itemActivateEndTimeTextBox;
+        private Label itemActivateEndTimeLabel;
         private CheckBox bIsInitItem;
-        private Label label4;
-        private TextBox textBox3;
-        private Label label5;
-        private TextBox textBox4;
-        private Label label8;
-        private Label label9;
-        private TextBox textBox7;
-        private Label label10;
-        private TextBox textBox8;
-        private Label label11;
-        private Button button1;
-        private Button button2;
-        private TextBox textBox9;
-        private Label label12;
-        private TextBox textBox10;
-        private Label label13;
-        private Label label14;
-        private TextBox textBox11;
-        private Label label15;
-        private TextBox textBox12;
-        private Label label16;
-        private CheckBox checkBox1;
-        private TextBox textBox13;
-        private Label label17;
-        private TextBox textBox14;
-        private Label label18;
-        private TextBox textBox15;
-        private Label label19;
-        private TextBox textBox16;
-        private Label label20;
-        private Label label21;
+        private Label showingItemLabel;
+        private TextBox iconAcquisitionWayTextBox;
+        private Label iconAcquisitionWayLabel;
+        private TextBox iconNameTextBox;
+        private Label iconNameLabel;
+        private Label saveLabel;
+        private TextBox explanationTextTagTextBox;
+        private Label explanationTextTagLabel;
+        private TextBox nameTagTextBox;
+        private Label nameTagLabel;
+        private Button injectNewButton;
+        private Button searchButton;
+        private TextBox filterexplanationTextTagTextBox;
+        private Label filterexplanationTextTagLabel;
+        private TextBox filterNameTagTextBox;
+        private Label filterNameTagLabel;
+        private Label searchLabel;
+        private TextBox filtericonAcquisitionWayTextBox;
+        private Label filtericonAcquisitionWayLabel;
+        private TextBox filtericonNameTextBox;
+        private Label filtericonNameLabel;
+        private CheckBox filterbIsInitItemCheckBox;
+        private TextBox filterGainWaccaPointTextBox;
+        private Label filterGainWaccaPointLabel;
+        private TextBox filteritemActivateEndTimeTextBox;
+        private Label filteritemActivateEndTimeLabel;
+        private TextBox filteritemActivateStartTimeTextBox;
+        private Label filteritemActivateStartTimeLabel;
+        private TextBox filtericonRarityTextBox;
+        private Label filtericonRarityLabel;
+        private Label menuFilterLabel;
         private ProgressBar progressBar1;
-        private TextBox textBox17;
-        private Label label22;
-        private Label label23;
-        private Button button3;
-        private CheckBox checkBox2;
-        private CheckBox checkBox3;
-        private CheckBox checkBox4;
-        private CheckBox checkBox5;
-        private CheckBox checkBox6;
-        private CheckBox checkBox7;
-        private CheckBox checkBox8;
-        private CheckBox checkBox9;
-        private CheckBox checkBox10;
-        private CheckBox checkBox12;
-        private Button button4;
-        private Button button5;
-        private Button button6;
-        private Button button7;
-        private ComboBox comboBox1;
+        private TextBox filtericonTextureNameTextBox;
+        private Label filtericonTextureNameLabel;
+        private Label iconIdlabel23;
+        private Button searchNextButton;
+        private CheckBox filterbIsInitItemEnableCb;
+        private CheckBox filterexplanationTextTagCheckBox;
+        private CheckBox filterNameTagCheckBox;
+        private CheckBox filtericonNameCheckBox;
+        private CheckBox filtericonAcquisitionWayCheckBox;
+        private CheckBox filtericonRarityCheckBox;
+        private CheckBox filteritemActivateStartTimeCheckBox;
+        private CheckBox filteritemActivateEndTimeCheckBox;
+        private CheckBox filterGainWaccaPointCheckBox;
+        private CheckBox filtericonTextureNameCheckBox;
+        private Button searchPreviousButton;
+        private Button previousButton;
+        private Button nextButton;
+        private Button validateButton;
+        private ComboBox iconid;
         private ProgressBar progressBar2;
-        private CheckBox checkBox11;
-        private CheckBox checkBox14;
-        private CheckBox checkBox15;
-        private CheckBox checkBox16;
-        private CheckBox checkBox17;
-        private CheckBox checkBox18;
-        private CheckBox checkBox19;
-        private CheckBox checkBox20;
-        private CheckBox checkBox21;
-        private PictureBox jacketPictureBox;
+        private CheckBox iconTextureNamefreezeCheckBox;
+        private CheckBox iconRarityfreezeCheckBox;
+        private CheckBox itemActivateStartTimefreezeChechBox;
+        private CheckBox ItemActivateEndTimefreezeCheckBox;
+        private CheckBox gainWaccaPointfreezeCheckBox;
+        private CheckBox iconNamefreezeCheckBox;
+        private CheckBox iconAcquisitionWayfreezeCheckBox;
+        private CheckBox nameTagfreezeCheckBox;
+        private CheckBox explanationTextTagfreezeCheckBox;
+        private PictureBox iconPictureBox;
+        private CheckBox bIsInitItemfreezeCheckBox;
+        private CheckBox ramSaveCheckBox;
+        private Button saveButton;
+        private CheckBox autoSaveCheckBox;
     }
 }
