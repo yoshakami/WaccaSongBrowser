@@ -113,6 +113,8 @@
             itemActivateEndTimeLabel = new Label();
             itemActivateStartTimeTextBox = new TextBox();
             itemActivateStartTimeLabel = new Label();
+            injectWaccaGradeButton = new Button();
+            createWaccaGradeButton = new Button();
             SuspendLayout();
             // 
             // filtergradePartsId01CheckBox
@@ -922,10 +924,32 @@
             itemActivateStartTimeLabel.TabIndex = 309;
             itemActivateStartTimeLabel.Text = "ItemActivateStartTime   <- AAAAMMDDHH  set to 0 for no restriction";
             // 
+            // injectWaccaGradeButton
+            // 
+            injectWaccaGradeButton.Location = new Point(1064, 661);
+            injectWaccaGradeButton.Name = "injectWaccaGradeButton";
+            injectWaccaGradeButton.Size = new Size(227, 47);
+            injectWaccaGradeButton.TabIndex = 327;
+            injectWaccaGradeButton.Text = "Inject Titles.txt for GradeTable";
+            injectWaccaGradeButton.UseVisualStyleBackColor = true;
+            injectWaccaGradeButton.Click += injectWaccaGradeButton_Click_1;
+            // 
+            // createWaccaGradeButton
+            // 
+            createWaccaGradeButton.Location = new Point(733, 661);
+            createWaccaGradeButton.Name = "createWaccaGradeButton";
+            createWaccaGradeButton.Size = new Size(227, 47);
+            createWaccaGradeButton.TabIndex = 326;
+            createWaccaGradeButton.Text = "Create Titles.txt";
+            createWaccaGradeButton.UseVisualStyleBackColor = true;
+            createWaccaGradeButton.Click += createWaccaGradeButton_Click;
+            // 
             // Title
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(injectWaccaGradeButton);
+            Controls.Add(createWaccaGradeButton);
             Controls.Add(gainWaccaPointfreezeCheckBox);
             Controls.Add(itemActivateEndTimefreezeTextBox);
             Controls.Add(itemActivateStartTimefreezeTextBox);
@@ -1103,5 +1127,7 @@
         private Label itemActivateEndTimeLabel;
         private TextBox itemActivateStartTimeTextBox;
         private Label itemActivateStartTimeLabel;
+        private Button injectWaccaGradeButton;
+        private Button createWaccaGradeButton;
     }
 }

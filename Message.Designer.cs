@@ -126,7 +126,6 @@
             injectWaccaGradeButton.TabIndex = 9;
             injectWaccaGradeButton.Text = "Inject Titles.txt for GradeTable";
             injectWaccaGradeButton.UseVisualStyleBackColor = true;
-            injectWaccaGradeButton.Click += injectWaccaGradeButton_Click;
             // 
             // createWaccaGradeButton
             // 
@@ -136,7 +135,6 @@
             createWaccaGradeButton.TabIndex = 8;
             createWaccaGradeButton.Text = "Create Titles.txt";
             createWaccaGradeButton.UseVisualStyleBackColor = true;
-            createWaccaGradeButton.Click += createWaccaGradeButton_Click;
             // 
             // Message
             // 

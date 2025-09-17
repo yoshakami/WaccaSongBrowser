@@ -86,33 +86,7 @@ namespace WaccaSongBrowser
             }
             return 0;
         }
-        static UAsset GradeTable;
-        public static sbyte ReadGrade(string uassetPath)
-        {
-            text.Clear();
-            if (!File.Exists(uassetPath)) return -1;
-            // Load the asset (assumes .uexp is in the same folder)
-            GradeTable = new UAsset(uassetPath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
-            int id;
-            // Go through each export to find the DataTable
-            foreach (var export in GradeTable.Exports)
-            {
-                if (export is DataTableExport dataTable)
-                {
-                    foreach (var row in dataTable.Table.Data)
-                    {
-                        string ConditionId = row.Name.ToString();              // <-- "010010101"
-                        if (row is StructPropertyData rowStruct)
-                        {
-                            id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GradeId");
-                            if (id == 0) return -1;
-                            text.Add(WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag"));
-                        }
-                    }
-                }
-            }
-            return 0;
-        }
+        
         public void ProcessFile(string assetPath, bool inject = false, bool waccaTxt = false)
         {
             // Load the asset

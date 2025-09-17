@@ -85,7 +85,6 @@
             label4.Size = new Size(93, 15);
             label4.TabIndex = 4;
             label4.Text = "IconTable.uasset";
-            label4.Visible = false;
             // 
             // label5
             // 
@@ -122,7 +121,6 @@
             label8.Size = new Size(183, 15);
             label8.TabIndex = 8;
             label8.Text = "UserPlateBackgroundTable.uasset";
-            label8.Visible = false;
             // 
             // label9
             // 
