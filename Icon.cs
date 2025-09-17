@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UAssetAPI;
+using UAssetAPI.ExportTypes;
+using UAssetAPI.PropertyTypes.Structs;
 
 namespace WaccaSongBrowser
 {
@@ -16,7 +19,39 @@ namespace WaccaSongBrowser
         {
             InitializeComponent();
         }
-
+        static UAsset IconTable;
+        static List<string> text = new List<string>();
+        static List<string> textVanilla = new List<string>();
+        static string messageFolder;
+        static string filePath;
+        public static sbyte ReadGrade(string uassetPath)
+        {
+            filePath = uassetPath;
+            text.Clear();
+            if (!File.Exists(uassetPath)) return -1;
+            // Load the asset (assumes .uexp is in the same folder)
+            IconTable = new UAsset(uassetPath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
+            int id;
+            // Go through each export to find the DataTable
+            foreach (var export in IconTable.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        string ConditionId = row.Name.ToString();              // <-- "010010101"
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "IconId");
+                            if (id == 0) return -1;
+                            //text.Add(WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag"));
+                            //TODO: fill list
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
         private void validateButton_Click(object sender, EventArgs e)
         {
 
