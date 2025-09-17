@@ -22,7 +22,7 @@ namespace WaccaSongBrowser
             // see right under this function
             InitializeComponent();
             FillLists();
-            this.Size = new Size(1354, 720);  // 1338 681 with all the padding
+            this.Size = new Size(1354, 720);  // 1338, 681 with all the padding
             // load the "main page"
             LoadPage(new Menu());
         }

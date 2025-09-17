@@ -278,7 +278,7 @@
             progressBar3.Location = new Point(686, 21);
             progressBar3.Margin = new Padding(0);
             progressBar3.Name = "progressBar3";
-            progressBar3.Size = new Size(19, 579);
+            progressBar3.Size = new Size(19, 600);
             progressBar3.TabIndex = 239;
             // 
             // gradeRarityTextBox
@@ -1036,7 +1036,7 @@
             Controls.Add(gradePartsId01Label);
             Controls.Add(gradeidLabel);
             Name = "Title";
-            Size = new Size(1354, 720);
+            Size = new Size(1338, 681);
             ResumeLayout(false);
             PerformLayout();
         }

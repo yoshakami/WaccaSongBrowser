@@ -149,7 +149,7 @@
             Controls.Add(createPo);
             Controls.Add(outputMessage);
             Name = "Message";
-            Size = new Size(1364, 720);
+            Size = new Size(1338, 681);
             ResumeLayout(false);
             PerformLayout();
         }

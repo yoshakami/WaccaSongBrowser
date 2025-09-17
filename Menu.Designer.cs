@@ -154,7 +154,7 @@
             Controls.Add(labal2);
             Controls.Add(label1);
             Name = "Menu";
-            Size = new Size(1364, 720);
+            Size = new Size(1338, 681);
             ResumeLayout(false);
             PerformLayout();
         }

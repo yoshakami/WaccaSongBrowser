@@ -115,7 +115,7 @@
             // 
             // createNewIconButton
             // 
-            createNewIconButton.Location = new Point(274, 591);
+            createNewIconButton.Location = new Point(274, 589);
             createNewIconButton.Name = "createNewIconButton";
             createNewIconButton.Size = new Size(228, 42);
             createNewIconButton.TabIndex = 3;
@@ -125,7 +125,7 @@
             // 
             // iconTextureNameTextBox
             // 
-            iconTextureNameTextBox.Location = new Point(23, 111);
+            iconTextureNameTextBox.Location = new Point(23, 109);
             iconTextureNameTextBox.Margin = new Padding(3, 2, 3, 2);
             iconTextureNameTextBox.Name = "iconTextureNameTextBox";
             iconTextureNameTextBox.Size = new Size(407, 23);
@@ -134,7 +134,7 @@
             // iconTextureNameLabel
             // 
             iconTextureNameLabel.AutoSize = true;
-            iconTextureNameLabel.Location = new Point(23, 94);
+            iconTextureNameLabel.Location = new Point(23, 92);
             iconTextureNameLabel.Name = "iconTextureNameLabel";
             iconTextureNameLabel.Size = new Size(305, 15);
             iconTextureNameLabel.TabIndex = 7;
@@ -142,7 +142,7 @@
             // 
             // iconIdTextBox
             // 
-            iconIdTextBox.Location = new Point(23, 61);
+            iconIdTextBox.Location = new Point(23, 59);
             iconIdTextBox.Margin = new Padding(3, 2, 3, 2);
             iconIdTextBox.Name = "iconIdTextBox";
             iconIdTextBox.Size = new Size(407, 23);
@@ -151,7 +151,7 @@
             // iconIdLabel
             // 
             iconIdLabel.AutoSize = true;
-            iconIdLabel.Location = new Point(23, 44);
+            iconIdLabel.Location = new Point(23, 42);
             iconIdLabel.Name = "iconIdLabel";
             iconIdLabel.Size = new Size(354, 15);
             iconIdLabel.TabIndex = 5;
@@ -161,7 +161,7 @@
             // 
             progressBar.BackColor = SystemColors.ActiveCaptionText;
             progressBar.ForeColor = SystemColors.Desktop;
-            progressBar.Location = new Point(532, 43);
+            progressBar.Location = new Point(532, 41);
             progressBar.Margin = new Padding(0);
             progressBar.Name = "progressBar";
             progressBar.Size = new Size(19, 626);
@@ -170,7 +170,7 @@
             // menuIconLabel
             // 
             menuIconLabel.AutoSize = true;
-            menuIconLabel.Location = new Point(193, 21);
+            menuIconLabel.Location = new Point(193, 19);
             menuIconLabel.Name = "menuIconLabel";
             menuIconLabel.Size = new Size(30, 15);
             menuIconLabel.TabIndex = 81;
@@ -178,7 +178,7 @@
             // 
             // itemActivateStartTimeTextBox
             // 
-            itemActivateStartTimeTextBox.Location = new Point(23, 211);
+            itemActivateStartTimeTextBox.Location = new Point(23, 209);
             itemActivateStartTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             itemActivateStartTimeTextBox.Name = "itemActivateStartTimeTextBox";
             itemActivateStartTimeTextBox.Size = new Size(407, 23);
@@ -187,7 +187,7 @@
             // itemActivateStartTimeLabel
             // 
             itemActivateStartTimeLabel.AutoSize = true;
-            itemActivateStartTimeLabel.Location = new Point(23, 194);
+            itemActivateStartTimeLabel.Location = new Point(23, 192);
             itemActivateStartTimeLabel.Name = "itemActivateStartTimeLabel";
             itemActivateStartTimeLabel.Size = new Size(372, 15);
             itemActivateStartTimeLabel.TabIndex = 85;
@@ -195,7 +195,7 @@
             // 
             // iconRarityTextBox
             // 
-            iconRarityTextBox.Location = new Point(23, 161);
+            iconRarityTextBox.Location = new Point(23, 159);
             iconRarityTextBox.Margin = new Padding(3, 2, 3, 2);
             iconRarityTextBox.Name = "iconRarityTextBox";
             iconRarityTextBox.Size = new Size(407, 23);
@@ -204,7 +204,7 @@
             // iconRarityLabel
             // 
             iconRarityLabel.AutoSize = true;
-            iconRarityLabel.Location = new Point(23, 144);
+            iconRarityLabel.Location = new Point(23, 142);
             iconRarityLabel.Name = "iconRarityLabel";
             iconRarityLabel.Size = new Size(180, 15);
             iconRarityLabel.TabIndex = 83;
@@ -212,7 +212,7 @@
             // 
             // gainWaccaPointTextBox
             // 
-            gainWaccaPointTextBox.Location = new Point(23, 311);
+            gainWaccaPointTextBox.Location = new Point(23, 309);
             gainWaccaPointTextBox.Margin = new Padding(3, 2, 3, 2);
             gainWaccaPointTextBox.Name = "gainWaccaPointTextBox";
             gainWaccaPointTextBox.Size = new Size(407, 23);
@@ -221,7 +221,7 @@
             // gainWaccaPointLabel
             // 
             gainWaccaPointLabel.AutoSize = true;
-            gainWaccaPointLabel.Location = new Point(23, 294);
+            gainWaccaPointLabel.Location = new Point(23, 292);
             gainWaccaPointLabel.Name = "gainWaccaPointLabel";
             gainWaccaPointLabel.Size = new Size(183, 15);
             gainWaccaPointLabel.TabIndex = 89;
@@ -229,7 +229,7 @@
             // 
             // itemActivateEndTimeTextBox
             // 
-            itemActivateEndTimeTextBox.Location = new Point(23, 261);
+            itemActivateEndTimeTextBox.Location = new Point(23, 259);
             itemActivateEndTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             itemActivateEndTimeTextBox.Name = "itemActivateEndTimeTextBox";
             itemActivateEndTimeTextBox.Size = new Size(407, 23);
@@ -238,7 +238,7 @@
             // itemActivateEndTimeLabel
             // 
             itemActivateEndTimeLabel.AutoSize = true;
-            itemActivateEndTimeLabel.Location = new Point(23, 244);
+            itemActivateEndTimeLabel.Location = new Point(23, 242);
             itemActivateEndTimeLabel.Name = "itemActivateEndTimeLabel";
             itemActivateEndTimeLabel.Size = new Size(368, 15);
             itemActivateEndTimeLabel.TabIndex = 87;
@@ -247,7 +247,7 @@
             // bIsInitItem
             // 
             bIsInitItem.AutoSize = true;
-            bIsInitItem.Location = new Point(23, 551);
+            bIsInitItem.Location = new Point(23, 549);
             bIsInitItem.Name = "bIsInitItem";
             bIsInitItem.Size = new Size(288, 34);
             bIsInitItem.TabIndex = 90;
@@ -257,7 +257,7 @@
             // showingItemLabel
             // 
             showingItemLabel.AutoSize = true;
-            showingItemLabel.Location = new Point(812, 588);
+            showingItemLabel.Location = new Point(812, 586);
             showingItemLabel.MinimumSize = new Size(150, 15);
             showingItemLabel.Name = "showingItemLabel";
             showingItemLabel.Size = new Size(150, 15);
@@ -267,7 +267,7 @@
             // 
             // iconAcquisitionWayTextBox
             // 
-            iconAcquisitionWayTextBox.Location = new Point(23, 411);
+            iconAcquisitionWayTextBox.Location = new Point(23, 409);
             iconAcquisitionWayTextBox.Margin = new Padding(3, 2, 3, 2);
             iconAcquisitionWayTextBox.Name = "iconAcquisitionWayTextBox";
             iconAcquisitionWayTextBox.Size = new Size(407, 23);
@@ -276,7 +276,7 @@
             // iconAcquisitionWayLabel
             // 
             iconAcquisitionWayLabel.AutoSize = true;
-            iconAcquisitionWayLabel.Location = new Point(23, 394);
+            iconAcquisitionWayLabel.Location = new Point(23, 392);
             iconAcquisitionWayLabel.Name = "iconAcquisitionWayLabel";
             iconAcquisitionWayLabel.Size = new Size(407, 15);
             iconAcquisitionWayLabel.TabIndex = 95;
@@ -284,7 +284,7 @@
             // 
             // iconNameTextBox
             // 
-            iconNameTextBox.Location = new Point(23, 361);
+            iconNameTextBox.Location = new Point(23, 359);
             iconNameTextBox.Margin = new Padding(3, 2, 3, 2);
             iconNameTextBox.Name = "iconNameTextBox";
             iconNameTextBox.Size = new Size(407, 23);
@@ -293,7 +293,7 @@
             // iconNameLabel
             // 
             iconNameLabel.AutoSize = true;
-            iconNameLabel.Location = new Point(23, 344);
+            iconNameLabel.Location = new Point(23, 342);
             iconNameLabel.Name = "iconNameLabel";
             iconNameLabel.Size = new Size(196, 15);
             iconNameLabel.TabIndex = 93;
@@ -313,7 +313,7 @@
             // explanationTextTagTextBox
             // 
             explanationTextTagTextBox.Enabled = false;
-            explanationTextTagTextBox.Location = new Point(23, 511);
+            explanationTextTagTextBox.Location = new Point(23, 509);
             explanationTextTagTextBox.Margin = new Padding(3, 2, 3, 2);
             explanationTextTagTextBox.Name = "explanationTextTagTextBox";
             explanationTextTagTextBox.Size = new Size(407, 23);
@@ -322,7 +322,7 @@
             // explanationTextTagLabel
             // 
             explanationTextTagLabel.AutoSize = true;
-            explanationTextTagLabel.Location = new Point(23, 494);
+            explanationTextTagLabel.Location = new Point(23, 492);
             explanationTextTagLabel.Name = "explanationTextTagLabel";
             explanationTextTagLabel.Size = new Size(271, 15);
             explanationTextTagLabel.TabIndex = 100;
@@ -331,7 +331,7 @@
             // nameTagTextBox
             // 
             nameTagTextBox.Enabled = false;
-            nameTagTextBox.Location = new Point(23, 461);
+            nameTagTextBox.Location = new Point(23, 459);
             nameTagTextBox.Margin = new Padding(3, 2, 3, 2);
             nameTagTextBox.Name = "nameTagTextBox";
             nameTagTextBox.Size = new Size(407, 23);
@@ -340,7 +340,7 @@
             // nameTagLabel
             // 
             nameTagLabel.AutoSize = true;
-            nameTagLabel.Location = new Point(23, 444);
+            nameTagLabel.Location = new Point(23, 442);
             nameTagLabel.Name = "nameTagLabel";
             nameTagLabel.Size = new Size(220, 15);
             nameTagLabel.TabIndex = 98;
@@ -348,7 +348,7 @@
             // 
             // injectNewButton
             // 
-            injectNewButton.Location = new Point(23, 591);
+            injectNewButton.Location = new Point(23, 589);
             injectNewButton.Name = "injectNewButton";
             injectNewButton.Size = new Size(229, 42);
             injectNewButton.TabIndex = 101;
@@ -358,7 +358,7 @@
             // 
             // searchButton
             // 
-            searchButton.Location = new Point(572, 606);
+            searchButton.Location = new Point(572, 604);
             searchButton.Name = "searchButton";
             searchButton.Size = new Size(149, 27);
             searchButton.TabIndex = 127;
@@ -369,7 +369,7 @@
             // filterexplanationTextTagTextBox
             // 
             filterexplanationTextTagTextBox.Enabled = false;
-            filterexplanationTextTagTextBox.Location = new Point(595, 511);
+            filterexplanationTextTagTextBox.Location = new Point(595, 509);
             filterexplanationTextTagTextBox.Margin = new Padding(3, 2, 3, 2);
             filterexplanationTextTagTextBox.Name = "filterexplanationTextTagTextBox";
             filterexplanationTextTagTextBox.Size = new Size(367, 23);
@@ -378,7 +378,7 @@
             // filterexplanationTextTagLabel
             // 
             filterexplanationTextTagLabel.AutoSize = true;
-            filterexplanationTextTagLabel.Location = new Point(595, 494);
+            filterexplanationTextTagLabel.Location = new Point(595, 492);
             filterexplanationTextTagLabel.Name = "filterexplanationTextTagLabel";
             filterexplanationTextTagLabel.Size = new Size(108, 15);
             filterexplanationTextTagLabel.TabIndex = 126;
@@ -387,7 +387,7 @@
             // filterNameTagTextBox
             // 
             filterNameTagTextBox.Enabled = false;
-            filterNameTagTextBox.Location = new Point(595, 461);
+            filterNameTagTextBox.Location = new Point(595, 459);
             filterNameTagTextBox.Margin = new Padding(3, 2, 3, 2);
             filterNameTagTextBox.Name = "filterNameTagTextBox";
             filterNameTagTextBox.Size = new Size(367, 23);
@@ -396,7 +396,7 @@
             // filterNameTagLabel
             // 
             filterNameTagLabel.AutoSize = true;
-            filterNameTagLabel.Location = new Point(595, 444);
+            filterNameTagLabel.Location = new Point(595, 442);
             filterNameTagLabel.Name = "filterNameTagLabel";
             filterNameTagLabel.Size = new Size(57, 15);
             filterNameTagLabel.TabIndex = 124;
@@ -405,7 +405,7 @@
             // searchLabel
             // 
             searchLabel.AutoSize = true;
-            searchLabel.Location = new Point(729, 612);
+            searchLabel.Location = new Point(729, 610);
             searchLabel.Name = "searchLabel";
             searchLabel.Size = new Size(63, 15);
             searchLabel.TabIndex = 122;
@@ -413,7 +413,7 @@
             // 
             // filtericonAcquisitionWayTextBox
             // 
-            filtericonAcquisitionWayTextBox.Location = new Point(595, 411);
+            filtericonAcquisitionWayTextBox.Location = new Point(595, 409);
             filtericonAcquisitionWayTextBox.Margin = new Padding(3, 2, 3, 2);
             filtericonAcquisitionWayTextBox.Name = "filtericonAcquisitionWayTextBox";
             filtericonAcquisitionWayTextBox.Size = new Size(367, 23);
@@ -422,7 +422,7 @@
             // filtericonAcquisitionWayLabel
             // 
             filtericonAcquisitionWayLabel.AutoSize = true;
-            filtericonAcquisitionWayLabel.Location = new Point(595, 394);
+            filtericonAcquisitionWayLabel.Location = new Point(595, 392);
             filtericonAcquisitionWayLabel.Name = "filtericonAcquisitionWayLabel";
             filtericonAcquisitionWayLabel.Size = new Size(119, 15);
             filtericonAcquisitionWayLabel.TabIndex = 121;
@@ -430,7 +430,7 @@
             // 
             // filtericonNameTextBox
             // 
-            filtericonNameTextBox.Location = new Point(595, 361);
+            filtericonNameTextBox.Location = new Point(595, 359);
             filtericonNameTextBox.Margin = new Padding(3, 2, 3, 2);
             filtericonNameTextBox.Name = "filtericonNameTextBox";
             filtericonNameTextBox.Size = new Size(367, 23);
@@ -439,7 +439,7 @@
             // filtericonNameLabel
             // 
             filtericonNameLabel.AutoSize = true;
-            filtericonNameLabel.Location = new Point(595, 344);
+            filtericonNameLabel.Location = new Point(595, 342);
             filtericonNameLabel.Name = "filtericonNameLabel";
             filtericonNameLabel.Size = new Size(65, 15);
             filtericonNameLabel.TabIndex = 119;
@@ -448,7 +448,7 @@
             // filterbIsInitItemCheckBox
             // 
             filterbIsInitItemCheckBox.AutoSize = true;
-            filterbIsInitItemCheckBox.Location = new Point(595, 551);
+            filterbIsInitItemCheckBox.Location = new Point(595, 549);
             filterbIsInitItemCheckBox.Name = "filterbIsInitItemCheckBox";
             filterbIsInitItemCheckBox.Size = new Size(82, 19);
             filterbIsInitItemCheckBox.TabIndex = 117;
@@ -457,7 +457,7 @@
             // 
             // filterGainWaccaPointTextBox
             // 
-            filterGainWaccaPointTextBox.Location = new Point(595, 311);
+            filterGainWaccaPointTextBox.Location = new Point(595, 309);
             filterGainWaccaPointTextBox.Margin = new Padding(3, 2, 3, 2);
             filterGainWaccaPointTextBox.Name = "filterGainWaccaPointTextBox";
             filterGainWaccaPointTextBox.Size = new Size(367, 23);
@@ -466,7 +466,7 @@
             // filterGainWaccaPointLabel
             // 
             filterGainWaccaPointLabel.AutoSize = true;
-            filterGainWaccaPointLabel.Location = new Point(595, 294);
+            filterGainWaccaPointLabel.Location = new Point(595, 292);
             filterGainWaccaPointLabel.Name = "filterGainWaccaPointLabel";
             filterGainWaccaPointLabel.Size = new Size(94, 15);
             filterGainWaccaPointLabel.TabIndex = 116;
@@ -474,7 +474,7 @@
             // 
             // filteritemActivateEndTimeTextBox
             // 
-            filteritemActivateEndTimeTextBox.Location = new Point(595, 261);
+            filteritemActivateEndTimeTextBox.Location = new Point(595, 259);
             filteritemActivateEndTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             filteritemActivateEndTimeTextBox.Name = "filteritemActivateEndTimeTextBox";
             filteritemActivateEndTimeTextBox.Size = new Size(367, 23);
@@ -483,7 +483,7 @@
             // filteritemActivateEndTimeLabel
             // 
             filteritemActivateEndTimeLabel.AutoSize = true;
-            filteritemActivateEndTimeLabel.Location = new Point(595, 244);
+            filteritemActivateEndTimeLabel.Location = new Point(595, 242);
             filteritemActivateEndTimeLabel.Name = "filteritemActivateEndTimeLabel";
             filteritemActivateEndTimeLabel.Size = new Size(120, 15);
             filteritemActivateEndTimeLabel.TabIndex = 114;
@@ -491,7 +491,7 @@
             // 
             // filteritemActivateStartTimeTextBox
             // 
-            filteritemActivateStartTimeTextBox.Location = new Point(595, 211);
+            filteritemActivateStartTimeTextBox.Location = new Point(595, 209);
             filteritemActivateStartTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             filteritemActivateStartTimeTextBox.Name = "filteritemActivateStartTimeTextBox";
             filteritemActivateStartTimeTextBox.Size = new Size(367, 23);
@@ -500,7 +500,7 @@
             // filteritemActivateStartTimeLabel
             // 
             filteritemActivateStartTimeLabel.AutoSize = true;
-            filteritemActivateStartTimeLabel.Location = new Point(595, 194);
+            filteritemActivateStartTimeLabel.Location = new Point(595, 192);
             filteritemActivateStartTimeLabel.Name = "filteritemActivateStartTimeLabel";
             filteritemActivateStartTimeLabel.Size = new Size(124, 15);
             filteritemActivateStartTimeLabel.TabIndex = 112;
@@ -508,7 +508,7 @@
             // 
             // filtericonRarityTextBox
             // 
-            filtericonRarityTextBox.Location = new Point(595, 161);
+            filtericonRarityTextBox.Location = new Point(595, 159);
             filtericonRarityTextBox.Margin = new Padding(3, 2, 3, 2);
             filtericonRarityTextBox.Name = "filtericonRarityTextBox";
             filtericonRarityTextBox.Size = new Size(367, 23);
@@ -517,7 +517,7 @@
             // filtericonRarityLabel
             // 
             filtericonRarityLabel.AutoSize = true;
-            filtericonRarityLabel.Location = new Point(595, 144);
+            filtericonRarityLabel.Location = new Point(595, 142);
             filtericonRarityLabel.Name = "filtericonRarityLabel";
             filtericonRarityLabel.Size = new Size(60, 15);
             filtericonRarityLabel.TabIndex = 110;
@@ -526,7 +526,7 @@
             // menuFilterLabel
             // 
             menuFilterLabel.AutoSize = true;
-            menuFilterLabel.Location = new Point(740, 21);
+            menuFilterLabel.Location = new Point(740, 19);
             menuFilterLabel.Name = "menuFilterLabel";
             menuFilterLabel.Size = new Size(38, 15);
             menuFilterLabel.TabIndex = 108;
@@ -536,7 +536,7 @@
             // 
             progressBar1.BackColor = SystemColors.ActiveCaptionText;
             progressBar1.ForeColor = SystemColors.Desktop;
-            progressBar1.Location = new Point(984, 44);
+            progressBar1.Location = new Point(984, 42);
             progressBar1.Margin = new Padding(0);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(19, 625);
@@ -544,7 +544,7 @@
             // 
             // filtericonTextureNameTextBox
             // 
-            filtericonTextureNameTextBox.Location = new Point(595, 111);
+            filtericonTextureNameTextBox.Location = new Point(595, 109);
             filtericonTextureNameTextBox.Margin = new Padding(3, 2, 3, 2);
             filtericonTextureNameTextBox.Name = "filtericonTextureNameTextBox";
             filtericonTextureNameTextBox.Size = new Size(367, 23);
@@ -553,7 +553,7 @@
             // filtericonTextureNameLabel
             // 
             filtericonTextureNameLabel.AutoSize = true;
-            filtericonTextureNameLabel.Location = new Point(595, 94);
+            filtericonTextureNameLabel.Location = new Point(595, 92);
             filtericonTextureNameLabel.Name = "filtericonTextureNameLabel";
             filtericonTextureNameLabel.Size = new Size(100, 15);
             filtericonTextureNameLabel.TabIndex = 106;
@@ -562,7 +562,7 @@
             // iconIdlabel23
             // 
             iconIdlabel23.AutoSize = true;
-            iconIdlabel23.Location = new Point(607, 43);
+            iconIdlabel23.Location = new Point(607, 41);
             iconIdlabel23.Name = "iconIdlabel23";
             iconIdlabel23.Size = new Size(40, 15);
             iconIdlabel23.TabIndex = 104;
@@ -570,7 +570,7 @@
             // 
             // searchNextButton
             // 
-            searchNextButton.Location = new Point(812, 606);
+            searchNextButton.Location = new Point(812, 604);
             searchNextButton.Name = "searchNextButton";
             searchNextButton.Size = new Size(70, 27);
             searchNextButton.TabIndex = 102;
@@ -581,7 +581,7 @@
             // filterbIsInitItemEnableCb
             // 
             filterbIsInitItemEnableCb.AutoSize = true;
-            filterbIsInitItemEnableCb.Location = new Point(572, 553);
+            filterbIsInitItemEnableCb.Location = new Point(572, 551);
             filterbIsInitItemEnableCb.Name = "filterbIsInitItemEnableCb";
             filterbIsInitItemEnableCb.Size = new Size(15, 14);
             filterbIsInitItemEnableCb.TabIndex = 128;
@@ -591,7 +591,7 @@
             // filterexplanationTextTagCheckBox
             // 
             filterexplanationTextTagCheckBox.AutoSize = true;
-            filterexplanationTextTagCheckBox.Location = new Point(572, 517);
+            filterexplanationTextTagCheckBox.Location = new Point(572, 515);
             filterexplanationTextTagCheckBox.Name = "filterexplanationTextTagCheckBox";
             filterexplanationTextTagCheckBox.Size = new Size(15, 14);
             filterexplanationTextTagCheckBox.TabIndex = 129;
@@ -601,7 +601,7 @@
             // filterNameTagCheckBox
             // 
             filterNameTagCheckBox.AutoSize = true;
-            filterNameTagCheckBox.Location = new Point(572, 467);
+            filterNameTagCheckBox.Location = new Point(572, 465);
             filterNameTagCheckBox.Name = "filterNameTagCheckBox";
             filterNameTagCheckBox.Size = new Size(15, 14);
             filterNameTagCheckBox.TabIndex = 130;
@@ -611,7 +611,7 @@
             // filtericonNameCheckBox
             // 
             filtericonNameCheckBox.AutoSize = true;
-            filtericonNameCheckBox.Location = new Point(572, 367);
+            filtericonNameCheckBox.Location = new Point(572, 365);
             filtericonNameCheckBox.Name = "filtericonNameCheckBox";
             filtericonNameCheckBox.Size = new Size(15, 14);
             filtericonNameCheckBox.TabIndex = 132;
@@ -621,7 +621,7 @@
             // filtericonAcquisitionWayCheckBox
             // 
             filtericonAcquisitionWayCheckBox.AutoSize = true;
-            filtericonAcquisitionWayCheckBox.Location = new Point(572, 417);
+            filtericonAcquisitionWayCheckBox.Location = new Point(572, 415);
             filtericonAcquisitionWayCheckBox.Name = "filtericonAcquisitionWayCheckBox";
             filtericonAcquisitionWayCheckBox.Size = new Size(15, 14);
             filtericonAcquisitionWayCheckBox.TabIndex = 131;
@@ -631,7 +631,7 @@
             // filtericonRarityCheckBox
             // 
             filtericonRarityCheckBox.AutoSize = true;
-            filtericonRarityCheckBox.Location = new Point(572, 167);
+            filtericonRarityCheckBox.Location = new Point(572, 165);
             filtericonRarityCheckBox.Name = "filtericonRarityCheckBox";
             filtericonRarityCheckBox.Size = new Size(15, 14);
             filtericonRarityCheckBox.TabIndex = 136;
@@ -641,7 +641,7 @@
             // filteritemActivateStartTimeCheckBox
             // 
             filteritemActivateStartTimeCheckBox.AutoSize = true;
-            filteritemActivateStartTimeCheckBox.Location = new Point(572, 217);
+            filteritemActivateStartTimeCheckBox.Location = new Point(572, 215);
             filteritemActivateStartTimeCheckBox.Name = "filteritemActivateStartTimeCheckBox";
             filteritemActivateStartTimeCheckBox.Size = new Size(15, 14);
             filteritemActivateStartTimeCheckBox.TabIndex = 135;
@@ -651,7 +651,7 @@
             // filteritemActivateEndTimeCheckBox
             // 
             filteritemActivateEndTimeCheckBox.AutoSize = true;
-            filteritemActivateEndTimeCheckBox.Location = new Point(572, 267);
+            filteritemActivateEndTimeCheckBox.Location = new Point(572, 265);
             filteritemActivateEndTimeCheckBox.Name = "filteritemActivateEndTimeCheckBox";
             filteritemActivateEndTimeCheckBox.Size = new Size(15, 14);
             filteritemActivateEndTimeCheckBox.TabIndex = 134;
@@ -661,7 +661,7 @@
             // filterGainWaccaPointCheckBox
             // 
             filterGainWaccaPointCheckBox.AutoSize = true;
-            filterGainWaccaPointCheckBox.Location = new Point(572, 317);
+            filterGainWaccaPointCheckBox.Location = new Point(572, 315);
             filterGainWaccaPointCheckBox.Name = "filterGainWaccaPointCheckBox";
             filterGainWaccaPointCheckBox.Size = new Size(15, 14);
             filterGainWaccaPointCheckBox.TabIndex = 133;
@@ -671,7 +671,7 @@
             // filtericonTextureNameCheckBox
             // 
             filtericonTextureNameCheckBox.AutoSize = true;
-            filtericonTextureNameCheckBox.Location = new Point(572, 117);
+            filtericonTextureNameCheckBox.Location = new Point(572, 115);
             filtericonTextureNameCheckBox.Name = "filtericonTextureNameCheckBox";
             filtericonTextureNameCheckBox.Size = new Size(15, 14);
             filtericonTextureNameCheckBox.TabIndex = 137;
@@ -680,7 +680,7 @@
             // 
             // searchPreviousButton
             // 
-            searchPreviousButton.Location = new Point(892, 606);
+            searchPreviousButton.Location = new Point(892, 604);
             searchPreviousButton.Name = "searchPreviousButton";
             searchPreviousButton.Size = new Size(70, 27);
             searchPreviousButton.TabIndex = 139;
@@ -690,7 +690,7 @@
             // 
             // previousButton
             // 
-            previousButton.Location = new Point(894, 59);
+            previousButton.Location = new Point(894, 57);
             previousButton.Name = "previousButton";
             previousButton.Size = new Size(70, 27);
             previousButton.TabIndex = 141;
@@ -700,7 +700,7 @@
             // 
             // nextButton
             // 
-            nextButton.Location = new Point(814, 59);
+            nextButton.Location = new Point(814, 57);
             nextButton.Name = "nextButton";
             nextButton.Size = new Size(70, 27);
             nextButton.TabIndex = 140;
@@ -710,7 +710,7 @@
             // 
             // validateButton
             // 
-            validateButton.Location = new Point(704, 59);
+            validateButton.Location = new Point(704, 57);
             validateButton.Name = "validateButton";
             validateButton.Size = new Size(86, 27);
             validateButton.TabIndex = 142;
@@ -721,7 +721,7 @@
             // iconid
             // 
             iconid.FormattingEnabled = true;
-            iconid.Location = new Point(570, 61);
+            iconid.Location = new Point(570, 59);
             iconid.Name = "iconid";
             iconid.Size = new Size(121, 23);
             iconid.TabIndex = 143;
@@ -739,7 +739,7 @@
             // iconTextureNamefreezeCheckBox
             // 
             iconTextureNamefreezeCheckBox.AutoSize = true;
-            iconTextureNamefreezeCheckBox.Location = new Point(443, 113);
+            iconTextureNamefreezeCheckBox.Location = new Point(443, 111);
             iconTextureNamefreezeCheckBox.Name = "iconTextureNamefreezeCheckBox";
             iconTextureNamefreezeCheckBox.Size = new Size(59, 19);
             iconTextureNamefreezeCheckBox.TabIndex = 169;
@@ -750,7 +750,7 @@
             // iconRarityfreezeCheckBox
             // 
             iconRarityfreezeCheckBox.AutoSize = true;
-            iconRarityfreezeCheckBox.Location = new Point(443, 165);
+            iconRarityfreezeCheckBox.Location = new Point(443, 163);
             iconRarityfreezeCheckBox.Name = "iconRarityfreezeCheckBox";
             iconRarityfreezeCheckBox.Size = new Size(59, 19);
             iconRarityfreezeCheckBox.TabIndex = 170;
@@ -761,7 +761,7 @@
             // itemActivateStartTimefreezeChechBox
             // 
             itemActivateStartTimefreezeChechBox.AutoSize = true;
-            itemActivateStartTimefreezeChechBox.Location = new Point(444, 213);
+            itemActivateStartTimefreezeChechBox.Location = new Point(444, 211);
             itemActivateStartTimefreezeChechBox.Name = "itemActivateStartTimefreezeChechBox";
             itemActivateStartTimefreezeChechBox.Size = new Size(59, 19);
             itemActivateStartTimefreezeChechBox.TabIndex = 171;
@@ -772,7 +772,7 @@
             // ItemActivateEndTimefreezeCheckBox
             // 
             ItemActivateEndTimefreezeCheckBox.AutoSize = true;
-            ItemActivateEndTimefreezeCheckBox.Location = new Point(444, 263);
+            ItemActivateEndTimefreezeCheckBox.Location = new Point(444, 261);
             ItemActivateEndTimefreezeCheckBox.Name = "ItemActivateEndTimefreezeCheckBox";
             ItemActivateEndTimefreezeCheckBox.Size = new Size(59, 19);
             ItemActivateEndTimefreezeCheckBox.TabIndex = 172;
@@ -783,7 +783,7 @@
             // gainWaccaPointfreezeCheckBox
             // 
             gainWaccaPointfreezeCheckBox.AutoSize = true;
-            gainWaccaPointfreezeCheckBox.Location = new Point(443, 313);
+            gainWaccaPointfreezeCheckBox.Location = new Point(443, 311);
             gainWaccaPointfreezeCheckBox.Name = "gainWaccaPointfreezeCheckBox";
             gainWaccaPointfreezeCheckBox.Size = new Size(59, 19);
             gainWaccaPointfreezeCheckBox.TabIndex = 173;
@@ -794,7 +794,7 @@
             // iconNamefreezeCheckBox
             // 
             iconNamefreezeCheckBox.AutoSize = true;
-            iconNamefreezeCheckBox.Location = new Point(443, 363);
+            iconNamefreezeCheckBox.Location = new Point(443, 361);
             iconNamefreezeCheckBox.Name = "iconNamefreezeCheckBox";
             iconNamefreezeCheckBox.Size = new Size(59, 19);
             iconNamefreezeCheckBox.TabIndex = 174;
@@ -805,7 +805,7 @@
             // iconAcquisitionWayfreezeCheckBox
             // 
             iconAcquisitionWayfreezeCheckBox.AutoSize = true;
-            iconAcquisitionWayfreezeCheckBox.Location = new Point(443, 413);
+            iconAcquisitionWayfreezeCheckBox.Location = new Point(443, 411);
             iconAcquisitionWayfreezeCheckBox.Name = "iconAcquisitionWayfreezeCheckBox";
             iconAcquisitionWayfreezeCheckBox.Size = new Size(59, 19);
             iconAcquisitionWayfreezeCheckBox.TabIndex = 175;
@@ -816,7 +816,7 @@
             // nameTagfreezeCheckBox
             // 
             nameTagfreezeCheckBox.AutoSize = true;
-            nameTagfreezeCheckBox.Location = new Point(443, 463);
+            nameTagfreezeCheckBox.Location = new Point(443, 461);
             nameTagfreezeCheckBox.Name = "nameTagfreezeCheckBox";
             nameTagfreezeCheckBox.Size = new Size(59, 19);
             nameTagfreezeCheckBox.TabIndex = 176;
@@ -827,7 +827,7 @@
             // explanationTextTagfreezeCheckBox
             // 
             explanationTextTagfreezeCheckBox.AutoSize = true;
-            explanationTextTagfreezeCheckBox.Location = new Point(443, 513);
+            explanationTextTagfreezeCheckBox.Location = new Point(443, 511);
             explanationTextTagfreezeCheckBox.Name = "explanationTextTagfreezeCheckBox";
             explanationTextTagfreezeCheckBox.Size = new Size(59, 19);
             explanationTextTagfreezeCheckBox.TabIndex = 177;
@@ -837,7 +837,7 @@
             // 
             // iconPictureBox
             // 
-            iconPictureBox.Location = new Point(1050, 59);
+            iconPictureBox.Location = new Point(1050, 57);
             iconPictureBox.Margin = new Padding(3, 2, 3, 2);
             iconPictureBox.Name = "iconPictureBox";
             iconPictureBox.Size = new Size(256, 256);
@@ -848,7 +848,7 @@
             // bIsInitItemfreezeCheckBox
             // 
             bIsInitItemfreezeCheckBox.AutoSize = true;
-            bIsInitItemfreezeCheckBox.Location = new Point(443, 559);
+            bIsInitItemfreezeCheckBox.Location = new Point(443, 557);
             bIsInitItemfreezeCheckBox.Name = "bIsInitItemfreezeCheckBox";
             bIsInitItemfreezeCheckBox.Size = new Size(59, 19);
             bIsInitItemfreezeCheckBox.TabIndex = 179;
@@ -861,7 +861,7 @@
             ramSaveCheckBox.AutoSize = true;
             ramSaveCheckBox.Checked = true;
             ramSaveCheckBox.CheckState = CheckState.Checked;
-            ramSaveCheckBox.Location = new Point(104, 640);
+            ramSaveCheckBox.Location = new Point(104, 638);
             ramSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
             ramSaveCheckBox.MinimumSize = new Size(0, 36);
             ramSaveCheckBox.Name = "ramSaveCheckBox";
@@ -874,7 +874,7 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(220, 647);
+            saveButton.Location = new Point(220, 645);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(92, 23);
             saveButton.TabIndex = 233;
@@ -885,7 +885,7 @@
             // autoSaveCheckBox
             // 
             autoSaveCheckBox.AutoSize = true;
-            autoSaveCheckBox.Location = new Point(323, 650);
+            autoSaveCheckBox.Location = new Point(323, 648);
             autoSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
             autoSaveCheckBox.MinimumSize = new Size(110, 19);
             autoSaveCheckBox.Name = "autoSaveCheckBox";
@@ -982,7 +982,7 @@
             Controls.Add(iconIdLabel);
             Controls.Add(createNewIconButton);
             Name = "Icon";
-            Size = new Size(1354, 720);
+            Size = new Size(1338, 681);
             ((System.ComponentModel.ISupportInitialize)iconPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
