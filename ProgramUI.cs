@@ -100,11 +100,11 @@ namespace WaccaSongBrowser
                                 panelMainContainer.Enabled = true;
                                 LoadPage(new Message(path2, "trophy"));
                             }
-                            else if (Message.ReadGrade(path2) != -1)
+                            else if (Title.ReadGrade(path2) != -1)
                             {
                                 panelMainContainer.Visible = true;
                                 panelMainContainer.Enabled = true;
-                                LoadPage(new Message(path2, "grade"));
+                                LoadPage(new Title());
                             }
                             else
                             {

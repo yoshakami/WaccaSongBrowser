@@ -120,7 +120,7 @@
             // filtergradePartsId01CheckBox
             // 
             filtergradePartsId01CheckBox.AutoSize = true;
-            filtergradePartsId01CheckBox.Location = new Point(733, 106);
+            filtergradePartsId01CheckBox.Location = new Point(732, 91);
             filtergradePartsId01CheckBox.Name = "filtergradePartsId01CheckBox";
             filtergradePartsId01CheckBox.Size = new Size(15, 14);
             filtergradePartsId01CheckBox.TabIndex = 270;
@@ -130,7 +130,7 @@
             // filtergradePartsId02CheckBox
             // 
             filtergradePartsId02CheckBox.AutoSize = true;
-            filtergradePartsId02CheckBox.Location = new Point(733, 157);
+            filtergradePartsId02CheckBox.Location = new Point(732, 142);
             filtergradePartsId02CheckBox.Name = "filtergradePartsId02CheckBox";
             filtergradePartsId02CheckBox.Size = new Size(15, 14);
             filtergradePartsId02CheckBox.TabIndex = 269;
@@ -140,7 +140,7 @@
             // filtergradePartsId03CheckBox
             // 
             filtergradePartsId03CheckBox.AutoSize = true;
-            filtergradePartsId03CheckBox.Location = new Point(733, 205);
+            filtergradePartsId03CheckBox.Location = new Point(732, 190);
             filtergradePartsId03CheckBox.Name = "filtergradePartsId03CheckBox";
             filtergradePartsId03CheckBox.Size = new Size(15, 14);
             filtergradePartsId03CheckBox.TabIndex = 268;
@@ -150,7 +150,7 @@
             // filtergradeRarityCheckBox
             // 
             filtergradeRarityCheckBox.AutoSize = true;
-            filtergradeRarityCheckBox.Location = new Point(733, 255);
+            filtergradeRarityCheckBox.Location = new Point(732, 240);
             filtergradeRarityCheckBox.Name = "filtergradeRarityCheckBox";
             filtergradeRarityCheckBox.Size = new Size(15, 14);
             filtergradeRarityCheckBox.TabIndex = 267;
@@ -160,7 +160,7 @@
             // filtergradeAcquisitionWayCheckBox
             // 
             filtergradeAcquisitionWayCheckBox.AutoSize = true;
-            filtergradeAcquisitionWayCheckBox.Location = new Point(733, 408);
+            filtergradeAcquisitionWayCheckBox.Location = new Point(732, 393);
             filtergradeAcquisitionWayCheckBox.Name = "filtergradeAcquisitionWayCheckBox";
             filtergradeAcquisitionWayCheckBox.Size = new Size(15, 14);
             filtergradeAcquisitionWayCheckBox.TabIndex = 264;
@@ -169,7 +169,7 @@
             // 
             // filtergradeRarityTextBox
             // 
-            filtergradeRarityTextBox.Location = new Point(754, 250);
+            filtergradeRarityTextBox.Location = new Point(753, 235);
             filtergradeRarityTextBox.Margin = new Padding(3, 2, 3, 2);
             filtergradeRarityTextBox.Name = "filtergradeRarityTextBox";
             filtergradeRarityTextBox.Size = new Size(556, 23);
@@ -178,7 +178,7 @@
             // filtergradeRarityLabel
             // 
             filtergradeRarityLabel.AutoSize = true;
-            filtergradeRarityLabel.Location = new Point(754, 233);
+            filtergradeRarityLabel.Location = new Point(753, 218);
             filtergradeRarityLabel.Name = "filtergradeRarityLabel";
             filtergradeRarityLabel.Size = new Size(68, 15);
             filtergradeRarityLabel.TabIndex = 260;
@@ -187,7 +187,7 @@
             // filterbIsInitItemCheckBox
             // 
             filterbIsInitItemCheckBox.AutoSize = true;
-            filterbIsInitItemCheckBox.Location = new Point(758, 579);
+            filterbIsInitItemCheckBox.Location = new Point(757, 564);
             filterbIsInitItemCheckBox.Name = "filterbIsInitItemCheckBox";
             filterbIsInitItemCheckBox.Size = new Size(82, 19);
             filterbIsInitItemCheckBox.TabIndex = 258;
@@ -196,7 +196,7 @@
             // 
             // filtergradeAcquisitionWayTextBox
             // 
-            filtergradeAcquisitionWayTextBox.Location = new Point(754, 402);
+            filtergradeAcquisitionWayTextBox.Location = new Point(753, 387);
             filtergradeAcquisitionWayTextBox.Margin = new Padding(3, 2, 3, 2);
             filtergradeAcquisitionWayTextBox.Name = "filtergradeAcquisitionWayTextBox";
             filtergradeAcquisitionWayTextBox.Size = new Size(556, 23);
@@ -204,7 +204,7 @@
             // 
             // filtergradePartsId03TextBox
             // 
-            filtergradePartsId03TextBox.Location = new Point(754, 200);
+            filtergradePartsId03TextBox.Location = new Point(753, 185);
             filtergradePartsId03TextBox.Margin = new Padding(3, 2, 3, 2);
             filtergradePartsId03TextBox.Name = "filtergradePartsId03TextBox";
             filtergradePartsId03TextBox.Size = new Size(556, 23);
@@ -213,7 +213,7 @@
             // filtergradePartsId03Label
             // 
             filtergradePartsId03Label.AutoSize = true;
-            filtergradePartsId03Label.Location = new Point(754, 183);
+            filtergradePartsId03Label.Location = new Point(753, 168);
             filtergradePartsId03Label.Name = "filtergradePartsId03Label";
             filtergradePartsId03Label.Size = new Size(86, 15);
             filtergradePartsId03Label.TabIndex = 254;
@@ -221,7 +221,7 @@
             // 
             // filtergradePartsId02TextBox
             // 
-            filtergradePartsId02TextBox.Location = new Point(754, 152);
+            filtergradePartsId02TextBox.Location = new Point(753, 137);
             filtergradePartsId02TextBox.Margin = new Padding(3, 2, 3, 2);
             filtergradePartsId02TextBox.Name = "filtergradePartsId02TextBox";
             filtergradePartsId02TextBox.Size = new Size(556, 23);
@@ -230,7 +230,7 @@
             // filtergradePartsId02Label
             // 
             filtergradePartsId02Label.AutoSize = true;
-            filtergradePartsId02Label.Location = new Point(754, 135);
+            filtergradePartsId02Label.Location = new Point(753, 120);
             filtergradePartsId02Label.Name = "filtergradePartsId02Label";
             filtergradePartsId02Label.Size = new Size(86, 15);
             filtergradePartsId02Label.TabIndex = 246;
@@ -238,7 +238,7 @@
             // 
             // filtergradePartsId01TextBox
             // 
-            filtergradePartsId01TextBox.Location = new Point(754, 102);
+            filtergradePartsId01TextBox.Location = new Point(753, 87);
             filtergradePartsId01TextBox.Margin = new Padding(3, 2, 3, 2);
             filtergradePartsId01TextBox.Name = "filtergradePartsId01TextBox";
             filtergradePartsId01TextBox.Size = new Size(556, 23);
@@ -247,7 +247,7 @@
             // filtergradePartsId01Label
             // 
             filtergradePartsId01Label.AutoSize = true;
-            filtergradePartsId01Label.Location = new Point(754, 85);
+            filtergradePartsId01Label.Location = new Point(753, 70);
             filtergradePartsId01Label.Name = "filtergradePartsId01Label";
             filtergradePartsId01Label.Size = new Size(86, 15);
             filtergradePartsId01Label.TabIndex = 244;
@@ -256,7 +256,7 @@
             // filterValidateLabel
             // 
             filterValidateLabel.AutoSize = true;
-            filterValidateLabel.Location = new Point(754, 35);
+            filterValidateLabel.Location = new Point(753, 20);
             filterValidateLabel.Name = "filterValidateLabel";
             filterValidateLabel.Size = new Size(48, 15);
             filterValidateLabel.TabIndex = 242;
@@ -265,7 +265,7 @@
             // menuFilterLabel
             // 
             menuFilterLabel.AutoSize = true;
-            menuFilterLabel.Location = new Point(1044, 15);
+            menuFilterLabel.Location = new Point(1043, 9);
             menuFilterLabel.Name = "menuFilterLabel";
             menuFilterLabel.Size = new Size(38, 15);
             menuFilterLabel.TabIndex = 240;
@@ -275,7 +275,7 @@
             // 
             progressBar3.BackColor = SystemColors.ActiveCaptionText;
             progressBar3.ForeColor = SystemColors.Desktop;
-            progressBar3.Location = new Point(687, 36);
+            progressBar3.Location = new Point(686, 21);
             progressBar3.Margin = new Padding(0);
             progressBar3.Name = "progressBar3";
             progressBar3.Size = new Size(19, 579);
@@ -283,7 +283,7 @@
             // 
             // gradeRarityTextBox
             // 
-            gradeRarityTextBox.Location = new Point(51, 251);
+            gradeRarityTextBox.Location = new Point(50, 236);
             gradeRarityTextBox.Margin = new Padding(3, 2, 3, 2);
             gradeRarityTextBox.Name = "gradeRarityTextBox";
             gradeRarityTextBox.Size = new Size(527, 23);
@@ -292,7 +292,7 @@
             // gradeRarityLabel
             // 
             gradeRarityLabel.AutoSize = true;
-            gradeRarityLabel.Location = new Point(51, 234);
+            gradeRarityLabel.Location = new Point(50, 219);
             gradeRarityLabel.Name = "gradeRarityLabel";
             gradeRarityLabel.Size = new Size(68, 15);
             gradeRarityLabel.TabIndex = 238;
@@ -301,7 +301,7 @@
             // bIsInitItem
             // 
             bIsInitItem.AutoSize = true;
-            bIsInitItem.Location = new Point(51, 581);
+            bIsInitItem.Location = new Point(50, 566);
             bIsInitItem.Name = "bIsInitItem";
             bIsInitItem.Size = new Size(82, 19);
             bIsInitItem.TabIndex = 236;
@@ -310,7 +310,7 @@
             // 
             // gradeidTextBox
             // 
-            gradeidTextBox.Location = new Point(51, 53);
+            gradeidTextBox.Location = new Point(50, 38);
             gradeidTextBox.Margin = new Padding(3, 2, 3, 2);
             gradeidTextBox.Name = "gradeidTextBox";
             gradeidTextBox.Size = new Size(527, 23);
@@ -319,7 +319,7 @@
             // ExplanationTextTagTextBox
             // 
             ExplanationTextTagTextBox.Enabled = false;
-            ExplanationTextTagTextBox.Location = new Point(51, 353);
+            ExplanationTextTagTextBox.Location = new Point(50, 338);
             ExplanationTextTagTextBox.Margin = new Padding(3, 2, 3, 2);
             ExplanationTextTagTextBox.Name = "ExplanationTextTagTextBox";
             ExplanationTextTagTextBox.Size = new Size(527, 23);
@@ -328,7 +328,7 @@
             // ExplanationTextTagLabel
             // 
             ExplanationTextTagLabel.AutoSize = true;
-            ExplanationTextTagLabel.Location = new Point(51, 336);
+            ExplanationTextTagLabel.Location = new Point(50, 321);
             ExplanationTextTagLabel.Name = "ExplanationTextTagLabel";
             ExplanationTextTagLabel.Size = new Size(279, 15);
             ExplanationTextTagLabel.TabIndex = 234;
@@ -337,7 +337,7 @@
             // nameTagTextBox
             // 
             nameTagTextBox.Enabled = false;
-            nameTagTextBox.Location = new Point(51, 301);
+            nameTagTextBox.Location = new Point(50, 286);
             nameTagTextBox.Margin = new Padding(3, 2, 3, 2);
             nameTagTextBox.Name = "nameTagTextBox";
             nameTagTextBox.Size = new Size(527, 23);
@@ -346,7 +346,7 @@
             // nameTagLabel
             // 
             nameTagLabel.AutoSize = true;
-            nameTagLabel.Location = new Point(51, 284);
+            nameTagLabel.Location = new Point(50, 269);
             nameTagLabel.Name = "nameTagLabel";
             nameTagLabel.Size = new Size(379, 15);
             nameTagLabel.TabIndex = 232;
@@ -354,7 +354,7 @@
             // 
             // gradeAcquisitionWayTextBox
             // 
-            gradeAcquisitionWayTextBox.Location = new Point(51, 403);
+            gradeAcquisitionWayTextBox.Location = new Point(50, 388);
             gradeAcquisitionWayTextBox.Margin = new Padding(3, 2, 3, 2);
             gradeAcquisitionWayTextBox.Name = "gradeAcquisitionWayTextBox";
             gradeAcquisitionWayTextBox.Size = new Size(527, 23);
@@ -363,7 +363,7 @@
             // gradeAcquisitionWayLabel
             // 
             gradeAcquisitionWayLabel.AutoSize = true;
-            gradeAcquisitionWayLabel.Location = new Point(51, 386);
+            gradeAcquisitionWayLabel.Location = new Point(50, 371);
             gradeAcquisitionWayLabel.Name = "gradeAcquisitionWayLabel";
             gradeAcquisitionWayLabel.Size = new Size(289, 15);
             gradeAcquisitionWayLabel.TabIndex = 230;
@@ -371,7 +371,7 @@
             // 
             // gradePartsId03TextBox
             // 
-            gradePartsId03TextBox.Location = new Point(51, 201);
+            gradePartsId03TextBox.Location = new Point(50, 186);
             gradePartsId03TextBox.Margin = new Padding(3, 2, 3, 2);
             gradePartsId03TextBox.Name = "gradePartsId03TextBox";
             gradePartsId03TextBox.Size = new Size(527, 23);
@@ -380,7 +380,7 @@
             // gradePartsId03Label
             // 
             gradePartsId03Label.AutoSize = true;
-            gradePartsId03Label.Location = new Point(51, 184);
+            gradePartsId03Label.Location = new Point(50, 169);
             gradePartsId03Label.Name = "gradePartsId03Label";
             gradePartsId03Label.Size = new Size(86, 15);
             gradePartsId03Label.TabIndex = 228;
@@ -388,7 +388,7 @@
             // 
             // gradePartsId02TextBox
             // 
-            gradePartsId02TextBox.Location = new Point(51, 153);
+            gradePartsId02TextBox.Location = new Point(50, 138);
             gradePartsId02TextBox.Margin = new Padding(3, 2, 3, 2);
             gradePartsId02TextBox.Name = "gradePartsId02TextBox";
             gradePartsId02TextBox.Size = new Size(527, 23);
@@ -397,7 +397,7 @@
             // gradePartsId02Label
             // 
             gradePartsId02Label.AutoSize = true;
-            gradePartsId02Label.Location = new Point(51, 136);
+            gradePartsId02Label.Location = new Point(50, 121);
             gradePartsId02Label.Name = "gradePartsId02Label";
             gradePartsId02Label.Size = new Size(86, 15);
             gradePartsId02Label.TabIndex = 220;
@@ -406,7 +406,7 @@
             // menuTitleLabel
             // 
             menuTitleLabel.AutoSize = true;
-            menuTitleLabel.Location = new Point(324, 15);
+            menuTitleLabel.Location = new Point(323, 9);
             menuTitleLabel.Name = "menuTitleLabel";
             menuTitleLabel.Size = new Size(29, 15);
             menuTitleLabel.TabIndex = 218;
@@ -414,7 +414,7 @@
             // 
             // gradePartsId01TextBox
             // 
-            gradePartsId01TextBox.Location = new Point(51, 103);
+            gradePartsId01TextBox.Location = new Point(50, 88);
             gradePartsId01TextBox.Margin = new Padding(3, 2, 3, 2);
             gradePartsId01TextBox.Name = "gradePartsId01TextBox";
             gradePartsId01TextBox.Size = new Size(527, 23);
@@ -423,7 +423,7 @@
             // gradePartsId01Label
             // 
             gradePartsId01Label.AutoSize = true;
-            gradePartsId01Label.Location = new Point(51, 86);
+            gradePartsId01Label.Location = new Point(50, 71);
             gradePartsId01Label.Name = "gradePartsId01Label";
             gradePartsId01Label.Size = new Size(86, 15);
             gradePartsId01Label.TabIndex = 217;
@@ -432,7 +432,7 @@
             // gradeidLabel
             // 
             gradeidLabel.AutoSize = true;
-            gradeidLabel.Location = new Point(51, 36);
+            gradeidLabel.Location = new Point(50, 21);
             gradeidLabel.Name = "gradeidLabel";
             gradeidLabel.Size = new Size(48, 15);
             gradeidLabel.TabIndex = 215;
@@ -441,7 +441,7 @@
             // filtergradeAcquisitionWayLabel
             // 
             filtergradeAcquisitionWayLabel.AutoSize = true;
-            filtergradeAcquisitionWayLabel.Location = new Point(754, 386);
+            filtergradeAcquisitionWayLabel.Location = new Point(753, 371);
             filtergradeAcquisitionWayLabel.Name = "filtergradeAcquisitionWayLabel";
             filtergradeAcquisitionWayLabel.Size = new Size(127, 15);
             filtergradeAcquisitionWayLabel.TabIndex = 272;
@@ -450,14 +450,14 @@
             // gradeid
             // 
             gradeid.FormattingEnabled = true;
-            gradeid.Location = new Point(753, 53);
+            gradeid.Location = new Point(752, 38);
             gradeid.Name = "gradeid";
             gradeid.Size = new Size(159, 23);
             gradeid.TabIndex = 278;
             // 
             // validateButton
             // 
-            validateButton.Location = new Point(924, 50);
+            validateButton.Location = new Point(923, 35);
             validateButton.Name = "validateButton";
             validateButton.Size = new Size(122, 27);
             validateButton.TabIndex = 277;
@@ -467,7 +467,7 @@
             // 
             // previousButton
             // 
-            previousButton.Location = new Point(1203, 50);
+            previousButton.Location = new Point(1202, 35);
             previousButton.Name = "previousButton";
             previousButton.Size = new Size(107, 27);
             previousButton.TabIndex = 276;
@@ -477,7 +477,7 @@
             // 
             // nextButton
             // 
-            nextButton.Location = new Point(1082, 50);
+            nextButton.Location = new Point(1081, 35);
             nextButton.Name = "nextButton";
             nextButton.Size = new Size(107, 27);
             nextButton.TabIndex = 275;
@@ -488,7 +488,7 @@
             // gradeAcquisitionWayfreezeCheckBox
             // 
             gradeAcquisitionWayfreezeCheckBox.AutoSize = true;
-            gradeAcquisitionWayfreezeCheckBox.Location = new Point(594, 405);
+            gradeAcquisitionWayfreezeCheckBox.Location = new Point(593, 390);
             gradeAcquisitionWayfreezeCheckBox.Name = "gradeAcquisitionWayfreezeCheckBox";
             gradeAcquisitionWayfreezeCheckBox.Size = new Size(59, 19);
             gradeAcquisitionWayfreezeCheckBox.TabIndex = 285;
@@ -499,7 +499,7 @@
             // ExplanationTextTagfreezeCheckBox
             // 
             ExplanationTextTagfreezeCheckBox.AutoSize = true;
-            ExplanationTextTagfreezeCheckBox.Location = new Point(594, 355);
+            ExplanationTextTagfreezeCheckBox.Location = new Point(593, 340);
             ExplanationTextTagfreezeCheckBox.Name = "ExplanationTextTagfreezeCheckBox";
             ExplanationTextTagfreezeCheckBox.Size = new Size(59, 19);
             ExplanationTextTagfreezeCheckBox.TabIndex = 284;
@@ -510,7 +510,7 @@
             // nameTagfreezeCheckBox
             // 
             nameTagfreezeCheckBox.AutoSize = true;
-            nameTagfreezeCheckBox.Location = new Point(594, 305);
+            nameTagfreezeCheckBox.Location = new Point(593, 290);
             nameTagfreezeCheckBox.Name = "nameTagfreezeCheckBox";
             nameTagfreezeCheckBox.Size = new Size(59, 19);
             nameTagfreezeCheckBox.TabIndex = 283;
@@ -521,7 +521,7 @@
             // gradeRarityfreezeCheckBox
             // 
             gradeRarityfreezeCheckBox.AutoSize = true;
-            gradeRarityfreezeCheckBox.Location = new Point(595, 255);
+            gradeRarityfreezeCheckBox.Location = new Point(594, 240);
             gradeRarityfreezeCheckBox.Name = "gradeRarityfreezeCheckBox";
             gradeRarityfreezeCheckBox.Size = new Size(59, 19);
             gradeRarityfreezeCheckBox.TabIndex = 282;
@@ -532,7 +532,7 @@
             // gradePartsId03freezeCheckBox
             // 
             gradePartsId03freezeCheckBox.AutoSize = true;
-            gradePartsId03freezeCheckBox.Location = new Point(595, 205);
+            gradePartsId03freezeCheckBox.Location = new Point(594, 190);
             gradePartsId03freezeCheckBox.Name = "gradePartsId03freezeCheckBox";
             gradePartsId03freezeCheckBox.Size = new Size(59, 19);
             gradePartsId03freezeCheckBox.TabIndex = 281;
@@ -543,7 +543,7 @@
             // gradePartsId02freezeCheckBox
             // 
             gradePartsId02freezeCheckBox.AutoSize = true;
-            gradePartsId02freezeCheckBox.Location = new Point(594, 157);
+            gradePartsId02freezeCheckBox.Location = new Point(593, 142);
             gradePartsId02freezeCheckBox.Name = "gradePartsId02freezeCheckBox";
             gradePartsId02freezeCheckBox.Size = new Size(59, 19);
             gradePartsId02freezeCheckBox.TabIndex = 280;
@@ -554,7 +554,7 @@
             // gradePartsId01freezeCheckBox
             // 
             gradePartsId01freezeCheckBox.AutoSize = true;
-            gradePartsId01freezeCheckBox.Location = new Point(594, 105);
+            gradePartsId01freezeCheckBox.Location = new Point(593, 90);
             gradePartsId01freezeCheckBox.Name = "gradePartsId01freezeCheckBox";
             gradePartsId01freezeCheckBox.Size = new Size(59, 19);
             gradePartsId01freezeCheckBox.TabIndex = 279;
@@ -565,7 +565,7 @@
             // bIsInitItemfreezeCheckBox
             // 
             bIsInitItemfreezeCheckBox.AutoSize = true;
-            bIsInitItemfreezeCheckBox.Location = new Point(594, 581);
+            bIsInitItemfreezeCheckBox.Location = new Point(593, 566);
             bIsInitItemfreezeCheckBox.Name = "bIsInitItemfreezeCheckBox";
             bIsInitItemfreezeCheckBox.Size = new Size(59, 19);
             bIsInitItemfreezeCheckBox.TabIndex = 289;
@@ -576,7 +576,7 @@
             // filterbIsInitItemEnableCb
             // 
             filterbIsInitItemEnableCb.AutoSize = true;
-            filterbIsInitItemEnableCb.Location = new Point(733, 581);
+            filterbIsInitItemEnableCb.Location = new Point(732, 566);
             filterbIsInitItemEnableCb.Name = "filterbIsInitItemEnableCb";
             filterbIsInitItemEnableCb.Size = new Size(15, 14);
             filterbIsInitItemEnableCb.TabIndex = 290;
@@ -588,7 +588,7 @@
             ramSaveCheckBox.AutoSize = true;
             ramSaveCheckBox.Checked = true;
             ramSaveCheckBox.CheckState = CheckState.Checked;
-            ramSaveCheckBox.Location = new Point(205, 654);
+            ramSaveCheckBox.Location = new Point(50, 637);
             ramSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
             ramSaveCheckBox.MinimumSize = new Size(0, 36);
             ramSaveCheckBox.Name = "ramSaveCheckBox";
@@ -601,7 +601,7 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(321, 661);
+            saveButton.Location = new Point(166, 644);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(92, 23);
             saveButton.TabIndex = 300;
@@ -612,7 +612,7 @@
             // autoSaveCheckBox
             // 
             autoSaveCheckBox.AutoSize = true;
-            autoSaveCheckBox.Location = new Point(424, 664);
+            autoSaveCheckBox.Location = new Point(269, 647);
             autoSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
             autoSaveCheckBox.MinimumSize = new Size(110, 19);
             autoSaveCheckBox.Name = "autoSaveCheckBox";
@@ -624,7 +624,7 @@
             // 
             // searchPreviousButton
             // 
-            searchPreviousButton.Location = new Point(1143, 620);
+            searchPreviousButton.Location = new Point(1151, 584);
             searchPreviousButton.Name = "searchPreviousButton";
             searchPreviousButton.Size = new Size(70, 27);
             searchPreviousButton.TabIndex = 298;
@@ -634,7 +634,7 @@
             // 
             // searchButton
             // 
-            searchButton.Location = new Point(823, 620);
+            searchButton.Location = new Point(831, 584);
             searchButton.Name = "searchButton";
             searchButton.Size = new Size(149, 27);
             searchButton.TabIndex = 297;
@@ -645,7 +645,7 @@
             // searchLabel
             // 
             searchLabel.AutoSize = true;
-            searchLabel.Location = new Point(980, 626);
+            searchLabel.Location = new Point(988, 590);
             searchLabel.Name = "searchLabel";
             searchLabel.Size = new Size(63, 15);
             searchLabel.TabIndex = 296;
@@ -653,7 +653,7 @@
             // 
             // searchNextButton
             // 
-            searchNextButton.Location = new Point(1063, 620);
+            searchNextButton.Location = new Point(1071, 584);
             searchNextButton.Name = "searchNextButton";
             searchNextButton.Size = new Size(70, 27);
             searchNextButton.TabIndex = 295;
@@ -663,9 +663,9 @@
             // 
             // injectNewButton
             // 
-            injectNewButton.Location = new Point(124, 605);
+            injectNewButton.Location = new Point(52, 590);
             injectNewButton.Name = "injectNewButton";
-            injectNewButton.Size = new Size(229, 42);
+            injectNewButton.Size = new Size(277, 42);
             injectNewButton.TabIndex = 294;
             injectNewButton.Text = "Inject NEW";
             injectNewButton.UseVisualStyleBackColor = true;
@@ -674,7 +674,7 @@
             // saveLabel
             // 
             saveLabel.AutoSize = true;
-            saveLabel.Location = new Point(124, 693);
+            saveLabel.Location = new Point(441, 651);
             saveLabel.MinimumSize = new Size(500, 0);
             saveLabel.Name = "saveLabel";
             saveLabel.Size = new Size(500, 15);
@@ -685,7 +685,7 @@
             // showingItemLabel
             // 
             showingItemLabel.AutoSize = true;
-            showingItemLabel.Location = new Point(1063, 602);
+            showingItemLabel.Location = new Point(1071, 566);
             showingItemLabel.MinimumSize = new Size(150, 15);
             showingItemLabel.Name = "showingItemLabel";
             showingItemLabel.Size = new Size(150, 15);
@@ -695,9 +695,9 @@
             // 
             // createNewIconButton
             // 
-            createNewIconButton.Location = new Point(375, 605);
+            createNewIconButton.Location = new Point(367, 590);
             createNewIconButton.Name = "createNewIconButton";
-            createNewIconButton.Size = new Size(228, 42);
+            createNewIconButton.Size = new Size(284, 42);
             createNewIconButton.TabIndex = 291;
             createNewIconButton.Text = "Add All Missing Icons from /UI/Textures/USERICON/S* subfolders";
             createNewIconButton.UseVisualStyleBackColor = true;
@@ -706,7 +706,7 @@
             // filterNameTagCheckBox
             // 
             filterNameTagCheckBox.AutoSize = true;
-            filterNameTagCheckBox.Location = new Point(733, 307);
+            filterNameTagCheckBox.Location = new Point(732, 292);
             filterNameTagCheckBox.Name = "filterNameTagCheckBox";
             filterNameTagCheckBox.Size = new Size(15, 14);
             filterNameTagCheckBox.TabIndex = 307;
@@ -716,7 +716,7 @@
             // filterexplanationTextTagCheckBox
             // 
             filterexplanationTextTagCheckBox.AutoSize = true;
-            filterexplanationTextTagCheckBox.Location = new Point(733, 357);
+            filterexplanationTextTagCheckBox.Location = new Point(732, 342);
             filterexplanationTextTagCheckBox.Name = "filterexplanationTextTagCheckBox";
             filterexplanationTextTagCheckBox.Size = new Size(15, 14);
             filterexplanationTextTagCheckBox.TabIndex = 306;
@@ -726,7 +726,7 @@
             // filterexplanationTextTagTextBox
             // 
             filterexplanationTextTagTextBox.Enabled = false;
-            filterexplanationTextTagTextBox.Location = new Point(754, 351);
+            filterexplanationTextTagTextBox.Location = new Point(753, 336);
             filterexplanationTextTagTextBox.Margin = new Padding(3, 2, 3, 2);
             filterexplanationTextTagTextBox.Name = "filterexplanationTextTagTextBox";
             filterexplanationTextTagTextBox.Size = new Size(556, 23);
@@ -735,7 +735,7 @@
             // filterexplanationTextTagLabel
             // 
             filterexplanationTextTagLabel.AutoSize = true;
-            filterexplanationTextTagLabel.Location = new Point(754, 334);
+            filterexplanationTextTagLabel.Location = new Point(753, 319);
             filterexplanationTextTagLabel.Name = "filterexplanationTextTagLabel";
             filterexplanationTextTagLabel.Size = new Size(108, 15);
             filterexplanationTextTagLabel.TabIndex = 305;
@@ -744,7 +744,7 @@
             // filterNameTagTextBox
             // 
             filterNameTagTextBox.Enabled = false;
-            filterNameTagTextBox.Location = new Point(754, 301);
+            filterNameTagTextBox.Location = new Point(753, 286);
             filterNameTagTextBox.Margin = new Padding(3, 2, 3, 2);
             filterNameTagTextBox.Name = "filterNameTagTextBox";
             filterNameTagTextBox.Size = new Size(556, 23);
@@ -753,7 +753,7 @@
             // filterNameTagLabel
             // 
             filterNameTagLabel.AutoSize = true;
-            filterNameTagLabel.Location = new Point(754, 284);
+            filterNameTagLabel.Location = new Point(753, 269);
             filterNameTagLabel.Name = "filterNameTagLabel";
             filterNameTagLabel.Size = new Size(57, 15);
             filterNameTagLabel.TabIndex = 303;
@@ -762,7 +762,7 @@
             // gainWaccaPointfreezeCheckBox
             // 
             gainWaccaPointfreezeCheckBox.AutoSize = true;
-            gainWaccaPointfreezeCheckBox.Location = new Point(593, 554);
+            gainWaccaPointfreezeCheckBox.Location = new Point(592, 539);
             gainWaccaPointfreezeCheckBox.Name = "gainWaccaPointfreezeCheckBox";
             gainWaccaPointfreezeCheckBox.Size = new Size(59, 19);
             gainWaccaPointfreezeCheckBox.TabIndex = 325;
@@ -773,7 +773,7 @@
             // itemActivateEndTimefreezeTextBox
             // 
             itemActivateEndTimefreezeTextBox.AutoSize = true;
-            itemActivateEndTimefreezeTextBox.Location = new Point(594, 504);
+            itemActivateEndTimefreezeTextBox.Location = new Point(593, 489);
             itemActivateEndTimefreezeTextBox.Name = "itemActivateEndTimefreezeTextBox";
             itemActivateEndTimefreezeTextBox.Size = new Size(59, 19);
             itemActivateEndTimefreezeTextBox.TabIndex = 324;
@@ -784,7 +784,7 @@
             // itemActivateStartTimefreezeTextBox
             // 
             itemActivateStartTimefreezeTextBox.AutoSize = true;
-            itemActivateStartTimefreezeTextBox.Location = new Point(594, 454);
+            itemActivateStartTimefreezeTextBox.Location = new Point(593, 439);
             itemActivateStartTimefreezeTextBox.Name = "itemActivateStartTimefreezeTextBox";
             itemActivateStartTimefreezeTextBox.Size = new Size(59, 19);
             itemActivateStartTimefreezeTextBox.TabIndex = 323;
@@ -795,7 +795,7 @@
             // filteritemActivateStartTimeCheckBox
             // 
             filteritemActivateStartTimeCheckBox.AutoSize = true;
-            filteritemActivateStartTimeCheckBox.Location = new Point(733, 456);
+            filteritemActivateStartTimeCheckBox.Location = new Point(732, 441);
             filteritemActivateStartTimeCheckBox.Name = "filteritemActivateStartTimeCheckBox";
             filteritemActivateStartTimeCheckBox.Size = new Size(15, 14);
             filteritemActivateStartTimeCheckBox.TabIndex = 322;
@@ -805,7 +805,7 @@
             // filteritemActivateEndTimeCheckBox
             // 
             filteritemActivateEndTimeCheckBox.AutoSize = true;
-            filteritemActivateEndTimeCheckBox.Location = new Point(733, 506);
+            filteritemActivateEndTimeCheckBox.Location = new Point(732, 491);
             filteritemActivateEndTimeCheckBox.Name = "filteritemActivateEndTimeCheckBox";
             filteritemActivateEndTimeCheckBox.Size = new Size(15, 14);
             filteritemActivateEndTimeCheckBox.TabIndex = 321;
@@ -815,7 +815,7 @@
             // filterGainWaccaPointCheckBox
             // 
             filterGainWaccaPointCheckBox.AutoSize = true;
-            filterGainWaccaPointCheckBox.Location = new Point(733, 556);
+            filterGainWaccaPointCheckBox.Location = new Point(732, 541);
             filterGainWaccaPointCheckBox.Name = "filterGainWaccaPointCheckBox";
             filterGainWaccaPointCheckBox.Size = new Size(15, 14);
             filterGainWaccaPointCheckBox.TabIndex = 320;
@@ -824,7 +824,7 @@
             // 
             // filterGainWaccaPointTextBox
             // 
-            filterGainWaccaPointTextBox.Location = new Point(756, 550);
+            filterGainWaccaPointTextBox.Location = new Point(755, 535);
             filterGainWaccaPointTextBox.Margin = new Padding(3, 2, 3, 2);
             filterGainWaccaPointTextBox.Name = "filterGainWaccaPointTextBox";
             filterGainWaccaPointTextBox.Size = new Size(554, 23);
@@ -833,7 +833,7 @@
             // filterGainWaccaPointLabel
             // 
             filterGainWaccaPointLabel.AutoSize = true;
-            filterGainWaccaPointLabel.Location = new Point(756, 533);
+            filterGainWaccaPointLabel.Location = new Point(755, 518);
             filterGainWaccaPointLabel.Name = "filterGainWaccaPointLabel";
             filterGainWaccaPointLabel.Size = new Size(94, 15);
             filterGainWaccaPointLabel.TabIndex = 319;
@@ -841,7 +841,7 @@
             // 
             // filteritemActivateEndTimeTextBox
             // 
-            filteritemActivateEndTimeTextBox.Location = new Point(756, 500);
+            filteritemActivateEndTimeTextBox.Location = new Point(755, 485);
             filteritemActivateEndTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             filteritemActivateEndTimeTextBox.Name = "filteritemActivateEndTimeTextBox";
             filteritemActivateEndTimeTextBox.Size = new Size(554, 23);
@@ -850,7 +850,7 @@
             // filteritemActivateEndTimeLabel
             // 
             filteritemActivateEndTimeLabel.AutoSize = true;
-            filteritemActivateEndTimeLabel.Location = new Point(756, 483);
+            filteritemActivateEndTimeLabel.Location = new Point(755, 468);
             filteritemActivateEndTimeLabel.Name = "filteritemActivateEndTimeLabel";
             filteritemActivateEndTimeLabel.Size = new Size(120, 15);
             filteritemActivateEndTimeLabel.TabIndex = 317;
@@ -858,7 +858,7 @@
             // 
             // filteritemActivateStartTimeTextBox
             // 
-            filteritemActivateStartTimeTextBox.Location = new Point(756, 450);
+            filteritemActivateStartTimeTextBox.Location = new Point(755, 435);
             filteritemActivateStartTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             filteritemActivateStartTimeTextBox.Name = "filteritemActivateStartTimeTextBox";
             filteritemActivateStartTimeTextBox.Size = new Size(554, 23);
@@ -867,7 +867,7 @@
             // filteritemActivateStartTimeLabel
             // 
             filteritemActivateStartTimeLabel.AutoSize = true;
-            filteritemActivateStartTimeLabel.Location = new Point(756, 433);
+            filteritemActivateStartTimeLabel.Location = new Point(755, 418);
             filteritemActivateStartTimeLabel.Name = "filteritemActivateStartTimeLabel";
             filteritemActivateStartTimeLabel.Size = new Size(124, 15);
             filteritemActivateStartTimeLabel.TabIndex = 315;
@@ -875,7 +875,7 @@
             // 
             // gainWaccaPointTextBox
             // 
-            gainWaccaPointTextBox.Location = new Point(51, 550);
+            gainWaccaPointTextBox.Location = new Point(50, 535);
             gainWaccaPointTextBox.Margin = new Padding(3, 2, 3, 2);
             gainWaccaPointTextBox.Name = "gainWaccaPointTextBox";
             gainWaccaPointTextBox.Size = new Size(527, 23);
@@ -884,7 +884,7 @@
             // gainWaccaPointLabel
             // 
             gainWaccaPointLabel.AutoSize = true;
-            gainWaccaPointLabel.Location = new Point(51, 533);
+            gainWaccaPointLabel.Location = new Point(50, 518);
             gainWaccaPointLabel.Name = "gainWaccaPointLabel";
             gainWaccaPointLabel.Size = new Size(183, 15);
             gainWaccaPointLabel.TabIndex = 313;
@@ -892,7 +892,7 @@
             // 
             // itemActivateEndTimeTextBox
             // 
-            itemActivateEndTimeTextBox.Location = new Point(51, 500);
+            itemActivateEndTimeTextBox.Location = new Point(50, 485);
             itemActivateEndTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             itemActivateEndTimeTextBox.Name = "itemActivateEndTimeTextBox";
             itemActivateEndTimeTextBox.Size = new Size(527, 23);
@@ -901,7 +901,7 @@
             // itemActivateEndTimeLabel
             // 
             itemActivateEndTimeLabel.AutoSize = true;
-            itemActivateEndTimeLabel.Location = new Point(51, 483);
+            itemActivateEndTimeLabel.Location = new Point(50, 468);
             itemActivateEndTimeLabel.Name = "itemActivateEndTimeLabel";
             itemActivateEndTimeLabel.Size = new Size(368, 15);
             itemActivateEndTimeLabel.TabIndex = 311;
@@ -909,7 +909,7 @@
             // 
             // itemActivateStartTimeTextBox
             // 
-            itemActivateStartTimeTextBox.Location = new Point(51, 450);
+            itemActivateStartTimeTextBox.Location = new Point(50, 435);
             itemActivateStartTimeTextBox.Margin = new Padding(3, 2, 3, 2);
             itemActivateStartTimeTextBox.Name = "itemActivateStartTimeTextBox";
             itemActivateStartTimeTextBox.Size = new Size(527, 23);
@@ -918,7 +918,7 @@
             // itemActivateStartTimeLabel
             // 
             itemActivateStartTimeLabel.AutoSize = true;
-            itemActivateStartTimeLabel.Location = new Point(51, 433);
+            itemActivateStartTimeLabel.Location = new Point(50, 418);
             itemActivateStartTimeLabel.Name = "itemActivateStartTimeLabel";
             itemActivateStartTimeLabel.Size = new Size(372, 15);
             itemActivateStartTimeLabel.TabIndex = 309;
@@ -926,19 +926,19 @@
             // 
             // injectWaccaGradeButton
             // 
-            injectWaccaGradeButton.Location = new Point(1064, 661);
+            injectWaccaGradeButton.Location = new Point(1136, 629);
             injectWaccaGradeButton.Name = "injectWaccaGradeButton";
-            injectWaccaGradeButton.Size = new Size(227, 47);
+            injectWaccaGradeButton.Size = new Size(173, 37);
             injectWaccaGradeButton.TabIndex = 327;
             injectWaccaGradeButton.Text = "Inject Titles.txt for GradeTable";
             injectWaccaGradeButton.UseVisualStyleBackColor = true;
-            injectWaccaGradeButton.Click += injectWaccaGradeButton_Click_1;
+            injectWaccaGradeButton.Click += injectWaccaGradeButton_Click;
             // 
             // createWaccaGradeButton
             // 
-            createWaccaGradeButton.Location = new Point(733, 661);
+            createWaccaGradeButton.Location = new Point(957, 630);
             createWaccaGradeButton.Name = "createWaccaGradeButton";
-            createWaccaGradeButton.Size = new Size(227, 47);
+            createWaccaGradeButton.Size = new Size(173, 37);
             createWaccaGradeButton.TabIndex = 326;
             createWaccaGradeButton.Text = "Create Titles.txt";
             createWaccaGradeButton.UseVisualStyleBackColor = true;

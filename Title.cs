@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Text;
 using UAssetAPI;
 using UAssetAPI.ExportTypes;
 using UAssetAPI.PropertyTypes.Structs;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace WaccaSongBrowser
 {
@@ -273,12 +264,22 @@ namespace WaccaSongBrowser
 
         private void createWaccaGradeButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void injectWaccaGradeButton_Click_1(object sender, EventArgs e)
-        {
-
+            saveLabel.Text = "Processing...";
+            messageFolder = Path.GetDirectoryName(filePath);
+            if (File.Exists(Path.Combine(messageFolder, "Titles.txt")))
+            {
+                saveLabel.Text = "Titles.txt already exists in the current folder";
+            }
+            else if (File.Exists(Path.Combine(messageFolder, "TitlesVanilla.txt")))
+            {
+                saveLabel.Text = "TitlesVanilla.txt already exists in the current folder";
+            }
+            else
+            {
+                File.WriteAllLines(Path.Combine(messageFolder, "Titles.txt"), text, Encoding.UTF8);
+                File.WriteAllLines(Path.Combine(messageFolder, "TitlesVanilla.txt"), text);
+                saveLabel.Text = "Titles.txt and TitlesVanilla.txt created in the Message folder. Do not edit the vanilla txt!!!!";
+            }
         }
     }
 }
