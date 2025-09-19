@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Drawing;
+using System.IO;
 using UAssetAPI;
 using UAssetAPI.ExportTypes;
 using UAssetAPI.PropertyTypes.Objects;
@@ -30,6 +31,8 @@ namespace WaccaSongBrowser
         }
         static UAsset IconTable;
         static string filePath;
+        static string directory;
+        static string newPath;
         static List<IconData> allIcons = new List<IconData>();
         public static sbyte ReadIcon(string uassetPath)
         {
@@ -63,6 +66,57 @@ namespace WaccaSongBrowser
                                 GainWaccaPoint = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GainWaccaPoint"),
                             };
                             allIcons.Add(data);
+                        }
+                    }
+                }
+            }
+            newPath = Path.GetFullPath(Path.Combine(directory, "..", "Message", "IconMessage.uasset"));
+            if (File.Exists(newPath))
+            {
+                IconMessageFilePath = newPath;
+                ReadIconMessage();
+            }
+            else
+            {
+                IconMessageFilePath = null;
+                IconMessage = null;
+                // cannot read SESetMessage
+            }
+            return 0;
+        }
+        static string IconMessageFilePath;
+        static UAsset IconMessage;  // icon
+        static readonly Dictionary<string, int> iconDict = new Dictionary<string, int>();
+        private static sbyte ReadIconMessage()
+        {
+            // Load the asset (assumes .uexp is in the same folder)
+            IconMessage = new UAsset(
+                IconMessageFilePath,
+                UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19
+            );
+            int id;
+            string[] namePath;
+            foreach (var export in IconMessage.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            if (iconDict.TryGetValue(row.Name.ToString(), out id))
+                            {
+                                MessageData data = new MessageData
+                                {
+                                    JapaneseMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "JapaneseMessage");
+                                    EnglishMessageUSA = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "EnglishMessageUSA");
+                                    EnglishMessageSG = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "EnglishMessageSG");
+                                    TraditionalChineseMessageTW = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "TraditionalChineseMessageTW");
+                                    TraditionalChineseMessageHK = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "TraditionalChineseMessageHK");
+                                    SimplifiedChineseMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "SimplifiedChineseMessage");
+                                    KoreanMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "KoreanMessage");
+                                };
+                            }
                         }
                     }
                 }

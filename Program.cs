@@ -123,7 +123,17 @@ namespace WaccaSongBrowser
         public bool bIsInitItem { get; set; }
         public int GainWaccaPoint { get; set; }
     }
-    public class TotalResultItemJudgementData
+    public class MessageData
+    {
+        public string JapaneseMessage { get; set; }
+        public string EnglishMessageUSA { get; set; }
+        public string EnglishMessageSG { get; set; }
+        public string TraditionalChineseMessageTW { get; set; }
+        public string TraditionalChineseMessageHK { get; set; }
+        public string SimplifiedChineseMessage { get; set; }
+        public string KoreanMessage { get; set; }
+
+        public class TotalResultItemJudgementData
     {
         public int ItemId { get; set; }
         public long ConditionGetableStartTime { get; set; }
