@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System;
+using System.Drawing;
+using System.IO;
+using System.Text;
 using UAssetAPI;
 using UAssetAPI.ExportTypes;
 using UAssetAPI.PropertyTypes.Structs;
@@ -27,6 +30,7 @@ namespace WaccaSongBrowser
         static List<string> textVanilla = new List<string>();
         static string messageFolder;
         static string filePath;
+        static List<GradeData> allTitles = new List<GradeData>();
         public static sbyte ReadGrade(string uassetPath)
         {
             filePath = uassetPath;
@@ -48,68 +52,269 @@ namespace WaccaSongBrowser
                             id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GradeId");
                             if (id == 0) return -1;
                             text.Add(WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag"));
+                            GradeData data = new GradeData
+                            {
+                                GradeId = id,
+                                GradePartsId01 = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GradePartsId01"),
+                                GradePartsId02 = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GradePartsId02"),
+                                GradePartsId03 = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GradePartsId03"),
+                                GradeRarity = WaccaSongBrowser.GetFieldValue<byte>(rowStruct, "GradeRarity"),
+                                NameTag = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag"),
+                                ExplanationTextTag = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "ExplanationTextTag"),
+                                ItemActivateStartTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ItemActivateStartTime"),
+                                ItemActivateEndTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ItemActivateEndTime"),
+                                bIsInitItem = WaccaSongBrowser.GetFieldValue<bool>(rowStruct, "bIsInitItem"),
+                                GainWaccaPoint = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GainWaccaPoint"),
+                            };
+                            allTitles.Add(data);
                         }
                     }
                 }
             }
             return 0;
         }
-
+        static int currentIconId = 0;
         private void validateButton_Click(object sender, EventArgs e)
         {
-
+            if (allTitles.Count == 0)
+                return;
+            saveLabel.Text = "";
+            saveChanges();
+            int.TryParse(gradeid.Text, out currentIconId);
+            if (currentIconId == 0)
+            {
+                saveLabel.Text = "ID 0 cannot be used";
+                saveLabel.Text = "";
+                return;
+            }
+            int currentIndex = allTitles.FindIndex(s => s.GradeId == currentIconId);
+            if (currentIndex == -1)
+            {
+                // consoleLabel.Text = "Creating new song ID. Will be saved upon next click on save, or on next Song ID change if autosave is on"; // use WSongInject instead
+                saveLabel.Text = $"ID {currentIconId} not found";
+                saveLabel.Text = "";
+                return;
+            }
+            LoadUI(allTitles[currentIndex]);
+        }
+        private void LoadUI(GradeData icon)
+        {
+            gradeidTextBox.Text = icon.GradeId.ToString();
+            if (!gradePartsId01freezeCheckBox.Checked)
+                gradePartsId01TextBox.Text = icon.GradePartsId01.ToString();
+            if (!gradePartsId02freezeCheckBox.Checked)
+                gradePartsId02TextBox.Text = icon.GradePartsId02.ToString();
+            if (!gradePartsId03freezeCheckBox.Checked)
+                gradePartsId03TextBox.Text = icon.GradePartsId03.ToString();
+            if (!gradeRarityfreezeCheckBox.Checked)
+                gradeRarityTextBox.Text = icon.GradeRarity.ToString();
+            if (!nameTagfreezeCheckBox.Checked)
+                nameTagTextBox.Text = icon.NameTag;
+            if (!ExplanationTextTagfreezeCheckBox.Checked)
+                ExplanationTextTagTextBox.Text = icon.ExplanationTextTag;
+            if (!itemActivateStartTimefreezeCheckBox.Checked)
+                itemActivateStartTimeTextBox.Text = icon.ItemActivateStartTime.ToString();
+            if (!itemActivateEndTimefreezeCheckBox.Checked)
+                itemActivateEndTimeTextBox.Text = icon.ItemActivateEndTime.ToString();
+            if (!bIsInitItemfreezeCheckBox.Checked)
+                bIsInitItem.Checked = icon.bIsInitItem;
+            if (!gainWaccaPointfreezeCheckBox.Checked)
+                gainWaccaPointTextBox.Text = icon.GainWaccaPoint.ToString();
         }
 
         private void nextButton_Click(object sender, EventArgs e)
         {
 
+            if (gradeid.SelectedIndex >= gradeid.Items.Count - 1)
+                gradeid.SelectedIndex = 0;
+            else
+                gradeid.SelectedIndex += 1;
+            validateButton_Click(null, null);
         }
 
         private void previousButton_Click(object sender, EventArgs e)
         {
-
+            if (gradeid.SelectedIndex <= 0)
+                gradeid.SelectedIndex = gradeid.Items.Count - 1;
+            else
+                gradeid.SelectedIndex -= 1;
+            validateButton_Click(null, null);
         }
-
+        string filter;
+        int gainF; // temp memory allocated so the program avoids memory leak, there is no other func than search who use them.
+        byte rarityF;
+        long timeF;
+        bool isinitF;
         private void searchButton_Click(object sender, EventArgs e)
         {
+            IEnumerable<GradeData> filtered = allTitles;
 
+            // --- text filters ---
+            if (filterNameTagCheckBox.Checked)
+            {
+                filter = filterNameTagTextBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.NameTag != null &&
+                                                      song.NameTag.ToLower().Contains(filter));
+            }
+            if (filterexplanationTextTagCheckBox.Checked)
+            {
+                filter = filterexplanationTextTagTextBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.ExplanationTextTag != null &&
+                                                      song.ExplanationTextTag.ToLower().Contains(filter));
+            }
+
+            // --- number filters ---
+            if (filtergradePartsId01CheckBox.Checked)
+                filtered = filtered.Where(song => int.TryParse(filtergradePartsId01TextBox.Text, out gainF) && song.GradePartsId01 == gainF);
+            if (filtergradePartsId02CheckBox.Checked)
+                filtered = filtered.Where(song => int.TryParse(filtergradePartsId02TextBox.Text, out gainF) && song.GradePartsId02 == gainF);
+            if (filtergradePartsId03CheckBox.Checked)
+                filtered = filtered.Where(song => int.TryParse(filtergradePartsId03TextBox.Text, out gainF) && song.GradePartsId03 == gainF);
+            if (filtergradeRarityCheckBox.Checked)
+                filtered = filtered.Where(song => byte.TryParse(filtergradeRarityTextBox.Text, out rarityF) && song.GradeRarity == rarityF);
+            if (filteritemActivateStartTimeCheckBox.Checked)
+                filtered = filtered.Where(song => long.TryParse(filteritemActivateStartTimeTextBox.Text, out timeF) && song.ItemActivateStartTime == timeF);
+            if (filteritemActivateEndTimeCheckBox.Checked)
+                filtered = filtered.Where(song => long.TryParse(filteritemActivateEndTimeTextBox.Text, out timeF) && song.ItemActivateEndTime == timeF);
+            if (filterGainWaccaPointCheckBox.Checked)
+                filtered = filtered.Where(song => int.TryParse(filterGainWaccaPointTextBox.Text, out gainF) && song.GainWaccaPoint == gainF);
+            if (filterbIsInitItemEnableCb.Checked)
+                filtered = filtered.Where(song => song.bIsInitItem == filterbIsInitItemCheckBox.Checked);
+
+            // --- Final result ---
+            var resultList = filtered.ToList();
+            if (resultList.Count == 0)
+            {
+                searchLabel.Text = "No match.";
+                showingItemLabel.Text = $"Showing Result 0/0";
+                return;
+            }
+
+            // Option A: Show first match immediately
+            var firstSong = resultList.First();
+            if (resultList.Count > 1)
+                searchLabel.Text = $"{resultList.Count} matches!";
+            else
+                searchLabel.Text = $"{resultList.Count} match!";
+            saveChanges();
+            currentIconId = firstSong.GradeId;
+            LoadUI(firstSong);
+
+
+            // Option B: keep resultList for navigation (next/previous)
+            // store in a field:
+            filteredSongs = resultList;
+            filteredSongsSelectedIndex = 0;
+            showingItemLabel.Text = $"Showing Result 1/{filteredSongs.Count}";
+        }
+
+        private void filterInvertMatchesButton_Click(object sender, EventArgs e)
+        {
+            IEnumerable<GradeData> filtered = allTitles;
+
+            // Exclude songs already in filteredSongs
+            filtered = filtered.Where(song => !filteredSongs.Any(fs => fs.GradeId == song.GradeId));
+
+            // --- Final result ---
+            var resultList = filtered.ToList();
+            if (resultList.Count == 0)
+            {
+                searchLabel.Text = "No match.";
+                showingItemLabel.Text = $"Showing Result 0/0";
+                return;
+            }
+
+            // Option A: Show first match immediately
+            var firstSong = resultList.First();
+            if (resultList.Count > 1)
+                searchLabel.Text = $"{resultList.Count} matches!";
+            else
+                searchLabel.Text = $"{resultList.Count} match!";
+
+            saveChanges();
+            currentIconId = firstSong.GradeId;
+            LoadUI(firstSong);
+
+            // Option B: keep resultList for navigation (next/previous)
+            filteredSongs = resultList;
+            filteredSongsSelectedIndex = 0;
+            showingItemLabel.Text = $"Showing Result 1/{filteredSongs.Count}";
+        }
+
+        static List<GradeData> filteredSongs = new List<GradeData>();
+        static int filteredSongsSelectedIndex;
+
+        private void searchPreviousButton_Click(object sender, EventArgs e)
+        {
+            if (filteredSongs.Count == 0) return;
+            filteredSongsSelectedIndex--;
+            if (filteredSongsSelectedIndex < 0)
+            {
+                filteredSongsSelectedIndex = filteredSongs.Count - 1;
+            }
+            saveChanges();
+            currentIconId = filteredSongs[filteredSongsSelectedIndex].GradeId;
+            LoadUI(filteredSongs[filteredSongsSelectedIndex]);
+            showingItemLabel.Text = $"Showing Result {filteredSongsSelectedIndex + 1}/{filteredSongs.Count}";
         }
 
         private void searchNextButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void searchPreviousButton_Click(object sender, EventArgs e)
-        {
-
+            if (filteredSongs.Count == 0) return;
+            filteredSongsSelectedIndex++;
+            if (filteredSongsSelectedIndex >= filteredSongs.Count)
+            {
+                filteredSongsSelectedIndex = 0;
+            }
+            saveChanges();
+            currentIconId = filteredSongs[filteredSongsSelectedIndex].GradeId;
+            LoadUI(filteredSongs[filteredSongsSelectedIndex]);
+            showingItemLabel.Text = $"Showing Result {filteredSongsSelectedIndex + 1}/{filteredSongs.Count}";
         }
 
         private void injectNewButton_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void createNewIconButton_Click(object sender, EventArgs e)
+        private bool saveChangesInRam()
         {
-
+            return true;
         }
-
         private void ramSaveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (ramSaveCheckBox.Checked)
+            {
+                saveChangesInRam();
+            }
         }
-
+        private void saveChanges()
+        {
+            if (autoSaveCheckBox.Checked)
+            {
+                saveButton_Click(null, null);
+            }
+            else if (ramSaveCheckBox.Checked)
+            {
+                saveChangesInRam();
+            }
+            // else don't save data
+        }
+        static int savecount = 0;
         private void saveButton_Click(object sender, EventArgs e)
         {
-
+            saveChangesInRam();
+            saveLabel.Text = $"Saved {++savecount} times";
+            GradeTable.Write(filePath);
         }
-
         private void autoSaveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (autoSaveCheckBox.Checked == true)
+            {
+                saveChanges();
+            }
         }
-
         private void injectWaccaGradeButton_Click(object sender, EventArgs e)
         {
             saveLabel.Text = "Processing...";

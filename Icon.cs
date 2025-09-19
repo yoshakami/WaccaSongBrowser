@@ -50,8 +50,6 @@ namespace WaccaSongBrowser
                         {
                             id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "IconId");
                             if (id == 0) return -1;
-                            //text.Add(WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag"));
-                            //TODO: fill list
                             IconData data = new IconData
                             {
                                 IconId = id,
@@ -83,7 +81,7 @@ namespace WaccaSongBrowser
             }
             // else don't save data
         }
-        static int currentIconId;
+        static int currentIconId = 0;
         private void validateButton_Click(object sender, EventArgs e)
         {
             if (allIcons.Count == 0)

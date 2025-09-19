@@ -109,6 +109,20 @@ namespace WaccaSongBrowser
         public bool bIsInitItem { get; set; }
         public int GainWaccaPoint { get; set; }
     }
+    public class GradeData
+    {
+        public int GradeId { get; set; }
+        public int GradePartsId01 { get; set; }
+        public int GradePartsId02 { get; set; }
+        public int GradePartsId03 { get; set; }
+        public byte GradeRarity { get; set; }
+        public string NameTag { get; set; }
+        public string ExplanationTextTag { get; set; }
+        public long ItemActivateStartTime { get; set; }
+        public long ItemActivateEndTime { get; set; }
+        public bool bIsInitItem { get; set; }
+        public int GainWaccaPoint { get; set; }
+    }
     public class TotalResultItemJudgementData
     {
         public int ItemId { get; set; }
