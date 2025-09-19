@@ -20,17 +20,18 @@ namespace WaccaSongBrowser
             filterNameTagCheckBox_CheckedChanged(null, null);
             filterexplanationTextTagCheckBox_CheckedChanged(null, null);
             filterbIsInitItemEnableCb_CheckedChanged(null, null);
+            foreach (IconData data in allIcons)
+            {
+                iconid.Items.Add(data.IconId.ToString());
+            }
+            nextButton_Click(null, null); // read returns -1 if allconditions is empty
         }
         static UAsset IconTable;
-        static List<string> text = new List<string>();
-        static List<string> textVanilla = new List<string>();
-        static string messageFolder;
         static string filePath;
         static List<IconData> allIcons = new List<IconData>();
         public static sbyte ReadIcon(string uassetPath)
         {
             filePath = uassetPath;
-            text.Clear();
             if (!File.Exists(uassetPath)) return -1;
             // Load the asset (assumes .uexp is in the same folder)
             IconTable = new UAsset(uassetPath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
@@ -164,19 +165,139 @@ namespace WaccaSongBrowser
         {
 
         }
+        string filter;
+        int gainF; // temp memory allocated so the program avoids memory leak, there is no other func than search who use them.
+        byte rarityF;
+        long timeF;
+        bool isinitF;
         private void searchButton_Click(object sender, EventArgs e)
         {
+            IEnumerable<IconData> filtered = allIcons;
 
+            // --- text filters ---
+            if (filtericonTextureNameCheckBox.Checked)
+            {
+                filter = filtericonTextureNameTextBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.IconTextureName != null &&
+                                                      song.IconTextureName.ToLower().Contains(filter));
+            }
+            if (filterNameTagCheckBox.Checked)
+            {
+                filter = filterNameTagTextBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.NameTag != null &&
+                                                      song.NameTag.ToLower().Contains(filter));
+            }
+            if (filterexplanationTextTagCheckBox.Checked)
+            {
+                filter = filterexplanationTextTagTextBox.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(filter))
+                    filtered = filtered.Where(song => song.ExplanationTextTag != null &&
+                                                      song.ExplanationTextTag.ToLower().Contains(filter));
+            }
+
+            // --- number filters ---
+            if (filtericonRarityCheckBox.Checked)
+                filtered = filtered.Where(song => byte.TryParse(filtericonRarityTextBox.Text, out rarityF) && song.IconRarity == rarityF);
+            if (filteritemActivateStartTimeCheckBox.Checked)
+                filtered = filtered.Where(song => long.TryParse(filteritemActivateStartTimeTextBox.Text, out timeF) && song.ItemActivateStartTime == timeF);
+            if (filteritemActivateEndTimeCheckBox.Checked)
+                filtered = filtered.Where(song => long.TryParse(filteritemActivateEndTimeTextBox.Text, out timeF) && song.ItemActivateEndTime == timeF);
+            if (filterGainWaccaPointCheckBox.Checked)
+                filtered = filtered.Where(song => int.TryParse(filterGainWaccaPointTextBox.Text, out gainF) && song.GainWaccaPoint == gainF);
+            if (filterbIsInitItemEnableCb.Checked)
+                filtered = filtered.Where(song => song.bIsInitItem == filterbIsInitItemCheckBox.Checked);
+
+            // --- Final result ---
+            var resultList = filtered.ToList();
+            if (resultList.Count == 0)
+            {
+                searchLabel.Text = "No match.";
+                showingItemLabel.Text = $"Showing Result 0/0";
+                return;
+            }
+
+            // Option A: Show first match immediately
+            var firstSong = resultList.First();
+            if (resultList.Count > 1)
+                searchLabel.Text = $"{resultList.Count} matches!";
+            else
+                searchLabel.Text = $"{resultList.Count} match!";
+            saveChanges();
+            currentIconId = firstSong.IconId;
+            LoadUI(firstSong);
+
+
+            // Option B: keep resultList for navigation (next/previous)
+            // store in a field:
+            filteredSongs = resultList;
+            filteredSongsSelectedIndex = 0;
+            showingItemLabel.Text = $"Showing Result 1/{filteredSongs.Count}";
+        }
+
+        private void filterInvertMatchesButton_Click(object sender, EventArgs e)
+        {
+            IEnumerable<IconData> filtered = allIcons;
+
+            // Exclude songs already in filteredSongs
+            filtered = filtered.Where(song => !filteredSongs.Any(fs => fs.IconId == song.IconId));
+
+            // --- Final result ---
+            var resultList = filtered.ToList();
+            if (resultList.Count == 0)
+            {
+                searchLabel.Text = "No match.";
+                showingItemLabel.Text = $"Showing Result 0/0";
+                return;
+            }
+
+            // Option A: Show first match immediately
+            var firstSong = resultList.First();
+            if (resultList.Count > 1)
+                searchLabel.Text = $"{resultList.Count} matches!";
+            else
+                searchLabel.Text = $"{resultList.Count} match!";
+
+            saveChanges();
+            currentIconId = firstSong.IconId;
+            LoadUI(firstSong);
+
+            // Option B: keep resultList for navigation (next/previous)
+            filteredSongs = resultList;
+            filteredSongsSelectedIndex = 0;
+            showingItemLabel.Text = $"Showing Result 1/{filteredSongs.Count}";
+        }
+
+        static List<IconData> filteredSongs = new List<IconData>();
+        static int filteredSongsSelectedIndex;
+
+        private void searchPreviousButton_Click(object sender, EventArgs e)
+        {
+            if (filteredSongs.Count == 0) return;
+            filteredSongsSelectedIndex--;
+            if (filteredSongsSelectedIndex < 0)
+            {
+                filteredSongsSelectedIndex = filteredSongs.Count - 1;
+            }
+            saveChanges();
+            currentIconId = filteredSongs[filteredSongsSelectedIndex].IconId;
+            LoadUI(filteredSongs[filteredSongsSelectedIndex]);
+            showingItemLabel.Text = $"Showing Result {filteredSongsSelectedIndex + 1}/{filteredSongs.Count}";
         }
 
         private void searchNextButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void searchPreviousButton_Click(object sender, EventArgs e)
-        {
-
+            if (filteredSongs.Count == 0) return;
+            filteredSongsSelectedIndex++;
+            if (filteredSongsSelectedIndex >= filteredSongs.Count)
+            {
+                filteredSongsSelectedIndex = 0;
+            }
+            saveChanges();
+            currentIconId = filteredSongs[filteredSongsSelectedIndex].IconId;
+            LoadUI(filteredSongs[filteredSongsSelectedIndex]);
+            showingItemLabel.Text = $"Showing Result {filteredSongsSelectedIndex + 1}/{filteredSongs.Count}";
         }
         private void saveChangesInRam()
         { 

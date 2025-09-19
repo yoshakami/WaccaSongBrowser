@@ -467,7 +467,7 @@
             // 
             // previousButton
             // 
-            previousButton.Location = new Point(1202, 35);
+            previousButton.Location = new Point(1080, 35);
             previousButton.Name = "previousButton";
             previousButton.Size = new Size(107, 27);
             previousButton.TabIndex = 276;
@@ -477,7 +477,7 @@
             // 
             // nextButton
             // 
-            nextButton.Location = new Point(1081, 35);
+            nextButton.Location = new Point(1202, 34);
             nextButton.Name = "nextButton";
             nextButton.Size = new Size(107, 27);
             nextButton.TabIndex = 275;
@@ -624,7 +624,7 @@
             // 
             // searchPreviousButton
             // 
-            searchPreviousButton.Location = new Point(1151, 584);
+            searchPreviousButton.Location = new Point(1071, 584);
             searchPreviousButton.Name = "searchPreviousButton";
             searchPreviousButton.Size = new Size(70, 27);
             searchPreviousButton.TabIndex = 298;
@@ -653,7 +653,7 @@
             // 
             // searchNextButton
             // 
-            searchNextButton.Location = new Point(1071, 584);
+            searchNextButton.Location = new Point(1151, 584);
             searchNextButton.Name = "searchNextButton";
             searchNextButton.Size = new Size(70, 27);
             searchNextButton.TabIndex = 295;

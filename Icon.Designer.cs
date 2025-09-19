@@ -110,6 +110,7 @@
             ramSaveCheckBox = new CheckBox();
             saveButton = new Button();
             autoSaveCheckBox = new CheckBox();
+            filterInvertMatchesButton = new Button();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -302,10 +303,10 @@
             // saveLabel
             // 
             saveLabel.AutoSize = true;
-            saveLabel.Location = new Point(23, 686);
-            saveLabel.MinimumSize = new Size(500, 0);
+            saveLabel.Location = new Point(553, 645);
+            saveLabel.MinimumSize = new Size(450, 0);
             saveLabel.Name = "saveLabel";
-            saveLabel.Size = new Size(500, 15);
+            saveLabel.Size = new Size(450, 15);
             saveLabel.TabIndex = 96;
             saveLabel.Text = "no file loaded";
             saveLabel.TextAlign = ContentAlignment.TopCenter;
@@ -358,7 +359,7 @@
             // 
             // searchButton
             // 
-            searchButton.Location = new Point(572, 604);
+            searchButton.Location = new Point(572, 577);
             searchButton.Name = "searchButton";
             searchButton.Size = new Size(149, 27);
             searchButton.TabIndex = 127;
@@ -405,7 +406,7 @@
             // searchLabel
             // 
             searchLabel.AutoSize = true;
-            searchLabel.Location = new Point(729, 610);
+            searchLabel.Location = new Point(729, 583);
             searchLabel.Name = "searchLabel";
             searchLabel.Size = new Size(63, 15);
             searchLabel.TabIndex = 122;
@@ -570,7 +571,7 @@
             // 
             // searchNextButton
             // 
-            searchNextButton.Location = new Point(812, 604);
+            searchNextButton.Location = new Point(892, 604);
             searchNextButton.Name = "searchNextButton";
             searchNextButton.Size = new Size(70, 27);
             searchNextButton.TabIndex = 102;
@@ -680,7 +681,7 @@
             // 
             // searchPreviousButton
             // 
-            searchPreviousButton.Location = new Point(892, 604);
+            searchPreviousButton.Location = new Point(812, 604);
             searchPreviousButton.Name = "searchPreviousButton";
             searchPreviousButton.Size = new Size(70, 27);
             searchPreviousButton.TabIndex = 139;
@@ -690,7 +691,7 @@
             // 
             // previousButton
             // 
-            previousButton.Location = new Point(894, 57);
+            previousButton.Location = new Point(812, 57);
             previousButton.Name = "previousButton";
             previousButton.Size = new Size(70, 27);
             previousButton.TabIndex = 141;
@@ -700,7 +701,7 @@
             // 
             // nextButton
             // 
-            nextButton.Location = new Point(814, 57);
+            nextButton.Location = new Point(892, 55);
             nextButton.Name = "nextButton";
             nextButton.Size = new Size(70, 27);
             nextButton.TabIndex = 140;
@@ -895,10 +896,20 @@
             autoSaveCheckBox.UseVisualStyleBackColor = true;
             autoSaveCheckBox.CheckedChanged += autoSaveCheckBox_CheckedChanged;
             // 
-            // Icon
+            // filterInvertMatchesButton
+            // 
+            filterInvertMatchesButton.Location = new Point(595, 608);
+            filterInvertMatchesButton.Name = "filterInvertMatchesButton";
+            filterInvertMatchesButton.Size = new Size(105, 23);
+            filterInvertMatchesButton.TabIndex = 257;
+            filterInvertMatchesButton.Text = "Invert Matches";
+            filterInvertMatchesButton.UseVisualStyleBackColor = true;
+            // 
+            // IconTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(filterInvertMatchesButton);
             Controls.Add(ramSaveCheckBox);
             Controls.Add(saveButton);
             Controls.Add(autoSaveCheckBox);
@@ -981,7 +992,7 @@
             Controls.Add(iconIdTextBox);
             Controls.Add(iconIdLabel);
             Controls.Add(createNewIconButton);
-            Name = "Icon";
+            Name = "IconTab";
             Size = new Size(1338, 681);
             ((System.ComponentModel.ISupportInitialize)iconPictureBox).EndInit();
             ResumeLayout(false);
@@ -1072,5 +1083,6 @@
         private CheckBox ramSaveCheckBox;
         private Button saveButton;
         private CheckBox autoSaveCheckBox;
+        private Button filterInvertMatchesButton;
     }
 }
