@@ -18,13 +18,23 @@ namespace WaccaSongBrowser
         public Icon()
         {
             InitializeComponent();
+            filtericonTextureNameCheckBox_CheckedChanged(null, null);
+            filtericonRarityCheckBox_CheckedChanged(null, null);
+            filteritemActivateStartTimeCheckBox_CheckedChanged(null, null);
+            filteritemActivateEndTimeCheckBox_CheckedChanged(null, null);
+            filterGainWaccaPointCheckBox_CheckedChanged(null, null);
+            filtericonNameCheckBox_CheckedChanged(null, null);
+            filtericonAcquisitionWayCheckBox_CheckedChanged(null, null);
+            filterNameTagCheckBox_CheckedChanged(null, null);
+            filterexplanationTextTagCheckBox_CheckedChanged(null, null);
+            filterbIsInitItemEnableCb_CheckedChanged(null, null);
         }
         static UAsset IconTable;
         static List<string> text = new List<string>();
         static List<string> textVanilla = new List<string>();
         static string messageFolder;
         static string filePath;
-        public static sbyte ReadGrade(string uassetPath)
+        public static sbyte ReadIcon(string uassetPath)
         {
             filePath = uassetPath;
             text.Clear();

@@ -96,8 +96,8 @@
             filterNameTagTextBox = new TextBox();
             filterNameTagLabel = new Label();
             gainWaccaPointfreezeCheckBox = new CheckBox();
-            itemActivateEndTimefreezeTextBox = new CheckBox();
-            itemActivateStartTimefreezeTextBox = new CheckBox();
+            itemActivateEndTimefreezeCheckBox = new CheckBox();
+            itemActivateStartTimefreezeCheckBox = new CheckBox();
             filteritemActivateStartTimeCheckBox = new CheckBox();
             filteritemActivateEndTimeCheckBox = new CheckBox();
             filterGainWaccaPointCheckBox = new CheckBox();
@@ -770,27 +770,27 @@
             gainWaccaPointfreezeCheckBox.UseVisualStyleBackColor = true;
             gainWaccaPointfreezeCheckBox.CheckedChanged += gainWaccaPointfreezeCheckBox_CheckedChanged;
             // 
-            // itemActivateEndTimefreezeTextBox
+            // itemActivateEndTimefreezeCheckBox
             // 
-            itemActivateEndTimefreezeTextBox.AutoSize = true;
-            itemActivateEndTimefreezeTextBox.Location = new Point(593, 489);
-            itemActivateEndTimefreezeTextBox.Name = "itemActivateEndTimefreezeTextBox";
-            itemActivateEndTimefreezeTextBox.Size = new Size(59, 19);
-            itemActivateEndTimefreezeTextBox.TabIndex = 324;
-            itemActivateEndTimefreezeTextBox.Text = "Freeze";
-            itemActivateEndTimefreezeTextBox.UseVisualStyleBackColor = true;
-            itemActivateEndTimefreezeTextBox.CheckedChanged += itemActivateEndTimefreezeTextBox_CheckedChanged;
+            itemActivateEndTimefreezeCheckBox.AutoSize = true;
+            itemActivateEndTimefreezeCheckBox.Location = new Point(593, 489);
+            itemActivateEndTimefreezeCheckBox.Name = "itemActivateEndTimefreezeCheckBox";
+            itemActivateEndTimefreezeCheckBox.Size = new Size(59, 19);
+            itemActivateEndTimefreezeCheckBox.TabIndex = 324;
+            itemActivateEndTimefreezeCheckBox.Text = "Freeze";
+            itemActivateEndTimefreezeCheckBox.UseVisualStyleBackColor = true;
+            itemActivateEndTimefreezeCheckBox.CheckedChanged += itemActivateEndTimefreezeTextBox_CheckedChanged;
             // 
-            // itemActivateStartTimefreezeTextBox
+            // itemActivateStartTimefreezeCheckBox
             // 
-            itemActivateStartTimefreezeTextBox.AutoSize = true;
-            itemActivateStartTimefreezeTextBox.Location = new Point(593, 439);
-            itemActivateStartTimefreezeTextBox.Name = "itemActivateStartTimefreezeTextBox";
-            itemActivateStartTimefreezeTextBox.Size = new Size(59, 19);
-            itemActivateStartTimefreezeTextBox.TabIndex = 323;
-            itemActivateStartTimefreezeTextBox.Text = "Freeze";
-            itemActivateStartTimefreezeTextBox.UseVisualStyleBackColor = true;
-            itemActivateStartTimefreezeTextBox.CheckedChanged += itemActivateStartTimefreezeTextBox_CheckedChanged;
+            itemActivateStartTimefreezeCheckBox.AutoSize = true;
+            itemActivateStartTimefreezeCheckBox.Location = new Point(593, 439);
+            itemActivateStartTimefreezeCheckBox.Name = "itemActivateStartTimefreezeCheckBox";
+            itemActivateStartTimefreezeCheckBox.Size = new Size(59, 19);
+            itemActivateStartTimefreezeCheckBox.TabIndex = 323;
+            itemActivateStartTimefreezeCheckBox.Text = "Freeze";
+            itemActivateStartTimefreezeCheckBox.UseVisualStyleBackColor = true;
+            itemActivateStartTimefreezeCheckBox.CheckedChanged += itemActivateStartTimefreezeTextBox_CheckedChanged;
             // 
             // filteritemActivateStartTimeCheckBox
             // 
@@ -951,8 +951,8 @@
             Controls.Add(injectWaccaGradeButton);
             Controls.Add(createWaccaGradeButton);
             Controls.Add(gainWaccaPointfreezeCheckBox);
-            Controls.Add(itemActivateEndTimefreezeTextBox);
-            Controls.Add(itemActivateStartTimefreezeTextBox);
+            Controls.Add(itemActivateEndTimefreezeCheckBox);
+            Controls.Add(itemActivateStartTimefreezeCheckBox);
             Controls.Add(filteritemActivateStartTimeCheckBox);
             Controls.Add(filteritemActivateEndTimeCheckBox);
             Controls.Add(filterGainWaccaPointCheckBox);
@@ -1110,8 +1110,8 @@
         private TextBox filterNameTagTextBox;
         private Label filterNameTagLabel;
         private CheckBox gainWaccaPointfreezeCheckBox;
-        private CheckBox itemActivateEndTimefreezeTextBox;
-        private CheckBox itemActivateStartTimefreezeTextBox;
+        private CheckBox itemActivateEndTimefreezeCheckBox;
+        private CheckBox itemActivateStartTimefreezeCheckBox;
         private CheckBox filteritemActivateStartTimeCheckBox;
         private CheckBox filteritemActivateEndTimeCheckBox;
         private CheckBox filterGainWaccaPointCheckBox;
