@@ -97,6 +97,18 @@ namespace WaccaSongBrowser
         public string Value4 { get; set; }
         public string Value5 { get; set; }
     }
+    public class IconData
+    {
+        public int IconId { get; set; }
+        public string IconTextureName { get; set; }
+        public byte IconRarity { get; set; }
+        public string NameTag { get; set; }
+        public string ExplanationTextTag { get; set; }
+        public long ItemActivateStartTime { get; set; }
+        public long ItemActivateEndTime { get; set; }
+        public bool bIsInitItem { get; set; }
+        public int GainWaccaPoint { get; set; }
+    }
     public class TotalResultItemJudgementData
     {
         public int ItemId { get; set; }

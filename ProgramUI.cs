@@ -106,12 +106,14 @@ namespace WaccaSongBrowser
                                 panelMainContainer.Enabled = true;
                                 LoadPage(new Title());
                             }
+                            else if (IconTab.ReadIcon(path2) != -1)
+                            {
+                                panelMainContainer.Visible = true;
+                                panelMainContainer.Enabled = true;
+                                LoadPage(new IconTab());
+                            }
                             else
                             {
-
-
-                                // TODO:
-                                // read IconTable
                                 panelMainContainer.Visible = true;
                                 panelMainContainer.Enabled = true;
                                 LoadPage(new Message(path2));

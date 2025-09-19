@@ -54,6 +54,62 @@ namespace WaccaSongBrowser
             }
             return 0;
         }
+
+        private void validateButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void previousButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void searchNextButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void searchPreviousButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void injectNewButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void createNewIconButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ramSaveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void autoSaveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void injectWaccaGradeButton_Click(object sender, EventArgs e)
         {
             saveLabel.Text = "Processing...";
@@ -309,62 +365,6 @@ namespace WaccaSongBrowser
                 itemActivateEndTimeTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
                 itemActivateEndTimefreezeCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
             }
-        }
-
-
-        private void validateButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nextButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void previousButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void searchButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void searchNextButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void searchPreviousButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void injectNewButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void createNewIconButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ramSaveCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void autoSaveCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void createWaccaGradeButton_Click(object sender, EventArgs e)

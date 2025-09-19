@@ -1,6 +1,6 @@
 ﻿namespace WaccaSongBrowser
 {
-    partial class Icon
+    partial class IconTab
     {
         /// <summary> 
         /// Required designer variable.

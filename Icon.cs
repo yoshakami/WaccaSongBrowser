@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.IO;
 using UAssetAPI;
 using UAssetAPI.ExportTypes;
 using UAssetAPI.PropertyTypes.Structs;
 
 namespace WaccaSongBrowser
 {
-    public partial class Icon : UserControl
+    public partial class IconTab : UserControl
     {
-        public Icon()
+        public IconTab()
         {
             InitializeComponent();
             filtericonTextureNameCheckBox_CheckedChanged(null, null);
@@ -34,6 +26,7 @@ namespace WaccaSongBrowser
         static List<string> textVanilla = new List<string>();
         static string messageFolder;
         static string filePath;
+        static List<IconData> allIcons = new List<IconData>();
         public static sbyte ReadIcon(string uassetPath)
         {
             filePath = uassetPath;
@@ -56,27 +49,121 @@ namespace WaccaSongBrowser
                             if (id == 0) return -1;
                             //text.Add(WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag"));
                             //TODO: fill list
+                            IconData data = new IconData
+                            {
+                                IconId = id,
+                                IconTextureName = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "IconTextureName"),
+                                IconRarity = WaccaSongBrowser.GetFieldValue<byte>(rowStruct, "IconRarity"),
+                                NameTag = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag"),
+                                ExplanationTextTag = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "ExplanationTextTag"),
+                                ItemActivateStartTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ItemActivateStartTime"),
+                                ItemActivateEndTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ItemActivateEndTime"),
+                                bIsInitItem = WaccaSongBrowser.GetFieldValue<bool>(rowStruct, "bIsInitItem"),
+                                GainWaccaPoint = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GainWaccaPoint"),
+                            };
+                            allIcons.Add(data);
                         }
                     }
                 }
             }
             return 0;
         }
+        private void saveChanges()
+        {
+            if (autoSaveCheckBox.Checked)
+            {
+                saveButton_Click(null, null);
+            }
+            else if (ramSaveCheckBox.Checked)
+            {
+                saveChangesInRam();
+            }
+            // else don't save data
+        }
+        static int currentIconId;
         private void validateButton_Click(object sender, EventArgs e)
         {
-
+            if (allIcons.Count == 0)
+                return;
+            saveLabel.Text = "";
+            saveChanges();
+            int.TryParse(iconid.Text, out currentIconId);
+            if (currentIconId == 0)
+            {
+                saveLabel.Text = "ID 0 cannot be used";
+                saveLabel.Text = "";
+                return;
+            }
+            int currentIndex = allIcons.FindIndex(s => s.IconId == currentIconId);
+            if (currentIndex == -1)
+            {
+                // consoleLabel.Text = "Creating new song ID. Will be saved upon next click on save, or on next Song ID change if autosave is on"; // use WSongInject instead
+                saveLabel.Text = $"ID {currentIconId} not found";
+                saveLabel.Text = "";
+                return;
+            }
+            LoadUI(allIcons[currentIndex]);
         }
-
+        private void LoadUI(IconData icon)
+        {
+            iconIdTextBox.Text = icon.IconId.ToString();
+            if (!iconTextureNamefreezeCheckBox.Checked)
+                iconTextureNameTextBox.Text = icon.IconTextureName;
+            if (!iconRarityfreezeCheckBox.Checked)
+                iconRarityTextBox.Text = icon.IconRarity.ToString();
+            if (!nameTagfreezeCheckBox.Checked)
+                nameTagTextBox.Text = icon.NameTag;
+            if (!explanationTextTagfreezeCheckBox.Checked)
+                explanationTextTagTextBox.Text = icon.ExplanationTextTag;
+            if (!itemActivateStartTimefreezeChechBox.Checked)
+                itemActivateStartTimeTextBox.Text = icon.ItemActivateStartTime.ToString();
+            if (!ItemActivateEndTimefreezeCheckBox.Checked)
+                itemActivateEndTimeTextBox.Text = icon.ItemActivateEndTime.ToString();
+            if (!bIsInitItemfreezeCheckBox.Checked)
+                bIsInitItem.Checked = icon.bIsInitItem;
+            if (!gainWaccaPointfreezeCheckBox.Checked)
+                gainWaccaPointTextBox.Text = icon.GainWaccaPoint.ToString();
+            path = $"{execPath}icons/{iconTextureNameTextBox.Text.Substring(iconTextureNameTextBox.Text.IndexOf('/') + 1)}.png";
+            if (File.Exists(path))
+            {
+                using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);                  // Copy file into memory
+                    ms.Position = 0;                // Reset position to beginning
+                    iconPictureBox.Image = Image.FromStream(ms); // Load image from memory
+                }
+            }
+        }
+        static readonly string execPath = AppDomain.CurrentDomain.BaseDirectory.Replace("\\", "/");
+        static string path;
         private void nextButton_Click(object sender, EventArgs e)
         {
 
+            if (iconid.SelectedIndex >= iconid.Items.Count - 1)
+                iconid.SelectedIndex = 0;
+            else
+                iconid.SelectedIndex += 1;
+            validateButton_Click(null, null);
         }
 
         private void previousButton_Click(object sender, EventArgs e)
         {
+            if (iconid.SelectedIndex <= 0)
+                iconid.SelectedIndex = iconid.Items.Count - 1;
+            else
+                iconid.SelectedIndex -= 1;
+            validateButton_Click(null, null);
+        }
+        private void injectNewButton_Click(object sender, EventArgs e)
+        {
 
         }
 
+        private void createNewIconButton_Click(object sender, EventArgs e)
+        {
+
+        }
         private void searchButton_Click(object sender, EventArgs e)
         {
 
@@ -91,30 +178,30 @@ namespace WaccaSongBrowser
         {
 
         }
-
+        private void saveChangesInRam()
+        { 
+        }
         private void ramSaveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (ramSaveCheckBox.Checked)
+            {
+                saveChangesInRam();
+            }
         }
 
+        static int savecount = 0;
         private void saveButton_Click(object sender, EventArgs e)
         {
-
+            saveChangesInRam();
+            saveLabel.Text = $"Saved {++savecount} times";
+            IconTable.Write(filePath);
         }
-
         private void autoSaveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void injectNewButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void createNewIconButton_Click(object sender, EventArgs e)
-        {
-
+            if (autoSaveCheckBox.Checked == true)
+            {
+                saveChanges();
+            }
         }
 
         private void filtericonTextureNameCheckBox_CheckedChanged(object sender, EventArgs e)
