@@ -1,7 +1,9 @@
 ﻿using System.IO;
 using UAssetAPI;
 using UAssetAPI.ExportTypes;
+using UAssetAPI.PropertyTypes.Objects;
 using UAssetAPI.PropertyTypes.Structs;
+using UAssetAPI.UnrealTypes;
 
 namespace WaccaSongBrowser
 {
@@ -158,13 +160,169 @@ namespace WaccaSongBrowser
         }
         private void injectNewButton_Click(object sender, EventArgs e)
         {
+            if (!int.TryParse(iconIdTextBox.Text, out int newId))
+            {
+                saveLabel.Text = "Invalid icon ID.";
+                return;
+            }
+            if (newId == 0)
+            {
+                saveLabel.Text = "ID 0 is reserved.";
+                return;
+            }
 
+            if (allIcons.Any(s => s.IconId == newId))
+            {
+                saveLabel.Text = $"Icon ID {newId} already exists.";
+                return;
+            }
+
+            foreach (var export in IconTable.Exports)
+            {
+                if (!(export is DataTableExport dataTable))
+                    continue;
+
+                var iconData = new IconData();
+                saveIconData(iconData);
+                iconData.IconId = newId;
+
+                var newRow = new StructPropertyData
+                {
+                    Name = new FName(IconTable, new FString(newId.ToString())),
+                    StructType = new FName(IconTable, new FString("IconTableData")),
+                    Value = new List<PropertyData>()
+                };
+
+                newRow.Value.Add(new IntPropertyData(new FName(IconTable, "IconId")) { Value = iconData.IconId });
+                newRow.Value.Add(new StrPropertyData(new FName(IconTable, "IconTextureName")) { Value = (FString)iconData.IconTextureName });
+                newRow.Value.Add(new BytePropertyData(new FName(IconTable, "IconRarity")) { Value = iconData.IconRarity });
+                newRow.Value.Add(new StrPropertyData(new FName(IconTable, "NameTag")) { Value = (FString)iconData.NameTag });
+                newRow.Value.Add(new StrPropertyData(new FName(IconTable, "ExplanationTextTag")) { Value = (FString)iconData.ExplanationTextTag });
+                newRow.Value.Add(new Int64PropertyData(new FName(IconTable, "ItemActivateStartTime")) { Value = iconData.ItemActivateStartTime });
+                newRow.Value.Add(new Int64PropertyData(new FName(IconTable, "ItemActivateEndTime")) { Value = iconData.ItemActivateEndTime });
+                newRow.Value.Add(new BoolPropertyData(new FName(IconTable, "bIsInitItem")) { Value = iconData.bIsInitItem });
+                newRow.Value.Add(new IntPropertyData(new FName(IconTable, "GainWaccaPoint")) { Value = iconData.GainWaccaPoint });
+
+                dataTable.Table.Data.Insert(0, newRow);
+
+                allIcons.Insert(0, iconData);
+                currentIconId = iconData.IconId;
+                saveLabel.Text = $"Injected icon ID {newId}.";
+                LoadUI(iconData);
+                saveChanges();
+                return;
+            }
+            saveLabel.Text = "IconTable export not found.";
         }
-
         private void createNewIconButton_Click(object sender, EventArgs e)
-        {
+        {  // Add All Missing Icons from execpath + ./USERICON/S* subfolders
+            string iconsPath = Path.Combine(execPath, "/USERICON");
+            if (!Directory.Exists(iconsPath))
+            {
+                saveLabel.Text = "Icons folder not found.";
+                return;
+            }
 
+            var files = Directory.GetFiles(iconsPath, "S*/*.png", SearchOption.AllDirectories);
+
+            int createdCount = 0;
+            foreach (var file in files)
+            {
+                string textureName = file.Replace(execPath + "icons/", "").Replace(".png", "").Replace("\\", "/");
+                if (!allIcons.Any(icon => icon.IconTextureName == textureName))
+                {
+                    // Make dummy entry (you might want a better ID strategy than just Max+1)
+                    int newId = allIcons.Max(x => x.IconId) + 1;
+                    var iconData = new IconData
+                    {
+                        IconId = newId,
+                        IconTextureName = textureName,
+                        IconRarity = 0,
+                        NameTag = "",
+                        ExplanationTextTag = "",
+                        ItemActivateStartTime = 0,
+                        ItemActivateEndTime = 0,
+                        bIsInitItem = false,
+                        GainWaccaPoint = 0
+                    };
+
+                    // Reuse injection logic
+                    iconIdTextBox.Text = newId.ToString();
+                    iconTextureNameTextBox.Text = textureName;
+                    injectNewButton_Click(null, null);
+
+                    createdCount++;
+                }
+            }
+
+            saveLabel.Text = $"Created {createdCount} new icons.";
         }
+
+        private void saveIconData(IconData iconData)
+        {
+            int.TryParse(iconIdTextBox.Text, out int i);
+            iconData.IconId = i;
+
+            iconData.IconTextureName = iconTextureNameTextBox.Text;
+            byte.TryParse(iconRarityTextBox.Text, out byte r);
+            iconData.IconRarity = r;
+
+            iconData.NameTag = nameTagTextBox.Text;
+            iconData.ExplanationTextTag = explanationTextTagTextBox.Text;
+
+            long.TryParse(itemActivateStartTimeTextBox.Text, out long t);
+            iconData.ItemActivateStartTime = t;
+            long.TryParse(itemActivateEndTimeTextBox.Text, out t);
+            iconData.ItemActivateEndTime = t;
+
+            iconData.bIsInitItem = bIsInitItem.Checked;
+
+            int.TryParse(gainWaccaPointTextBox.Text, out i);
+            iconData.GainWaccaPoint = i;
+        }
+        private bool saveChangesInRam()
+        {
+            int.TryParse(iconIdTextBox.Text, out currentIconId);
+            if (currentIconId == 0)
+                return false;
+
+            foreach (var export in IconTable.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    var iconData = allIcons.FirstOrDefault(s => s.IconId == currentIconId);
+                    if (iconData == null)
+                        return false;
+
+                    // Update from UI into object
+                    saveIconData(iconData);
+
+                    int id;
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "IconId");
+                            if (id != currentIconId)
+                                continue;
+
+                            // Push values into UAsset row
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "IconTextureName", iconData.IconTextureName);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "IconRarity", iconData.IconRarity);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "NameTag", iconData.NameTag);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "ExplanationTextTag", iconData.ExplanationTextTag);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "ItemActivateStartTime", iconData.ItemActivateStartTime);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "ItemActivateEndTime", iconData.ItemActivateEndTime);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "bIsInitItem", iconData.bIsInitItem);
+                            WaccaSongBrowser.SetFieldValue(rowStruct, "GainWaccaPoint", iconData.GainWaccaPoint);
+                        }
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
         string filter;
         int gainF; // temp memory allocated so the program avoids memory leak, there is no other func than search who use them.
         byte rarityF;
@@ -298,9 +456,6 @@ namespace WaccaSongBrowser
             currentIconId = filteredSongs[filteredSongsSelectedIndex].IconId;
             LoadUI(filteredSongs[filteredSongsSelectedIndex]);
             showingItemLabel.Text = $"Showing Result {filteredSongsSelectedIndex + 1}/{filteredSongs.Count}";
-        }
-        private void saveChangesInRam()
-        { 
         }
         private void ramSaveCheckBox_CheckedChanged(object sender, EventArgs e)
         {

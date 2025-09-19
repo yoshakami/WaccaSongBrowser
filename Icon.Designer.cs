@@ -904,6 +904,7 @@
             filterInvertMatchesButton.TabIndex = 257;
             filterInvertMatchesButton.Text = "Invert Matches";
             filterInvertMatchesButton.UseVisualStyleBackColor = true;
+            filterInvertMatchesButton.Click += filterInvertMatchesButton_Click;
             // 
             // IconTab
             // 

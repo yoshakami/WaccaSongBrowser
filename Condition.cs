@@ -1432,7 +1432,7 @@ namespace WaccaSongBrowser
                 var newRow = new StructPropertyData
                 {
                     Name = new FName(ConditionTable, new FString(newId.ToString())),
-                    StructType = new FName(ConditionTable, new FString("ConditionData")),
+                    StructType = new FName(ConditionTable, new FString("ConditionTableData")),
                     Value = new List<PropertyData>()
                 };
 
@@ -1493,7 +1493,7 @@ namespace WaccaSongBrowser
                 var newRow = new StructPropertyData
                 {
                     Name = new FName(TotalResultItemJudgementTable, new FString(newId.ToString())),
-                    StructType = new FName(TotalResultItemJudgementTable, new FString("TotalResultItemJudgementData")),
+                    StructType = new FName(TotalResultItemJudgementTable, new FString("TotalResultItemJudgementTableData")),
                     Value = new List<PropertyData>()
                 };
 
