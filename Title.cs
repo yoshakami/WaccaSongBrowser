@@ -372,11 +372,24 @@ namespace WaccaSongBrowser
                     saveLabel.Text = "GradeTable is not loaded. Please run ReadGrade first.";
                     return;
                 }
-                UAsset asset = new UAsset(EngineVersion.VER_UE4_19);
+                UDataTable dataTableExport = null;
 
-                // Create DataTable object
-                var tableObjectPart = new UDataTable();
-                var dataTablePart = new DataTableExport(tableObjectPart, asset, Array.Empty<byte>());
+                foreach (var export in GradePartsTable.Exports)
+                {
+                    if (export is DataTableExport dtExport)
+                    {
+                        dataTableExport = dtExport.Table;
+                        break; // or pick the right table if multiple
+                    }
+                }
+
+                if (dataTableExport == null)
+                {
+                    throw new InvalidOperationException("No DataTable found in this asset.");
+                }
+                dataTableExport.Data.Clear();
+
+
                 int i = 107001;
                 foreach (var export in GradeTable.Exports)
                 {
@@ -403,21 +416,19 @@ namespace WaccaSongBrowser
                                 index++;
 
 
-                                var dummy = new FName(asset, "GradePartsTableData");
-
-                                var rowPart = new StructPropertyData(new FName(asset, i.ToString()), new FName(asset, "GradePartsTableData"))
+                                var rowPart = new StructPropertyData(new FName(GradePartsTable, i.ToString()), new FName(GradePartsTable, "GradePartsTableData"))
                                 {
                                     Value = new List<PropertyData>
                                     {
-                                        new IntPropertyData(new FName(asset, "GradePartsId")) { Value = i },
-                                        new IntPropertyData(new FName(asset, "GradePartsType")) { Value = 0 },
-                                        new StrPropertyData(new FName(asset, "NameTag")) { Value = (FString)newTag },
+                                        new IntPropertyData(new FName(GradePartsTable, "GradePartsId")) { Value = i },
+                                        new IntPropertyData(new FName(GradePartsTable, "GradePartsType")) { Value = 0 },
+                                        new StrPropertyData(new FName(GradePartsTable, "NameTag")) { Value = (FString)newTag },
                                         // Use empty string instead of null to avoid NullReferenceException
-                                        new StrPropertyData(new FName(asset, "ExplanationTextTag")) { Value = new FString("") },
-                                        new Int64PropertyData(new FName(asset, "ItemActivateStartTime")) { Value = 0 },
-                                        new Int64PropertyData(new FName(asset, "ItemActivateEndTime")) { Value = 0 },
-                                        new BoolPropertyData(new FName(asset, "bIsInitItem")) { Value = bIsInitItem },
-                                        new IntPropertyData(new FName(asset, "GainWaccaPoint")) { Value = 0 }
+                                        new StrPropertyData(new FName(GradePartsTable, "ExplanationTextTag")) { Value = new FString("") },
+                                        new Int64PropertyData(new FName(GradePartsTable, "ItemActivateStartTime")) { Value = 0 },
+                                        new Int64PropertyData(new FName(GradePartsTable, "ItemActivateEndTime")) { Value = 0 },
+                                        new BoolPropertyData(new FName(GradePartsTable, "bIsInitItem")) { Value = bIsInitItem },
+                                        new IntPropertyData(new FName(GradePartsTable, "GainWaccaPoint")) { Value = 0 }
                                     }
                                 };
 
@@ -438,16 +449,16 @@ namespace WaccaSongBrowser
                                 {
                                     i = 207001;
                                 }
-                                dataTablePart.Table.Data.Add(rowPart);
+                                dataTableExport.Data.Add(rowPart);
                             }
                         }
                     }
                 }
 
                 GradeTable.Write(Path.Combine(messageFolder, "GradeTableNew.uasset"));
-                asset.Exports.Add(dataTablePart);
-                asset.Write(Path.Combine(messageFolder, "GradePartsTableNew.uasset"));
+                GradePartsTable.Write(Path.Combine(messageFolder, "GradePartsTableNew.uasset"));
                 saveLabel.Text = "Successfully injected Titles.txt into GradeTableNew.uasset and GradePartsTableNew.uasset";
+                //TODO: DISABLE ALL BUTTONS OF THE APP AND TELL USER TO RESTART
             }
             else
             {
