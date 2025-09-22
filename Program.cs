@@ -123,6 +123,17 @@ namespace WaccaSongBrowser
         public bool bIsInitItem { get; set; }
         public int GainWaccaPoint { get; set; }
     }
+    public class GradePartsTableData
+    {
+        public int GradePartsId { get; set; }
+        public int GradePartsType { get; set; }
+        public string NameTag { get; set; }
+        public string ExplanationTextTag { get; set; }
+        public long ItemActivateStartTime { get; set; }
+        public long ItemActivateEndTime { get; set; }
+        public bool bIsInitItem { get; set; }
+        public int GainWaccaPoint { get; set; }
+    }
     public class MessageData
     {
         public string JapaneseMessage { get; set; }

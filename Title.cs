@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -28,14 +29,17 @@ namespace WaccaSongBrowser
             filtergradeAcquisitionWayCheckBox_CheckedChanged(null, null);
         }
         static UAsset GradeTable;
+        static UAsset GradePartsTable;
         static List<string> text = new List<string>();
         static List<string> textVanilla = new List<string>();
         static string messageFolder;
-        static string filePath;
+        static string gradeTablePath;
+        static string gradePartsTablePath;
         static List<GradeData> allTitles = new List<GradeData>();
+        static List<GradePartsTableData> allParts = new List<GradePartsTableData>();
         public static sbyte ReadGrade(string uassetPath)
         {
-            filePath = uassetPath;
+            gradeTablePath = uassetPath;
             text.Clear();
             if (!File.Exists(uassetPath)) return -1;
             // Load the asset (assumes .uexp is in the same folder)
@@ -69,6 +73,40 @@ namespace WaccaSongBrowser
                                 GainWaccaPoint = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GainWaccaPoint"),
                             };
                             allTitles.Add(data);
+                        }
+                    }
+                }
+            }
+            messageFolder = Path.GetDirectoryName(gradeTablePath);
+            gradePartsTablePath = Path.Combine(messageFolder, "GradePartsTable.uasset");
+            if (!File.Exists(gradePartsTablePath)) return -1;
+            // Load the asset (assumes .uexp is in the same folder)
+            GradePartsTable = new UAsset(gradePartsTablePath, UAssetAPI.UnrealTypes.EngineVersion.VER_UE4_19);
+            // Go through each export to find the DataTable
+            foreach (var export in GradePartsTable.Exports)
+            {
+                if (export is DataTableExport dataTable)
+                {
+                    foreach (var row in dataTable.Table.Data)
+                    {
+                        string ConditionId = row.Name.ToString();              // <-- "010010101"
+                        if (row is StructPropertyData rowStruct)
+                        {
+                            id = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GradePartsId");
+                            if (id == 0) return -1;
+                            //text.Add(WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag"));
+                            GradePartsTableData data = new GradePartsTableData
+                            {
+                                GradePartsId = id,
+                                GradePartsType = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GradePartsType"),
+                                NameTag = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag"),
+                                ExplanationTextTag = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "ExplanationTextTag"),
+                                ItemActivateStartTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ItemActivateStartTime"),
+                                ItemActivateEndTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ItemActivateEndTime"),
+                                bIsInitItem = WaccaSongBrowser.GetFieldValue<bool>(rowStruct, "bIsInitItem"),
+                                GainWaccaPoint = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GainWaccaPoint"),
+                            };
+                            allParts.Add(data);
                         }
                     }
                 }
@@ -308,7 +346,7 @@ namespace WaccaSongBrowser
         {
             saveChangesInRam();
             saveLabel.Text = $"Saved {++savecount} times";
-            GradeTable.Write(filePath);
+            GradeTable.Write(gradeTablePath);
         }
         private void autoSaveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -320,7 +358,7 @@ namespace WaccaSongBrowser
         private void injectWaccaGradeButton_Click(object sender, EventArgs e)
         {
             saveLabel.Text = "Processing...";
-            messageFolder = Path.GetDirectoryName(filePath);
+            messageFolder = Path.GetDirectoryName(gradeTablePath);
             string titlesPath = Path.Combine(messageFolder, "Titles.txt");
             string titlesVanillaPath = Path.Combine(messageFolder, "TitlesVanilla.txt");
 
@@ -334,7 +372,12 @@ namespace WaccaSongBrowser
                     saveLabel.Text = "GradeTable is not loaded. Please run ReadGrade first.";
                     return;
                 }
+                UAsset asset = new UAsset(EngineVersion.VER_UE4_19);
 
+                // Create DataTable object
+                var tableObjectPart = new UDataTable();
+                var dataTablePart = new DataTableExport(tableObjectPart, asset, Array.Empty<byte>());
+                int i = 107001;
                 foreach (var export in GradeTable.Exports)
                 {
                     if (export is DataTableExport dataTable)
@@ -345,24 +388,66 @@ namespace WaccaSongBrowser
                             if (row is StructPropertyData rowStruct)
                             {
                                 string currentTag = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag");
+                                bool bIsInitItem = WaccaSongBrowser.GetFieldValue<bool>(rowStruct, "bIsInitItem");
                                 string vanillaTag = index < textVanilla.Count ? textVanilla[index] : null;
                                 string newTag = index < text.Count ? text[index] : currentTag;
-                                WaccaSongBrowser.SetFieldValue(rowStruct, "GradePartsId01", 0);
+                                WaccaSongBrowser.SetFieldValue(rowStruct, "GradePartsId01", i);
                                 WaccaSongBrowser.SetFieldValue(rowStruct, "GradePartsId02", 0);
                                 WaccaSongBrowser.SetFieldValue(rowStruct, "GradePartsId03", 0);
+                                WaccaSongBrowser.SetFieldValue(rowStruct, "NameTag", "null");
                                 // Replace only if the current tag matches the vanilla one
-                                if (vanillaTag != null && currentTag == vanillaTag)
-                                {
-                                    WaccaSongBrowser.SetFieldValue(rowStruct, "NameTag", newTag);
-                                }
+                                //if (vanillaTag != null && currentTag == vanillaTag)
+                                //{
+                                //    WaccaSongBrowser.SetFieldValue(rowStruct, "NameTag", newTag);
+                                //}
                                 index++;
+
+
+                                var dummy = new FName(asset, "GradePartsTableData");
+
+                                var rowPart = new StructPropertyData(new FName(asset, i.ToString()), new FName(asset, "GradePartsTableData"))
+                                {
+                                    Value = new List<PropertyData>
+                                    {
+                                        new IntPropertyData(new FName(asset, "GradePartsId")) { Value = i },
+                                        new IntPropertyData(new FName(asset, "GradePartsType")) { Value = 0 },
+                                        new StrPropertyData(new FName(asset, "NameTag")) { Value = (FString)newTag },
+                                        // Use empty string instead of null to avoid NullReferenceException
+                                        new StrPropertyData(new FName(asset, "ExplanationTextTag")) { Value = new FString("") },
+                                        new Int64PropertyData(new FName(asset, "ItemActivateStartTime")) { Value = 0 },
+                                        new Int64PropertyData(new FName(asset, "ItemActivateEndTime")) { Value = 0 },
+                                        new BoolPropertyData(new FName(asset, "bIsInitItem")) { Value = bIsInitItem },
+                                        new IntPropertyData(new FName(asset, "GainWaccaPoint")) { Value = 0 }
+                                    }
+                                };
+
+                                i++;
+                                if (i > 407999)
+                                {
+                                    i = 507001;
+                                }
+                                else if (i > 307999 && i < 309000)
+                                {
+                                    i = 407001;
+                                }
+                                else if (i > 207999 && i < 209000)
+                                {
+                                    i = 307001;
+                                }
+                                else if (i > 107999 && i < 109000)
+                                {
+                                    i = 207001;
+                                }
+                                dataTablePart.Table.Data.Add(rowPart);
                             }
                         }
                     }
                 }
 
                 GradeTable.Write(Path.Combine(messageFolder, "GradeTableNew.uasset"));
-                saveLabel.Text = "Successfully injected Titles.txt into GradeTableNew.uasset";
+                asset.Exports.Add(dataTablePart);
+                asset.Write(Path.Combine(messageFolder, "GradePartsTableNew.uasset"));
+                saveLabel.Text = "Successfully injected Titles.txt into GradeTableNew.uasset and GradePartsTableNew.uasset";
             }
             else
             {
@@ -615,7 +700,7 @@ namespace WaccaSongBrowser
         private void createWaccaGradeButton_Click(object sender, EventArgs e)
         {
             saveLabel.Text = "Processing...";
-            messageFolder = Path.GetDirectoryName(filePath);
+            messageFolder = Path.GetDirectoryName(gradeTablePath);
             if (File.Exists(Path.Combine(messageFolder, "Titles.txt")))
             {
                 saveLabel.Text = "Titles.txt already exists in the current folder";
