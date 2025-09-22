@@ -108,13 +108,13 @@ namespace WaccaSongBrowser
                             {
                                 MessageData data = new MessageData
                                 {
-                                    JapaneseMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "JapaneseMessage");
-                                    EnglishMessageUSA = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "EnglishMessageUSA");
-                                    EnglishMessageSG = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "EnglishMessageSG");
-                                    TraditionalChineseMessageTW = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "TraditionalChineseMessageTW");
-                                    TraditionalChineseMessageHK = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "TraditionalChineseMessageHK");
-                                    SimplifiedChineseMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "SimplifiedChineseMessage");
-                                    KoreanMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "KoreanMessage");
+                                    JapaneseMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "JapaneseMessage"),
+                                    EnglishMessageUSA = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "EnglishMessageUSA"),
+                                    EnglishMessageSG = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "EnglishMessageSG"),
+                                    TraditionalChineseMessageTW = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "TraditionalChineseMessageTW"),
+                                    TraditionalChineseMessageHK = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "TraditionalChineseMessageHK"),
+                                    SimplifiedChineseMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "SimplifiedChineseMessage"),
+                                    KoreanMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "KoreanMessage"),
                                 };
                             }
                         }

@@ -4,7 +4,9 @@ using System.IO;
 using System.Text;
 using UAssetAPI;
 using UAssetAPI.ExportTypes;
+using UAssetAPI.PropertyTypes.Objects;
 using UAssetAPI.PropertyTypes.Structs;
+using UAssetAPI.UnrealTypes;
 
 namespace WaccaSongBrowser
 {
@@ -367,6 +369,44 @@ namespace WaccaSongBrowser
                 saveLabel.Text = "Missing Titles.txt or TitlesVanilla.txt. Please click the create button first.";
             }
         }
+        public void CreateGradePartsTable(string outputPath)
+        {
+            UAsset asset = new UAsset(EngineVersion.VER_UE4_19);
+
+            // Create DataTable object
+            var tableObject = new UDataTable();
+            var dataTable = new DataTableExport(tableObject, asset, Array.Empty<byte>());
+
+            // Generate rows
+            for (int i = 107001; i <= 107999; i++)
+            {
+                // StructType is set via second constructor argument
+                var row = new StructPropertyData(new FName(asset, i.ToString()), new FName(asset, "GradePartsTableData"))
+                {
+                    Value = new List<PropertyData>
+            {
+                new IntPropertyData(new FName(asset, "GradePartsId")) { Value = i },
+                new IntPropertyData(new FName(asset, "GradePartsType")) { Value = 1 },
+                new StrPropertyData(new FName(asset, "NameTag")) { Value = (FString)$"GradePart_{i}" },
+                new StrPropertyData(new FName(asset, "ExplanationTextTag")) { Value = (FString)$"GradePartExp_{i}" },
+                new Int64PropertyData(new FName(asset, "ItemActivateStartTime")) { Value = 0 },
+                new Int64PropertyData(new FName(asset, "ItemActivateEndTime")) { Value = 0 },
+                new BoolPropertyData(new FName(asset, "bIsInitItem")) { Value = false },
+                new IntPropertyData(new FName(asset, "GainWaccaPoint")) { Value = 0 }
+            }
+                };
+
+                dataTable.Table.Data.Add(row);
+            }
+
+            asset.Exports.Add(dataTable);
+            asset.Write(outputPath);
+        }
+
+
+
+
+
         private void filteritemActivateStartTimeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             filteritemActivateStartTimeTextBox.Enabled = filteritemActivateStartTimeCheckBox.Checked;

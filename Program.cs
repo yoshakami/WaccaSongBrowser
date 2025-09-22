@@ -132,7 +132,7 @@ namespace WaccaSongBrowser
         public string TraditionalChineseMessageHK { get; set; }
         public string SimplifiedChineseMessage { get; set; }
         public string KoreanMessage { get; set; }
-
+    }
         public class TotalResultItemJudgementData
     {
         public int ItemId { get; set; }
@@ -142,7 +142,7 @@ namespace WaccaSongBrowser
     }
 
     // Define your mapping once (dictionary)
-    public class Conditions
+    public static class Conditions
     {
         public static Dictionary<int, string> Types = new Dictionary<int, string>
         {

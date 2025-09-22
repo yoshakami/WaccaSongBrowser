@@ -389,9 +389,9 @@
             nameTagLabel.AutoSize = true;
             nameTagLabel.Location = new Point(47, 120);
             nameTagLabel.Name = "nameTagLabel";
-            nameTagLabel.Size = new Size(379, 15);
+            nameTagLabel.Size = new Size(124, 15);
             nameTagLabel.TabIndex = 232;
-            nameTagLabel.Text = "NameTag    <- used if all GradePartsId = 0, else you can't edit NameTag";
+            nameTagLabel.Text = "NameTag    <- unused";
             // 
             // gradeAcquisitionWayTextBox
             // 

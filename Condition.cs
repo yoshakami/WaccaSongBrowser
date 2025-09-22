@@ -3,6 +3,7 @@ using UAssetAPI.ExportTypes;
 using UAssetAPI.PropertyTypes.Objects;
 using UAssetAPI.PropertyTypes.Structs;
 using UAssetAPI.UnrealTypes;
+using static WaccaSongBrowser.MessageData;
 
 namespace WaccaSongBrowser
 {
