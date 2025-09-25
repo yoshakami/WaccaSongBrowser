@@ -5,6 +5,7 @@ using UAssetAPI.ExportTypes;
 using UAssetAPI.PropertyTypes.Objects;
 using UAssetAPI.PropertyTypes.Structs;
 using UAssetAPI.UnrealTypes;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WaccaSongBrowser
 {
@@ -65,11 +66,14 @@ namespace WaccaSongBrowser
                                 bIsInitItem = WaccaSongBrowser.GetFieldValue<bool>(rowStruct, "bIsInitItem"),
                                 GainWaccaPoint = WaccaSongBrowser.GetFieldValue<int>(rowStruct, "GainWaccaPoint"),
                             };
+                            iconNameDict[data.NameTag] = null;
+                            iconAquisitionDict[data.ExplanationTextTag] = null;
                             allIcons.Add(data);
                         }
                     }
                 }
             }
+            directory = Path.GetDirectoryName(filePath);
             newPath = Path.GetFullPath(Path.Combine(directory, "..", "Message", "IconMessage.uasset"));
             if (File.Exists(newPath))
             {
@@ -86,7 +90,8 @@ namespace WaccaSongBrowser
         }
         static string IconMessageFilePath;
         static UAsset IconMessage;  // icon
-        static readonly Dictionary<string, int> iconDict = new Dictionary<string, int>();
+        static readonly Dictionary<string, MessageData> iconNameDict = new Dictionary<string, MessageData>();
+        static readonly Dictionary<string, MessageData> iconAquisitionDict = new Dictionary<string, MessageData>();
         private static sbyte ReadIconMessage()
         {
             // Load the asset (assumes .uexp is in the same folder)
@@ -104,18 +109,25 @@ namespace WaccaSongBrowser
                     {
                         if (row is StructPropertyData rowStruct)
                         {
-                            if (iconDict.TryGetValue(row.Name.ToString(), out id))
+                            MessageData data2;
+
+                            MessageData data = new MessageData
                             {
-                                MessageData data = new MessageData
-                                {
-                                    JapaneseMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "JapaneseMessage"),
-                                    EnglishMessageUSA = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "EnglishMessageUSA"),
-                                    EnglishMessageSG = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "EnglishMessageSG"),
-                                    TraditionalChineseMessageTW = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "TraditionalChineseMessageTW"),
-                                    TraditionalChineseMessageHK = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "TraditionalChineseMessageHK"),
-                                    SimplifiedChineseMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "SimplifiedChineseMessage"),
-                                    KoreanMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "KoreanMessage"),
-                                };
+                                JapaneseMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "JapaneseMessage"),
+                                EnglishMessageUSA = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "EnglishMessageUSA"),
+                                EnglishMessageSG = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "EnglishMessageSG"),
+                                TraditionalChineseMessageTW = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "TraditionalChineseMessageTW"),
+                                TraditionalChineseMessageHK = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "TraditionalChineseMessageHK"),
+                                SimplifiedChineseMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "SimplifiedChineseMessage"),
+                                KoreanMessage = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "KoreanMessage"),
+                            };
+                            if (iconNameDict.TryGetValue(row.Name.ToString(), out data2))
+                            {
+                                iconNameDict[row.Name.ToString()] = data;
+                            }
+                            if (iconAquisitionDict.TryGetValue(row.Name.ToString(), out data2))
+                            {
+                                iconAquisitionDict[row.Name.ToString()] = data;
                             }
                         }
                     }
@@ -178,6 +190,15 @@ namespace WaccaSongBrowser
                 bIsInitItem.Checked = icon.bIsInitItem;
             if (!gainWaccaPointfreezeCheckBox.Checked)
                 gainWaccaPointTextBox.Text = icon.GainWaccaPoint.ToString();
+            if (!iconNamefreezeCheckBox.Checked)
+            {
+                MessageData data;
+                if (iconNameDict.TryGetValue(icon.NameTag, out data))
+                {
+                    iconNameTextBox.Text = data.JapaneseMessage;
+                    //TODO: Change UI to load all languages, then save languages
+                }
+            }
             path = $"{execPath}icons/{iconTextureNameTextBox.Text.Substring(iconTextureNameTextBox.Text.IndexOf('/') + 1)}.png";
             if (File.Exists(path))
             {

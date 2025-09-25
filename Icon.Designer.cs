@@ -313,7 +313,6 @@
             // 
             // explanationTextTagTextBox
             // 
-            explanationTextTagTextBox.Enabled = false;
             explanationTextTagTextBox.Location = new Point(23, 509);
             explanationTextTagTextBox.Margin = new Padding(3, 2, 3, 2);
             explanationTextTagTextBox.Name = "explanationTextTagTextBox";
@@ -331,7 +330,6 @@
             // 
             // nameTagTextBox
             // 
-            nameTagTextBox.Enabled = false;
             nameTagTextBox.Location = new Point(23, 459);
             nameTagTextBox.Margin = new Padding(3, 2, 3, 2);
             nameTagTextBox.Name = "nameTagTextBox";
