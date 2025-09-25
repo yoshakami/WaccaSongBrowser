@@ -715,7 +715,7 @@
             // saveLabel
             // 
             saveLabel.AutoSize = true;
-            saveLabel.Location = new Point(441, 651);
+            saveLabel.Location = new Point(441, 632);
             saveLabel.MinimumSize = new Size(500, 0);
             saveLabel.Name = "saveLabel";
             saveLabel.Size = new Size(500, 15);

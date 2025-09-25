@@ -27,6 +27,9 @@ namespace WaccaSongBrowser
             filtergradePartsId03CheckBox_CheckedChanged(null, null);
             filtergradeRarityCheckBox_CheckedChanged(null, null);
             filtergradeAcquisitionWayCheckBox_CheckedChanged(null, null);
+            //saveLabel.Text = "Not Saved";
+            saveLabel.Text = "Work in progress, only the two txt buttons work. other edits useless for now because\n" +
+                "at least one GradePartID must not be 0. We must use GradePartsTable.";
         }
         static UAsset GradeTable;
         static UAsset GradePartsTable;
@@ -457,7 +460,8 @@ namespace WaccaSongBrowser
 
                 GradeTable.Write(Path.Combine(messageFolder, "GradeTableNew.uasset"));
                 GradePartsTable.Write(Path.Combine(messageFolder, "GradePartsTableNew.uasset"));
-                saveLabel.Text = "Successfully injected Titles.txt into GradeTableNew.uasset and GradePartsTableNew.uasset";
+                saveLabel.Text = "Successfully injected Titles.txt into GradeTableNew.uasset and GradePartsTableNew.uasset\n";
+                saveLabel.Text += "all buttons are disabled until you drag and drop a file again.";
                 //TODO: DISABLE ALL BUTTONS OF THE APP AND TELL USER TO RESTART
             }
             else
