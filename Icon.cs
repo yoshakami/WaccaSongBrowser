@@ -11,6 +11,7 @@ namespace WaccaSongBrowser
 {
     public partial class IconTab : UserControl
     {
+        static readonly string[] languagesList = { "ja-jp", "en-us", "en-sg", "zh-tw", "zh-hk", "zh-cn", "ko-kr" };
         public IconTab()
         {
             InitializeComponent();
@@ -28,7 +29,26 @@ namespace WaccaSongBrowser
             {
                 iconid.Items.Add(data.IconId.ToString());
             }
+            foreach (string language in languagesList)
+            {
+                iconNameLanguage.Items.Add(language);
+                iconAcquisitionWayLanguage.Items.Add(language);
+                filtericonNameLanguage.Items.Add(language);
+                filtericonAcquisitionWayLanguage.Items.Add(language);
+            }
+            iconNameLanguage.SelectedIndex = 0;
+            iconAcquisitionWayLanguage.SelectedIndex = 0;
+            filtericonNameLanguage.SelectedIndex = 0;
+            filtericonAcquisitionWayLanguage.SelectedIndex = 0;
             nextButton_Click(null, null); // read returns -1 if allconditions is empty
+            iconNameTextBox.Enabled = true;
+            iconAcquisitionWayTextBox.Enabled = true;
+            if (IconMessage == null)
+            {
+                saveLabel.Text = "cannot find ../Message/IconMessage.uasset";
+                iconNameTextBox.Enabled = false;
+                iconAcquisitionWayTextBox.Enabled = false;
+            }
         }
         static UAsset IconTable;
         static string filePath;
@@ -158,7 +178,6 @@ namespace WaccaSongBrowser
             if (currentIconId == 0)
             {
                 saveLabel.Text = "ID 0 cannot be used";
-                saveLabel.Text = "";
                 return;
             }
             int currentIndex = allIcons.FindIndex(s => s.IconId == currentIconId);
@@ -166,13 +185,13 @@ namespace WaccaSongBrowser
             {
                 // consoleLabel.Text = "Creating new song ID. Will be saved upon next click on save, or on next Song ID change if autosave is on"; // use WSongInject instead
                 saveLabel.Text = $"ID {currentIconId} not found";
-                saveLabel.Text = "";
                 return;
             }
             LoadUI(allIcons[currentIndex]);
         }
         private void LoadUI(IconData icon)
         {
+            MessageData data;
             iconIdTextBox.Text = icon.IconId.ToString();
             if (!iconTextureNamefreezeCheckBox.Checked)
                 iconTextureNameTextBox.Text = icon.IconTextureName;
@@ -192,11 +211,62 @@ namespace WaccaSongBrowser
                 gainWaccaPointTextBox.Text = icon.GainWaccaPoint.ToString();
             if (!iconNamefreezeCheckBox.Checked)
             {
-                MessageData data;
-                if (iconNameDict.TryGetValue(icon.NameTag, out data))
+                if (iconNameDict.TryGetValue(icon.NameTag, out data) && data != null)
                 {
-                    iconNameTextBox.Text = data.JapaneseMessage;
-                    //TODO: Change UI to load all languages, then save languages
+                    switch (iconNameLanguage.SelectedIndex)
+                    {
+                        case 0: // ja
+                            iconNameTextBox.Text = data.JapaneseMessage;
+                            break;
+                        case 1: // us
+                            iconNameTextBox.Text = data.EnglishMessageUSA;
+                            break;
+                        case 2: // sg
+                            iconNameTextBox.Text = data.EnglishMessageSG;
+                            break;
+                        case 3: // tw
+                            iconNameTextBox.Text = data.TraditionalChineseMessageTW;
+                            break;
+                        case 4: // hk
+                            iconNameTextBox.Text = data.TraditionalChineseMessageHK;
+                            break;
+                        case 5: // cn
+                            iconNameTextBox.Text = data.SimplifiedChineseMessage;
+                            break;
+                        case 6: // ko
+                            iconNameTextBox.Text = data.KoreanMessage;
+                            break;
+                    }
+                }
+            }
+            if (!iconAcquisitionWayfreezeCheckBox.Checked)
+            {
+                if (iconAquisitionDict.TryGetValue(icon.ExplanationTextTag, out data) && data != null)
+                {
+                    switch (iconAcquisitionWayLanguage.SelectedIndex)
+                    {
+                        case 0: // ja
+                            iconAcquisitionWayTextBox.Text = data.JapaneseMessage;
+                            break;
+                        case 1: // us
+                            iconAcquisitionWayTextBox.Text = data.EnglishMessageUSA;
+                            break;
+                        case 2: // sg
+                            iconAcquisitionWayTextBox.Text = data.EnglishMessageSG;
+                            break;
+                        case 3: // tw
+                            iconAcquisitionWayTextBox.Text = data.TraditionalChineseMessageTW;
+                            break;
+                        case 4: // hk
+                            iconAcquisitionWayTextBox.Text = data.TraditionalChineseMessageHK;
+                            break;
+                        case 5: // cn
+                            iconAcquisitionWayTextBox.Text = data.SimplifiedChineseMessage;
+                            break;
+                        case 6: // ko
+                            iconAcquisitionWayTextBox.Text = data.KoreanMessage;
+                            break;
+                    }
                 }
             }
             path = $"{execPath}icons/{iconTextureNameTextBox.Text.Substring(iconTextureNameTextBox.Text.IndexOf('/') + 1)}.png";
@@ -358,17 +428,16 @@ namespace WaccaSongBrowser
             int.TryParse(iconIdTextBox.Text, out currentIconId);
             if (currentIconId == 0)
                 return false;
+            IconData iconData = allIcons.FirstOrDefault(s => s.IconId == currentIconId);
+            if (iconData == null)
+                return false;
 
+            // Update from UI into object
+            saveIconData(iconData);
             foreach (var export in IconTable.Exports)
             {
                 if (export is DataTableExport dataTable)
                 {
-                    var iconData = allIcons.FirstOrDefault(s => s.IconId == currentIconId);
-                    if (iconData == null)
-                        return false;
-
-                    // Update from UI into object
-                    saveIconData(iconData);
 
                     int id;
                     foreach (var row in dataTable.Table.Data)
@@ -393,8 +462,58 @@ namespace WaccaSongBrowser
                     return true;
                 }
             }
+            //TODO: Change UI to save languages
+            if (IconMessage != null)
+            {
+                foreach (var export in IconMessage.Exports)
+                {
+                    if (export is DataTableExport dataTable)
+                    {
+                        foreach (var row in dataTable.Table.Data)
+                        {
+                            if (row is StructPropertyData rowStruct)
+                            {
+                                // NameTag row
+                                if (row.Name.ToString() == iconData.NameTag)
+                                {
+                                    string fieldName = GetMessageFieldName(iconNameLanguage.SelectedIndex);
+                                    if (!string.IsNullOrEmpty(fieldName))
+                                    {
+                                        WaccaSongBrowser.SetFieldValue(rowStruct, fieldName, iconNameTextBox.Text.Trim());
+                                    }
+                                }
+                                // ExplanationTextTag row
+                                else if (row.Name.ToString() == iconData.ExplanationTextTag)
+                                {
+                                    string fieldName = GetMessageFieldName(iconAcquisitionWayLanguage.SelectedIndex);
+                                    if (!string.IsNullOrEmpty(fieldName))
+                                    {
+                                        WaccaSongBrowser.SetFieldValue(rowStruct, fieldName, iconAcquisitionWayTextBox.Text.Trim());
+                                    }
+                                }
+                            }
+                        }
+                        return true;
+                    }
+                }
+            }
             return false;
         }
+        private string GetMessageFieldName(int langIndex)
+        {
+            switch (langIndex)
+            {
+                case 0: return "JapaneseMessage";
+                case 1: return "EnglishMessageUSA";
+                case 2: return "EnglishMessageSG";
+                case 3: return "TraditionalChineseMessageTW";
+                case 4: return "TraditionalChineseMessageHK";
+                case 5: return "SimplifiedChineseMessage";
+                case 6: return "KoreanMessage";
+                default: return null;
+            }
+        }
+
 
         string filter;
         int gainF; // temp memory allocated so the program avoids memory leak, there is no other func than search who use them.
@@ -427,6 +546,69 @@ namespace WaccaSongBrowser
                     filtered = filtered.Where(song => song.ExplanationTextTag != null &&
                                                       song.ExplanationTextTag.ToLower().Contains(filter));
             }
+            MessageData data;
+
+            // --- Filter by icon name ---
+            if (filtericonNameCheckBox.Checked)
+            {
+                string filter = filtericonNameTextBox.Text.Trim();
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    filtered = filtered.Where(icon =>
+                    {
+                        if (iconNameDict.TryGetValue(icon.NameTag, out data) && data != null)
+                        {
+                            string candidate = null;
+                            switch (filtericonNameLanguage.SelectedIndex)
+                            {
+                                case 0: candidate = data.JapaneseMessage; break;
+                                case 1: candidate = data.EnglishMessageUSA; break;
+                                case 2: candidate = data.EnglishMessageSG; break;
+                                case 3: candidate = data.TraditionalChineseMessageTW; break;
+                                case 4: candidate = data.TraditionalChineseMessageHK; break;
+                                case 5: candidate = data.SimplifiedChineseMessage; break;
+                                case 6: candidate = data.KoreanMessage; break;
+                            }
+
+                            return !string.IsNullOrEmpty(candidate) &&
+                                   candidate.IndexOf(filter, StringComparison.OrdinalIgnoreCase) >= 0;
+                        }
+                        return false;
+                    });
+                }
+            }
+
+            // --- Filter by acquisition way ---
+            if (filtericonAcquisitionWayCheckBox.Checked)
+            {
+                string filter = filtericonAcquisitionWayTextBox.Text.Trim();
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    filtered = filtered.Where(icon =>
+                    {
+                        if (iconAquisitionDict.TryGetValue(icon.ExplanationTextTag, out data) && data != null)
+                        {
+                            string candidate = null;
+                            switch (filtericonAcquisitionWayLanguage.SelectedIndex)
+                            {
+                                case 0: candidate = data.JapaneseMessage; break;
+                                case 1: candidate = data.EnglishMessageUSA; break;
+                                case 2: candidate = data.EnglishMessageSG; break;
+                                case 3: candidate = data.TraditionalChineseMessageTW; break;
+                                case 4: candidate = data.TraditionalChineseMessageHK; break;
+                                case 5: candidate = data.SimplifiedChineseMessage; break;
+                                case 6: candidate = data.KoreanMessage; break;
+                            }
+
+                            return !string.IsNullOrEmpty(candidate) &&
+                                   candidate.IndexOf(filter, StringComparison.OrdinalIgnoreCase) >= 0;
+                        }
+                        return false;
+                    });
+                }
+            }
+
+
 
             // --- number filters ---
             if (filtericonRarityCheckBox.Checked)
@@ -544,6 +726,10 @@ namespace WaccaSongBrowser
             saveChangesInRam();
             saveLabel.Text = $"Saved {++savecount} times";
             IconTable.Write(filePath);
+            if (IconMessage != null)
+            {
+                IconMessage.Write(IconMessageFilePath);
+            }
         }
         private void autoSaveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -581,11 +767,13 @@ namespace WaccaSongBrowser
         private void filtericonNameCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             filtericonNameTextBox.Enabled = filtericonNameCheckBox.Checked;
+            filtericonNameLanguage.Enabled = filtericonNameCheckBox.Checked;
         }
 
         private void filtericonAcquisitionWayCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             filtericonAcquisitionWayTextBox.Enabled = filtericonAcquisitionWayCheckBox.Checked;
+            filtericonAcquisitionWayLanguage.Enabled = filtericonAcquisitionWayCheckBox.Checked;
         }
 
         private void filterNameTagCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -741,6 +929,37 @@ namespace WaccaSongBrowser
                 bIsInitItem.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
                 bIsInitItemfreezeCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
             }
+        }
+
+        private void iconNameLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadUI2();
+        }
+
+        private void iconAcquisitionWayLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadUI2();
+        }
+        private void loadUI2()
+        {
+            if (allIcons.Count == 0)
+                return;
+            saveLabel.Text = "";
+            saveChanges();
+            int.TryParse(iconIdTextBox.Text, out currentIconId);
+            if (currentIconId == 0)
+            {
+                saveLabel.Text = "ID 0 cannot be used";
+                return;
+            }
+            int currentIndex = allIcons.FindIndex(s => s.IconId == currentIconId);
+            if (currentIndex == -1)
+            {
+                // consoleLabel.Text = "Creating new song ID. Will be saved upon next click on save, or on next Song ID change if autosave is on"; // use WSongInject instead
+                saveLabel.Text = $"ID {currentIconId} not found";
+                return;
+            }
+            LoadUI(allIcons[currentIndex]);
         }
     }
 }

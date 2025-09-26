@@ -75,7 +75,6 @@
             filtericonRarityTextBox = new TextBox();
             filtericonRarityLabel = new Label();
             menuFilterLabel = new Label();
-            progressBar1 = new ProgressBar();
             filtericonTextureNameTextBox = new TextBox();
             filtericonTextureNameLabel = new Label();
             iconIdlabel23 = new Label();
@@ -111,17 +110,23 @@
             saveButton = new Button();
             autoSaveCheckBox = new CheckBox();
             filterInvertMatchesButton = new Button();
+            iconNameLanguage = new ComboBox();
+            iconAcquisitionWayLanguage = new ComboBox();
+            filtericonAcquisitionWayLanguage = new ComboBox();
+            filtericonNameLanguage = new ComboBox();
+            progressBar1 = new ProgressBar();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox).BeginInit();
             SuspendLayout();
             // 
             // createNewIconButton
             // 
-            createNewIconButton.Location = new Point(274, 589);
+            createNewIconButton.Location = new Point(1064, 511);
             createNewIconButton.Name = "createNewIconButton";
             createNewIconButton.Size = new Size(228, 42);
             createNewIconButton.TabIndex = 3;
             createNewIconButton.Text = "Add All Missing Icons from /UI/Textures/USERICON/S* subfolders";
             createNewIconButton.UseVisualStyleBackColor = true;
+            createNewIconButton.Visible = false;
             createNewIconButton.Click += createNewIconButton_Click;
             // 
             // iconTextureNameTextBox
@@ -165,7 +170,7 @@
             progressBar.Location = new Point(532, 41);
             progressBar.Margin = new Padding(0);
             progressBar.Name = "progressBar";
-            progressBar.Size = new Size(19, 626);
+            progressBar.Size = new Size(19, 590);
             progressBar.TabIndex = 80;
             // 
             // menuIconLabel
@@ -271,7 +276,7 @@
             iconAcquisitionWayTextBox.Location = new Point(23, 409);
             iconAcquisitionWayTextBox.Margin = new Padding(3, 2, 3, 2);
             iconAcquisitionWayTextBox.Name = "iconAcquisitionWayTextBox";
-            iconAcquisitionWayTextBox.Size = new Size(407, 23);
+            iconAcquisitionWayTextBox.Size = new Size(305, 23);
             iconAcquisitionWayTextBox.TabIndex = 94;
             // 
             // iconAcquisitionWayLabel
@@ -288,7 +293,7 @@
             iconNameTextBox.Location = new Point(23, 359);
             iconNameTextBox.Margin = new Padding(3, 2, 3, 2);
             iconNameTextBox.Name = "iconNameTextBox";
-            iconNameTextBox.Size = new Size(407, 23);
+            iconNameTextBox.Size = new Size(305, 23);
             iconNameTextBox.TabIndex = 92;
             // 
             // iconNameLabel
@@ -303,10 +308,10 @@
             // saveLabel
             // 
             saveLabel.AutoSize = true;
-            saveLabel.Location = new Point(553, 645);
-            saveLabel.MinimumSize = new Size(450, 0);
+            saveLabel.Location = new Point(120, 636);
+            saveLabel.MinimumSize = new Size(850, 30);
             saveLabel.Name = "saveLabel";
-            saveLabel.Size = new Size(450, 15);
+            saveLabel.Size = new Size(850, 30);
             saveLabel.TabIndex = 96;
             saveLabel.Text = "no file loaded";
             saveLabel.TextAlign = ContentAlignment.TopCenter;
@@ -415,7 +420,7 @@
             filtericonAcquisitionWayTextBox.Location = new Point(595, 409);
             filtericonAcquisitionWayTextBox.Margin = new Padding(3, 2, 3, 2);
             filtericonAcquisitionWayTextBox.Name = "filtericonAcquisitionWayTextBox";
-            filtericonAcquisitionWayTextBox.Size = new Size(367, 23);
+            filtericonAcquisitionWayTextBox.Size = new Size(264, 23);
             filtericonAcquisitionWayTextBox.TabIndex = 120;
             // 
             // filtericonAcquisitionWayLabel
@@ -432,7 +437,7 @@
             filtericonNameTextBox.Location = new Point(595, 359);
             filtericonNameTextBox.Margin = new Padding(3, 2, 3, 2);
             filtericonNameTextBox.Name = "filtericonNameTextBox";
-            filtericonNameTextBox.Size = new Size(367, 23);
+            filtericonNameTextBox.Size = new Size(264, 23);
             filtericonNameTextBox.TabIndex = 118;
             // 
             // filtericonNameLabel
@@ -530,16 +535,6 @@
             menuFilterLabel.Size = new Size(38, 15);
             menuFilterLabel.TabIndex = 108;
             menuFilterLabel.Text = "Filters";
-            // 
-            // progressBar1
-            // 
-            progressBar1.BackColor = SystemColors.ActiveCaptionText;
-            progressBar1.ForeColor = SystemColors.Desktop;
-            progressBar1.Location = new Point(984, 42);
-            progressBar1.Margin = new Padding(0);
-            progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(19, 625);
-            progressBar1.TabIndex = 107;
             // 
             // filtericonTextureNameTextBox
             // 
@@ -860,7 +855,7 @@
             ramSaveCheckBox.AutoSize = true;
             ramSaveCheckBox.Checked = true;
             ramSaveCheckBox.CheckState = CheckState.Checked;
-            ramSaveCheckBox.Location = new Point(104, 638);
+            ramSaveCheckBox.Location = new Point(267, 593);
             ramSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
             ramSaveCheckBox.MinimumSize = new Size(0, 36);
             ramSaveCheckBox.Name = "ramSaveCheckBox";
@@ -873,7 +868,7 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(220, 645);
+            saveButton.Location = new Point(23, 643);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(92, 23);
             saveButton.TabIndex = 233;
@@ -884,7 +879,7 @@
             // autoSaveCheckBox
             // 
             autoSaveCheckBox.AutoSize = true;
-            autoSaveCheckBox.Location = new Point(323, 648);
+            autoSaveCheckBox.Location = new Point(393, 600);
             autoSaveCheckBox.Margin = new Padding(3, 2, 3, 2);
             autoSaveCheckBox.MinimumSize = new Size(110, 19);
             autoSaveCheckBox.Name = "autoSaveCheckBox";
@@ -904,10 +899,59 @@
             filterInvertMatchesButton.UseVisualStyleBackColor = true;
             filterInvertMatchesButton.Click += filterInvertMatchesButton_Click;
             // 
+            // iconNameLanguage
+            // 
+            iconNameLanguage.FormattingEnabled = true;
+            iconNameLanguage.Location = new Point(343, 359);
+            iconNameLanguage.Name = "iconNameLanguage";
+            iconNameLanguage.Size = new Size(87, 23);
+            iconNameLanguage.TabIndex = 258;
+            iconNameLanguage.SelectedIndexChanged += iconNameLanguage_SelectedIndexChanged;
+            // 
+            // iconAcquisitionWayLanguage
+            // 
+            iconAcquisitionWayLanguage.FormattingEnabled = true;
+            iconAcquisitionWayLanguage.Location = new Point(343, 409);
+            iconAcquisitionWayLanguage.Name = "iconAcquisitionWayLanguage";
+            iconAcquisitionWayLanguage.Size = new Size(87, 23);
+            iconAcquisitionWayLanguage.TabIndex = 259;
+            iconAcquisitionWayLanguage.SelectedIndexChanged += iconAcquisitionWayLanguage_SelectedIndexChanged;
+            // 
+            // filtericonAcquisitionWayLanguage
+            // 
+            filtericonAcquisitionWayLanguage.FormattingEnabled = true;
+            filtericonAcquisitionWayLanguage.Location = new Point(875, 409);
+            filtericonAcquisitionWayLanguage.Name = "filtericonAcquisitionWayLanguage";
+            filtericonAcquisitionWayLanguage.Size = new Size(87, 23);
+            filtericonAcquisitionWayLanguage.TabIndex = 261;
+            // 
+            // filtericonNameLanguage
+            // 
+            filtericonNameLanguage.FormattingEnabled = true;
+            filtericonNameLanguage.Location = new Point(875, 359);
+            filtericonNameLanguage.Name = "filtericonNameLanguage";
+            filtericonNameLanguage.Size = new Size(87, 23);
+            filtericonNameLanguage.TabIndex = 260;
+            // 
+            // progressBar1
+            // 
+            progressBar1.BackColor = SystemColors.ActiveCaptionText;
+            progressBar1.ForeColor = SystemColors.Desktop;
+            progressBar1.Location = new Point(995, 41);
+            progressBar1.Margin = new Padding(0);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(19, 626);
+            progressBar1.TabIndex = 262;
+            // 
             // IconTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(progressBar1);
+            Controls.Add(filtericonAcquisitionWayLanguage);
+            Controls.Add(filtericonNameLanguage);
+            Controls.Add(iconAcquisitionWayLanguage);
+            Controls.Add(iconNameLanguage);
             Controls.Add(filterInvertMatchesButton);
             Controls.Add(ramSaveCheckBox);
             Controls.Add(saveButton);
@@ -959,7 +1003,6 @@
             Controls.Add(filtericonRarityTextBox);
             Controls.Add(filtericonRarityLabel);
             Controls.Add(menuFilterLabel);
-            Controls.Add(progressBar1);
             Controls.Add(filtericonTextureNameTextBox);
             Controls.Add(filtericonTextureNameLabel);
             Controls.Add(iconIdlabel23);
@@ -1047,7 +1090,6 @@
         private TextBox filtericonRarityTextBox;
         private Label filtericonRarityLabel;
         private Label menuFilterLabel;
-        private ProgressBar progressBar1;
         private TextBox filtericonTextureNameTextBox;
         private Label filtericonTextureNameLabel;
         private Label iconIdlabel23;
@@ -1083,5 +1125,10 @@
         private Button saveButton;
         private CheckBox autoSaveCheckBox;
         private Button filterInvertMatchesButton;
+        private ComboBox iconNameLanguage;
+        private ComboBox iconAcquisitionWayLanguage;
+        private ComboBox filtericonAcquisitionWayLanguage;
+        private ComboBox filtericonNameLanguage;
+        private ProgressBar progressBar1;
     }
 }
