@@ -78,7 +78,7 @@ namespace WaccaSongBrowser
                             {
                                 IconId = id,
                                 IconTextureName = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "IconTextureName"),
-                                IconRarity = WaccaSongBrowser.GetFieldValue<byte>(rowStruct, "IconRarity"),
+                                IconRarity = WaccaSongBrowser.GetFieldValue<sbyte>(rowStruct, "IconRarity"),
                                 NameTag = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "NameTag"),
                                 ExplanationTextTag = WaccaSongBrowser.GetFieldValue<string>(rowStruct, "ExplanationTextTag"),
                                 ItemActivateStartTime = WaccaSongBrowser.GetFieldValue<long>(rowStruct, "ItemActivateStartTime"),
@@ -338,7 +338,7 @@ namespace WaccaSongBrowser
 
                 newRow.Value.Add(new IntPropertyData(new FName(IconTable, "IconId")) { Value = iconData.IconId });
                 newRow.Value.Add(new StrPropertyData(new FName(IconTable, "IconTextureName")) { Value = (FString)iconData.IconTextureName });
-                newRow.Value.Add(new BytePropertyData(new FName(IconTable, "IconRarity")) { Value = iconData.IconRarity });
+                newRow.Value.Add(new Int8PropertyData(new FName(IconTable, "IconRarity")) { Value = iconData.IconRarity });
                 newRow.Value.Add(new StrPropertyData(new FName(IconTable, "NameTag")) { Value = (FString)iconData.NameTag });
                 newRow.Value.Add(new StrPropertyData(new FName(IconTable, "ExplanationTextTag")) { Value = (FString)iconData.ExplanationTextTag });
                 newRow.Value.Add(new Int64PropertyData(new FName(IconTable, "ItemActivateStartTime")) { Value = iconData.ItemActivateStartTime });
@@ -351,12 +351,75 @@ namespace WaccaSongBrowser
                 allIcons.Insert(0, iconData);
                 currentIconId = iconData.IconId;
                 saveLabel.Text = $"Injected icon ID {newId}.";
+
+                // 🔹 Inject into IconMessage as well
+                if (IconMessage != null)
+                {
+                    foreach (var msgExport in IconMessage.Exports)
+                    {
+                        if (!(msgExport is DataTableExport msgTable))
+                            continue;
+
+                        // NameTag message row -> use iconNameTextBox.Text depending on selected language
+                        var nameRow = CreateMessageRow(
+                            IconMessage,
+                            iconData.NameTag,
+                            iconNameLanguage.SelectedIndex,
+                            iconNameTextBox.Text.Trim()
+                        );
+                        msgTable.Table.Data.Insert(0, nameRow);
+
+                        // ExplanationTextTag message row -> use iconAcquisitionWayTextBox.Text depending on selected language
+                        var explanationRow = CreateMessageRow(
+                            IconMessage,
+                            iconData.ExplanationTextTag,
+                            iconAcquisitionWayLanguage.SelectedIndex,
+                            iconAcquisitionWayTextBox.Text.Trim()
+                        );
+                        msgTable.Table.Data.Insert(0, explanationRow);
+
+                        break; // only inject once
+                    }
+                }
+
                 LoadUI(iconData);
                 saveChanges();
                 return;
             }
+
             saveLabel.Text = "IconTable export not found.";
         }
+        static readonly string[] fieldNames =
+            {
+        "JapaneseMessage",
+        "EnglishMessageUSA",
+        "EnglishMessageSG",
+        "TraditionalChineseMessageTW",
+        "TraditionalChineseMessageHK",
+        "SimplifiedChineseMessage",
+        "KoreanMessage"
+        };
+        private StructPropertyData CreateMessageRow(UAsset asset, string rowName, int selectedLang, string text)
+        {
+            var row = new StructPropertyData
+            {
+                Name = new FName(asset, new FString(rowName)),
+                StructType = new FName(asset, new FString("MessageData")),
+                Value = new List<PropertyData>()
+            };
+
+            
+
+            for (int i = 0; i < fieldNames.Length; i++)
+            {
+                string value = (i == selectedLang) ? text : "";
+                row.Value.Add(new StrPropertyData(new FName(asset, fieldNames[i])) { Value = (FString)value });
+            }
+
+            return row;
+        }
+
+
         private void createNewIconButton_Click(object sender, EventArgs e)
         {  // Add All Missing Icons from execpath + ./USERICON/S* subfolders
             string iconsPath = Path.Combine(execPath, "/USERICON");
@@ -407,7 +470,7 @@ namespace WaccaSongBrowser
             iconData.IconId = i;
 
             iconData.IconTextureName = iconTextureNameTextBox.Text;
-            byte.TryParse(iconRarityTextBox.Text, out byte r);
+            sbyte.TryParse(iconRarityTextBox.Text, out sbyte r);
             iconData.IconRarity = r;
 
             iconData.NameTag = nameTagTextBox.Text;

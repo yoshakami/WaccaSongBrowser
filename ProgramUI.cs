@@ -1132,6 +1132,10 @@ namespace WaccaSongBrowser
             {
                 intProp.Value = intVal;
             }
+            else if (prop is Int8PropertyData int8Prop && newValue is sbyte int8Val)
+            {
+                int8Prop.Value = int8Val;
+            }
             else if (prop is Int64PropertyData int64Prop && newValue is long int64Val)
             {
                 int64Prop.Value = int64Val;
@@ -1325,6 +1329,7 @@ namespace WaccaSongBrowser
             {
                 StrPropertyData strProp when typeof(T) == typeof(string) => (T)(object)(strProp.Value?.ToString() ?? "null"),
                 IntPropertyData intProp when typeof(T) == typeof(int) => (T)(object)intProp.Value,
+                Int8PropertyData intProp when typeof(T) == typeof(int) => (T)(object)intProp.Value,
                 UInt32PropertyData uintProp when typeof(T) == typeof(uint) => (T)(object)uintProp.Value,
                 Int64PropertyData longProp when typeof(T) == typeof(long) => (T)(object)longProp.Value,
                 BoolPropertyData boolProp when typeof(T) == typeof(bool) => (T)(object)boolProp.Value,

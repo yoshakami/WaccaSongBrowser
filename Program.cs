@@ -101,7 +101,7 @@ namespace WaccaSongBrowser
     {
         public int IconId { get; set; }
         public string IconTextureName { get; set; }
-        public byte IconRarity { get; set; }
+        public sbyte IconRarity { get; set; }
         public string NameTag { get; set; }
         public string ExplanationTextTag { get; set; }
         public long ItemActivateStartTime { get; set; }
