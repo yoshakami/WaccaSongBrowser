@@ -12,7 +12,7 @@
     <BaseOutputPath>bin\</BaseOutputPath>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
-    <Version>4.0</Version>
+    <Version>5.0</Version>
     <Authors>Yosh</Authors>
     <Company>Yosh</Company>
   </PropertyGroup>

@@ -13,6 +13,9 @@ Here you can edit conditions for unlockables and also edit the unlockable ID<br>
 it edits TotalResultItemJudgementTable and shows all other loaded files for read only<br><br>
 <img width="1340" height="713" alt="image" src="https://github.com/user-attachments/assets/818f2454-d77d-4921-a50d-a169800ba49e" />
 
+## IconTable
+You can view, browse, edit, and inject icons + their message text (even though you can drag and drop the message folder and use the txt to translate) <br>
+if you want to add, or change an existing picture, use another tool (will add the name later)
 
 ## Message
 You can convert all japanese strings of the game to Wacca.txt (or .po) and back from the txt to a new folder with all the corresponding uassets.
@@ -20,8 +23,12 @@ You can convert all japanese strings of the game to Wacca.txt (or .po) and back 
 ## TrophyTable
 You can onvert all japanese strings of the trophy names to Trophy.txt, and back from the txt to a new uasset
 
-## GradeTable
-You can convert all japanese strings of the title names to Titles.txt, and back from the txt to a new uasset
+## GradeTable (WIP)
+You can convert all japanese strings of the title names to Titles.txt, and back from the txt to a new uasset (these two buttons use GradePartsTable) <br>
+using other save buttons is useless as of now I'm not using GradePartsTable
+
+## UserPlateBackgroundTable
+Not implemented yet
 
 ##
 in order to grant yourself a new icon:
@@ -35,7 +42,7 @@ these instructions also work for every other item in ConditionTable
 you can now apply as much filters as you want as long as you enable them! <br>
 you can still take the hot shortcut of pressing enter (with the keyboard) on any filter to any search with this one only (for MusicParameterTable) <br>
 MusicParameterTable, Message, Condition, trophy, and title are fully functionnal. <br>
-future updates will include icon injector, plate background injector, and title injector
+future updates will include plate background injector, and title editor.
 
 ## how to edit songs
 Drag and drop MusicParameterTable.uasset onto the window (found in WindowsNoEditor/Mercury/Content/Table)
