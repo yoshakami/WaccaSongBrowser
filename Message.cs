@@ -422,7 +422,110 @@ namespace WaccaSongBrowser
                 outputMessage.Text = "Missing Trophy.txt or TrophyVanilla.txt. Please click the create button first.";
             }
         }
+        static public void injectUserRateButton_Click(object sender, EventArgs e)
+        {
+            string filePath = "C:\\Wacca\\Menu\\Nana+\\WindowsNoEditor\\Mercury\\Content\\Table\\UserRateCoefficientTable.uasset";
+            //outputMessage.Text = "Processing UserRateCoefficientTable...";
 
+            string folder = Path.GetDirectoryName(filePath);
+            string newPath = Path.Combine(folder, "UserRateCoefficientTableNew.uasset");
+
+            if (!File.Exists(filePath))
+            {
+                //outputMessage.Text = "Missing UserRateCoefficientTable.uasset";
+                return;
+            }
+
+            // Load the original asset
+            UAsset userRateTable = new UAsset(filePath, EngineVersion.VER_UE4_19);
+
+
+            if (userRateTable == null)
+            {
+                //outputMessage.Text = "GradeTable is not loaded. Please run ReadGrade first.";
+                return;
+            }
+            UDataTable dataTableExport = null;
+
+            foreach (var export in userRateTable.Exports)
+            {
+                if (export is DataTableExport dtExport)
+                {
+                    dataTableExport = dtExport.Table;
+                    break; // or pick the right table if multiple
+                }
+            }
+
+            if (dataTableExport == null)
+            {
+                throw new InvalidOperationException("No DataTable found in this asset.");
+            }
+            dataTableExport.Data.Clear();
+
+            // Prepare your data points
+            List<(int Score, float Mult)> points = new()
+            {
+                (1000000, 1.12f),
+                (995000, 1.08f),
+                (990000, 1.04f),
+                (985000, 1.00f),
+                (980000, 0.96f),
+                (965000, 0.88f),
+                (950000, 0.80f),
+                (935000, 0.72f),
+                (920000, 0.64f),
+                (905000, 0.56f),
+                (890000, 0.48f),
+                (875000, 0.40f),
+                (860000, 0.32f),
+                (845000, 0.24f),
+                (830000, 0.16f),
+                (815000, 0.08f),
+                (800000, 0.00f)
+            };
+            int step = 1000;
+            List<(int Score, float Mult)> interpolated = new();
+
+            // Generate interpolated values
+            for (int i = 0; i < points.Count - 1; i++)
+            {
+                var (score1, mult1) = points[i];
+                var (score2, mult2) = points[i + 1];
+
+                int numSteps = (score1 - score2) / step;
+                float mStep = (mult2 - mult1) / numSteps;
+
+                for (int j = 0; j < numSteps; j++)
+                {
+                    int score = score1 - j * step;
+                    float multiplier = (mult1 + j * mStep) * 10;
+                    interpolated.Add((score, (float)Math.Round(multiplier, 5)));
+                }
+            }
+
+            // Add last point explicitly
+            var last = points[^1];
+            interpolated.Add(last);
+
+            int k = 1;
+            // Create the DataTable
+            foreach (var (score, mult) in interpolated)
+            {
+                var row = new StructPropertyData(new FName(userRateTable, k.ToString()), new FName(userRateTable, "UserRateCoefficientTableData"))
+                {
+                    Value = new List<PropertyData>
+            {
+                new IntPropertyData(new FName(userRateTable, "RequiredScore")) { Value = score },
+                new FloatPropertyData(new FName(userRateTable, "CalcRateCoefficient")) { Value = mult }
+            }
+                };
+                dataTableExport.Data.Add(row);
+                k++;
+            }
+            // Save to new file
+            userRateTable.Write(newPath);
+            //outputMessage.Text = $"Created new {Path.GetFileName(newPath)} with {interpolated.Count} rows.";
+        }
     }
 }
 

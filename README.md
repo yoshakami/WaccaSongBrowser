@@ -11,6 +11,78 @@ also edits UnlockMusicTable and UnlockInfernoTable to set the "new" attribute an
 ## ConditionTable
 Here you can edit conditions for unlockables and also edit the unlockable ID<br>
 it edits TotalResultItemJudgementTable and shows all other loaded files for read only<br><br>
+List of conditions and their meaning:
+ConditionTable		unless sepecified, the condition is validated if you have a higher difficulty or higher grade				
+ID	Internal Name	Value1	Value2	Value3	Value4	Value5
+-2	INVALID	unused				
+-1	SYSTEM	unused				
+0	INIT	unused				
+1	LEVEL_UP_COUNT	unused				
+2	TOTAL_WACCA_POINT	total amount of RP				
+3	TOTAL_SCORE	total value of every song best score added together				
+4	GRADE_COUNT	number of titles owned				
+5	ICON_COUNT	number of icons owned				
+6	SYMBOL_COLOR_COUNT	number of ring colors owned				
+7	INPUT_SE_COUNT	number of sound effects owned				
+8	UNLOCK_MUSIC_COUNT	number of musics the user need to unlock				
+9	PLAY_COUNT	NORMAL | HARD | EXPERT | INFERNO  (choose only 1 of them)	PLAY | CLEAR | MISSLESS | FULLCOMBO | MASTER	total amount required, over all songs		
+10	PLAY_COUNT_RATE	NORMAL | HARD | EXPERT | INFERNO  (choose only 1 of them)	S | SS | SSS | MASTER	total amount required, over all songs		
+11	PLAY_MUSIC_COUNT	unused				
+12	PLAY_MUSIC_COUNT_RATE	NORMAL | HARD | EXPERT | INFERNO  (choose only 1 of them)	S | SS | SSS | MASTER	total amount required, over all songs		
+13	PLAY_MUSIC_SCORE_COUNT	unused				
+14	PLAY_MUSIC_SCORE_COUNT_RATE	unused				
+15	STAGE_UP	unused				
+16	GAME_PLAY_COUNT	Total number of plays				
+17	MULTI_PLAY_COUNT	Total number of MultiPlay				
+18	GAME_PLAY_COUNT_MODE	VS | CP | FREETIME	Total number required			
+19	PLAY_MUSIC_TAG_ALL_DIFFICULTY	unused				
+20	PLAY_MUSIC_TAG_ALL_DIFFICULTY_RATE	unused				
+21	1PLAY_MUSIC	NORMAL | HARD | EXPERT | INFERNO  (choose only 1 of them)	PLAY | CLEAR | MISSLESS | FULLCOMBO | MASTER			
+22	1PLAY_MUSIC_RATE	NORMAL | HARD | EXPERT | INFERNO  (choose only 1 of them)	S | SS | SSS | MASTER			
+23	PLAY_MUSIC_TAG	BingoID (TAG ID)	PLAY | CLEAR | MISSLESS | FULLCOMBO | MASTER	total amount required, over all songs		
+24	RATE_COUNT_LOW	D | A (I guess other work too, also unlocks if you get a lower grade)	total amount required, over all songs			
+25	TROPHY_COMPLETE	null	yeah litteraly all params are null. unlock all trophies and this will unlock the crown icon			
+26	OPEN_MUSIC_TAG	unused				
+27	PLAY_MUSIC_ID	MusicID	PLAY | CLEAR | MISSLESS | FULLCOMBO | MASTER	total amount required, over all songs		
+28	USE_ICON_NUM	total amount required, (it only unlocks a title in vanilla called "accessory collector")				
+29	MUSIC_CONTINUE_PLAY	Total amount required.				
+30	MUSIC_SELECT_CANCEL	Total amount required.				
+31	DATE	null. Play between ConditionGatableStartTime and End time to validate 				
+32	PREFECTURES	Japanese prefecture name				
+33	PLAY_AREA	Japanese Area Name				
+34	PLAY_AREA_COMPLETE	null. I guess u need to play everywhere in japan				
+35	GRADE_CUSTOMIZE_PLAY	null. (change your title then play?)				
+36	MUSIC_ID_DIFFICULTY_FILL	MusicID	NORMAL | HARD | EXPERT | INFERNO	PLAY | CLEAR | MISSLESS | FULLCOMBO | MASTER		
+37	PLAY_MUSIC_ID_RATE	MusicID	D | A | S | SS | SSS	Total count of THAT exact rate		
+38	LOGIN	unused				
+39	PLAY_MUSIC_TAG_DIFFICULTY_RATE	BingoID (TAG ID)	NORMAL | HARD | EXPERT | INFERNO	D | A | S | SS | SSS	Total amount required	
+40	CONTINUOUS_LOGIN	Total days streak				
+41	TOTAL_LOGIN	Total number required				
+42	COMBO	unused				
+43	1MISS_ALL_MARVELOUS	NORMAL | HARD | EXPERT | INFERNO				
+44	GRADE_GET	TitleID	TitleID or null	TitleID or null	TitleID or null	TitleID or null
+45	HIGH_SPEED	unused				
+46	RATING	total rate value				
+47	USER_PLATE_COUNT	Amount of Background plate owned				
+48	GACHA_COUNT	20011 (Gacha Box ID ?)	number of pulls			
+49	GET_ITEM	ItemID				
+50	SCORE_MULTIPLE	unused				
+51	SCORE_LAST_DIGITS	unused				
+52	1PLAY_MUSIC_TAG_STATUS	unused				
+53	TOTAL_GATE_POINT	Total Gate Points				
+54	TOTAL_USER_LEVEL	user level				
+55	FRIEND_COUNT	friend count				
+56	BINGO_LINE_NUM	number of bingo lines completed				
+57	BINGO_SHEET_NUM	Bingo Sheet Number				
+58	GALLERY_MODE_PLAY	null. seems like auto validate between ConditionGatableStartTime and end time?				
+59	MUSIC_ID_DIFFICULTY_RATE	unused				
+60	MUSIC_ID_DIFFICULTY_STATUS	unused				
+61	MUSIC_TAG_1PLAY	unused				
+62	LEVEL_TOTAL_1PLAY	unused				
+63	MUSIC_ID_RATE_1PLAY	MusicID	NORMAL | HARD | EXPERT | INFERNO	SSS+ | MASTER (other should work too)		
+64	MUSIC_ID_STATUS_1PLAY	unused				
+
+
 <img width="1340" height="713" alt="image" src="https://github.com/user-attachments/assets/818f2454-d77d-4921-a50d-a169800ba49e" />
 
 ## IconTable

@@ -39,6 +39,7 @@
             label8 = new Label();
             label9 = new Label();
             label10 = new Label();
+            injectUserRate = new Button();
             SuspendLayout();
             // 
             // label1
@@ -140,8 +141,19 @@
             label10.TabIndex = 9;
             label10.Text = "GradeTable.uasset";
             // 
+            // injectUserRate
+            // 
+            injectUserRate.Location = new Point(302, 271);
+            injectUserRate.Name = "injectUserRate";
+            injectUserRate.Size = new Size(227, 47);
+            injectUserRate.TabIndex = 11;
+            injectUserRate.Text = "Create .po file for all .uasset";
+            injectUserRate.UseVisualStyleBackColor = true;
+            injectUserRate.Click += injectUserRate_Click;
+            // 
             // Menu
             // 
+            Controls.Add(injectUserRate);
             Controls.Add(label9);
             Controls.Add(label10);
             Controls.Add(label8);
@@ -172,5 +184,6 @@
         private Label label8;
         private Label label9;
         private Label label10;
+        private Button injectUserRate;
     }
 }
