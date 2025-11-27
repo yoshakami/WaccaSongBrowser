@@ -254,6 +254,11 @@
             writeArtistButton = new Button();
             writeMusicButton = new Button();
             rubiAutoFixCheckBox = new CheckBox();
+            musicDataPathLabel = new Label();
+            musicDataPathTextBox = new RichTextBox();
+            problemRichTextBox = new RichTextBox();
+            label1 = new Label();
+            findProblemsButton = new Button();
             ((System.ComponentModel.ISupportInitialize)jacketPictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -2269,7 +2274,7 @@
             // 
             // writeChartersNormalButton
             // 
-            writeChartersNormalButton.Location = new Point(1355, 40);
+            writeChartersNormalButton.Location = new Point(1543, 29);
             writeChartersNormalButton.Name = "writeChartersNormalButton";
             writeChartersNormalButton.Size = new Size(183, 50);
             writeChartersNormalButton.TabIndex = 243;
@@ -2279,7 +2284,7 @@
             // 
             // writeChartersHardButton
             // 
-            writeChartersHardButton.Location = new Point(1355, 100);
+            writeChartersHardButton.Location = new Point(1543, 89);
             writeChartersHardButton.Name = "writeChartersHardButton";
             writeChartersHardButton.Size = new Size(183, 50);
             writeChartersHardButton.TabIndex = 244;
@@ -2289,7 +2294,7 @@
             // 
             // writeChartersExtremeButton
             // 
-            writeChartersExtremeButton.Location = new Point(1355, 160);
+            writeChartersExtremeButton.Location = new Point(1543, 148);
             writeChartersExtremeButton.Name = "writeChartersExtremeButton";
             writeChartersExtremeButton.Size = new Size(183, 50);
             writeChartersExtremeButton.TabIndex = 245;
@@ -2319,7 +2324,7 @@
             // 
             // writeChartersInfernoButton
             // 
-            writeChartersInfernoButton.Location = new Point(1355, 219);
+            writeChartersInfernoButton.Location = new Point(1543, 207);
             writeChartersInfernoButton.Name = "writeChartersInfernoButton";
             writeChartersInfernoButton.Size = new Size(183, 50);
             writeChartersInfernoButton.TabIndex = 246;
@@ -2413,7 +2418,7 @@
             // 
             // writeArtistButton
             // 
-            writeArtistButton.Location = new Point(1355, 336);
+            writeArtistButton.Location = new Point(1543, 324);
             writeArtistButton.Name = "writeArtistButton";
             writeArtistButton.Size = new Size(183, 50);
             writeArtistButton.TabIndex = 259;
@@ -2423,7 +2428,7 @@
             // 
             // writeMusicButton
             // 
-            writeMusicButton.Location = new Point(1355, 277);
+            writeMusicButton.Location = new Point(1543, 265);
             writeMusicButton.Name = "writeMusicButton";
             writeMusicButton.Size = new Size(183, 50);
             writeMusicButton.TabIndex = 258;
@@ -2446,12 +2451,61 @@
             rubiAutoFixCheckBox.UseVisualStyleBackColor = true;
             rubiAutoFixCheckBox.CheckedChanged += rubiAutoFixCheckBox_CheckedChanged;
             // 
+            // musicDataPathLabel
+            // 
+            musicDataPathLabel.AutoSize = true;
+            musicDataPathLabel.Location = new Point(1372, 34);
+            musicDataPathLabel.Name = "musicDataPathLabel";
+            musicDataPathLabel.Size = new Size(150, 15);
+            musicDataPathLabel.TabIndex = 262;
+            musicDataPathLabel.Text = "MusicData Path (read only)";
+            // 
+            // musicDataPathTextBox
+            // 
+            musicDataPathTextBox.Location = new Point(1357, 52);
+            musicDataPathTextBox.Name = "musicDataPathTextBox";
+            musicDataPathTextBox.Size = new Size(180, 87);
+            musicDataPathTextBox.TabIndex = 263;
+            musicDataPathTextBox.Text = "";
+            // 
+            // problemRichTextBox
+            // 
+            problemRichTextBox.Location = new Point(1355, 159);
+            problemRichTextBox.Name = "problemRichTextBox";
+            problemRichTextBox.Size = new Size(180, 194);
+            problemRichTextBox.TabIndex = 265;
+            problemRichTextBox.Text = "";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(1372, 142);
+            label1.Name = "label1";
+            label1.Size = new Size(57, 15);
+            label1.TabIndex = 264;
+            label1.Text = "Problems";
+            // 
+            // findProblemsButton
+            // 
+            findProblemsButton.Location = new Point(1354, 360);
+            findProblemsButton.Name = "findProblemsButton";
+            findProblemsButton.Size = new Size(183, 28);
+            findProblemsButton.TabIndex = 266;
+            findProblemsButton.Text = "Find Problems!";
+            findProblemsButton.UseVisualStyleBackColor = true;
+            findProblemsButton.Click += CheckMissingMerFiles;
+            // 
             // WaccaSongBrowser
             // 
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1613, 681);
+            Controls.Add(findProblemsButton);
+            Controls.Add(problemRichTextBox);
+            Controls.Add(label1);
+            Controls.Add(musicDataPathTextBox);
+            Controls.Add(musicDataPathLabel);
             Controls.Add(panelMainContainer);
             Controls.Add(rubiAutoFixCheckBox);
             Controls.Add(writeArtistButton);
@@ -2677,7 +2731,7 @@
             Controls.Add(musicTextBox);
             Controls.Add(musicLabel);
             Controls.Add(jacketPictureBox);
-            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "WaccaSongBrowser";
             Text = "Wacca Song Browser";
@@ -2915,5 +2969,10 @@
         private Button writeArtistButton;
         private Button writeMusicButton;
         private CheckBox rubiAutoFixCheckBox;
+        private Label musicDataPathLabel;
+        private RichTextBox musicDataPathTextBox;
+        private RichTextBox problemRichTextBox;
+        private Label label1;
+        private Button findProblemsButton;
     }
 }

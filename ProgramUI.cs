@@ -895,11 +895,11 @@ namespace WaccaSongBrowser
             MusicParameterTable.Write(openedFileName);
             if (UnlockMusicTableFilePath != null)
             {
-                UnlockMusicTable.Write(UnlockMusicTableFilePath);
+                //UnlockMusicTable.Write(UnlockMusicTableFilePath); // crashes the game
             }
             if (UnlockInfernoTableFilePath != null)
             {
-                UnlockInfernoTable.Write(UnlockInfernoTableFilePath);
+                //UnlockInfernoTable.Write(UnlockInfernoTableFilePath); // crashes the game
             }
         }
         private void ramSaveCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -2440,12 +2440,15 @@ namespace WaccaSongBrowser
             var lines = allSongs.Select(s => s.NotesDesignerInferno);
             WriteListToFile(lines, "ChartersInferno.txt");
         }
-
         private void writeMusicButton_Click(object sender, EventArgs e)
         {
-            var lines = allSongs.Select(s => s.MusicMessage);
-            WriteListToFile(lines, "MusicTitle.txt");
+            // Create TSV lines with UniqueID and MusicMessage separated by tabs
+            var lines = allSongs.Select(s => $"{s.UniqueID}\t{s.MusicMessage}");
+
+            // Write to a .tsv file
+            WriteListToFile(lines, "MusicTitle.tsv");
         }
+
 
         private void writeArtistButton_Click(object sender, EventArgs e)
         {
@@ -2477,5 +2480,57 @@ namespace WaccaSongBrowser
                 rubiTextBox_TextChanged(null, null);
             }
         }
+        private void CheckMissingMerFiles(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(musicDataPathTextBox.Text) || !Directory.Exists(musicDataPathTextBox.Text))
+            {
+                problemRichTextBox.Text = "musicDataPath is not set.";
+                return;
+            }
+
+            StringBuilder report = new StringBuilder();
+
+            foreach (var song in allSongs)
+            {
+                string songFolder = Path.Combine(musicDataPathTextBox.Text, song.AssetDirectory); // song.MerText == merTextBox.Text equivalent
+                bool anyMissing = false;
+
+                // Check which difficulties are active
+                var checks = new List<(string diffValue, string suffix, string diffName)>
+        {
+            (song.DifficultyNormalLv.ToString(), "_00.mer", "Normal"),
+            (song.DifficultyHardLv.ToString(), "_01.mer", "Hard"),
+            (song.DifficultyExpertLv.ToString(), "_02.mer", "Extreme"),
+            (song.DifficultyInfernoLv.ToString(), "_03.mer", "Inferno")
+        };
+
+                foreach (var (diffValue, suffix, diffName) in checks)
+                {
+                    if (diffValue != "0") // Only check if difficulty is enabled
+                    {
+                        string merPath = Path.Combine(songFolder, $"{song.AssetDirectory}{suffix}");
+                        if (!File.Exists(merPath))
+                        {
+                            if (!anyMissing)
+                            {
+                                report.AppendLine($"Missing files for {song.AssetDirectory}:");
+                                anyMissing = true;
+                            }
+                            report.AppendLine($"  - {Path.GetFileName(merPath)} ({diffName})");
+                        }
+                    }
+                }
+            }
+
+            if (report.Length == 0)
+            {
+                problemRichTextBox.Text = "All .mer files are present for every song.";
+            }
+            else
+            {
+                problemRichTextBox.Text = report.ToString();
+            }
+        }
+
     }
 }
