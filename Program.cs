@@ -25,7 +25,7 @@ namespace WaccaSongBrowser
         public uint UniqueID { get; set; }
         public string MusicMessage { get; set; }
         public string ArtistMessage { get; set; }
-        //public string CopyrightMessage { get; set; }
+        public string CopyrightMessage { get; set; }
         public uint Version { get; set; }
         public string AssetDirectory { get; set; }
         public string MovieAssetName { get; set; }
@@ -49,12 +49,12 @@ namespace WaccaSongBrowser
 
         public bool Recommend { get; set; }  // beginner
         public int WaccaPointCost { get; set; }
-        //public byte Collaboration { get; set; }
-        //public byte WaccaOriginal { get; set; }
-        //public byte TrainingLevel { get; set; }
-        //public byte Reserved { get; set; }
+        public byte bCollaboration { get; set; }
+        public byte bWaccaOriginal { get; set; }
+        public byte TrainingLevel { get; set; }
+        // public byte Reserved { get; set; }
         public string Bpm { get; set; }
-        //public string HashTag { get; set; }
+        public string HashTag { get; set; }
 
         public string NotesDesignerNormal { get; set; }
         public string NotesDesignerHard { get; set; }
@@ -83,7 +83,7 @@ namespace WaccaSongBrowser
         public int bingo7 { get; set; }
         public int bingo8 { get; set; }
         public int bingo9 { get; set; }
-        //public ulong WorkBuffer { get; set; }
+        public ulong WorkBuffer { get; set; }
         //public string AssetFullPath { get; set; }
     };
     public class ConditionData

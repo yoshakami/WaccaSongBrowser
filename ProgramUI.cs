@@ -15,6 +15,11 @@ namespace WaccaSongBrowser
 
         // string[] ScoreGenre = { "0: Anime/Pop", "1: Vocaloid", "2: Touhou", "3: 2.5D", "4: Variety", "5: Original", "6: Tano*C" };
         string[] ScoreGenre = { "0: Anime/Pop", "1: Vocaloid", "2: Touhou", "3: Hot Picks", "4: Variety", "5: Nanahira", "6: Tano*C", "7: Hidden" };
+        string[] SugorokuCollaboration = { "0: none", "1: blue", "2: yellow", "3: red", "4: max" };
+        string[] MissionTrainingLevel = { "0: Nor & above", "1: Har & above", "2: Exp & above", "3: Inf only", "4: disabled", "5: MAX" };
+
+        string[] S1234 = { "0", "1", "2", "3", "4" };
+        string[] S12345 = { "0", "1", "2", "3", "4", "5" };
 
         public WaccaSongBrowser()
         {
@@ -22,9 +27,12 @@ namespace WaccaSongBrowser
             // see right under this function
             InitializeComponent();
             FillLists();
+            checkBoxNew.Visible = false;
+            yoshModCheckBox_CheckedChanged(null, null);
             this.Size = new Size(1354, 720);  // 1338, 681 with all the padding
             // load the "main page"
             LoadPage(new Menu());
+
         }
         private void LoadPage(UserControl page)
         {
@@ -720,7 +728,6 @@ namespace WaccaSongBrowser
             filterVersion.Items.Add(WaccaVersions[3]);
             filterVersion.Items.Add(WaccaVersions[4]);
             filterVersion.Items.Add(WaccaVersions[5]);
-
             filterMusicEnableCheckBox_CheckedChanged(null, null);
             filterArtistEnableCheckBox_CheckedChanged(null, null);
             filterGenreEnableCheckBox_CheckedChanged(null, null);
@@ -755,7 +762,89 @@ namespace WaccaSongBrowser
             filterCreatorHardCheckBox_CheckedChanged(null, null);
             filterCreatorExtremeCheckBox_CheckedChanged(null, null);
             filterCreatorInfernoCheckBox_CheckedChanged(null, null);
+            PopulateCategoryComboBox();
+        }
+        public enum Category : uint
+        {
+            Skip_aka_None = 0x0,
+            Newly = 0x1,
+            All = 0x2,
+            Genre_AnimePop = 0x3,
+            Genre_Vocaloid = 0x4,
+            Genre_Touhou = 0x5,
+            Genre_D25 = 0x6,
+            Genre_Variety = 0x7,
+            Genre_Original = 0x8,
+            Genre_TANOC = 0x9,
+            Lv_1 = 0xa,
+            Lv_2 = 0xb,
+            Lv_3 = 0xc,
+            Lv_4 = 0xd,
+            Lv_5 = 0xe,
+            Lv_5s = 0xf,
+            Lv_6 = 0x10,
+            Lv_6s = 0x11,
+            Lv_7 = 0x12,
+            Lv_7s = 0x13,
+            Lv_8 = 0x14,
+            Lv_8s = 0x15,
+            Lv_9 = 0x16,
+            Lv_9s = 0x17,
+            Lv_10 = 0x18,
+            Lv_10s = 0x19,
+            Lv_11 = 0x1a,
+            Lv_11s = 0x1b,
+            Lv_12 = 0x1c,
+            Lv_12s = 0x1d,
+            Lv_13 = 0x1e,
+            Lv_13s = 0x1f,
+            Lv_14t = 0x20,
+            Ver_Wacca = 0x21,
+            Ver_WaccaS = 0x22,
+            Ver_WaccaLily = 0x23,
+            Ver_WaccaLilyR = 0x24,
+            Ver_WaccaReverse = 0x25,
+            Name_OJS_A = 0x26,
+            Name_OJS_KA = 0x27,
+            Name_OJS_SA = 0x28,
+            Name_OJS_TA = 0x29,
+            Name_OJS_NA = 0x2a,
+            Name_OJS_HA = 0x2b,
+            Name_OJS_MA = 0x2c,
+            Name_OJS_YA = 0x2d,
+            Name_OJS_RA = 0x2e,
+            Name_OJS_WA = 0x2f,
+            Name_Number = 0x30,
+            Name_AO_AtoD = 0x31,
+            Name_AO_EtoH = 0x32,
+            Name_AO_ItoL = 0x33,
+            Name_AO_MtoP = 0x34,
+            Name_AO_QtoT = 0x35,
+            Name_AO_UtoZ = 0x36,
+            Clear_NotPlay = 0x37,
+            Clear_Played = 0x38,
+            Clear_Clear = 0x39,
+            Clear_Missless = 0x3a,
+            Clear_FullCombo = 0x3b,
+            Clear_AllMarvelous = 0x3c,
+            Favorite = 0x3d,
+            Num = 0x3e
+        }
+        // Populate ComboBox
+        private void PopulateCategoryComboBox()
+        {
+            categoryComboBox.Items.Clear();
 
+            foreach (Category cat in Enum.GetValues(typeof(Category)))
+            {
+                // Display as "Name (DecimalValue)"
+                string displayText = $"{cat} ({(uint)cat})";
+                categoryComboBox.Items.Add(displayText);
+            }
+
+            // Optional: select the first item by default
+            if (categoryComboBox.Items.Count > 0)
+                categoryComboBox.SelectedIndex = 0;
         }
         private void filternotAvailableButton_Click(object sender, EventArgs e)
         {
@@ -811,6 +900,7 @@ namespace WaccaSongBrowser
             songData.MusicMessage = musicTextBox.Text;
             songData.ArtistMessage = artistTextBox.Text;
             songData.Version = (uint)(version.SelectedIndex + 1);
+            songData.CopyrightMessage = CopyrightMessageTextBox.Text;
             songData.AssetDirectory = merTextBox.Text;
             songData.MovieAssetName = movieNormalTextBox.Text;
             songData.MovieAssetNameHard = movieHardTextBox.Text;
@@ -863,7 +953,6 @@ namespace WaccaSongBrowser
             if (float.TryParse(previewSecTextBox.Text, out f))
                 songData.PreviewSeconds = f;
 
-            songData.ScoreGenre = genre.SelectedIndex;
             if (int.TryParse(bingo0TextBox.Text, out inti))
                 songData.bingo0 = inti;
             if (int.TryParse(bingo1TextBox.Text, out inti))
@@ -884,6 +973,32 @@ namespace WaccaSongBrowser
                 songData.bingo8 = inti;
             if (int.TryParse(bingo9TextBox.Text, out inti))
                 songData.bingo9 = inti;
+            byte b;
+            if (byte.TryParse(bWaccaOriginalTextBox.Text, out b))
+                songData.bWaccaOriginal = b;
+            ulong u;
+            if (ulong.TryParse(WorkBufferTextBox.Text, out u))
+                songData.WorkBuffer = u;
+            if (TrainingLevelComboBox.SelectedIndex == -1)
+            {
+                if (byte.TryParse(TrainingLevelComboBox.Text, out b))
+                    songData.TrainingLevel = b;
+            }
+            else
+            {
+                songData.TrainingLevel = (byte)TrainingLevelComboBox.SelectedIndex;
+            }
+            if (bCollaborationComboBox.SelectedIndex == -1)
+            {
+                if (byte.TryParse(bCollaborationComboBox.Text, out b))
+                    songData.bCollaboration = b;
+            }
+            else
+            {
+                songData.bCollaboration = (byte)bCollaborationComboBox.SelectedIndex;
+            }
+            songData.HashTag = HashTagTextBox.Text;
+            songData.ScoreGenre = genre.SelectedIndex;
         }
         static int savecount = 0;
         private void saveButton_Click(object sender, EventArgs e)
@@ -1052,12 +1167,12 @@ namespace WaccaSongBrowser
                             {
                                 continue;
                             }
-                            musicUnlockStatus[(int)id] = checkBoxNew.Checked;
-                            SaveCurentUnlockInferno();
+                            //musicUnlockStatus[(int)id] = checkBoxNew.Checked;
+                            //SaveCurentUnlockInferno();
                             // Lookup the song data you want to save (replace this with your data source)
                             SetFieldValue(rowStruct, "MusicMessage", songData.MusicMessage);
                             SetFieldValue(rowStruct, "ArtistMessage", songData.ArtistMessage);
-                            //SetFieldValue(rowStruct, "CopyrightMessage", songData.CopyrightMessage);
+                            SetFieldValue(rowStruct, "CopyrightMessage", songData.CopyrightMessage);
                             SetFieldValue(rowStruct, "VersionNo", songData.Version);
                             SetFieldValue(rowStruct, "AssetDirectory", songData.AssetDirectory);
                             SetFieldValue(rowStruct, "MovieAssetName", songData.MovieAssetName);
@@ -1080,12 +1195,14 @@ namespace WaccaSongBrowser
                             SetFieldValue(rowStruct, "bValidCulture_NoneActive", songData.ValidCulture_NoneActive);
                             SetFieldValue(rowStruct, "bRecommend", songData.Recommend);
                             SetFieldValue(rowStruct, "WaccaPointCost", songData.WaccaPointCost);
-                            //Collaboration = GetFieldValue<byte>(rowStruct, "bCollaboration"),
-                            //WaccaOriginal = GetFieldValue<byte>(rowStruct, "bWaccaOriginal"),
-                            //TrainingLevel = GetFieldValue<byte>(rowStruct, "TrainingLevel"),
                             //Reserved = GetFieldValue<byte>(rowStruct, "Reserved"),
+                            SetFieldValue(rowStruct, "bCollaboration", songData.bCollaboration);
+                            SetFieldValue(rowStruct, "bWaccaOriginal", songData.bWaccaOriginal);
+                            SetFieldValue(rowStruct, "TrainingLevel", songData.TrainingLevel);
+
+                            SetFieldValue(rowStruct, "HashTag", songData.HashTag);
                             SetFieldValue(rowStruct, "Bpm", songData.Bpm);
-                            //HashTag = GetFieldValue<string>(rowStruct, "HashTag"),
+                            SetFieldValue(rowStruct, "HashTag", songData.HashTag);
                             SetFieldValue(rowStruct, "NotesDesignerNormal", songData.NotesDesignerNormal);
                             SetFieldValue(rowStruct, "NotesDesignerHard", songData.NotesDesignerHard);
                             SetFieldValue(rowStruct, "NotesDesignerExpert", songData.NotesDesignerExpert);
@@ -1111,7 +1228,7 @@ namespace WaccaSongBrowser
                             SetFieldValue(rowStruct, "MusicTagForUnlock7", songData.bingo7);
                             SetFieldValue(rowStruct, "MusicTagForUnlock8", songData.bingo8);
                             SetFieldValue(rowStruct, "MusicTagForUnlock9", songData.bingo9);
-                            //public ulong WorkBuffer { get; set; }
+                            SetFieldValue(rowStruct, "WorkBuffer", songData.WorkBuffer);
                             //SetFieldValue(rowStruct, "AssetFullPath", songData.AssetFullPath);
                             return true;
                         }
@@ -1136,9 +1253,17 @@ namespace WaccaSongBrowser
             {
                 int8Prop.Value = int8Val;
             }
+            else if (prop is BytePropertyData uint8Prop && newValue is byte uint8Val)
+            {
+                uint8Prop.Value = uint8Val;
+            }
             else if (prop is Int64PropertyData int64Prop && newValue is long int64Val)
             {
                 int64Prop.Value = int64Val;
+            }
+            else if (prop is UInt64PropertyData uint64Prop && newValue is ulong uint64Val)
+            {
+                uint64Prop.Value = uint64Val;
             }
             else if (prop is UInt32PropertyData uintProp && newValue is uint uintVal)
             {
@@ -1248,10 +1373,22 @@ namespace WaccaSongBrowser
             {
                 version.SelectedIndex = version.Items.Count - 1;
             }
-            else if (freezeVersionCheckBox.Checked == false)
+            if (song.TrainingLevel >= 0 && song.TrainingLevel < TrainingLevelComboBox.Items.Count)
+            {
+                TrainingLevelComboBox.SelectedIndex = song.TrainingLevel;
+            }
+            if (song.bCollaboration >= 0 && song.bCollaboration < bCollaborationComboBox.Items.Count)
+            {
+                bCollaborationComboBox.SelectedIndex = song.bCollaboration;
+            }
+            if (freezeVersionCheckBox.Checked == false)
             {
                 version.SelectedIndex = (int)(song.Version - 1);
             }
+            bWaccaOriginalTextBox.Text = song.bWaccaOriginal.ToString();
+            WorkBufferTextBox.Text = song.WorkBuffer.ToString();
+            CopyrightMessageTextBox.Text = song.CopyrightMessage;
+            HashTagTextBox.Text = song.HashTag;
             diffNormalTextBox.Text = song.DifficultyNormalLv.ToString();
             diffHardTextBox.Text = song.DifficultyHardLv.ToString();
             diffExtremeTextBox.Text = song.DifficultyExpertLv.ToString();
@@ -1332,6 +1469,7 @@ namespace WaccaSongBrowser
                 Int8PropertyData intProp when typeof(T) == typeof(int) => (T)(object)intProp.Value,
                 UInt32PropertyData uintProp when typeof(T) == typeof(uint) => (T)(object)uintProp.Value,
                 Int64PropertyData longProp when typeof(T) == typeof(long) => (T)(object)longProp.Value,
+                UInt64PropertyData ulongProp when typeof(T) == typeof(ulong) => (T)(object)ulongProp.Value,
                 BoolPropertyData boolProp when typeof(T) == typeof(bool) => (T)(object)boolProp.Value,
                 FloatPropertyData floatProp when typeof(T) == typeof(float) => (T)(object)floatProp.Value,
                 BytePropertyData byteProp when typeof(T) == typeof(byte) => (T)(object)byteProp.Value,
@@ -1378,7 +1516,7 @@ namespace WaccaSongBrowser
                                 UniqueID = GetFieldValue<uint>(rowStruct, "UniqueID"),
                                 MusicMessage = GetFieldValue<string>(rowStruct, "MusicMessage"),
                                 ArtistMessage = GetFieldValue<string>(rowStruct, "ArtistMessage"),
-                                //CopyrightMessage = GetFieldValue<string>(rowStruct, "CopyrightMessage"),
+                                CopyrightMessage = GetFieldValue<string>(rowStruct, "CopyrightMessage"),
                                 Version = GetFieldValue<uint>(rowStruct, "VersionNo"),
                                 AssetDirectory = GetFieldValue<string>(rowStruct, "AssetDirectory"),
                                 MovieAssetName = GetFieldValue<string>(rowStruct, "MovieAssetName"),
@@ -1402,13 +1540,13 @@ namespace WaccaSongBrowser
 
                                 Recommend = GetFieldValue<bool>(rowStruct, "bRecommend"),
                                 WaccaPointCost = GetFieldValue<int>(rowStruct, "WaccaPointCost"),
-                                //Collaboration = GetFieldValue<byte>(rowStruct, "bCollaboration"),
-                                //WaccaOriginal = GetFieldValue<byte>(rowStruct, "bWaccaOriginal"),
-                                //TrainingLevel = GetFieldValue<byte>(rowStruct, "TrainingLevel"),
+                                bCollaboration = GetFieldValue<byte>(rowStruct, "bCollaboration"),
+                                bWaccaOriginal = GetFieldValue<byte>(rowStruct, "bWaccaOriginal"),
+                                TrainingLevel = GetFieldValue<byte>(rowStruct, "TrainingLevel"),
                                 //Reserved = GetFieldValue<byte>(rowStruct, "Reserved"),
 
                                 Bpm = GetFieldValue<string>(rowStruct, "Bpm"),
-                                //HashTag = GetFieldValue<string>(rowStruct, "HashTag"),
+                                HashTag = GetFieldValue<string>(rowStruct, "HashTag"),
 
                                 NotesDesignerNormal = GetFieldValue<string>(rowStruct, "NotesDesignerNormal"),
                                 NotesDesignerHard = GetFieldValue<string>(rowStruct, "NotesDesignerHard"),
@@ -1439,7 +1577,7 @@ namespace WaccaSongBrowser
                                 bingo7 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock7"),
                                 bingo8 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock8"),
                                 bingo9 = GetFieldValue<int>(rowStruct, "MusicTagForUnlock9"),
-                                //public ulong WorkBuffer { get; set; }
+                                WorkBuffer = GetFieldValue<ulong>(rowStruct, "WorkBuffer"),
                                 //AssetFullPath = GetFieldValue<string>(rowStruct, "AssetFullPath"),
                             };
 
@@ -2286,7 +2424,7 @@ namespace WaccaSongBrowser
                 newRow.Value.Add(new UInt32PropertyData(new FName(MusicParameterTable, "UniqueID")) { Value = songData.UniqueID });
                 newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "MusicMessage")) { Value = (FString)songData.MusicMessage });
                 newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "ArtistMessage")) { Value = (FString)songData.ArtistMessage });
-                newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "CopyrightMessage")) { Value = (FString)"-" });
+                newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "CopyrightMessage")) { Value = (FString)songData.CopyrightMessage });
                 newRow.Value.Add(new UInt32PropertyData(new FName(MusicParameterTable, "VersionNo")) { Value = songData.Version });
                 newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "AssetDirectory")) { Value = (FString)songData.AssetDirectory });
                 newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "MovieAssetName")) { Value = (FString)songData.MovieAssetName });
@@ -2313,17 +2451,17 @@ namespace WaccaSongBrowser
                 newRow.Value.Add(new BytePropertyData(new FName(MusicParameterTable, "bCollaboration"))
                 {
                     EnumType = new FName(MusicParameterTable, "None"),
-                    Value = 0
+                    Value = songData.bCollaboration
                 });
                 newRow.Value.Add(new BytePropertyData(new FName(MusicParameterTable, "bWaccaOriginal"))
                 {
                     EnumType = new FName(MusicParameterTable, "None"),
-                    Value = 0
+                    Value = songData.bWaccaOriginal
                 });
                 newRow.Value.Add(new BytePropertyData(new FName(MusicParameterTable, "TrainingLevel"))
                 {
                     EnumType = new FName(MusicParameterTable, "None"),
-                    Value = 3
+                    Value = songData.TrainingLevel
                 });
                 newRow.Value.Add(new BytePropertyData(new FName(MusicParameterTable, "Reserved"))
                 {
@@ -2332,7 +2470,7 @@ namespace WaccaSongBrowser
                 });
 
                 newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "Bpm")) { Value = (FString)songData.Bpm });
-                newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "HashTag")) { Value = (FString)"Yosh" });
+                newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "HashTag")) { Value = (FString)songData.HashTag });
 
                 newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "NotesDesignerNormal")) { Value = (FString)songData.NotesDesignerNormal });
                 newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "NotesDesignerHard")) { Value = (FString)songData.NotesDesignerHard });
@@ -2363,7 +2501,7 @@ namespace WaccaSongBrowser
                 newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock7")) { Value = songData.bingo7 });
                 newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock8")) { Value = songData.bingo8 });
                 newRow.Value.Add(new IntPropertyData(new FName(MusicParameterTable, "MusicTagForUnlock9")) { Value = songData.bingo9 });
-                newRow.Value.Add(new UInt64PropertyData(new FName(MusicParameterTable, "WorkBuffer")) { Value = 0 });
+                newRow.Value.Add(new UInt64PropertyData(new FName(MusicParameterTable, "WorkBuffer")) { Value = songData.WorkBuffer });
                 newRow.Value.Add(new StrPropertyData(new FName(MusicParameterTable, "AssetFullPath")) { Value = (FString)$"D:/project/Mercury/Mercury/Content//MusicData/{songData.AssetDirectory}" });
 
                 // Insert at the beginning of the DataTable
@@ -2532,5 +2670,72 @@ namespace WaccaSongBrowser
             }
         }
 
+        private void yoshModCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            label2.Visible = yoshModCheckBox.Checked;
+            categoryComboBox.Visible = yoshModCheckBox.Checked;
+            int i = TrainingLevelComboBox.SelectedIndex;
+            int j = bCollaborationComboBox.SelectedIndex;
+            if (yoshModCheckBox.Checked)
+            {
+                bCollaborationComboBox.Items.Clear();
+                bCollaborationComboBox.Items.Add(SugorokuCollaboration[0]);
+                bCollaborationComboBox.Items.Add(SugorokuCollaboration[1]);
+                bCollaborationComboBox.Items.Add(SugorokuCollaboration[2]);
+                bCollaborationComboBox.Items.Add(SugorokuCollaboration[3]);
+                bCollaborationComboBox.Items.Add(SugorokuCollaboration[4]);
+                bCollaborationComboBox.SelectedIndex = j;
+                TrainingLevelComboBox.Items.Clear();
+                TrainingLevelComboBox.Items.Add(MissionTrainingLevel[0]);
+                TrainingLevelComboBox.Items.Add(MissionTrainingLevel[1]);
+                TrainingLevelComboBox.Items.Add(MissionTrainingLevel[2]);
+                TrainingLevelComboBox.Items.Add(MissionTrainingLevel[3]);
+                TrainingLevelComboBox.Items.Add(MissionTrainingLevel[4]);
+                TrainingLevelComboBox.Items.Add(MissionTrainingLevel[5]);
+                TrainingLevelComboBox.SelectedIndex = i;
+                bingo6Label.Text = "Cat. Nor";
+                bingo7Label.Text = "Cat. Har";
+                bingo8Label.Text = "Cat. Exp";
+                bingo9Label.Text = "Cat. Inf";
+                bWaccaOriginalLabel.Text = "Song cat";
+                WorkBufferLabel.Text = "Song cat";
+                HashTagLabel.Text = "Song cat";
+                CopyrightMessageLabel.Text = "Song cat";
+                TrainingLevelLabel.Text = "Mission Diff";
+                bCollaborationLabel.Text = "Gate Bonus";
+                cngeCheckBox.Text = "New song";
+                cnvipCheckBox.Text = "Unlock expert and inferno";
+            }
+            else
+            {
+                bingo6Label.Text = "Bingo 6";
+                bingo7Label.Text = "Bingo 7";
+                bingo8Label.Text = "Bingo 8";
+                bingo9Label.Text = "Bingo 9";
+                bWaccaOriginalLabel.Text = "bWaccaOriginal";
+                TrainingLevelLabel.Text = "TrainingLevel";
+                bCollaborationLabel.Text = "bCollaboration";
+                cngeCheckBox.Text = "Available CN_General";
+                cnvipCheckBox.Text = "Available CN_Vip";
+                WorkBufferLabel.Text = "WorkBuffer";
+                HashTagLabel.Text = "HashTag";
+                CopyrightMessageLabel.Text = "CopyrightMessage";
+                bCollaborationComboBox.Items.Clear();
+                bCollaborationComboBox.Items.Add(S1234[0]);
+                bCollaborationComboBox.Items.Add(S1234[1]);
+                bCollaborationComboBox.Items.Add(S1234[2]);
+                bCollaborationComboBox.Items.Add(S1234[3]);
+                bCollaborationComboBox.Items.Add(S1234[4]);
+                bCollaborationComboBox.SelectedIndex = j;
+                TrainingLevelComboBox.Items.Clear();
+                TrainingLevelComboBox.Items.Add(S12345[0]);
+                TrainingLevelComboBox.Items.Add(S12345[1]);
+                TrainingLevelComboBox.Items.Add(S12345[2]);
+                TrainingLevelComboBox.Items.Add(S12345[3]);
+                TrainingLevelComboBox.Items.Add(S12345[4]);
+                TrainingLevelComboBox.Items.Add(S12345[5]);
+                TrainingLevelComboBox.SelectedIndex = i;
+            }
+        }
     }
 }

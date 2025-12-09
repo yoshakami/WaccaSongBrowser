@@ -147,8 +147,9 @@
             injectUserRate.Name = "injectUserRate";
             injectUserRate.Size = new Size(227, 47);
             injectUserRate.TabIndex = 11;
-            injectUserRate.Text = "Create .po file for all .uasset";
+            injectUserRate.Text = "Inject User Rate (easter egg)";
             injectUserRate.UseVisualStyleBackColor = true;
+            injectUserRate.Visible = false;
             injectUserRate.Click += injectUserRate_Click;
             // 
             // Menu
