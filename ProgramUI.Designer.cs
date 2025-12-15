@@ -274,6 +274,8 @@
             CopyrightMessageLabel = new Label();
             WorkBufferTextBox = new TextBox();
             WorkBufferLabel = new Label();
+            checkBox1 = new CheckBox();
+            freezeYoshModCheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)jacketPictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -1509,7 +1511,7 @@
             // freezeNewCheckBox
             // 
             freezeNewCheckBox.AutoSize = true;
-            freezeNewCheckBox.Location = new Point(772, 405);
+            freezeNewCheckBox.Location = new Point(876, 765);
             freezeNewCheckBox.Margin = new Padding(3, 2, 3, 2);
             freezeNewCheckBox.MinimumSize = new Size(110, 36);
             freezeNewCheckBox.Name = "freezeNewCheckBox";
@@ -1523,7 +1525,7 @@
             // freezeBeginnerCheckBox
             // 
             freezeBeginnerCheckBox.AutoSize = true;
-            freezeBeginnerCheckBox.Location = new Point(772, 434);
+            freezeBeginnerCheckBox.Location = new Point(772, 403);
             freezeBeginnerCheckBox.Margin = new Padding(3, 2, 3, 2);
             freezeBeginnerCheckBox.MinimumSize = new Size(110, 36);
             freezeBeginnerCheckBox.Name = "freezeBeginnerCheckBox";
@@ -1537,7 +1539,7 @@
             // freezeAvailableCheckBox
             // 
             freezeAvailableCheckBox.AutoSize = true;
-            freezeAvailableCheckBox.Location = new Point(772, 470);
+            freezeAvailableCheckBox.Location = new Point(772, 439);
             freezeAvailableCheckBox.Margin = new Padding(3, 2, 3, 2);
             freezeAvailableCheckBox.MinimumSize = new Size(110, 19);
             freezeAvailableCheckBox.Name = "freezeAvailableCheckBox";
@@ -2656,13 +2658,43 @@
             WorkBufferLabel.Text = "WorkBuffer";
             WorkBufferLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(772, 811);
+            checkBox1.Margin = new Padding(3, 2, 3, 2);
+            checkBox1.MinimumSize = new Size(110, 19);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(110, 19);
+            checkBox1.TabIndex = 289;
+            checkBox1.Text = "Freeze Available";
+            checkBox1.TextAlign = ContentAlignment.MiddleCenter;
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // freezeYoshModCheckBox
+            // 
+            freezeYoshModCheckBox.AutoSize = true;
+            freezeYoshModCheckBox.BackColor = SystemColors.Control;
+            freezeYoshModCheckBox.Location = new Point(772, 462);
+            freezeYoshModCheckBox.Margin = new Padding(3, 2, 3, 2);
+            freezeYoshModCheckBox.MinimumSize = new Size(110, 36);
+            freezeYoshModCheckBox.Name = "freezeYoshModCheckBox";
+            freezeYoshModCheckBox.Size = new Size(115, 36);
+            freezeYoshModCheckBox.TabIndex = 285;
+            freezeYoshModCheckBox.Text = "Freeze Yosh Mod";
+            freezeYoshModCheckBox.TextAlign = ContentAlignment.MiddleCenter;
+            freezeYoshModCheckBox.UseVisualStyleBackColor = false;
+            freezeYoshModCheckBox.CheckedChanged += freezeYoshModCheckBox_CheckedChanged;
+            // 
             // WaccaSongBrowser
             // 
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1284, 681);
+            ClientSize = new Size(1564, 812);
             Controls.Add(panelMainContainer);
+            Controls.Add(checkBox1);
+            Controls.Add(freezeYoshModCheckBox);
             Controls.Add(WorkBufferTextBox);
             Controls.Add(WorkBufferLabel);
             Controls.Add(CopyrightMessageTextBox);
@@ -3165,5 +3197,7 @@
         private Label CopyrightMessageLabel;
         private TextBox WorkBufferTextBox;
         private Label WorkBufferLabel;
+        private CheckBox checkBox1;
+        private CheckBox freezeYoshModCheckBox;
     }
 }

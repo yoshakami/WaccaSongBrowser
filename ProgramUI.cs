@@ -1373,22 +1373,10 @@ namespace WaccaSongBrowser
             {
                 version.SelectedIndex = version.Items.Count - 1;
             }
-            if (song.TrainingLevel >= 0 && song.TrainingLevel < TrainingLevelComboBox.Items.Count)
-            {
-                TrainingLevelComboBox.SelectedIndex = song.TrainingLevel;
-            }
-            if (song.bCollaboration >= 0 && song.bCollaboration < bCollaborationComboBox.Items.Count)
-            {
-                bCollaborationComboBox.SelectedIndex = song.bCollaboration;
-            }
             if (freezeVersionCheckBox.Checked == false)
             {
                 version.SelectedIndex = (int)(song.Version - 1);
             }
-            bWaccaOriginalTextBox.Text = song.bWaccaOriginal.ToString();
-            WorkBufferTextBox.Text = song.WorkBuffer.ToString();
-            CopyrightMessageTextBox.Text = song.CopyrightMessage;
-            HashTagTextBox.Text = song.HashTag;
             diffNormalTextBox.Text = song.DifficultyNormalLv.ToString();
             diffHardTextBox.Text = song.DifficultyHardLv.ToString();
             diffExtremeTextBox.Text = song.DifficultyExpertLv.ToString();
@@ -1411,10 +1399,26 @@ namespace WaccaSongBrowser
             bingo3TextBox.Text = song.bingo3.ToString();
             bingo4TextBox.Text = song.bingo4.ToString();
             bingo5TextBox.Text = song.bingo5.ToString();
-            bingo6TextBox.Text = song.bingo6.ToString();
-            bingo7TextBox.Text = song.bingo7.ToString();
-            bingo8TextBox.Text = song.bingo8.ToString();
-            bingo9TextBox.Text = song.bingo9.ToString();
+            if (freezeYoshModCheckBox.Checked == false)
+            {
+                bingo6TextBox.Text = song.bingo6.ToString();
+                bingo7TextBox.Text = song.bingo7.ToString();
+                bingo8TextBox.Text = song.bingo8.ToString();
+                bingo9TextBox.Text = song.bingo9.ToString();
+                bWaccaOriginalTextBox.Text = song.bWaccaOriginal.ToString();
+                WorkBufferTextBox.Text = song.WorkBuffer.ToString();
+                CopyrightMessageTextBox.Text = song.CopyrightMessage;
+                HashTagTextBox.Text = song.HashTag;
+
+                if (song.TrainingLevel >= 0 && song.TrainingLevel < TrainingLevelComboBox.Items.Count)
+                {
+                    TrainingLevelComboBox.SelectedIndex = song.TrainingLevel;
+                }
+                if (song.bCollaboration >= 0 && song.bCollaboration < bCollaborationComboBox.Items.Count)
+                {
+                    bCollaborationComboBox.SelectedIndex = song.bCollaboration;
+                }
+            }
             if (freezeAvailableCheckBox.Checked == false)
             {
                 offlineCheckBox.Checked = song.ValidCulture_Offline;
@@ -1425,8 +1429,11 @@ namespace WaccaSongBrowser
                 ensgCheckBox.Checked = song.ValidCulture_en_SG;
                 kokrCheckBox.Checked = song.ValidCulture_ko_KR;
                 cnguCheckBox.Checked = song.ValidCulture_h_Hans_CN_Guest;
-                cngeCheckBox.Checked = song.ValidCulture_h_Hans_CN_GeneralMember;
-                cnvipCheckBox.Checked = song.ValidCulture_h_Hans_CN_VipMember;
+                if (freezeYoshModCheckBox.Checked == false)
+                {
+                    cngeCheckBox.Checked = song.ValidCulture_h_Hans_CN_GeneralMember;
+                    cnvipCheckBox.Checked = song.ValidCulture_h_Hans_CN_VipMember;
+                }
                 notAvailableCheckBox.Checked = song.ValidCulture_NoneActive;
             }
             if (freezeBeginnerCheckBox.Checked == false)
@@ -2735,6 +2742,42 @@ namespace WaccaSongBrowser
                 TrainingLevelComboBox.Items.Add(S12345[4]);
                 TrainingLevelComboBox.Items.Add(S12345[5]);
                 TrainingLevelComboBox.SelectedIndex = i;
+            }
+        }
+
+        private void freezeYoshModCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeYoshModCheckBox.CheckState == CheckState.Checked)
+            {
+                freezeYoshModCheckBox.BackColor = Color.LightBlue;
+                cnvipCheckBox.BackColor = Color.LightBlue;
+                cngeCheckBox.BackColor = Color.LightBlue;
+                bingo6TextBox.BackColor = Color.LightBlue;
+                bingo7TextBox.BackColor = Color.LightBlue;
+                bingo8TextBox.BackColor = Color.LightBlue;
+                bingo9TextBox.BackColor = Color.LightBlue;
+                TrainingLevelComboBox.BackColor = Color.LightBlue;
+                bCollaborationComboBox.BackColor = Color.LightBlue;
+                bWaccaOriginalTextBox.BackColor = Color.LightBlue;
+                HashTagTextBox.BackColor = Color.LightBlue;
+                CopyrightMessageTextBox.BackColor = Color.LightBlue;
+                WorkBufferTextBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                freezeYoshModCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                cnvipCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                cngeCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                bingo6TextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                bingo7TextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                bingo8TextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                bingo9TextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                TrainingLevelComboBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                bCollaborationComboBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                bWaccaOriginalTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                HashTagTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                CopyrightMessageTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                WorkBufferTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
             }
         }
     }
