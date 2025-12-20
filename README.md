@@ -14,7 +14,8 @@ also edits UnlockMusicTable and UnlockInfernoTable to set the "new" attribute an
 ## ConditionTable
 Here you can edit conditions for unlockables and also edit the unlockable ID<br>
 it edits TotalResultItemJudgementTable and shows all other loaded files for read only<br><br>
-List of conditions and their meaning:
+List of conditions and their meaning: 
+```
 ConditionTable		unless sepecified, the condition is validated if you have a higher difficulty or higher grade				
 ID	Internal Name	Value1	Value2	Value3	Value4	Value5
 -2	INVALID	unused				
@@ -84,7 +85,7 @@ ID	Internal Name	Value1	Value2	Value3	Value4	Value5
 62	LEVEL_TOTAL_1PLAY	unused				
 63	MUSIC_ID_RATE_1PLAY	MusicID	NORMAL | HARD | EXPERT | INFERNO	SSS+ | MASTER (other should work too)		
 64	MUSIC_ID_STATUS_1PLAY	unused				
-
+```
 
 <img width="1340" height="713" alt="image" src="https://github.com/user-attachments/assets/818f2454-d77d-4921-a50d-a169800ba49e" />
 
