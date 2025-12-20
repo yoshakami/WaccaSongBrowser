@@ -1,6 +1,9 @@
 # WaccaSongBrowser
 Table and Message editor. It has several menus listed below
 
+## Third-party licences
+This project uses UAssetAPI, licenced under the MIT Licence, see LICNCE-UassetAPI.txt or https://github.com/atenfyr/UAssetAPI/blob/master/LICENSE for details
+
 ## MusicParameterTable
 This is a nice tool used to search for existing songs metadata and edit them.<br>
 you can sort all categories to your liking quickly with it.<br>
