@@ -494,7 +494,7 @@ namespace WaccaSongBrowser
             IconData iconData = allIcons.FirstOrDefault(s => s.IconId == currentIconId);
             if (iconData == null)
                 return false;
-
+            bool found = false;
             // Update from UI into object
             saveIconData(iconData);
             foreach (var export in IconTable.Exports)
@@ -522,10 +522,11 @@ namespace WaccaSongBrowser
                             WaccaSongBrowser.SetFieldValue(rowStruct, "GainWaccaPoint", iconData.GainWaccaPoint);
                         }
                     }
-                    return true;
+                    found = true;
+                    break;
                 }
             }
-            //TODO: Change UI to save languages
+            // 2. Save language messages
             if (IconMessage != null)
             {
                 foreach (var export in IconMessage.Exports)
@@ -536,22 +537,42 @@ namespace WaccaSongBrowser
                         {
                             if (row is StructPropertyData rowStruct)
                             {
-                                // NameTag row
-                                if (row.Name.ToString() == iconData.NameTag)
+                                string rowName = row.Name.ToString();
+
+                                // --- MISE À JOUR DU NOM (NameTag) ---
+                                if (rowName == iconData.NameTag)
                                 {
-                                    string fieldName = GetMessageFieldName(iconNameLanguage.SelectedIndex);
+                                    string fieldName = GetMessageFieldName(oldNameIndex);
                                     if (!string.IsNullOrEmpty(fieldName))
                                     {
-                                        WaccaSongBrowser.SetFieldValue(rowStruct, fieldName, iconNameTextBox.Text.Trim());
+                                        string newNameText = iconNameTextBox.Text.Trim();
+
+                                        // 1. Sauvegarde dans l'UAsset
+                                        WaccaSongBrowser.SetFieldValue(rowStruct, fieldName, newNameText);
+
+                                        // 2. Sauvegarde dans le dictionnaire RAM
+                                        if (iconNameDict.ContainsKey(iconData.NameTag))
+                                        {
+                                            UpdateMessageDataInRam(iconNameDict[iconData.NameTag], oldNameIndex, newNameText);
+                                        }
                                     }
                                 }
-                                // ExplanationTextTag row
-                                else if (row.Name.ToString() == iconData.ExplanationTextTag)
+                                // --- MISE À JOUR DE LA DESCRIPTION (ExplanationTextTag) ---
+                                else if (rowName == iconData.ExplanationTextTag)
                                 {
-                                    string fieldName = GetMessageFieldName(iconAcquisitionWayLanguage.SelectedIndex);
+                                    string fieldName = GetMessageFieldName(oldAcqIndex);
                                     if (!string.IsNullOrEmpty(fieldName))
                                     {
-                                        WaccaSongBrowser.SetFieldValue(rowStruct, fieldName, iconAcquisitionWayTextBox.Text.Trim());
+                                        string newDescText = iconAcquisitionWayTextBox.Text.Trim();
+
+                                        // 1. Sauvegarde dans l'UAsset
+                                        WaccaSongBrowser.SetFieldValue(rowStruct, fieldName, newDescText);
+
+                                        // 2. Sauvegarde dans le dictionnaire RAM
+                                        if (iconAquisitionDict.ContainsKey(iconData.ExplanationTextTag))
+                                        {
+                                            UpdateMessageDataInRam(iconAquisitionDict[iconData.ExplanationTextTag], oldAcqIndex, newDescText);
+                                        }
                                     }
                                 }
                             }
@@ -560,7 +581,7 @@ namespace WaccaSongBrowser
                     }
                 }
             }
-            return false;
+            return found;
         }
         private string GetMessageFieldName(int langIndex)
         {
@@ -1003,12 +1024,16 @@ namespace WaccaSongBrowser
         {
             loadUI2();
         }
+        static int oldNameIndex = 0;
+        static int oldAcqIndex = 0;
         private void loadUI2()
         {
             if (allIcons.Count == 0)
                 return;
             saveLabel.Text = "";
-            saveChanges();
+            saveChanges();  // this uses the old indexes!
+            oldNameIndex = iconNameLanguage.SelectedIndex;
+            oldAcqIndex = iconAcquisitionWayLanguage.SelectedIndex;
             int.TryParse(iconIdTextBox.Text, out currentIconId);
             if (currentIconId == 0)
             {
@@ -1023,6 +1048,21 @@ namespace WaccaSongBrowser
                 return;
             }
             LoadUI(allIcons[currentIndex]);
+        }
+        private void UpdateMessageDataInRam(MessageData msgData, int langIndex, string newText)
+        {
+            if (msgData == null) return;
+
+            switch (langIndex)
+            {
+                case 0: msgData.JapaneseMessage = newText; break;
+                case 1: msgData.EnglishMessageUSA = newText; break;
+                case 2: msgData.EnglishMessageSG = newText; break;
+                case 3: msgData.TraditionalChineseMessageTW = newText; break;
+                case 4: msgData.TraditionalChineseMessageHK = newText; break;
+                case 5: msgData.SimplifiedChineseMessage = newText; break;
+                case 6: msgData.KoreanMessage = newText; break;
+            }
         }
     }
 }
