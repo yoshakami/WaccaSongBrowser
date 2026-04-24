@@ -9,7 +9,7 @@
 
         private void injectUserRate_Click(object sender, EventArgs e)
         {
-            Message.injectUserRateButton_Click(null, null);
+            //Message.injectUserRateButton_Click(null, null);
         }
     }
 }

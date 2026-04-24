@@ -33,11 +33,17 @@
             createWacca = new Button();
             injectWacca = new Button();
             injectPo = new Button();
-            label1 = new Label();
+            Title = new Label();
             injectWaccaTrophyButton = new Button();
             createWaccaTrophyButton = new Button();
             injectWaccaGradeButton = new Button();
             createWaccaGradeButton = new Button();
+            mergeENSGbutton = new Button();
+            injectUserRateButton = new Button();
+            messageFolderToMergeInTextBox = new TextBox();
+            pathToUserRateCoefficientTabletextBox = new TextBox();
+            pathToUserRateLabel = new Label();
+            destMessageFolderLabel = new Label();
             SuspendLayout();
             // 
             // outputMessage
@@ -89,14 +95,14 @@
             injectPo.UseVisualStyleBackColor = true;
             injectPo.Click += injectPo_Click;
             // 
-            // label1
+            // Title
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(633, 170);
-            label1.Name = "label1";
-            label1.Size = new Size(127, 15);
-            label1.TabIndex = 5;
-            label1.Text = "Message management";
+            Title.AutoSize = true;
+            Title.Location = new Point(636, 49);
+            Title.Name = "Title";
+            Title.Size = new Size(127, 15);
+            Title.TabIndex = 5;
+            Title.Text = "Message management";
             // 
             // injectWaccaTrophyButton
             // 
@@ -136,13 +142,69 @@
             createWaccaGradeButton.Text = "Create Titles.txt";
             createWaccaGradeButton.UseVisualStyleBackColor = true;
             // 
+            // mergeENSGbutton
+            // 
+            mergeENSGbutton.Location = new Point(421, 96);
+            mergeENSGbutton.Name = "mergeENSGbutton";
+            mergeENSGbutton.Size = new Size(227, 47);
+            mergeENSGbutton.TabIndex = 10;
+            mergeENSGbutton.Text = "Take Ja from source and Overwrite EnSG from dest folder";
+            mergeENSGbutton.UseVisualStyleBackColor = true;
+            // 
+            // injectUserRateButton
+            // 
+            injectUserRateButton.Location = new Point(752, 96);
+            injectUserRateButton.Name = "injectUserRateButton";
+            injectUserRateButton.Size = new Size(227, 47);
+            injectUserRateButton.TabIndex = 11;
+            injectUserRateButton.Text = "Inject User Rate";
+            injectUserRateButton.UseVisualStyleBackColor = true;
+            // 
+            // messageFolderToMergeInTextBox
+            // 
+            messageFolderToMergeInTextBox.Location = new Point(421, 173);
+            messageFolderToMergeInTextBox.Name = "messageFolderToMergeInTextBox";
+            messageFolderToMergeInTextBox.Size = new Size(227, 23);
+            messageFolderToMergeInTextBox.TabIndex = 12;
+            // 
+            // pathToUserRateCoefficientTabletextBox
+            // 
+            pathToUserRateCoefficientTabletextBox.Location = new Point(752, 173);
+            pathToUserRateCoefficientTabletextBox.Name = "pathToUserRateCoefficientTabletextBox";
+            pathToUserRateCoefficientTabletextBox.Size = new Size(227, 23);
+            pathToUserRateCoefficientTabletextBox.TabIndex = 13;
+            // 
+            // pathToUserRateLabel
+            // 
+            pathToUserRateLabel.AutoSize = true;
+            pathToUserRateLabel.Location = new Point(756, 152);
+            pathToUserRateLabel.Name = "pathToUserRateLabel";
+            pathToUserRateLabel.Size = new Size(216, 15);
+            pathToUserRateLabel.TabIndex = 14;
+            pathToUserRateLabel.Text = "Path To UserRateCoefficientTable.uasset";
+            // 
+            // destMessageFolderLabel
+            // 
+            destMessageFolderLabel.AutoSize = true;
+            destMessageFolderLabel.Location = new Point(366, 152);
+            destMessageFolderLabel.Name = "destMessageFolderLabel";
+            destMessageFolderLabel.Size = new Size(326, 15);
+            destMessageFolderLabel.TabIndex = 15;
+            destMessageFolderLabel.Text = "dest Message Folder (will be merged with Ja from source dir)";
+            // 
             // Message
             // 
+            Controls.Add(destMessageFolderLabel);
+            Controls.Add(pathToUserRateLabel);
+            Controls.Add(pathToUserRateCoefficientTabletextBox);
+            Controls.Add(messageFolderToMergeInTextBox);
+            Controls.Add(injectUserRateButton);
+            Controls.Add(mergeENSGbutton);
             Controls.Add(injectWaccaGradeButton);
             Controls.Add(createWaccaGradeButton);
             Controls.Add(injectWaccaTrophyButton);
             Controls.Add(createWaccaTrophyButton);
-            Controls.Add(label1);
+            Controls.Add(Title);
             Controls.Add(injectPo);
             Controls.Add(injectWacca);
             Controls.Add(createWacca);
@@ -161,10 +223,16 @@
         private Button createWacca;
         private Button injectWacca;
         private Button injectPo;
-        private Label label1;
+        private Label Title;
         private Button injectWaccaTrophyButton;
         private Button createWaccaTrophyButton;
         private Button injectWaccaGradeButton;
         private Button createWaccaGradeButton;
+        private Button mergeENSGbutton;
+        private Button injectUserRateButton;
+        private TextBox messageFolderToMergeInTextBox;
+        private TextBox pathToUserRateCoefficientTabletextBox;
+        private Label pathToUserRateLabel;
+        private Label destMessageFolderLabel;
     }
 }

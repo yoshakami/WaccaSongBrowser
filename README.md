@@ -7,6 +7,7 @@ This project uses UAssetAPI, licenced under the MIT Licence, see LICNCE-UassetAP
 ## MusicParameterTable
 This is a nice tool used to search for existing songs metadata and edit them.<br>
 you can sort all categories to your liking quickly with it.<br>
+Very useful addon: you can trigger Yosh mod ON or OFF, which means this tool can work on vanilla and custom builds<br>
 also edits UnlockMusicTable and UnlockInfernoTable to set the "new" attribute and inject new id<br><br>
 <img width="1340" height="713" alt="image" src="https://github.com/user-attachments/assets/656d6a69-a878-4ca6-8c0d-4cd467878e54" />
 
@@ -95,13 +96,14 @@ if you want to add, or change an existing picture, use another tool (will add th
 
 ## Message
 You can convert all japanese strings of the game to Wacca.txt (or .po) and back from the txt to a new folder with all the corresponding uassets.
+You can also merge languages from other uassets, now that a mod exists to have languages locally
 
 ## TrophyTable
 You can onvert all japanese strings of the trophy names to Trophy.txt, and back from the txt to a new uasset
 
 ## GradeTable (WIP)
 You can convert all japanese strings of the title names to Titles.txt, and back from the txt to a new uasset (these two buttons use GradePartsTable) <br>
-using other save buttons is useless as of now I'm not using GradePartsTable
+using other save buttons is useless as of now the tool is not currently reading GradePartsTable
 
 ## UserPlateBackgroundTable
 Not implemented yet

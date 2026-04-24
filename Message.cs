@@ -29,6 +29,12 @@ namespace WaccaSongBrowser
             createPo.Visible = false;
             injectPo.Visible = false;
             injectWacca.Visible = false;
+            messageFolderToMergeInTextBox.Visible = false;
+            pathToUserRateCoefficientTabletextBox.Visible = false;
+            injectUserRateButton.Visible = false;
+            mergeENSGbutton.Visible = false;
+            pathToUserRateLabel.Visible = false;
+            destMessageFolderLabel.Visible = false;
             if (type == "trophy")
             {
                 injectWaccaGradeButton.Visible = false;
@@ -56,6 +62,12 @@ namespace WaccaSongBrowser
             createWaccaGradeButton.Visible = false;
             injectWaccaTrophyButton.Visible = false;
             createWaccaTrophyButton.Visible = false;
+            pathToUserRateLabel.Visible = true;
+            destMessageFolderLabel.Visible = true;
+            messageFolderToMergeInTextBox.Visible = true;
+            pathToUserRateCoefficientTabletextBox.Visible = true;
+            injectUserRateButton.Visible = true;
+            mergeENSGbutton.Visible = true;
         }
         static List<string> text = new List<string>();
         static List<string> textVanilla = new List<string>();
@@ -422,9 +434,124 @@ namespace WaccaSongBrowser
                 outputMessage.Text = "Missing Trophy.txt or TrophyVanilla.txt. Please click the create button first.";
             }
         }
-        static public void injectUserRateButton_Click(object sender, EventArgs e)
+        public void MergeJapaneseToEnglishSG(string dir1, string dir2)
         {
-            string filePath = "C:\\Wacca\\Menu\\Nana+\\WindowsNoEditor\\Mercury\\Content\\Table\\UserRateCoefficientTable.uasset";
+            // Ensure both directories exist
+            if (!Directory.Exists(dir1) || !Directory.Exists(dir2))
+            {
+                outputMessage.Text = "Error: One or both directories do not exist.";
+                return;
+            }
+
+            // Get all uasset files in dir1
+            string[] sourceFiles = Directory.GetFiles(dir1, "*.uasset");
+
+            // Create a subfolder in dir2 to output the modified files safely
+            string outputDir = Path.Combine(dir2, "Merged");
+            Directory.CreateDirectory(outputDir);
+
+            int processedCount = 0;
+
+            foreach (string sourceFile in sourceFiles)
+            {
+                string fileName = Path.GetFileName(sourceFile);
+                string targetFile = Path.Combine(dir2, fileName);
+
+                // Check if the matching file exists in dir2
+                if (File.Exists(targetFile))
+                {
+                    // Load both assets
+                    UAsset sourceAsset = new UAsset(sourceFile, EngineVersion.VER_UE4_19);
+                    UAsset targetAsset = new UAsset(targetFile, EngineVersion.VER_UE4_19);
+
+                    // Dictionary to hold: Row Name -> JapaneseMessage Text
+                    Dictionary<string, string> extractedMessages = new Dictionary<string, string>();
+
+                    // 1. EXTRACT from dir1 file
+                    foreach (var export in sourceAsset.Exports)
+                    {
+                        if (export is DataTableExport dataTableExport)
+                        {
+                            foreach (var row in dataTableExport.Table.Data)
+                            {
+                                string rowName = row.Name.ToString();
+                                foreach (var property in row.Value)
+                                {
+                                    if (property is StrPropertyData strProp &&
+                                        strProp.Name != null &&
+                                        strProp.Name.Value != null &&
+                                        strProp.Name.Value.ToString() == "JapaneseMessage")
+                                    {
+                                        string originalValue = strProp.Value?.ToString();
+                                        if (!string.IsNullOrEmpty(originalValue))
+                                        {
+                                            extractedMessages[rowName] = originalValue;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 2. INJECT into dir2 file
+                    bool fileModified = false;
+                    foreach (var export in targetAsset.Exports)
+                    {
+                        if (export is DataTableExport dataTableExport)
+                        {
+                            foreach (var row in dataTableExport.Table.Data)
+                            {
+                                string rowName = row.Name.ToString();
+
+                                // Check if we extracted a JapaneseMessage for this specific row
+                                if (extractedMessages.TryGetValue(rowName, out string japaneseText))
+                                {
+                                    foreach (var property in row.Value)
+                                    {
+                                        if (property is StrPropertyData strProp &&
+                                            strProp.Name != null &&
+                                            strProp.Name.Value != null &&
+                                            strProp.Name.Value.ToString() == "EnglishMessageSG")
+                                        {
+                                            // Overwrite EnglishMessageSG with the Japanese text
+                                            strProp.Value = (FString)japaneseText;
+                                            fileModified = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 3. SAVE if modifications were made
+                    if (fileModified)
+                    {
+                        string outputPath = Path.Combine(outputDir, fileName);
+                        targetAsset.Write(outputPath);
+                        Console.WriteLine($"Merged asset saved to: {outputPath}");
+                        processedCount++;
+                    }
+                }
+            }
+
+            outputMessage.Text = $"Merge complete! {processedCount} files merged. Check the 'Merged' folder.";
+        }
+        private void mergeButton_Click(object sender, EventArgs e)
+        {
+            outputMessage.Text = "Merging files...";
+
+            // dir1 is the static messageFolder already defined in your class
+            string sourceDirectory = messageFolder;
+
+            // dir2 is taken from your textbox
+            string targetDirectory = messageFolderToMergeInTextBox.Text;
+
+            // Run the merge
+            MergeJapaneseToEnglishSG(sourceDirectory, targetDirectory);
+        }
+        public void injectUserRateButton_Click(object sender, EventArgs e)
+        {
+            string filePath = pathToUserRateCoefficientTabletextBox.Text;
             //outputMessage.Text = "Processing UserRateCoefficientTable...";
 
             string folder = Path.GetDirectoryName(filePath);
