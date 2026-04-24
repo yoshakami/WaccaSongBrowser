@@ -10,11 +10,11 @@ namespace WaccaSongBrowser
 {
     public partial class WaccaSongBrowser : Form
     {
-        //string[] WaccaVersions = { "1: Wacca", "2: Wacca S", "3: Wacca Lily", "4: Wacca Lily R", "5: Wacca Reverse", "6: Hidden" };
-        string[] WaccaVersions = { "Luxance", "Takahashi", "Tiger", "Snowball", "Twis", "6: Hidden" };
+        string[] WaccaVersions = { "1: Wacca", "2: Wacca S", "3: Wacca Lily", "4: Wacca Lily R", "5: Wacca Reverse", "6: Hidden" };
+        string[] WaccaVersionsYosh = { "Luxance", "Takahashi", "Tiger", "Snowball", "Twis", "6: Hidden" };
 
-        // string[] ScoreGenre = { "0: Anime/Pop", "1: Vocaloid", "2: Touhou", "3: 2.5D", "4: Variety", "5: Original", "6: Tano*C" };
-        string[] ScoreGenre = { "0: Anime/Pop", "1: Vocaloid", "2: Touhou", "3: Hot Picks", "4: Variety", "5: Nanahira", "6: Tano*C", "7: Hidden" };
+        string[] ScoreGenre = { "0: Anime/Pop", "1: Vocaloid", "2: Touhou", "3: 2.5D", "4: Variety", "5: Original", "6: Tano*C", "7: Hidden" };
+        string[] ScoreGenreYosh = { "0: Anime/Pop", "1: Vocaloid", "2: Touhou", "3: Hot Picks", "4: Variety", "5: Nanahira", "6: Tano*C", "7: Hidden" };
         string[] SugorokuCollaboration = { "0: none", "1: blue", "2: yellow", "3: red", "4: max" };
         string[] MissionTrainingLevel = { "0: Nor & above", "1: Har & above", "2: Exp & above", "3: Inf only", "4: disabled", "5: MAX" };
 
@@ -2679,10 +2679,14 @@ namespace WaccaSongBrowser
 
         private void yoshModCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            label2.Visible = yoshModCheckBox.Checked;
+            seeCatStructLabel.Visible = yoshModCheckBox.Checked;
             categoryComboBox.Visible = yoshModCheckBox.Checked;
             int i = TrainingLevelComboBox.SelectedIndex;
             int j = bCollaborationComboBox.SelectedIndex;
+            int k = version.SelectedIndex;
+            int a = filterVersion.SelectedIndex;
+            int b = genre.SelectedIndex;
+            int c = filterGenre.SelectedIndex;
             if (yoshModCheckBox.Checked)
             {
                 bCollaborationComboBox.Items.Clear();
@@ -2700,6 +2704,42 @@ namespace WaccaSongBrowser
                 TrainingLevelComboBox.Items.Add(MissionTrainingLevel[4]);
                 TrainingLevelComboBox.Items.Add(MissionTrainingLevel[5]);
                 TrainingLevelComboBox.SelectedIndex = i;
+                version.Items.Clear();
+                version.Items.Add(WaccaVersionsYosh[0]);
+                version.Items.Add(WaccaVersionsYosh[1]);
+                version.Items.Add(WaccaVersionsYosh[2]);
+                version.Items.Add(WaccaVersionsYosh[3]);
+                version.Items.Add(WaccaVersionsYosh[4]);
+                version.Items.Add(WaccaVersionsYosh[5]);
+                version.SelectedIndex = k;
+                filterVersion.Items.Clear();
+                filterVersion.Items.Add(WaccaVersionsYosh[0]);
+                filterVersion.Items.Add(WaccaVersionsYosh[1]);
+                filterVersion.Items.Add(WaccaVersionsYosh[2]);
+                filterVersion.Items.Add(WaccaVersionsYosh[3]);
+                filterVersion.Items.Add(WaccaVersionsYosh[4]);
+                filterVersion.Items.Add(WaccaVersionsYosh[5]);
+                filterVersion.SelectedIndex = a;
+                genre.Items.Clear();
+                genre.Items.Add(ScoreGenreYosh[0]);
+                genre.Items.Add(ScoreGenreYosh[1]);
+                genre.Items.Add(ScoreGenreYosh[2]);
+                genre.Items.Add(ScoreGenreYosh[3]);
+                genre.Items.Add(ScoreGenreYosh[4]);
+                genre.Items.Add(ScoreGenreYosh[5]);
+                genre.Items.Add(ScoreGenreYosh[6]);
+                genre.Items.Add(ScoreGenreYosh[7]);
+                genre.SelectedIndex = b;
+                filterGenre.Items.Clear();
+                filterGenre.Items.Add(ScoreGenreYosh[0]);
+                filterGenre.Items.Add(ScoreGenreYosh[1]);
+                filterGenre.Items.Add(ScoreGenreYosh[2]);
+                filterGenre.Items.Add(ScoreGenreYosh[3]);
+                filterGenre.Items.Add(ScoreGenreYosh[4]);
+                filterGenre.Items.Add(ScoreGenreYosh[5]);
+                filterGenre.Items.Add(ScoreGenreYosh[6]);
+                filterGenre.Items.Add(ScoreGenreYosh[7]);
+                filterGenre.SelectedIndex = c;
                 bingo6Label.Text = "Cat. Nor";
                 bingo7Label.Text = "Cat. Har";
                 bingo8Label.Text = "Cat. Exp";
@@ -2742,6 +2782,42 @@ namespace WaccaSongBrowser
                 TrainingLevelComboBox.Items.Add(S12345[4]);
                 TrainingLevelComboBox.Items.Add(S12345[5]);
                 TrainingLevelComboBox.SelectedIndex = i;
+                version.Items.Clear();
+                version.Items.Add(WaccaVersions[0]);
+                version.Items.Add(WaccaVersions[1]);
+                version.Items.Add(WaccaVersions[2]);
+                version.Items.Add(WaccaVersions[3]);
+                version.Items.Add(WaccaVersions[4]);
+                version.Items.Add(WaccaVersions[5]);
+                version.SelectedIndex = k;
+                filterVersion.Items.Clear();
+                filterVersion.Items.Add(WaccaVersions[0]);
+                filterVersion.Items.Add(WaccaVersions[1]);
+                filterVersion.Items.Add(WaccaVersions[2]);
+                filterVersion.Items.Add(WaccaVersions[3]);
+                filterVersion.Items.Add(WaccaVersions[4]);
+                filterVersion.Items.Add(WaccaVersions[5]);
+                filterVersion.SelectedIndex = a;
+                genre.Items.Clear();
+                genre.Items.Add(ScoreGenre[0]);
+                genre.Items.Add(ScoreGenre[1]);
+                genre.Items.Add(ScoreGenre[2]);
+                genre.Items.Add(ScoreGenre[3]);
+                genre.Items.Add(ScoreGenre[4]);
+                genre.Items.Add(ScoreGenre[5]);
+                genre.Items.Add(ScoreGenre[6]);
+                genre.Items.Add(ScoreGenre[7]);
+                genre.SelectedIndex = b;
+                filterGenre.Items.Clear();
+                filterGenre.Items.Add(ScoreGenre[0]);
+                filterGenre.Items.Add(ScoreGenre[1]);
+                filterGenre.Items.Add(ScoreGenre[2]);
+                filterGenre.Items.Add(ScoreGenre[3]);
+                filterGenre.Items.Add(ScoreGenre[4]);
+                filterGenre.Items.Add(ScoreGenre[5]);
+                filterGenre.Items.Add(ScoreGenre[6]);
+                filterGenre.Items.Add(ScoreGenre[7]);
+                filterGenre.SelectedIndex = c;
             }
         }
 

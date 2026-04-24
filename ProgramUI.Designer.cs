@@ -257,11 +257,11 @@
             musicDataPathLabel = new Label();
             musicDataPathTextBox = new RichTextBox();
             problemRichTextBox = new RichTextBox();
-            label1 = new Label();
+            problemsLabel = new Label();
             findProblemsButton = new Button();
             yoshModCheckBox = new CheckBox();
             categoryComboBox = new ComboBox();
-            label2 = new Label();
+            seeCatStructLabel = new Label();
             bWaccaOriginalLabel = new Label();
             bWaccaOriginalTextBox = new TextBox();
             bCollaborationLabel = new Label();
@@ -2493,14 +2493,14 @@
             problemRichTextBox.TabIndex = 265;
             problemRichTextBox.Text = "";
             // 
-            // label1
+            // problemsLabel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(1317, 142);
-            label1.Name = "label1";
-            label1.Size = new Size(57, 15);
-            label1.TabIndex = 264;
-            label1.Text = "Problems";
+            problemsLabel.AutoSize = true;
+            problemsLabel.Location = new Point(1317, 142);
+            problemsLabel.Name = "problemsLabel";
+            problemsLabel.Size = new Size(57, 15);
+            problemsLabel.TabIndex = 264;
+            problemsLabel.Text = "Problems";
             // 
             // findProblemsButton
             // 
@@ -2533,14 +2533,14 @@
             categoryComboBox.Size = new Size(187, 23);
             categoryComboBox.TabIndex = 268;
             // 
-            // label2
+            // seeCatStructLabel
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(979, 11);
-            label2.Name = "label2";
-            label2.Size = new Size(99, 15);
-            label2.TabIndex = 269;
-            label2.Text = "See Cat Struct =>";
+            seeCatStructLabel.AutoSize = true;
+            seeCatStructLabel.Location = new Point(979, 11);
+            seeCatStructLabel.Name = "seeCatStructLabel";
+            seeCatStructLabel.Size = new Size(99, 15);
+            seeCatStructLabel.TabIndex = 269;
+            seeCatStructLabel.Text = "See Cat Struct =>";
             // 
             // bWaccaOriginalLabel
             // 
@@ -2691,7 +2691,7 @@
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1564, 812);
+            ClientSize = new Size(1284, 701);
             Controls.Add(panelMainContainer);
             Controls.Add(checkBox1);
             Controls.Add(freezeYoshModCheckBox);
@@ -2707,12 +2707,12 @@
             Controls.Add(bCollaborationLabel);
             Controls.Add(bWaccaOriginalTextBox);
             Controls.Add(bWaccaOriginalLabel);
-            Controls.Add(label2);
+            Controls.Add(seeCatStructLabel);
             Controls.Add(categoryComboBox);
             Controls.Add(yoshModCheckBox);
             Controls.Add(findProblemsButton);
             Controls.Add(problemRichTextBox);
-            Controls.Add(label1);
+            Controls.Add(problemsLabel);
             Controls.Add(musicDataPathTextBox);
             Controls.Add(musicDataPathLabel);
             Controls.Add(rubiAutoFixCheckBox);
@@ -3180,11 +3180,11 @@
         private Label musicDataPathLabel;
         private RichTextBox musicDataPathTextBox;
         private RichTextBox problemRichTextBox;
-        private Label label1;
+        private Label problemsLabel;
         private Button findProblemsButton;
         private CheckBox yoshModCheckBox;
         private ComboBox categoryComboBox;
-        private Label label2;
+        private Label seeCatStructLabel;
         private Label bWaccaOriginalLabel;
         private TextBox bWaccaOriginalTextBox;
         private Label bCollaborationLabel;

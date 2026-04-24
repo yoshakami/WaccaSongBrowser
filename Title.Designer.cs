@@ -114,48 +114,48 @@
             itemActivateStartTimeLabel = new Label();
             injectWaccaGradeButton = new Button();
             createWaccaGradeButton = new Button();
-            checkBox1 = new CheckBox();
-            textBox1 = new TextBox();
-            label1 = new Label();
-            checkBox2 = new CheckBox();
-            textBox2 = new TextBox();
-            label2 = new Label();
-            checkBox3 = new CheckBox();
-            textBox3 = new TextBox();
-            label3 = new Label();
-            checkBox4 = new CheckBox();
-            textBox4 = new TextBox();
-            label4 = new Label();
-            checkBox5 = new CheckBox();
-            textBox5 = new TextBox();
-            label5 = new Label();
-            checkBox6 = new CheckBox();
-            textBox6 = new TextBox();
-            label6 = new Label();
-            checkBox7 = new CheckBox();
-            textBox7 = new TextBox();
-            label7 = new Label();
-            checkBox8 = new CheckBox();
-            textBox8 = new TextBox();
-            label8 = new Label();
-            checkBox9 = new CheckBox();
-            textBox9 = new TextBox();
-            label9 = new Label();
-            checkBox10 = new CheckBox();
-            textBox10 = new TextBox();
-            label10 = new Label();
-            checkBox11 = new CheckBox();
-            textBox11 = new TextBox();
-            label11 = new Label();
-            checkBox12 = new CheckBox();
-            textBox12 = new TextBox();
-            label12 = new Label();
-            checkBox13 = new CheckBox();
-            textBox13 = new TextBox();
-            label13 = new Label();
-            checkBox14 = new CheckBox();
-            textBox14 = new TextBox();
-            label14 = new Label();
+            JapaneseMessageCheckBox = new CheckBox();
+            JapaneseMessageTextBox = new TextBox();
+            JapaneseMessageLabel = new Label();
+            EnglishMessageUSAFreezeCheckBox = new CheckBox();
+            EnglishMessageUSATextBox = new TextBox();
+            EnglishMessageUSALabel = new Label();
+            KoreanMessageFreezeCheckBox = new CheckBox();
+            KoreanMessageTextBox = new TextBox();
+            KoreanMessageLabel = new Label();
+            EnglishMessageSGFreeeCheckBox = new CheckBox();
+            EnglishMessageSGTextBox = new TextBox();
+            EnglishMessageSGLabel = new Label();
+            SimplifiedChineseMessageFreezeCheckBox = new CheckBox();
+            SimplifiedChineseMessageTextBox = new TextBox();
+            SimplifiedChineseMessageLabel = new Label();
+            TraditionalChineseMessageHKFrezeCheckBox = new CheckBox();
+            TraditionalChineseMessageHKTextBox = new TextBox();
+            TraditionalChineseMessageHKLabel = new Label();
+            TraditionalChineseMessageTWFreeeCheckBox = new CheckBox();
+            TraditionalChineseMessageTWTextBox = new TextBox();
+            TraditionalChineseMessageTWLabel = new Label();
+            filterKoreanMessageCheckBox = new CheckBox();
+            filterSimplifiedChineseMessageTextBox = new TextBox();
+            filterSimplifiedChineseMessageLabel = new Label();
+            filterEnglishMessageSGCheckBox = new CheckBox();
+            filterTraditionalChineseMessageHKTextBox = new TextBox();
+            filterTraditionalChineseMessageHKLabel = new Label();
+            filterEnglishMessageUSACheckBox = new CheckBox();
+            filterTraditionalChineseMessageTWTextBox = new TextBox();
+            filterTraditionalChineseMessageTWLabel = new Label();
+            filterSimplifiedChineseMessageCheckBox = new CheckBox();
+            filterKoreanMessageTextBox = new TextBox();
+            filterKoreanMessageLabel = new Label();
+            filterTraditionalChineseMessageHKCheckBox = new CheckBox();
+            filterEnglishMessageSGTextBox = new TextBox();
+            filterEnglishMessageSGLabel = new Label();
+            filterTraditionalChineseMessageTWCheckBox = new CheckBox();
+            filterEnglishMessageUSATextBox = new TextBox();
+            filterEnglishMessageUSALabel = new Label();
+            filterJapaneseMessageCheckBox = new CheckBox();
+            filterJapaneseMessageTextBox = new TextBox();
+            filterJapaneseMessageLabel = new Label();
             SuspendLayout();
             // 
             // filtergradePartsId01CheckBox
@@ -975,423 +975,423 @@
             createWaccaGradeButton.UseVisualStyleBackColor = true;
             createWaccaGradeButton.Click += createWaccaGradeButton_Click;
             // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(623, 384);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(59, 19);
-            checkBox1.TabIndex = 330;
-            checkBox1.Text = "Freeze";
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(50, 379);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(558, 23);
-            textBox1.TabIndex = 328;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(50, 362);
-            label1.Name = "label1";
-            label1.Size = new Size(100, 15);
-            label1.TabIndex = 329;
-            label1.Text = "JapaneseMessage";
-            // 
-            // checkBox2
-            // 
-            checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(293, 429);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(59, 19);
-            checkBox2.TabIndex = 333;
-            checkBox2.Text = "Freeze";
-            checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(52, 426);
-            textBox2.Margin = new Padding(3, 2, 3, 2);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(234, 23);
-            textBox2.TabIndex = 331;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(52, 409);
-            label2.Name = "label2";
-            label2.Size = new Size(113, 15);
-            label2.TabIndex = 332;
-            label2.Text = "EnglishMessageUSA";
-            // 
-            // checkBox3
-            // 
-            checkBox3.AutoSize = true;
-            checkBox3.Location = new Point(295, 529);
-            checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(59, 19);
-            checkBox3.TabIndex = 339;
-            checkBox3.Text = "Freeze";
-            checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(54, 526);
-            textBox3.Margin = new Padding(3, 2, 3, 2);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(234, 23);
-            textBox3.TabIndex = 337;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(54, 509);
-            label3.Name = "label3";
-            label3.Size = new Size(90, 15);
-            label3.TabIndex = 338;
-            label3.Text = "KoreanMessage";
-            // 
-            // checkBox4
-            // 
-            checkBox4.AutoSize = true;
-            checkBox4.Location = new Point(293, 482);
-            checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(59, 19);
-            checkBox4.TabIndex = 336;
-            checkBox4.Text = "Freeze";
-            checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(52, 479);
-            textBox4.Margin = new Padding(3, 2, 3, 2);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(234, 23);
-            textBox4.TabIndex = 334;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(52, 462);
-            label4.Name = "label4";
-            label4.Size = new Size(105, 15);
-            label4.TabIndex = 335;
-            label4.Text = "EnglishMessageSG";
-            // 
-            // checkBox5
-            // 
-            checkBox5.AutoSize = true;
-            checkBox5.Location = new Point(625, 529);
-            checkBox5.Name = "checkBox5";
-            checkBox5.Size = new Size(59, 19);
-            checkBox5.TabIndex = 348;
-            checkBox5.Text = "Freeze";
-            checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(384, 526);
-            textBox5.Margin = new Padding(3, 2, 3, 2);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(234, 23);
-            textBox5.TabIndex = 346;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(384, 509);
-            label5.Name = "label5";
-            label5.Size = new Size(148, 15);
-            label5.TabIndex = 347;
-            label5.Text = "SimplifiedChineseMessage";
-            // 
-            // checkBox6
-            // 
-            checkBox6.AutoSize = true;
-            checkBox6.Location = new Point(623, 482);
-            checkBox6.Name = "checkBox6";
-            checkBox6.Size = new Size(59, 19);
-            checkBox6.TabIndex = 345;
-            checkBox6.Text = "Freeze";
-            checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(382, 479);
-            textBox6.Margin = new Padding(3, 2, 3, 2);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(234, 23);
-            textBox6.TabIndex = 343;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(382, 462);
-            label6.Name = "label6";
-            label6.Size = new Size(166, 15);
-            label6.TabIndex = 344;
-            label6.Text = "TraditionalChineseMessageHK";
-            // 
-            // checkBox7
-            // 
-            checkBox7.AutoSize = true;
-            checkBox7.Location = new Point(623, 429);
-            checkBox7.Name = "checkBox7";
-            checkBox7.Size = new Size(59, 19);
-            checkBox7.TabIndex = 342;
-            checkBox7.Text = "Freeze";
-            checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // textBox7
-            // 
-            textBox7.Location = new Point(382, 426);
-            textBox7.Margin = new Padding(3, 2, 3, 2);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(234, 23);
-            textBox7.TabIndex = 340;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(382, 409);
-            label7.Name = "label7";
-            label7.Size = new Size(167, 15);
-            label7.TabIndex = 341;
-            label7.Text = "TraditionalChineseMessageTW";
-            // 
-            // checkBox8
-            // 
-            checkBox8.AutoSize = true;
-            checkBox8.Location = new Point(729, 529);
-            checkBox8.Name = "checkBox8";
-            checkBox8.Size = new Size(15, 14);
-            checkBox8.TabIndex = 369;
-            checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // textBox8
-            // 
-            textBox8.Location = new Point(1071, 526);
-            textBox8.Margin = new Padding(3, 2, 3, 2);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(244, 23);
-            textBox8.TabIndex = 367;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(1071, 509);
-            label8.Name = "label8";
-            label8.Size = new Size(148, 15);
-            label8.TabIndex = 368;
-            label8.Text = "SimplifiedChineseMessage";
-            // 
-            // checkBox9
-            // 
-            checkBox9.AutoSize = true;
-            checkBox9.Location = new Point(727, 482);
-            checkBox9.Name = "checkBox9";
-            checkBox9.Size = new Size(15, 14);
-            checkBox9.TabIndex = 366;
-            checkBox9.UseVisualStyleBackColor = true;
-            // 
-            // textBox9
-            // 
-            textBox9.Location = new Point(1069, 479);
-            textBox9.Margin = new Padding(3, 2, 3, 2);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(244, 23);
-            textBox9.TabIndex = 364;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(1069, 462);
-            label9.Name = "label9";
-            label9.Size = new Size(166, 15);
-            label9.TabIndex = 365;
-            label9.Text = "TraditionalChineseMessageHK";
-            // 
-            // checkBox10
-            // 
-            checkBox10.AutoSize = true;
-            checkBox10.Location = new Point(727, 429);
-            checkBox10.Name = "checkBox10";
-            checkBox10.Size = new Size(15, 14);
-            checkBox10.TabIndex = 363;
-            checkBox10.UseVisualStyleBackColor = true;
-            // 
-            // textBox10
-            // 
-            textBox10.Location = new Point(1069, 426);
-            textBox10.Margin = new Padding(3, 2, 3, 2);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(244, 23);
-            textBox10.TabIndex = 361;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(1069, 409);
-            label10.Name = "label10";
-            label10.Size = new Size(167, 15);
-            label10.TabIndex = 362;
-            label10.Text = "TraditionalChineseMessageTW";
-            // 
-            // checkBox11
-            // 
-            checkBox11.AutoSize = true;
-            checkBox11.Location = new Point(1050, 529);
-            checkBox11.Name = "checkBox11";
-            checkBox11.Size = new Size(15, 14);
-            checkBox11.TabIndex = 360;
-            checkBox11.UseVisualStyleBackColor = true;
-            // 
-            // textBox11
-            // 
-            textBox11.Location = new Point(754, 526);
-            textBox11.Margin = new Padding(3, 2, 3, 2);
-            textBox11.Name = "textBox11";
-            textBox11.Size = new Size(247, 23);
-            textBox11.TabIndex = 358;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(754, 509);
-            label11.Name = "label11";
-            label11.Size = new Size(90, 15);
-            label11.TabIndex = 359;
-            label11.Text = "KoreanMessage";
-            // 
-            // checkBox12
-            // 
-            checkBox12.AutoSize = true;
-            checkBox12.Location = new Point(1048, 482);
-            checkBox12.Name = "checkBox12";
-            checkBox12.Size = new Size(15, 14);
-            checkBox12.TabIndex = 357;
-            checkBox12.UseVisualStyleBackColor = true;
-            // 
-            // textBox12
-            // 
-            textBox12.Location = new Point(752, 479);
-            textBox12.Margin = new Padding(3, 2, 3, 2);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(247, 23);
-            textBox12.TabIndex = 355;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(752, 462);
-            label12.Name = "label12";
-            label12.Size = new Size(105, 15);
-            label12.TabIndex = 356;
-            label12.Text = "EnglishMessageSG";
-            // 
-            // checkBox13
-            // 
-            checkBox13.AutoSize = true;
-            checkBox13.Location = new Point(1048, 429);
-            checkBox13.Name = "checkBox13";
-            checkBox13.Size = new Size(15, 14);
-            checkBox13.TabIndex = 354;
-            checkBox13.UseVisualStyleBackColor = true;
-            // 
-            // textBox13
-            // 
-            textBox13.Location = new Point(752, 426);
-            textBox13.Margin = new Padding(3, 2, 3, 2);
-            textBox13.Name = "textBox13";
-            textBox13.Size = new Size(247, 23);
-            textBox13.TabIndex = 352;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(752, 409);
-            label13.Name = "label13";
-            label13.Size = new Size(113, 15);
-            label13.TabIndex = 353;
-            label13.Text = "EnglishMessageUSA";
-            // 
-            // checkBox14
-            // 
-            checkBox14.AutoSize = true;
-            checkBox14.Location = new Point(727, 384);
-            checkBox14.Name = "checkBox14";
-            checkBox14.Size = new Size(15, 14);
-            checkBox14.TabIndex = 351;
-            checkBox14.UseVisualStyleBackColor = true;
-            // 
-            // textBox14
-            // 
-            textBox14.Location = new Point(750, 379);
-            textBox14.Margin = new Padding(3, 2, 3, 2);
-            textBox14.Name = "textBox14";
-            textBox14.Size = new Size(563, 23);
-            textBox14.TabIndex = 349;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Location = new Point(750, 362);
-            label14.Name = "label14";
-            label14.Size = new Size(100, 15);
-            label14.TabIndex = 350;
-            label14.Text = "JapaneseMessage";
+            // JapaneseMessageCheckBox
+            // 
+            JapaneseMessageCheckBox.AutoSize = true;
+            JapaneseMessageCheckBox.Location = new Point(623, 384);
+            JapaneseMessageCheckBox.Name = "JapaneseMessageCheckBox";
+            JapaneseMessageCheckBox.Size = new Size(59, 19);
+            JapaneseMessageCheckBox.TabIndex = 330;
+            JapaneseMessageCheckBox.Text = "Freeze";
+            JapaneseMessageCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // JapaneseMessageTextBox
+            // 
+            JapaneseMessageTextBox.Location = new Point(50, 379);
+            JapaneseMessageTextBox.Margin = new Padding(3, 2, 3, 2);
+            JapaneseMessageTextBox.Name = "JapaneseMessageTextBox";
+            JapaneseMessageTextBox.Size = new Size(558, 23);
+            JapaneseMessageTextBox.TabIndex = 328;
+            // 
+            // JapaneseMessageLabel
+            // 
+            JapaneseMessageLabel.AutoSize = true;
+            JapaneseMessageLabel.Location = new Point(50, 362);
+            JapaneseMessageLabel.Name = "JapaneseMessageLabel";
+            JapaneseMessageLabel.Size = new Size(100, 15);
+            JapaneseMessageLabel.TabIndex = 329;
+            JapaneseMessageLabel.Text = "JapaneseMessage";
+            // 
+            // EnglishMessageUSAFreezeCheckBox
+            // 
+            EnglishMessageUSAFreezeCheckBox.AutoSize = true;
+            EnglishMessageUSAFreezeCheckBox.Location = new Point(293, 429);
+            EnglishMessageUSAFreezeCheckBox.Name = "EnglishMessageUSAFreezeCheckBox";
+            EnglishMessageUSAFreezeCheckBox.Size = new Size(59, 19);
+            EnglishMessageUSAFreezeCheckBox.TabIndex = 333;
+            EnglishMessageUSAFreezeCheckBox.Text = "Freeze";
+            EnglishMessageUSAFreezeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // EnglishMessageUSATextBox
+            // 
+            EnglishMessageUSATextBox.Location = new Point(52, 426);
+            EnglishMessageUSATextBox.Margin = new Padding(3, 2, 3, 2);
+            EnglishMessageUSATextBox.Name = "EnglishMessageUSATextBox";
+            EnglishMessageUSATextBox.Size = new Size(234, 23);
+            EnglishMessageUSATextBox.TabIndex = 331;
+            // 
+            // EnglishMessageUSALabel
+            // 
+            EnglishMessageUSALabel.AutoSize = true;
+            EnglishMessageUSALabel.Location = new Point(52, 409);
+            EnglishMessageUSALabel.Name = "EnglishMessageUSALabel";
+            EnglishMessageUSALabel.Size = new Size(113, 15);
+            EnglishMessageUSALabel.TabIndex = 332;
+            EnglishMessageUSALabel.Text = "EnglishMessageUSA";
+            // 
+            // KoreanMessageFreezeCheckBox
+            // 
+            KoreanMessageFreezeCheckBox.AutoSize = true;
+            KoreanMessageFreezeCheckBox.Location = new Point(295, 529);
+            KoreanMessageFreezeCheckBox.Name = "KoreanMessageFreezeCheckBox";
+            KoreanMessageFreezeCheckBox.Size = new Size(59, 19);
+            KoreanMessageFreezeCheckBox.TabIndex = 339;
+            KoreanMessageFreezeCheckBox.Text = "Freeze";
+            KoreanMessageFreezeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // KoreanMessageTextBox
+            // 
+            KoreanMessageTextBox.Location = new Point(54, 526);
+            KoreanMessageTextBox.Margin = new Padding(3, 2, 3, 2);
+            KoreanMessageTextBox.Name = "KoreanMessageTextBox";
+            KoreanMessageTextBox.Size = new Size(234, 23);
+            KoreanMessageTextBox.TabIndex = 337;
+            // 
+            // KoreanMessageLabel
+            // 
+            KoreanMessageLabel.AutoSize = true;
+            KoreanMessageLabel.Location = new Point(54, 509);
+            KoreanMessageLabel.Name = "KoreanMessageLabel";
+            KoreanMessageLabel.Size = new Size(90, 15);
+            KoreanMessageLabel.TabIndex = 338;
+            KoreanMessageLabel.Text = "KoreanMessage";
+            // 
+            // EnglishMessageSGFreeeCheckBox
+            // 
+            EnglishMessageSGFreeeCheckBox.AutoSize = true;
+            EnglishMessageSGFreeeCheckBox.Location = new Point(293, 482);
+            EnglishMessageSGFreeeCheckBox.Name = "EnglishMessageSGFreeeCheckBox";
+            EnglishMessageSGFreeeCheckBox.Size = new Size(59, 19);
+            EnglishMessageSGFreeeCheckBox.TabIndex = 336;
+            EnglishMessageSGFreeeCheckBox.Text = "Freeze";
+            EnglishMessageSGFreeeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // EnglishMessageSGTextBox
+            // 
+            EnglishMessageSGTextBox.Location = new Point(52, 479);
+            EnglishMessageSGTextBox.Margin = new Padding(3, 2, 3, 2);
+            EnglishMessageSGTextBox.Name = "EnglishMessageSGTextBox";
+            EnglishMessageSGTextBox.Size = new Size(234, 23);
+            EnglishMessageSGTextBox.TabIndex = 334;
+            // 
+            // EnglishMessageSGLabel
+            // 
+            EnglishMessageSGLabel.AutoSize = true;
+            EnglishMessageSGLabel.Location = new Point(52, 462);
+            EnglishMessageSGLabel.Name = "EnglishMessageSGLabel";
+            EnglishMessageSGLabel.Size = new Size(105, 15);
+            EnglishMessageSGLabel.TabIndex = 335;
+            EnglishMessageSGLabel.Text = "EnglishMessageSG";
+            // 
+            // SimplifiedChineseMessageFreezeCheckBox
+            // 
+            SimplifiedChineseMessageFreezeCheckBox.AutoSize = true;
+            SimplifiedChineseMessageFreezeCheckBox.Location = new Point(625, 529);
+            SimplifiedChineseMessageFreezeCheckBox.Name = "SimplifiedChineseMessageFreezeCheckBox";
+            SimplifiedChineseMessageFreezeCheckBox.Size = new Size(59, 19);
+            SimplifiedChineseMessageFreezeCheckBox.TabIndex = 348;
+            SimplifiedChineseMessageFreezeCheckBox.Text = "Freeze";
+            SimplifiedChineseMessageFreezeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // SimplifiedChineseMessageTextBox
+            // 
+            SimplifiedChineseMessageTextBox.Location = new Point(384, 526);
+            SimplifiedChineseMessageTextBox.Margin = new Padding(3, 2, 3, 2);
+            SimplifiedChineseMessageTextBox.Name = "SimplifiedChineseMessageTextBox";
+            SimplifiedChineseMessageTextBox.Size = new Size(234, 23);
+            SimplifiedChineseMessageTextBox.TabIndex = 346;
+            // 
+            // SimplifiedChineseMessageLabel
+            // 
+            SimplifiedChineseMessageLabel.AutoSize = true;
+            SimplifiedChineseMessageLabel.Location = new Point(384, 509);
+            SimplifiedChineseMessageLabel.Name = "SimplifiedChineseMessageLabel";
+            SimplifiedChineseMessageLabel.Size = new Size(148, 15);
+            SimplifiedChineseMessageLabel.TabIndex = 347;
+            SimplifiedChineseMessageLabel.Text = "SimplifiedChineseMessage";
+            // 
+            // TraditionalChineseMessageHKFrezeCheckBox
+            // 
+            TraditionalChineseMessageHKFrezeCheckBox.AutoSize = true;
+            TraditionalChineseMessageHKFrezeCheckBox.Location = new Point(623, 482);
+            TraditionalChineseMessageHKFrezeCheckBox.Name = "TraditionalChineseMessageHKFrezeCheckBox";
+            TraditionalChineseMessageHKFrezeCheckBox.Size = new Size(59, 19);
+            TraditionalChineseMessageHKFrezeCheckBox.TabIndex = 345;
+            TraditionalChineseMessageHKFrezeCheckBox.Text = "Freeze";
+            TraditionalChineseMessageHKFrezeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TraditionalChineseMessageHKTextBox
+            // 
+            TraditionalChineseMessageHKTextBox.Location = new Point(382, 479);
+            TraditionalChineseMessageHKTextBox.Margin = new Padding(3, 2, 3, 2);
+            TraditionalChineseMessageHKTextBox.Name = "TraditionalChineseMessageHKTextBox";
+            TraditionalChineseMessageHKTextBox.Size = new Size(234, 23);
+            TraditionalChineseMessageHKTextBox.TabIndex = 343;
+            // 
+            // TraditionalChineseMessageHKLabel
+            // 
+            TraditionalChineseMessageHKLabel.AutoSize = true;
+            TraditionalChineseMessageHKLabel.Location = new Point(382, 462);
+            TraditionalChineseMessageHKLabel.Name = "TraditionalChineseMessageHKLabel";
+            TraditionalChineseMessageHKLabel.Size = new Size(166, 15);
+            TraditionalChineseMessageHKLabel.TabIndex = 344;
+            TraditionalChineseMessageHKLabel.Text = "TraditionalChineseMessageHK";
+            // 
+            // TraditionalChineseMessageTWFreeeCheckBox
+            // 
+            TraditionalChineseMessageTWFreeeCheckBox.AutoSize = true;
+            TraditionalChineseMessageTWFreeeCheckBox.Location = new Point(623, 429);
+            TraditionalChineseMessageTWFreeeCheckBox.Name = "TraditionalChineseMessageTWFreeeCheckBox";
+            TraditionalChineseMessageTWFreeeCheckBox.Size = new Size(59, 19);
+            TraditionalChineseMessageTWFreeeCheckBox.TabIndex = 342;
+            TraditionalChineseMessageTWFreeeCheckBox.Text = "Freeze";
+            TraditionalChineseMessageTWFreeeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TraditionalChineseMessageTWTextBox
+            // 
+            TraditionalChineseMessageTWTextBox.Location = new Point(382, 426);
+            TraditionalChineseMessageTWTextBox.Margin = new Padding(3, 2, 3, 2);
+            TraditionalChineseMessageTWTextBox.Name = "TraditionalChineseMessageTWTextBox";
+            TraditionalChineseMessageTWTextBox.Size = new Size(234, 23);
+            TraditionalChineseMessageTWTextBox.TabIndex = 340;
+            // 
+            // TraditionalChineseMessageTWLabel
+            // 
+            TraditionalChineseMessageTWLabel.AutoSize = true;
+            TraditionalChineseMessageTWLabel.Location = new Point(382, 409);
+            TraditionalChineseMessageTWLabel.Name = "TraditionalChineseMessageTWLabel";
+            TraditionalChineseMessageTWLabel.Size = new Size(167, 15);
+            TraditionalChineseMessageTWLabel.TabIndex = 341;
+            TraditionalChineseMessageTWLabel.Text = "TraditionalChineseMessageTW";
+            // 
+            // filterKoreanMessageCheckBox
+            // 
+            filterKoreanMessageCheckBox.AutoSize = true;
+            filterKoreanMessageCheckBox.Location = new Point(729, 529);
+            filterKoreanMessageCheckBox.Name = "filterKoreanMessageCheckBox";
+            filterKoreanMessageCheckBox.Size = new Size(15, 14);
+            filterKoreanMessageCheckBox.TabIndex = 369;
+            filterKoreanMessageCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // filterSimplifiedChineseMessageTextBox
+            // 
+            filterSimplifiedChineseMessageTextBox.Location = new Point(1071, 526);
+            filterSimplifiedChineseMessageTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterSimplifiedChineseMessageTextBox.Name = "filterSimplifiedChineseMessageTextBox";
+            filterSimplifiedChineseMessageTextBox.Size = new Size(244, 23);
+            filterSimplifiedChineseMessageTextBox.TabIndex = 367;
+            // 
+            // filterSimplifiedChineseMessageLabel
+            // 
+            filterSimplifiedChineseMessageLabel.AutoSize = true;
+            filterSimplifiedChineseMessageLabel.Location = new Point(1071, 509);
+            filterSimplifiedChineseMessageLabel.Name = "filterSimplifiedChineseMessageLabel";
+            filterSimplifiedChineseMessageLabel.Size = new Size(148, 15);
+            filterSimplifiedChineseMessageLabel.TabIndex = 368;
+            filterSimplifiedChineseMessageLabel.Text = "SimplifiedChineseMessage";
+            // 
+            // filterEnglishMessageSGCheckBox
+            // 
+            filterEnglishMessageSGCheckBox.AutoSize = true;
+            filterEnglishMessageSGCheckBox.Location = new Point(727, 482);
+            filterEnglishMessageSGCheckBox.Name = "filterEnglishMessageSGCheckBox";
+            filterEnglishMessageSGCheckBox.Size = new Size(15, 14);
+            filterEnglishMessageSGCheckBox.TabIndex = 366;
+            filterEnglishMessageSGCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // filterTraditionalChineseMessageHKTextBox
+            // 
+            filterTraditionalChineseMessageHKTextBox.Location = new Point(1069, 479);
+            filterTraditionalChineseMessageHKTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterTraditionalChineseMessageHKTextBox.Name = "filterTraditionalChineseMessageHKTextBox";
+            filterTraditionalChineseMessageHKTextBox.Size = new Size(244, 23);
+            filterTraditionalChineseMessageHKTextBox.TabIndex = 364;
+            // 
+            // filterTraditionalChineseMessageHKLabel
+            // 
+            filterTraditionalChineseMessageHKLabel.AutoSize = true;
+            filterTraditionalChineseMessageHKLabel.Location = new Point(1069, 462);
+            filterTraditionalChineseMessageHKLabel.Name = "filterTraditionalChineseMessageHKLabel";
+            filterTraditionalChineseMessageHKLabel.Size = new Size(166, 15);
+            filterTraditionalChineseMessageHKLabel.TabIndex = 365;
+            filterTraditionalChineseMessageHKLabel.Text = "TraditionalChineseMessageHK";
+            // 
+            // filterEnglishMessageUSACheckBox
+            // 
+            filterEnglishMessageUSACheckBox.AutoSize = true;
+            filterEnglishMessageUSACheckBox.Location = new Point(727, 429);
+            filterEnglishMessageUSACheckBox.Name = "filterEnglishMessageUSACheckBox";
+            filterEnglishMessageUSACheckBox.Size = new Size(15, 14);
+            filterEnglishMessageUSACheckBox.TabIndex = 363;
+            filterEnglishMessageUSACheckBox.UseVisualStyleBackColor = true;
+            // 
+            // filterTraditionalChineseMessageTWTextBox
+            // 
+            filterTraditionalChineseMessageTWTextBox.Location = new Point(1069, 426);
+            filterTraditionalChineseMessageTWTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterTraditionalChineseMessageTWTextBox.Name = "filterTraditionalChineseMessageTWTextBox";
+            filterTraditionalChineseMessageTWTextBox.Size = new Size(244, 23);
+            filterTraditionalChineseMessageTWTextBox.TabIndex = 361;
+            // 
+            // filterTraditionalChineseMessageTWLabel
+            // 
+            filterTraditionalChineseMessageTWLabel.AutoSize = true;
+            filterTraditionalChineseMessageTWLabel.Location = new Point(1069, 409);
+            filterTraditionalChineseMessageTWLabel.Name = "filterTraditionalChineseMessageTWLabel";
+            filterTraditionalChineseMessageTWLabel.Size = new Size(167, 15);
+            filterTraditionalChineseMessageTWLabel.TabIndex = 362;
+            filterTraditionalChineseMessageTWLabel.Text = "TraditionalChineseMessageTW";
+            // 
+            // filterSimplifiedChineseMessageCheckBox
+            // 
+            filterSimplifiedChineseMessageCheckBox.AutoSize = true;
+            filterSimplifiedChineseMessageCheckBox.Location = new Point(1050, 529);
+            filterSimplifiedChineseMessageCheckBox.Name = "filterSimplifiedChineseMessageCheckBox";
+            filterSimplifiedChineseMessageCheckBox.Size = new Size(15, 14);
+            filterSimplifiedChineseMessageCheckBox.TabIndex = 360;
+            filterSimplifiedChineseMessageCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // filterKoreanMessageTextBox
+            // 
+            filterKoreanMessageTextBox.Location = new Point(754, 526);
+            filterKoreanMessageTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterKoreanMessageTextBox.Name = "filterKoreanMessageTextBox";
+            filterKoreanMessageTextBox.Size = new Size(247, 23);
+            filterKoreanMessageTextBox.TabIndex = 358;
+            // 
+            // filterKoreanMessageLabel
+            // 
+            filterKoreanMessageLabel.AutoSize = true;
+            filterKoreanMessageLabel.Location = new Point(754, 509);
+            filterKoreanMessageLabel.Name = "filterKoreanMessageLabel";
+            filterKoreanMessageLabel.Size = new Size(90, 15);
+            filterKoreanMessageLabel.TabIndex = 359;
+            filterKoreanMessageLabel.Text = "KoreanMessage";
+            // 
+            // filterTraditionalChineseMessageHKCheckBox
+            // 
+            filterTraditionalChineseMessageHKCheckBox.AutoSize = true;
+            filterTraditionalChineseMessageHKCheckBox.Location = new Point(1048, 482);
+            filterTraditionalChineseMessageHKCheckBox.Name = "filterTraditionalChineseMessageHKCheckBox";
+            filterTraditionalChineseMessageHKCheckBox.Size = new Size(15, 14);
+            filterTraditionalChineseMessageHKCheckBox.TabIndex = 357;
+            filterTraditionalChineseMessageHKCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // filterEnglishMessageSGTextBox
+            // 
+            filterEnglishMessageSGTextBox.Location = new Point(752, 479);
+            filterEnglishMessageSGTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterEnglishMessageSGTextBox.Name = "filterEnglishMessageSGTextBox";
+            filterEnglishMessageSGTextBox.Size = new Size(247, 23);
+            filterEnglishMessageSGTextBox.TabIndex = 355;
+            // 
+            // filterEnglishMessageSGLabel
+            // 
+            filterEnglishMessageSGLabel.AutoSize = true;
+            filterEnglishMessageSGLabel.Location = new Point(752, 462);
+            filterEnglishMessageSGLabel.Name = "filterEnglishMessageSGLabel";
+            filterEnglishMessageSGLabel.Size = new Size(105, 15);
+            filterEnglishMessageSGLabel.TabIndex = 356;
+            filterEnglishMessageSGLabel.Text = "EnglishMessageSG";
+            // 
+            // filterTraditionalChineseMessageTWCheckBox
+            // 
+            filterTraditionalChineseMessageTWCheckBox.AutoSize = true;
+            filterTraditionalChineseMessageTWCheckBox.Location = new Point(1048, 429);
+            filterTraditionalChineseMessageTWCheckBox.Name = "filterTraditionalChineseMessageTWCheckBox";
+            filterTraditionalChineseMessageTWCheckBox.Size = new Size(15, 14);
+            filterTraditionalChineseMessageTWCheckBox.TabIndex = 354;
+            filterTraditionalChineseMessageTWCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // filterEnglishMessageUSATextBox
+            // 
+            filterEnglishMessageUSATextBox.Location = new Point(752, 426);
+            filterEnglishMessageUSATextBox.Margin = new Padding(3, 2, 3, 2);
+            filterEnglishMessageUSATextBox.Name = "filterEnglishMessageUSATextBox";
+            filterEnglishMessageUSATextBox.Size = new Size(247, 23);
+            filterEnglishMessageUSATextBox.TabIndex = 352;
+            // 
+            // filterEnglishMessageUSALabel
+            // 
+            filterEnglishMessageUSALabel.AutoSize = true;
+            filterEnglishMessageUSALabel.Location = new Point(752, 409);
+            filterEnglishMessageUSALabel.Name = "filterEnglishMessageUSALabel";
+            filterEnglishMessageUSALabel.Size = new Size(113, 15);
+            filterEnglishMessageUSALabel.TabIndex = 353;
+            filterEnglishMessageUSALabel.Text = "EnglishMessageUSA";
+            // 
+            // filterJapaneseMessageCheckBox
+            // 
+            filterJapaneseMessageCheckBox.AutoSize = true;
+            filterJapaneseMessageCheckBox.Location = new Point(727, 384);
+            filterJapaneseMessageCheckBox.Name = "filterJapaneseMessageCheckBox";
+            filterJapaneseMessageCheckBox.Size = new Size(15, 14);
+            filterJapaneseMessageCheckBox.TabIndex = 351;
+            filterJapaneseMessageCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // filterJapaneseMessageTextBox
+            // 
+            filterJapaneseMessageTextBox.Location = new Point(750, 379);
+            filterJapaneseMessageTextBox.Margin = new Padding(3, 2, 3, 2);
+            filterJapaneseMessageTextBox.Name = "filterJapaneseMessageTextBox";
+            filterJapaneseMessageTextBox.Size = new Size(563, 23);
+            filterJapaneseMessageTextBox.TabIndex = 349;
+            // 
+            // filterJapaneseMessageLabel
+            // 
+            filterJapaneseMessageLabel.AutoSize = true;
+            filterJapaneseMessageLabel.Location = new Point(750, 362);
+            filterJapaneseMessageLabel.Name = "filterJapaneseMessageLabel";
+            filterJapaneseMessageLabel.Size = new Size(100, 15);
+            filterJapaneseMessageLabel.TabIndex = 350;
+            filterJapaneseMessageLabel.Text = "JapaneseMessage";
             // 
             // Title
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(checkBox8);
-            Controls.Add(textBox8);
-            Controls.Add(label8);
-            Controls.Add(checkBox9);
-            Controls.Add(textBox9);
-            Controls.Add(label9);
-            Controls.Add(checkBox10);
-            Controls.Add(textBox10);
-            Controls.Add(label10);
-            Controls.Add(checkBox11);
-            Controls.Add(textBox11);
-            Controls.Add(label11);
-            Controls.Add(checkBox12);
-            Controls.Add(textBox12);
-            Controls.Add(label12);
-            Controls.Add(checkBox13);
-            Controls.Add(textBox13);
-            Controls.Add(label13);
-            Controls.Add(checkBox14);
-            Controls.Add(textBox14);
-            Controls.Add(label14);
-            Controls.Add(checkBox5);
-            Controls.Add(textBox5);
-            Controls.Add(label5);
-            Controls.Add(checkBox6);
-            Controls.Add(textBox6);
-            Controls.Add(label6);
-            Controls.Add(checkBox7);
-            Controls.Add(textBox7);
-            Controls.Add(label7);
-            Controls.Add(checkBox3);
-            Controls.Add(textBox3);
-            Controls.Add(label3);
-            Controls.Add(checkBox4);
-            Controls.Add(textBox4);
-            Controls.Add(label4);
-            Controls.Add(checkBox2);
-            Controls.Add(textBox2);
-            Controls.Add(label2);
-            Controls.Add(checkBox1);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
+            Controls.Add(filterKoreanMessageCheckBox);
+            Controls.Add(filterSimplifiedChineseMessageTextBox);
+            Controls.Add(filterSimplifiedChineseMessageLabel);
+            Controls.Add(filterEnglishMessageSGCheckBox);
+            Controls.Add(filterTraditionalChineseMessageHKTextBox);
+            Controls.Add(filterTraditionalChineseMessageHKLabel);
+            Controls.Add(filterEnglishMessageUSACheckBox);
+            Controls.Add(filterTraditionalChineseMessageTWTextBox);
+            Controls.Add(filterTraditionalChineseMessageTWLabel);
+            Controls.Add(filterSimplifiedChineseMessageCheckBox);
+            Controls.Add(filterKoreanMessageTextBox);
+            Controls.Add(filterKoreanMessageLabel);
+            Controls.Add(filterTraditionalChineseMessageHKCheckBox);
+            Controls.Add(filterEnglishMessageSGTextBox);
+            Controls.Add(filterEnglishMessageSGLabel);
+            Controls.Add(filterTraditionalChineseMessageTWCheckBox);
+            Controls.Add(filterEnglishMessageUSATextBox);
+            Controls.Add(filterEnglishMessageUSALabel);
+            Controls.Add(filterJapaneseMessageCheckBox);
+            Controls.Add(filterJapaneseMessageTextBox);
+            Controls.Add(filterJapaneseMessageLabel);
+            Controls.Add(SimplifiedChineseMessageFreezeCheckBox);
+            Controls.Add(SimplifiedChineseMessageTextBox);
+            Controls.Add(SimplifiedChineseMessageLabel);
+            Controls.Add(TraditionalChineseMessageHKFrezeCheckBox);
+            Controls.Add(TraditionalChineseMessageHKTextBox);
+            Controls.Add(TraditionalChineseMessageHKLabel);
+            Controls.Add(TraditionalChineseMessageTWFreeeCheckBox);
+            Controls.Add(TraditionalChineseMessageTWTextBox);
+            Controls.Add(TraditionalChineseMessageTWLabel);
+            Controls.Add(KoreanMessageFreezeCheckBox);
+            Controls.Add(KoreanMessageTextBox);
+            Controls.Add(KoreanMessageLabel);
+            Controls.Add(EnglishMessageSGFreeeCheckBox);
+            Controls.Add(EnglishMessageSGTextBox);
+            Controls.Add(EnglishMessageSGLabel);
+            Controls.Add(EnglishMessageUSAFreezeCheckBox);
+            Controls.Add(EnglishMessageUSATextBox);
+            Controls.Add(EnglishMessageUSALabel);
+            Controls.Add(JapaneseMessageCheckBox);
+            Controls.Add(JapaneseMessageTextBox);
+            Controls.Add(JapaneseMessageLabel);
             Controls.Add(injectWaccaGradeButton);
             Controls.Add(createWaccaGradeButton);
             Controls.Add(gainWaccaPointfreezeCheckBox);
@@ -1571,47 +1571,47 @@
         private Label itemActivateStartTimeLabel;
         private Button injectWaccaGradeButton;
         private Button createWaccaGradeButton;
-        private CheckBox checkBox1;
-        private TextBox textBox1;
-        private Label label1;
-        private CheckBox checkBox2;
-        private TextBox textBox2;
-        private Label label2;
-        private CheckBox checkBox3;
-        private TextBox textBox3;
-        private Label label3;
-        private CheckBox checkBox4;
-        private TextBox textBox4;
-        private Label label4;
-        private CheckBox checkBox5;
-        private TextBox textBox5;
-        private Label label5;
-        private CheckBox checkBox6;
-        private TextBox textBox6;
-        private Label label6;
-        private CheckBox checkBox7;
-        private TextBox textBox7;
-        private Label label7;
-        private CheckBox checkBox8;
-        private TextBox textBox8;
-        private Label label8;
-        private CheckBox checkBox9;
-        private TextBox textBox9;
-        private Label label9;
-        private CheckBox checkBox10;
-        private TextBox textBox10;
-        private Label label10;
-        private CheckBox checkBox11;
-        private TextBox textBox11;
-        private Label label11;
-        private CheckBox checkBox12;
-        private TextBox textBox12;
-        private Label label12;
-        private CheckBox checkBox13;
-        private TextBox textBox13;
-        private Label label13;
-        private CheckBox checkBox14;
-        private TextBox textBox14;
-        private Label label14;
+        private CheckBox JapaneseMessageCheckBox;
+        private TextBox JapaneseMessageTextBox;
+        private Label JapaneseMessageLabel;
+        private CheckBox EnglishMessageUSAFreezeCheckBox;
+        private TextBox EnglishMessageUSATextBox;
+        private Label EnglishMessageUSALabel;
+        private CheckBox KoreanMessageFreezeCheckBox;
+        private TextBox KoreanMessageTextBox;
+        private Label KoreanMessageLabel;
+        private CheckBox EnglishMessageSGFreeeCheckBox;
+        private TextBox EnglishMessageSGTextBox;
+        private Label EnglishMessageSGLabel;
+        private CheckBox SimplifiedChineseMessageFreezeCheckBox;
+        private TextBox SimplifiedChineseMessageTextBox;
+        private Label SimplifiedChineseMessageLabel;
+        private CheckBox TraditionalChineseMessageHKFrezeCheckBox;
+        private TextBox TraditionalChineseMessageHKTextBox;
+        private Label TraditionalChineseMessageHKLabel;
+        private CheckBox TraditionalChineseMessageTWFreeeCheckBox;
+        private TextBox TraditionalChineseMessageTWTextBox;
+        private Label TraditionalChineseMessageTWLabel;
+        private CheckBox filterKoreanMessageCheckBox;
+        private TextBox filterSimplifiedChineseMessageTextBox;
+        private Label filterSimplifiedChineseMessageLabel;
+        private CheckBox filterEnglishMessageSGCheckBox;
+        private TextBox filterTraditionalChineseMessageHKTextBox;
+        private Label filterTraditionalChineseMessageHKLabel;
+        private CheckBox filterEnglishMessageUSACheckBox;
+        private TextBox filterTraditionalChineseMessageTWTextBox;
+        private Label filterTraditionalChineseMessageTWLabel;
+        private CheckBox filterSimplifiedChineseMessageCheckBox;
+        private TextBox filterKoreanMessageTextBox;
+        private Label filterKoreanMessageLabel;
+        private CheckBox filterTraditionalChineseMessageHKCheckBox;
+        private TextBox filterEnglishMessageSGTextBox;
+        private Label filterEnglishMessageSGLabel;
+        private CheckBox filterTraditionalChineseMessageTWCheckBox;
+        private TextBox filterEnglishMessageUSATextBox;
+        private Label filterEnglishMessageUSALabel;
+        private CheckBox filterJapaneseMessageCheckBox;
+        private TextBox filterJapaneseMessageTextBox;
+        private Label filterJapaneseMessageLabel;
     }
 }

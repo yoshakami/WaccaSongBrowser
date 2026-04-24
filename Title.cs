@@ -463,6 +463,7 @@ namespace WaccaSongBrowser
                 saveLabel.Text = "Successfully injected Titles.txt into GradeTableNew.uasset and GradePartsTableNew.uasset\n";
                 saveLabel.Text += "all buttons are disabled until you drag and drop a file again.";
                 //TODO: DISABLE ALL BUTTONS OF THE APP AND TELL USER TO RESTART
+
             }
             else
             {

@@ -31,20 +31,20 @@
             conditionCheckBox = new CheckBox();
             progressBar1 = new ProgressBar();
             condition5textBox = new TextBox();
-            label13 = new Label();
+            value5Label = new Label();
             condition4textBox = new TextBox();
-            label14 = new Label();
+            value4Label = new Label();
             condition3textBox = new TextBox();
-            label15 = new Label();
+            value3Label = new Label();
             condition2textBox = new TextBox();
-            label16 = new Label();
+            value2Label = new Label();
             condition1textBox = new TextBox();
-            label17 = new Label();
+            value1Label = new Label();
             conditionTypeTextBox = new TextBox();
-            label18 = new Label();
+            conditionTypeLabel = new Label();
             conditionIdTextBox = new TextBox();
-            label19 = new Label();
-            label12 = new Label();
+            ConditionIdINTLabel = new Label();
+            ConditionTitleLabel = new Label();
             progressBar2 = new ProgressBar();
             filterConditionCheckBox = new CheckBox();
             filter5textBox = new TextBox();
@@ -79,7 +79,7 @@
             resultInjectButton = new Button();
             resultConditionTextBox = new TextBox();
             resultConditionLabel = new Label();
-            label20 = new Label();
+            TotalResultItemJudgementLabel = new Label();
             resultItemIdTextBox = new TextBox();
             resultItemIdLabel = new Label();
             resultStartTimeTextBox = new TextBox();
@@ -162,14 +162,14 @@
             condition5textBox.Size = new Size(232, 23);
             condition5textBox.TabIndex = 131;
             // 
-            // label13
+            // value5Label
             // 
-            label13.AutoSize = true;
-            label13.Location = new Point(453, 352);
-            label13.Name = "label13";
-            label13.Size = new Size(41, 15);
-            label13.TabIndex = 132;
-            label13.Text = "Value5";
+            value5Label.AutoSize = true;
+            value5Label.Location = new Point(453, 352);
+            value5Label.Name = "value5Label";
+            value5Label.Size = new Size(41, 15);
+            value5Label.TabIndex = 132;
+            value5Label.Text = "Value5";
             // 
             // condition4textBox
             // 
@@ -179,14 +179,14 @@
             condition4textBox.Size = new Size(232, 23);
             condition4textBox.TabIndex = 129;
             // 
-            // label14
+            // value4Label
             // 
-            label14.AutoSize = true;
-            label14.Location = new Point(453, 302);
-            label14.Name = "label14";
-            label14.Size = new Size(41, 15);
-            label14.TabIndex = 130;
-            label14.Text = "Value4";
+            value4Label.AutoSize = true;
+            value4Label.Location = new Point(453, 302);
+            value4Label.Name = "value4Label";
+            value4Label.Size = new Size(41, 15);
+            value4Label.TabIndex = 130;
+            value4Label.Text = "Value4";
             // 
             // condition3textBox
             // 
@@ -196,14 +196,14 @@
             condition3textBox.Size = new Size(232, 23);
             condition3textBox.TabIndex = 127;
             // 
-            // label15
+            // value3Label
             // 
-            label15.AutoSize = true;
-            label15.Location = new Point(453, 252);
-            label15.Name = "label15";
-            label15.Size = new Size(41, 15);
-            label15.TabIndex = 128;
-            label15.Text = "Value3";
+            value3Label.AutoSize = true;
+            value3Label.Location = new Point(453, 252);
+            value3Label.Name = "value3Label";
+            value3Label.Size = new Size(41, 15);
+            value3Label.TabIndex = 128;
+            value3Label.Text = "Value3";
             // 
             // condition2textBox
             // 
@@ -213,14 +213,14 @@
             condition2textBox.Size = new Size(232, 23);
             condition2textBox.TabIndex = 125;
             // 
-            // label16
+            // value2Label
             // 
-            label16.AutoSize = true;
-            label16.Location = new Point(453, 202);
-            label16.Name = "label16";
-            label16.Size = new Size(41, 15);
-            label16.TabIndex = 126;
-            label16.Text = "Value2";
+            value2Label.AutoSize = true;
+            value2Label.Location = new Point(453, 202);
+            value2Label.Name = "value2Label";
+            value2Label.Size = new Size(41, 15);
+            value2Label.TabIndex = 126;
+            value2Label.Text = "Value2";
             // 
             // condition1textBox
             // 
@@ -230,14 +230,14 @@
             condition1textBox.Size = new Size(232, 23);
             condition1textBox.TabIndex = 123;
             // 
-            // label17
+            // value1Label
             // 
-            label17.AutoSize = true;
-            label17.Location = new Point(453, 152);
-            label17.Name = "label17";
-            label17.Size = new Size(41, 15);
-            label17.TabIndex = 124;
-            label17.Text = "Value1";
+            value1Label.AutoSize = true;
+            value1Label.Location = new Point(453, 152);
+            value1Label.Name = "value1Label";
+            value1Label.Size = new Size(41, 15);
+            value1Label.TabIndex = 124;
+            value1Label.Text = "Value1";
             // 
             // conditionTypeTextBox
             // 
@@ -248,14 +248,14 @@
             conditionTypeTextBox.TabIndex = 121;
             conditionTypeTextBox.TextChanged += conditionTypeTextBox_TextChanged;
             // 
-            // label18
+            // conditionTypeLabel
             // 
-            label18.AutoSize = true;
-            label18.Location = new Point(453, 102);
-            label18.Name = "label18";
-            label18.Size = new Size(84, 15);
-            label18.TabIndex = 122;
-            label18.Text = "ConditionType";
+            conditionTypeLabel.AutoSize = true;
+            conditionTypeLabel.Location = new Point(453, 102);
+            conditionTypeLabel.Name = "conditionTypeLabel";
+            conditionTypeLabel.Size = new Size(84, 15);
+            conditionTypeLabel.TabIndex = 122;
+            conditionTypeLabel.Text = "ConditionType";
             // 
             // conditionIdTextBox
             // 
@@ -265,23 +265,23 @@
             conditionIdTextBox.Size = new Size(318, 23);
             conditionIdTextBox.TabIndex = 119;
             // 
-            // label19
+            // ConditionIdINTLabel
             // 
-            label19.AutoSize = true;
-            label19.Location = new Point(453, 52);
-            label19.Name = "label19";
-            label19.Size = new Size(95, 15);
-            label19.TabIndex = 120;
-            label19.Text = "ConditionId (int)";
+            ConditionIdINTLabel.AutoSize = true;
+            ConditionIdINTLabel.Location = new Point(453, 52);
+            ConditionIdINTLabel.Name = "ConditionIdINTLabel";
+            ConditionIdINTLabel.Size = new Size(95, 15);
+            ConditionIdINTLabel.TabIndex = 120;
+            ConditionIdINTLabel.Text = "ConditionId (int)";
             // 
-            // label12
+            // ConditionTitleLabel
             // 
-            label12.AutoSize = true;
-            label12.Location = new Point(595, 16);
-            label12.Name = "label12";
-            label12.Size = new Size(60, 15);
-            label12.TabIndex = 118;
-            label12.Text = "Condition";
+            ConditionTitleLabel.AutoSize = true;
+            ConditionTitleLabel.Location = new Point(595, 16);
+            ConditionTitleLabel.Name = "ConditionTitleLabel";
+            ConditionTitleLabel.Size = new Size(60, 15);
+            ConditionTitleLabel.TabIndex = 118;
+            ConditionTitleLabel.Text = "Condition";
             // 
             // progressBar2
             // 
@@ -603,14 +603,14 @@
             resultConditionLabel.TabIndex = 203;
             resultConditionLabel.Text = "ConditionId (String)";
             // 
-            // label20
+            // TotalResultItemJudgementLabel
             // 
-            label20.AutoSize = true;
-            label20.Location = new Point(120, 16);
-            label20.Name = "label20";
-            label20.Size = new Size(147, 15);
-            label20.TabIndex = 206;
-            label20.Text = "TotalResultItemJudgement";
+            TotalResultItemJudgementLabel.AutoSize = true;
+            TotalResultItemJudgementLabel.Location = new Point(120, 16);
+            TotalResultItemJudgementLabel.Name = "TotalResultItemJudgementLabel";
+            TotalResultItemJudgementLabel.Size = new Size(147, 15);
+            TotalResultItemJudgementLabel.TabIndex = 206;
+            TotalResultItemJudgementLabel.Text = "TotalResultItemJudgement";
             // 
             // resultItemIdTextBox
             // 
@@ -1159,7 +1159,7 @@
             Controls.Add(resultStartTimeLabel);
             Controls.Add(resultItemIdTextBox);
             Controls.Add(resultItemIdLabel);
-            Controls.Add(label20);
+            Controls.Add(TotalResultItemJudgementLabel);
             Controls.Add(resultOutputLabel);
             Controls.Add(resultInjectButton);
             Controls.Add(resultConditionTextBox);
@@ -1197,20 +1197,20 @@
             Controls.Add(conditionCheckBox);
             Controls.Add(progressBar1);
             Controls.Add(condition5textBox);
-            Controls.Add(label13);
+            Controls.Add(value5Label);
             Controls.Add(condition4textBox);
-            Controls.Add(label14);
+            Controls.Add(value4Label);
             Controls.Add(condition3textBox);
-            Controls.Add(label15);
+            Controls.Add(value3Label);
             Controls.Add(condition2textBox);
-            Controls.Add(label16);
+            Controls.Add(value2Label);
             Controls.Add(condition1textBox);
-            Controls.Add(label17);
+            Controls.Add(value1Label);
             Controls.Add(conditionTypeTextBox);
-            Controls.Add(label18);
+            Controls.Add(conditionTypeLabel);
             Controls.Add(conditionIdTextBox);
-            Controls.Add(label19);
-            Controls.Add(label12);
+            Controls.Add(ConditionIdINTLabel);
+            Controls.Add(ConditionTitleLabel);
             Name = "Condition";
             Size = new Size(1625, 682);
             ((System.ComponentModel.ISupportInitialize)itemPictureBox).EndInit();
@@ -1224,20 +1224,20 @@
         private CheckBox conditionCheckBox;
         private ProgressBar progressBar1;
         private TextBox condition5textBox;
-        private Label label13;
+        private Label value5Label;
         private TextBox condition4textBox;
-        private Label label14;
+        private Label value4Label;
         private TextBox condition3textBox;
-        private Label label15;
+        private Label value3Label;
         private TextBox condition2textBox;
-        private Label label16;
+        private Label value2Label;
         private TextBox condition1textBox;
-        private Label label17;
+        private Label value1Label;
         private TextBox conditionTypeTextBox;
-        private Label label18;
+        private Label conditionTypeLabel;
         private TextBox conditionIdTextBox;
-        private Label label19;
-        private Label label12;
+        private Label ConditionIdINTLabel;
+        private Label ConditionTitleLabel;
         private ProgressBar progressBar2;
         private CheckBox filterConditionCheckBox;
         private TextBox filter5textBox;
@@ -1271,7 +1271,7 @@
         private Button resultInjectButton;
         private TextBox resultConditionTextBox;
         private Label resultConditionLabel;
-        private Label label20;
+        private Label TotalResultItemJudgementLabel;
         private TextBox resultItemIdTextBox;
         private Label resultItemIdLabel;
         private TextBox resultStartTimeTextBox;
