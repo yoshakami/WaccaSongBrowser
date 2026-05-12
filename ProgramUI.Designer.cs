@@ -2445,11 +2445,11 @@
             // 
             // writeMusicButton
             // 
-            writeMusicButton.Location = new Point(1488, 265);
+            writeMusicButton.Location = new Point(1400, 265);
             writeMusicButton.Name = "writeMusicButton";
             writeMusicButton.Size = new Size(182, 50);
             writeMusicButton.TabIndex = 258;
-            writeMusicButton.Text = "Write all Music Title to MusicTitle.txt";
+            writeMusicButton.Text = "Custom TSV Export to MusicCustom.tsv";
             writeMusicButton.UseVisualStyleBackColor = true;
             writeMusicButton.Click += writeMusicButton_Click;
             // 

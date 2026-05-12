@@ -2588,10 +2588,10 @@ namespace WaccaSongBrowser
         private void writeMusicButton_Click(object sender, EventArgs e)
         {
             // Create TSV lines with UniqueID and MusicMessage separated by tabs
-            var lines = allSongs.Select(s => $"{s.UniqueID}\t{s.MusicMessage}");
+            var lines = allSongs.Select(s => $"{s.UniqueID}\t{s.MusicMessage}\t{s.ArtistMessage}\t{s.Version}\t{s.Bpm}\t{s.ScoreGenre}\t{s.DifficultyNormalLv}\t{s.DifficultyHardLv}\t{s.DifficultyExpertLv}\t{s.DifficultyInfernoLv}");
 
             // Write to a .tsv file
-            WriteListToFile(lines, "MusicTitle.tsv");
+            WriteListToFile(lines, "MusicCustom.tsv");
         }
 
 
