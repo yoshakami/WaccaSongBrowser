@@ -98,8 +98,8 @@ namespace WaccaSongBrowser
             }
             return 0;
         }
-        
-        public void ProcessFile(string assetPath, bool inject = false, bool waccaTxt = false)
+
+        public void ProcessFile(string assetPath, bool inject = false, bool waccaTxt = false, string xxMessage = "JapaneseMessage")
         {
             // Load the asset
             bool replace_strings = false;
@@ -163,13 +163,13 @@ namespace WaccaSongBrowser
                     // Process each row
                     foreach (var row in dataTableExport.Table.Data)
                     {
-                        // Update JapaneseMessage
+                        // Update xxMessage
                         foreach (var property in row.Value)
                         {
                             if (property is StrPropertyData strProp &&
                                 strProp.Name != null &&
                                 strProp.Name.Value != null &&
-                                strProp.Name.Value.ToString() == "JapaneseMessage")
+                                strProp.Name.Value.ToString() == xxMessage)
                             {
                                 string originalValue = strProp.Value?.ToString();
                                 if (!string.IsNullOrEmpty(originalValue))
@@ -319,8 +319,7 @@ namespace WaccaSongBrowser
                 ProcessFile(file, true);
             }
         }
-
-        private void createWacca_Click(object sender, EventArgs e)
+        private void createTxtWrapper(string language)
         {
             outputMessage.Text = "Processing...";
             if (File.Exists(messageFolder + "/Wacca.txt"))
@@ -336,13 +335,12 @@ namespace WaccaSongBrowser
                 string[] files = Directory.GetFiles(messageFolder, "*.uasset"); // scan inside for the .uasset file:
                 foreach (string file in files)
                 {
-                    ProcessFile(file, false, true);
+                    ProcessFile(file, false, true, language);
                 }
                 outputMessage.Text = "Wacca.txt and WaccaVanilla.txt created in the Message folder. Do not edit the vanilla txt!!!!";
             }
         }
-
-        private void injectWacca_Click(object sender, EventArgs e)
+        private void injectTxtWrapper(string language)
         {
             outputMessage.Text = "Processing...";
             if (!File.Exists(messageFolder + "/Wacca.txt"))
@@ -358,7 +356,7 @@ namespace WaccaSongBrowser
                 string[] files = Directory.GetFiles(messageFolder, "*.uasset"); // scan inside for the .uasset file:
                 foreach (string file in files)
                 {
-                    ProcessFile(file, true, true);
+                    ProcessFile(file, true, true, language);
                 }
                 outputMessage.Text = "successfully injected text";
             }
@@ -480,7 +478,7 @@ namespace WaccaSongBrowser
                                     if (property is StrPropertyData strProp &&
                                         strProp.Name != null &&
                                         strProp.Name.Value != null &&
-                                        strProp.Name.Value.ToString() == "JapaneseMessage")
+                                        strProp.Name.Value.ToString() == "SimplifiedChineseMessage")
                                     {
                                         string originalValue = strProp.Value?.ToString();
                                         if (!string.IsNullOrEmpty(originalValue))
@@ -511,7 +509,33 @@ namespace WaccaSongBrowser
                                         if (property is StrPropertyData strProp &&
                                             strProp.Name != null &&
                                             strProp.Name.Value != null &&
-                                            strProp.Name.Value.ToString() == "EnglishMessageSG")
+                                            strProp.Name.Value.ToString() == "TraditionalChineseMessageTW")
+                                        {
+                                            // Overwrite EnglishMessageSG with the Japanese text
+                                            strProp.Value = (FString)japaneseText;
+                                            fileModified = true;
+                                        }
+                                    }
+
+                                    foreach (var property in row.Value)
+                                    {
+                                        if (property is StrPropertyData strProp &&
+                                            strProp.Name != null &&
+                                            strProp.Name.Value != null &&
+                                            strProp.Name.Value.ToString() == "TraditionalChineseMessageHK")
+                                        {
+                                            // Overwrite EnglishMessageSG with the Japanese text
+                                            strProp.Value = (FString)japaneseText;
+                                            fileModified = true;
+                                        }
+                                    }
+
+                                    foreach (var property in row.Value)
+                                    {
+                                        if (property is StrPropertyData strProp &&
+                                            strProp.Name != null &&
+                                            strProp.Name.Value != null &&
+                                            strProp.Name.Value.ToString() == "SimplifiedChineseMessage")
                                         {
                                             // Overwrite EnglishMessageSG with the Japanese text
                                             strProp.Value = (FString)japaneseText;
@@ -652,6 +676,75 @@ namespace WaccaSongBrowser
             // Save to new file
             userRateTable.Write(newPath);
             //outputMessage.Text = $"Created new {Path.GetFileName(newPath)} with {interpolated.Count} rows.";
+        }
+
+        private void createWacca_Click(object sender, EventArgs e)
+        {
+            createTxtWrapper("JapaneseMessage");
+        }
+
+        private void injectWacca_Click(object sender, EventArgs e)
+        {
+            injectTxtWrapper("JapaneseMessage");
+        }
+        private void CreateUS_Click(object sender, EventArgs e)
+        {
+            createTxtWrapper("EnglishMessageUSA");
+        }
+
+        private void injectUS_Click(object sender, EventArgs e)
+        {
+            injectTxtWrapper("EnglishMessageUSA");
+        }
+
+        private void CreateSG_Click(object sender, EventArgs e)
+        {
+            createTxtWrapper("EnglishMessageSG");
+        }
+
+        private void injectSG_Click(object sender, EventArgs e)
+        {
+            injectTxtWrapper("EnglishMessageSG");
+        }
+
+        private void CreateTW_Click(object sender, EventArgs e)
+        {
+            createTxtWrapper("TraditionalChineseMessageTW");
+        }
+
+        private void injectTW_Click(object sender, EventArgs e)
+        {
+            injectTxtWrapper("TraditionalChineseMessageTW");
+        }
+
+        private void CreateHK_Click(object sender, EventArgs e)
+        {
+            createTxtWrapper("TraditionalChineseMessageHK");
+        }
+
+        private void injectHK_Click(object sender, EventArgs e)
+        {
+            injectTxtWrapper("TraditionalChineseMessageHK");
+        }
+
+        private void CreateCN_Click(object sender, EventArgs e)
+        {
+            createTxtWrapper("SimplifiedChineseMessage");
+        }
+
+        private void injectCN_Click(object sender, EventArgs e)
+        {
+            injectTxtWrapper("SimplifiedChineseMessage");
+        }
+
+        private void CreateKO_Click(object sender, EventArgs e)
+        {
+            createTxtWrapper("KoreanMessage");
+        }
+
+        private void injectKO_Click(object sender, EventArgs e)
+        {
+            injectTxtWrapper("KoreanMessage");
         }
     }
 }

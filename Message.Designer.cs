@@ -44,12 +44,24 @@
             pathToUserRateCoefficientTabletextBox = new TextBox();
             pathToUserRateLabel = new Label();
             destMessageFolderLabel = new Label();
+            injectUS = new Button();
+            CreateUS = new Button();
+            injectSG = new Button();
+            CreateSG = new Button();
+            injectTW = new Button();
+            CreateTW = new Button();
+            injectHK = new Button();
+            CreateHK = new Button();
+            injectCN = new Button();
+            CreateCN = new Button();
+            injectKO = new Button();
+            CreateKO = new Button();
             SuspendLayout();
             // 
             // outputMessage
             // 
             outputMessage.AutoSize = true;
-            outputMessage.Location = new Point(546, 517);
+            outputMessage.Location = new Point(546, 619);
             outputMessage.Name = "outputMessage";
             outputMessage.Size = new Size(48, 15);
             outputMessage.TabIndex = 0;
@@ -59,29 +71,29 @@
             // 
             createPo.Location = new Point(421, 254);
             createPo.Name = "createPo";
-            createPo.Size = new Size(227, 47);
+            createPo.Size = new Size(227, 26);
             createPo.TabIndex = 1;
-            createPo.Text = "Create .po file for all .uasset";
+            createPo.Text = "Create .po file from Ja for all .uasset";
             createPo.UseVisualStyleBackColor = true;
             createPo.Click += createPo_Click;
             // 
             // createWacca
             // 
-            createWacca.Location = new Point(421, 355);
+            createWacca.Location = new Point(421, 337);
             createWacca.Name = "createWacca";
-            createWacca.Size = new Size(227, 47);
+            createWacca.Size = new Size(227, 28);
             createWacca.TabIndex = 2;
-            createWacca.Text = "Create Wacca.txt";
+            createWacca.Text = "Create Wacca.txt from Japanese";
             createWacca.UseVisualStyleBackColor = true;
             createWacca.Click += createWacca_Click;
             // 
             // injectWacca
             // 
-            injectWacca.Location = new Point(752, 355);
+            injectWacca.Location = new Point(752, 337);
             injectWacca.Name = "injectWacca";
-            injectWacca.Size = new Size(227, 47);
+            injectWacca.Size = new Size(227, 28);
             injectWacca.TabIndex = 3;
-            injectWacca.Text = "Inject Wacca.txt for all .uasset";
+            injectWacca.Text = "Inject Wacca.txt into Japanese";
             injectWacca.UseVisualStyleBackColor = true;
             injectWacca.Click += injectWacca_Click;
             // 
@@ -89,9 +101,9 @@
             // 
             injectPo.Location = new Point(752, 254);
             injectPo.Name = "injectPo";
-            injectPo.Size = new Size(227, 47);
+            injectPo.Size = new Size(227, 26);
             injectPo.TabIndex = 4;
-            injectPo.Text = "Inject all .po for all .uasset";
+            injectPo.Text = "Inject all .po into Ja for all .uasset";
             injectPo.UseVisualStyleBackColor = true;
             injectPo.Click += injectPo_Click;
             // 
@@ -106,7 +118,7 @@
             // 
             // injectWaccaTrophyButton
             // 
-            injectWaccaTrophyButton.Location = new Point(752, 304);
+            injectWaccaTrophyButton.Location = new Point(752, 286);
             injectWaccaTrophyButton.Name = "injectWaccaTrophyButton";
             injectWaccaTrophyButton.Size = new Size(227, 47);
             injectWaccaTrophyButton.TabIndex = 7;
@@ -116,7 +128,7 @@
             // 
             // createWaccaTrophyButton
             // 
-            createWaccaTrophyButton.Location = new Point(421, 304);
+            createWaccaTrophyButton.Location = new Point(421, 286);
             createWaccaTrophyButton.Name = "createWaccaTrophyButton";
             createWaccaTrophyButton.Size = new Size(227, 47);
             createWaccaTrophyButton.TabIndex = 6;
@@ -126,7 +138,7 @@
             // 
             // injectWaccaGradeButton
             // 
-            injectWaccaGradeButton.Location = new Point(752, 407);
+            injectWaccaGradeButton.Location = new Point(752, 202);
             injectWaccaGradeButton.Name = "injectWaccaGradeButton";
             injectWaccaGradeButton.Size = new Size(227, 47);
             injectWaccaGradeButton.TabIndex = 9;
@@ -135,7 +147,7 @@
             // 
             // createWaccaGradeButton
             // 
-            createWaccaGradeButton.Location = new Point(421, 407);
+            createWaccaGradeButton.Location = new Point(421, 202);
             createWaccaGradeButton.Name = "createWaccaGradeButton";
             createWaccaGradeButton.Size = new Size(227, 47);
             createWaccaGradeButton.TabIndex = 8;
@@ -148,8 +160,9 @@
             mergeENSGbutton.Name = "mergeENSGbutton";
             mergeENSGbutton.Size = new Size(227, 47);
             mergeENSGbutton.TabIndex = 10;
-            mergeENSGbutton.Text = "Take Ja from source and Overwrite EnSG from dest folder";
+            mergeENSGbutton.Text = "Take CN from source and Overwrite CN from dest folder";
             mergeENSGbutton.UseVisualStyleBackColor = true;
+            mergeENSGbutton.Click += mergeButton_Click;
             // 
             // injectUserRateButton
             // 
@@ -159,6 +172,7 @@
             injectUserRateButton.TabIndex = 11;
             injectUserRateButton.Text = "Inject User Rate";
             injectUserRateButton.UseVisualStyleBackColor = true;
+            injectUserRateButton.Click += injectUserRateButton_Click;
             // 
             // messageFolderToMergeInTextBox
             // 
@@ -188,12 +202,144 @@
             destMessageFolderLabel.AutoSize = true;
             destMessageFolderLabel.Location = new Point(366, 152);
             destMessageFolderLabel.Name = "destMessageFolderLabel";
-            destMessageFolderLabel.Size = new Size(326, 15);
+            destMessageFolderLabel.Size = new Size(333, 15);
             destMessageFolderLabel.TabIndex = 15;
-            destMessageFolderLabel.Text = "dest Message Folder (will be merged with Ja from source dir)";
+            destMessageFolderLabel.Text = "dest Message Folder (will be merged with CN from source dir)";
+            // 
+            // injectUS
+            // 
+            injectUS.Location = new Point(752, 371);
+            injectUS.Name = "injectUS";
+            injectUS.Size = new Size(227, 26);
+            injectUS.TabIndex = 17;
+            injectUS.Text = "Inject Wacca.txt into EnUS";
+            injectUS.UseVisualStyleBackColor = true;
+            injectUS.Click += injectUS_Click;
+            // 
+            // CreateUS
+            // 
+            CreateUS.Location = new Point(421, 371);
+            CreateUS.Name = "CreateUS";
+            CreateUS.Size = new Size(227, 26);
+            CreateUS.TabIndex = 16;
+            CreateUS.Text = "Create Wacca.txt from EnUS";
+            CreateUS.UseVisualStyleBackColor = true;
+            CreateUS.Click += CreateUS_Click;
+            // 
+            // injectSG
+            // 
+            injectSG.Location = new Point(752, 403);
+            injectSG.Name = "injectSG";
+            injectSG.Size = new Size(227, 26);
+            injectSG.TabIndex = 19;
+            injectSG.Text = "Inject Wacca.txt into SG";
+            injectSG.UseVisualStyleBackColor = true;
+            injectSG.Click += injectSG_Click;
+            // 
+            // CreateSG
+            // 
+            CreateSG.Location = new Point(421, 403);
+            CreateSG.Name = "CreateSG";
+            CreateSG.Size = new Size(227, 26);
+            CreateSG.TabIndex = 18;
+            CreateSG.Text = "Create Wacca.txt from SG";
+            CreateSG.UseVisualStyleBackColor = true;
+            CreateSG.Click += CreateSG_Click;
+            // 
+            // injectTW
+            // 
+            injectTW.Location = new Point(752, 435);
+            injectTW.Name = "injectTW";
+            injectTW.Size = new Size(227, 26);
+            injectTW.TabIndex = 21;
+            injectTW.Text = "Inject Wacca.txt into TW";
+            injectTW.UseVisualStyleBackColor = true;
+            injectTW.Click += injectTW_Click;
+            // 
+            // CreateTW
+            // 
+            CreateTW.Location = new Point(421, 435);
+            CreateTW.Name = "CreateTW";
+            CreateTW.Size = new Size(227, 26);
+            CreateTW.TabIndex = 20;
+            CreateTW.Text = "Create Wacca.txt from TW";
+            CreateTW.UseVisualStyleBackColor = true;
+            CreateTW.Click += CreateTW_Click;
+            // 
+            // injectHK
+            // 
+            injectHK.Location = new Point(752, 467);
+            injectHK.Name = "injectHK";
+            injectHK.Size = new Size(227, 26);
+            injectHK.TabIndex = 23;
+            injectHK.Text = "Inject Wacca.txt into HK";
+            injectHK.UseVisualStyleBackColor = true;
+            injectHK.Click += injectHK_Click;
+            // 
+            // CreateHK
+            // 
+            CreateHK.Location = new Point(421, 467);
+            CreateHK.Name = "CreateHK";
+            CreateHK.Size = new Size(227, 26);
+            CreateHK.TabIndex = 22;
+            CreateHK.Text = "Create Wacca.txt from HK";
+            CreateHK.UseVisualStyleBackColor = true;
+            CreateHK.Click += CreateHK_Click;
+            // 
+            // injectCN
+            // 
+            injectCN.Location = new Point(752, 499);
+            injectCN.Name = "injectCN";
+            injectCN.Size = new Size(227, 26);
+            injectCN.TabIndex = 25;
+            injectCN.Text = "Inject Wacca.txt into Chinese";
+            injectCN.UseVisualStyleBackColor = true;
+            injectCN.Click += injectCN_Click;
+            // 
+            // CreateCN
+            // 
+            CreateCN.Location = new Point(421, 499);
+            CreateCN.Name = "CreateCN";
+            CreateCN.Size = new Size(227, 26);
+            CreateCN.TabIndex = 24;
+            CreateCN.Text = "Create Wacca.txt from Chinese";
+            CreateCN.UseVisualStyleBackColor = true;
+            CreateCN.Click += CreateCN_Click;
+            // 
+            // injectKO
+            // 
+            injectKO.Location = new Point(752, 531);
+            injectKO.Name = "injectKO";
+            injectKO.Size = new Size(227, 26);
+            injectKO.TabIndex = 27;
+            injectKO.Text = "Inject Wacca.txt into Korean";
+            injectKO.UseVisualStyleBackColor = true;
+            injectKO.Click += injectKO_Click;
+            // 
+            // CreateKO
+            // 
+            CreateKO.Location = new Point(421, 531);
+            CreateKO.Name = "CreateKO";
+            CreateKO.Size = new Size(227, 26);
+            CreateKO.TabIndex = 26;
+            CreateKO.Text = "Create Wacca.txt from Korean";
+            CreateKO.UseVisualStyleBackColor = true;
+            CreateKO.Click += CreateKO_Click;
             // 
             // Message
             // 
+            Controls.Add(injectKO);
+            Controls.Add(CreateKO);
+            Controls.Add(injectCN);
+            Controls.Add(CreateCN);
+            Controls.Add(injectHK);
+            Controls.Add(CreateHK);
+            Controls.Add(injectTW);
+            Controls.Add(CreateTW);
+            Controls.Add(injectSG);
+            Controls.Add(CreateSG);
+            Controls.Add(injectUS);
+            Controls.Add(CreateUS);
             Controls.Add(destMessageFolderLabel);
             Controls.Add(pathToUserRateLabel);
             Controls.Add(pathToUserRateCoefficientTabletextBox);
@@ -234,5 +380,17 @@
         private TextBox pathToUserRateCoefficientTabletextBox;
         private Label pathToUserRateLabel;
         private Label destMessageFolderLabel;
+        private Button injectUS;
+        private Button CreateUS;
+        private Button injectSG;
+        private Button CreateSG;
+        private Button injectTW;
+        private Button CreateTW;
+        private Button injectHK;
+        private Button CreateHK;
+        private Button injectCN;
+        private Button CreateCN;
+        private Button injectKO;
+        private Button CreateKO;
     }
 }
