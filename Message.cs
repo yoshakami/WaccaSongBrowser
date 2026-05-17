@@ -19,6 +19,7 @@ namespace WaccaSongBrowser
 {
     public partial class Message : UserControl
     {
+        string[] languages = { "JapaneseMessage", "EnglishMessageUSA", "EnglishMessageSG", "TraditionalChineseMessageTW", "TraditionalChineseMessageHK", "SimplifiedChineseMessage", "KoreanMessage" };
         static string? messageFolder = null;
         static string filePath;
         public Message(string fileName, string type)
@@ -35,6 +36,18 @@ namespace WaccaSongBrowser
             mergeENSGbutton.Visible = false;
             pathToUserRateLabel.Visible = false;
             destMessageFolderLabel.Visible = false;
+            injectCN.Visible = false;
+            injectHK.Visible = false;
+            injectKO.Visible = false;
+            injectSG.Visible = false;
+            injectTW.Visible = false;
+            injectUS.Visible = false;
+            CreateUS.Visible = false;
+            CreateSG.Visible = false;
+            CreateTW.Visible = false;
+            CreateKO.Visible = false;
+            CreateHK.Visible = false;
+            CreateCN.Visible = false;
             if (type == "trophy")
             {
                 injectWaccaGradeButton.Visible = false;
@@ -68,6 +81,25 @@ namespace WaccaSongBrowser
             pathToUserRateCoefficientTabletextBox.Visible = true;
             injectUserRateButton.Visible = true;
             mergeENSGbutton.Visible = true;
+            injectCN.Visible = true;
+            injectHK.Visible = true;
+            injectKO.Visible = true;
+            injectSG.Visible = true;
+            injectTW.Visible = true;
+            injectUS.Visible = true;
+            CreateUS.Visible = true;
+            CreateSG.Visible = true;
+            CreateTW.Visible = true;
+            CreateKO.Visible = true;
+            CreateHK.Visible = true;
+            CreateCN.Visible = true;
+            languageAcomboBox.Items.Clear();
+            languageBcomboBox.Items.Clear();
+            for (byte i = 0; i < 7; i++)
+            {
+                languageAcomboBox.Items.Add(languages[i]);
+                languageBcomboBox.Items.Add(languages[i]);
+            }
         }
         static List<string> text = new List<string>();
         static List<string> textVanilla = new List<string>();
@@ -432,7 +464,7 @@ namespace WaccaSongBrowser
                 outputMessage.Text = "Missing Trophy.txt or TrophyVanilla.txt. Please click the create button first.";
             }
         }
-        public void MergeJapaneseToEnglishSG(string dir1, string dir2)
+        private void MergeAToB(string dir1, string dir2)
         {
             // Ensure both directories exist
             if (!Directory.Exists(dir1) || !Directory.Exists(dir2))
@@ -440,7 +472,7 @@ namespace WaccaSongBrowser
                 outputMessage.Text = "Error: One or both directories do not exist.";
                 return;
             }
-
+            // TODO: get selected combobox A and selected combobox B then replace code below!!!
             // Get all uasset files in dir1
             string[] sourceFiles = Directory.GetFiles(dir1, "*.uasset");
 
@@ -571,7 +603,7 @@ namespace WaccaSongBrowser
             string targetDirectory = messageFolderToMergeInTextBox.Text;
 
             // Run the merge
-            MergeJapaneseToEnglishSG(sourceDirectory, targetDirectory);
+            MergeAToB(sourceDirectory, targetDirectory);
         }
         public void injectUserRateButton_Click(object sender, EventArgs e)
         {

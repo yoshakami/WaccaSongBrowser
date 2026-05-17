@@ -56,6 +56,10 @@
             CreateCN = new Button();
             injectKO = new Button();
             CreateKO = new Button();
+            languageAcomboBox = new ComboBox();
+            languageAlabel = new Label();
+            languageBlabel = new Label();
+            languageBcomboBox = new ComboBox();
             SuspendLayout();
             // 
             // outputMessage
@@ -160,7 +164,7 @@
             mergeENSGbutton.Name = "mergeENSGbutton";
             mergeENSGbutton.Size = new Size(227, 47);
             mergeENSGbutton.TabIndex = 10;
-            mergeENSGbutton.Text = "Take CN from source and Overwrite CN from dest folder";
+            mergeENSGbutton.Text = "Take Language A from source and Overwrite Language B from dest folder";
             mergeENSGbutton.UseVisualStyleBackColor = true;
             mergeENSGbutton.Click += mergeButton_Click;
             // 
@@ -200,11 +204,11 @@
             // destMessageFolderLabel
             // 
             destMessageFolderLabel.AutoSize = true;
-            destMessageFolderLabel.Location = new Point(366, 152);
+            destMessageFolderLabel.Location = new Point(342, 152);
             destMessageFolderLabel.Name = "destMessageFolderLabel";
-            destMessageFolderLabel.Size = new Size(333, 15);
+            destMessageFolderLabel.Size = new Size(379, 15);
             destMessageFolderLabel.TabIndex = 15;
-            destMessageFolderLabel.Text = "dest Message Folder (will be merged with CN from source dir)";
+            destMessageFolderLabel.Text = "dest Message Folder (will be merged with Language A from source dir)";
             // 
             // injectUS
             // 
@@ -326,8 +330,50 @@
             CreateKO.UseVisualStyleBackColor = true;
             CreateKO.Click += CreateKO_Click;
             // 
+            // languageAcomboBox
+            // 
+            languageAcomboBox.BackColor = SystemColors.Window;
+            languageAcomboBox.FormattingEnabled = true;
+            languageAcomboBox.Location = new Point(216, 120);
+            languageAcomboBox.Margin = new Padding(3, 2, 3, 2);
+            languageAcomboBox.Name = "languageAcomboBox";
+            languageAcomboBox.Size = new Size(199, 23);
+            languageAcomboBox.TabIndex = 28;
+            // 
+            // languageAlabel
+            // 
+            languageAlabel.AutoSize = true;
+            languageAlabel.Location = new Point(281, 96);
+            languageAlabel.Name = "languageAlabel";
+            languageAlabel.Size = new Size(70, 15);
+            languageAlabel.TabIndex = 29;
+            languageAlabel.Text = "Language A";
+            // 
+            // languageBlabel
+            // 
+            languageBlabel.AutoSize = true;
+            languageBlabel.Location = new Point(281, 190);
+            languageBlabel.Name = "languageBlabel";
+            languageBlabel.Size = new Size(69, 15);
+            languageBlabel.TabIndex = 31;
+            languageBlabel.Text = "Language B";
+            // 
+            // languageBcomboBox
+            // 
+            languageBcomboBox.BackColor = SystemColors.Window;
+            languageBcomboBox.FormattingEnabled = true;
+            languageBcomboBox.Location = new Point(216, 214);
+            languageBcomboBox.Margin = new Padding(3, 2, 3, 2);
+            languageBcomboBox.Name = "languageBcomboBox";
+            languageBcomboBox.Size = new Size(199, 23);
+            languageBcomboBox.TabIndex = 30;
+            // 
             // Message
             // 
+            Controls.Add(languageBlabel);
+            Controls.Add(languageBcomboBox);
+            Controls.Add(languageAlabel);
+            Controls.Add(languageAcomboBox);
             Controls.Add(injectKO);
             Controls.Add(CreateKO);
             Controls.Add(injectCN);
@@ -392,5 +438,9 @@
         private Button CreateCN;
         private Button injectKO;
         private Button CreateKO;
+        private ComboBox languageAcomboBox;
+        private Label languageAlabel;
+        private Label languageBlabel;
+        private ComboBox languageBcomboBox;
     }
 }
