@@ -608,14 +608,14 @@ namespace WaccaSongBrowser
         public void injectUserRateButton_Click(object sender, EventArgs e)
         {
             string filePath = pathToUserRateCoefficientTabletextBox.Text;
-            //outputMessage.Text = "Processing UserRateCoefficientTable...";
+            outputMessage.Text = "Processing UserRateCoefficientTable...";
 
             string folder = Path.GetDirectoryName(filePath);
             string newPath = Path.Combine(folder, "UserRateCoefficientTableNew.uasset");
 
             if (!File.Exists(filePath))
             {
-                //outputMessage.Text = "Missing UserRateCoefficientTable.uasset";
+                outputMessage.Text = "Missing UserRateCoefficientTable.uasset";
                 return;
             }
 
@@ -625,7 +625,7 @@ namespace WaccaSongBrowser
 
             if (userRateTable == null)
             {
-                //outputMessage.Text = "GradeTable is not loaded. Please run ReadGrade first.";
+                outputMessage.Text = "GradeTable is not loaded. Please run ReadGrade first.";
                 return;
             }
             UDataTable dataTableExport = null;
@@ -641,31 +641,25 @@ namespace WaccaSongBrowser
 
             if (dataTableExport == null)
             {
-                throw new InvalidOperationException("No DataTable found in this asset.");
+
+                outputMessage.Text = "No DataTable found in this asset.";
+                return;
             }
             dataTableExport.Data.Clear();
 
-            // Prepare your data points
+            // Prepare your data points (multiplicateurs déjà ×10 pour éviter le piège du dernier point)
             List<(int Score, float Mult)> points = new()
             {
-                (1000000, 1.12f),
-                (995000, 1.08f),
-                (990000, 1.04f),
-                (985000, 1.00f),
-                (980000, 0.96f),
-                (965000, 0.88f),
-                (950000, 0.80f),
-                (935000, 0.72f),
-                (920000, 0.64f),
-                (905000, 0.56f),
-                (890000, 0.48f),
-                (875000, 0.40f),
-                (860000, 0.32f),
-                (845000, 0.24f),
-                (830000, 0.16f),
-                (815000, 0.08f),
-                (800000, 0.00f)
+                (1000000, 10.90f),
+                (996000,  10.60f),
+                (992000,  10.30f),
+                (988000,  10.00f),
+                (980000,   9.40f),
+                (968000,   8.80f),
+                (800000,   0.40f),
+                (792000,   0.00f)
             };
+
             int step = 1000;
             List<(int Score, float Mult)> interpolated = new();
 
@@ -681,14 +675,13 @@ namespace WaccaSongBrowser
                 for (int j = 0; j < numSteps; j++)
                 {
                     int score = score1 - j * step;
-                    float multiplier = (mult1 + j * mStep) * 10;
+                    float multiplier = mult1 + j * mStep;
                     interpolated.Add((score, (float)Math.Round(multiplier, 5)));
                 }
             }
 
-            // Add last point explicitly
-            var last = points[^1];
-            interpolated.Add(last);
+            // Add last point explicitly (792000, 0.00f)
+            interpolated.Add(points[^1]);
 
             int k = 1;
             // Create the DataTable
@@ -707,7 +700,7 @@ namespace WaccaSongBrowser
             }
             // Save to new file
             userRateTable.Write(newPath);
-            //outputMessage.Text = $"Created new {Path.GetFileName(newPath)} with {interpolated.Count} rows.";
+            outputMessage.Text = $"Created new {Path.GetFileName(newPath)} with {interpolated.Count} rows.";
         }
 
         private void createWacca_Click(object sender, EventArgs e)
