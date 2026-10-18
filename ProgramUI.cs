@@ -1381,10 +1381,13 @@ namespace WaccaSongBrowser
             diffHardTextBox.Text = song.DifficultyHardLv.ToString();
             diffExtremeTextBox.Text = song.DifficultyExpertLv.ToString();
             diffInfernoTextBox.Text = song.DifficultyInfernoLv.ToString();
-            crNormalTextBox.Text = song.ClearRateNormal.ToString();
-            crHardTextBox.Text = song.ClearRateHard.ToString();
-            crExtremeTextBox.Text = song.ClearRateExpert.ToString();
-            crInfernoTextBox.Text = song.ClearRateInferno.ToString();
+            if (freezeClearRateCheckBox.Checked == false)
+            {
+                crNormalTextBox.Text = song.ClearRateNormal.ToString();
+                crHardTextBox.Text = song.ClearRateHard.ToString();
+                crExtremeTextBox.Text = song.ClearRateExpert.ToString();
+                crInfernoTextBox.Text = song.ClearRateInferno.ToString();
+            }
             movieNormalTextBox.Text = song.MovieAssetName;
             movieHardTextBox.Text = song.MovieAssetNameHard;
             movieExtremeTextBox.Text = song.MovieAssetNameExpert;
@@ -2854,6 +2857,26 @@ namespace WaccaSongBrowser
                 HashTagTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
                 CopyrightMessageTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
                 WorkBufferTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+            }
+        }
+
+        private void freezeClearRateCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (freezeClearRateCheckBox.CheckState == CheckState.Checked)
+            {
+                freezeClearRateCheckBox.BackColor = Color.LightBlue;
+                crExtremeTextBox.BackColor = Color.LightBlue;
+                crHardTextBox.BackColor = Color.LightBlue;
+                crInfernoTextBox.BackColor = Color.LightBlue;
+                crNormalTextBox.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                freezeClearRateCheckBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                crExtremeTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                crHardTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                crInfernoTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
+                crNormalTextBox.BackColor = Color.FromArgb(0xff, 0xf0, 0xf0, 0xf0);
             }
         }
     }
